@@ -1,0 +1,231 @@
+<div id="header">
+
+  <div class="navi" *ngIf="!this.userName ">
+    <nav class="navbar navbar-expand-sm bg-black navbar-dark fixed-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-5">
+            <!-- <div id="triangle-bottomleft"></div> -->
+            <div class="navbar-brand-logo">
+              <a class="navbar-brand rr" href="#"><img alt="logo" id="img" src="../../../assets/img/logo.png"></a>
+            
+              <ul class="yt" *ngIf="this.pageUrl !== 'dashboard'">
+                <li class="nav-item hover_clr">
+                  <a class="nav-link col " [routerLink]='"/dashboard"'>HOME</a>
+                </li>
+              </ul>
+            </div>
+            
+
+          </div>
+          <div class="col-7">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="fa fa-question-circle-o "></i>HELP</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link pointer " (click)="showModalDialog('center')"> <i class="fa fa-user-circle "></i>LOGIN/
+                    REGISTER</a> 
+                </li>
+              </ul>
+
+            </div>
+            <!-- <div id="triangle-bottomright"></div> -->
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="navi" *ngIf="this.userName">
+    <nav class="navbar navbar-expand-sm bg-black navbar-dark fixed-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-5">
+            <div class="navbar-brand-logo">
+              <a class="navbar-brand" href="#"><img alt="logo" id="img" src="../../../assets/img/logo.png"></a>
+            </div>
+          </div>
+          <div class="col-7">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link"><i class="fa fa-question-circle-o "></i>HELP</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">INSTRUCTION</a>
+                </li>
+                <li class="nav-item ">
+                  <div class="dropdown">
+                    <!-- <a class="nav-link last_color dropdown-toggle" data-toggle="dropdown" *ngIf="!this.userName"></a> -->
+                    <a class="nav-link last_color dropdown-toggle" data-toggle="dropdown"
+                      *ngIf="this.userName">{{this.userName}}</a>
+                    <div class="dropdown-menu logout_background">
+                      <a (click)="logout()" class="logoutbtn">Logout</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- <div id="triangle-bottomright"></div> -->
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <p-dialog [(visible)]="display" [style]="{width: '750px'}" [position]="position" [baseZIndex]="10000"
+    class="pDialogdashboard" (onHide)="closeModel($event)">
+    <p-tabView class="dashboardtabview" id="registerTab" (onChange)="onTabChange($event)">
+      <p-tabPanel header="Login" leftIcon="pi pi-user" [selected]="showLogin">
+        <div class="col-md-12">
+          <form class="form-horizontal" name="loginform" (ngSubmit)="login()" #loginForm="ngForm" class="loginstyle">
+            <fieldset>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" placeholder="Enter Username" name="username"
+                  [(ngModel)]="model.username" #username="ngModel" required [maxlength]="50">
+                <div *ngIf="username.errors && username.touched">
+                  <span class="error" *ngIf="username.errors?.required">username is mandatory.</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" name="Password" [(ngModel)]="model.password"
+                  #password="ngModel" required [minlength]="3" [maxlength]="25" placeholder="Enter Password">
+                <div *ngIf="password.errors && password.touched">
+                  <span class="error" *ngIf="password.errors?.required">Password is mandatory.</span>
+                  <span class="error" *ngIf="password.errors?.minlength">Min 3 characters required.</span>
+                  <span class="error" *ngIf="password.errors?.maxlength">Max 25 characters required.</span>
+                </div>
+              </div>
+              <div class="forgot_size frg"><a class="nav-link" (click)="showforgotModalDialog()"> Forgot Password?
+                </a></div>
+              <button type="submit" class="btn btn-warning loginbtn button btn-lg " [disabled]="!loginForm.valid">LOGIN</button>
+
+            </fieldset>
+          </form>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Register" leftIcon="pi pi-user" [selected]="showRegister">
+        <div class="">
+          <div class="col-md-12">
+            <form id="tab" name="registerForm" (ngSubmit)="register()" #registerForm="ngForm" class="registerstyle">
+              <fieldset>
+                <div class="form-group ">
+                  <label for="username1">Username</label>
+                  <input type="text" class="form-control" placeholder="Enter Username" name="username1"
+                    [(ngModel)]="model.username1" #username1="ngModel" required [maxlength]="50">
+                  <div *ngIf="username1.errors && username1.touched">
+                    <span class="error" *ngIf="username1.errors?.required">username is mandatory.</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email1">Email</label>
+                  <input type="email" class="form-control" placeholder="Enter email" name="email1"
+                    [(ngModel)]="model.email1" #email1="ngModel" required
+                    pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" [maxlength]="50">
+                  <div *ngIf="email1.errors && email1.touched">
+                    <span class="error" *ngIf="email1.errors?.required">Email is mandatory.</span>
+                    <span class="error" *ngIf="email1.errors?.pattern">Enter valid email pattern.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password1">Password</label>
+                  <input type="password" class="form-control" placeholder="Enter password" name="password1"
+                    [(ngModel)]="model.password1" #password1="ngModel" required [minlength]="3" [maxlength]="25"
+                    placeholder="Enter Password">
+                  <div *ngIf="password1.errors && password1.touched">
+                    <span class="error" *ngIf="password1.errors?.required">Password is mandatory.</span>
+                    <span class="error" *ngIf="password1.errors?.minlength">Min 3 characters required.</span>
+                    <span class="error" *ngIf="password1.errors?.maxlength">Max 25 characters required.</span>
+                  </div>
+                </div>
+
+                <button type="submit" [disabled]="!registerForm.valid"
+                  class="btn btn-warning btn-lg registerbtn btnsub">SUBMIT</button><br><br>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+
+  </p-dialog>
+
+  <p-dialog header="Forgot" [(visible)]="showForgot" [style]="{width: '750px'}" [position]="position"
+    [baseZIndex]="10000" class="pDialogdashboard">
+    <div class="">
+      <div class="col-md-12">
+        <form id="tab" name="forgotForm" (ngSubmit)="forgot()" #forgotForm="ngForm" class="forgotstyle">
+          <fieldset>
+            <div class="form-group">
+              <label for="emailForgot">Email</label>
+              <input type="email" class="form-control" placeholder="Enter email" name="emailForgot"
+                [(ngModel)]="modelforgot.emailForgot" #emailForgot="ngModel" required
+                pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" [maxlength]="50">
+              <div *ngIf="emailForgot.errors && emailForgot.touched">
+                <span class="error" *ngIf="emailForgot.errors?.required">Email is mandatory.</span>
+                <span class="error" *ngIf="emailForgot.errors?.pattern">Enter valid email pattern.</span>
+              </div>
+            </div>
+            <button type="submit" [disabled]="!forgotForm.valid" class="btn btn-primary registerbtn"
+              (click)="showOTPModalDialog()">SUBMIT</button><br><br>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </p-dialog>
+
+  <p-dialog header="Set New Password " [(visible)]="showOTP" [style]="{width: '750px'}" [position]="position"
+    [baseZIndex]="10000" class="pDialogdashboard">
+    <div class="">
+      <div class="col-md-12">
+        <form id="tab" name="forgotForm" (ngSubmit)="forgot()" #registerForm="ngForm" class="forgotstyle">
+          <fieldset>
+            <div class="form-group">
+              <label for="otp">Enter OTP</label>
+              <input type="number" class="form-control" placeholder="Enter OTP (only numeric value)" name="otp"
+                [(ngModel)]="model.otp" #email1="ngModel" required
+                pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" [maxlength]="50">
+              <!-- <div *ngIf="email1.errors && email1.touched">
+                <span class="error" *ngIf="email1.errors?.required">Email is mandatory.</span>
+                <span class="error" *ngIf="email1.errors?.pattern">Enter valid email pattern.</span>
+              </div> -->
+            </div>
+            <div class="form-group">
+              <label for="password">New Password</label>
+              <input type="password" class="form-control" name="newPassword" [(ngModel)]="model.password"
+                #password="ngModel" required [minlength]="3" [maxlength]="25" placeholder="Enter New Password">
+              <div *ngIf="password.errors && password.touched">
+                <span class="error" *ngIf="password.errors?.required">Password is mandatory.</span>
+                <span class="error" *ngIf="password.errors?.minlength">Min 3 characters required.</span>
+                <span class="error" *ngIf="password.errors?.maxlength">Max 25 characters required.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Confirm Password</label>
+              <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="model.password"
+                #password="ngModel" required [minlength]="3" [maxlength]="25" placeholder="Enter Confirm Password">
+              <div *ngIf="password.errors && password.touched">
+                <span class="error" *ngIf="password.errors?.required">Password is mandatory.</span>
+                <span class="error" *ngIf="password.errors?.minlength">Min 3 characters required.</span>
+                <span class="error" *ngIf="password.errors?.maxlength">Max 25 characters required.</span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary registerbtn">SUBMIT</button><br><br>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </p-dialog>
+</div>

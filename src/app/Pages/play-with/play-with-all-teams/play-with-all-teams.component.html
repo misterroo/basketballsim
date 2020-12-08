@@ -1,0 +1,169 @@
+<div id="playwithallteam">
+  <div class="container-fluid playwithcontent">
+    <!-- <app-header></app-header> -->
+    <div class="basketball_player">
+      <div class="col-md-12 col-12 mt-5">
+        <button type="button" class="previos_btn"
+          [routerLink]="['/dashboard/chooseteam']"><i class="fa fa-chevron-left mr-2" aria-hidden="true"></i> 
+        </button>
+        <!-- <button type="button" class="previos_btn ml-3" (click)="backClicked()"><i class="fa fa-chevron-left mr-2" aria-hidden="true"></i></button> -->
+
+        <ol class="breadcrumb col-md-7 bread_mrgin">
+          <li class="breadcrumb-item point hover_clr"><a class="a_color"  [routerLink]="['/dashboard/chooseteam']" >Select Game Type</a></li>
+          <li class="breadcrumb-item active b_color" aria-current="page">Play With All Team</li>    
+        </ol>
+
+      </div>
+
+
+      <div class="container pad_up">
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="one_on_one">
+              <form name="selectedDropdownForm" #selectedDropdownForm="ngForm">
+                
+                
+                <div class="row">
+                  <ng-container *ngIf="this.enableDisableStatus !== 'allteam'; else SEASON">
+                    <div class="col-md-6  mt-4">
+                      <div class="form-group">
+                        <p-dropdown class="pDropdwon dropdown" name="season" [options]="seasonData"
+                          optionLabel="league_name" optionValue="_id" [(ngModel)]="model.season"
+                          (ngModelChange)="getSeasonValue($event)" placeholer="CHOOSE A SEASON" required></p-dropdown>
+                      </div>
+                    </div>
+                  </ng-container>
+
+                  <ng-template #SEASON class="text-center">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6  mt-4">
+                          <div class="form-group ">
+                            <p-dropdown class="pDropdwon dropdown" [(ngModel)]="model.season" name="season"
+                              [options]="seasonData" optionLabel="league_name" optionValue="_id"
+                              placeholer="CHOOSE A SEASON" (ngModelChange)="getSeasonValue($event)" required>
+                            </p-dropdown>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                  <div class="col-md-6 mt-4 pr-3">
+                    <div class="form-group ">
+                      <p-dropdown class="pDropdwon dropdown_border dropdown" [options]="teamData" optionLabel="teams"
+                        optionValue="_id" *ngIf="this.enableDisableStatus !== 'allteam'; else TEAM"
+                        placeholder="CHOOSE A TEAM" (ngModelChange)="getTeamValue($event)" [(ngModel)]="model.team"
+                        name="team" required></p-dropdown>
+                    </div>
+                    <ng-template #TEAM>
+                    </ng-template>
+                  </div>
+                </div>
+
+
+                <div class="row justify-content-md-center">
+                  <div class="col-md-6  mt-4">
+                    <div class="form-group">
+                      <p-dropdown class="pDropdwon dropdown" [options]="opponentData" optionLabel="teams"
+                        optionValue="_id"
+                        *ngIf="this.enableDisableStatus !== 'playallteam' && this.enableDisableStatus !== 'allteam'; else OPPONENT"
+                        placeholder="CHOOSE OPPONENT" (ngModelChange)="getOpponentValue($event)"
+                        [(ngModel)]="model.opponent" name="opponent" required></p-dropdown>
+                    </div>
+                    <ng-template #OPPONENT>
+                    </ng-template>
+                  </div>
+                  <div class="col-md-6  mt-4">
+                    <div class="form-group"
+                      *ngIf="this.enableDisableStatus !== 'playallteam' && this.enableDisableStatus !== 'allteam'; else GAMENUMBER">
+                      <input type="number"  class="form-control input-field" (ngModelChange)="getGameNumberValue($event)"
+                        placeholder="NUMBER OF GAMES" [(ngModel)]="model.gameNumber" name="gameNumber" required    oninput="validity.valid||(value='');" />
+                    </div>  <!--oninput="validity.valid||(value='');"-->    
+                    <ng-template #GAMENUMBER>
+                    </ng-template>
+                  </div>
+                </div>
+
+
+
+                <!-- <div class="row justify-content-md-center">
+                  <div class="col-md-6  mt-4">
+                    <div class="form-group">
+                      <p-dropdown class="pDropdwon dropdown" [options]="opponentData" optionLabel="teams"
+                        optionValue="_id"
+                        *ngIf="this.enableDisableStatus !== 'playallteam' && this.enableDisableStatus !== 'allteam'; else OPPONENT"
+                        placeholder="CHOOSE YEAR" (ngModelChange)="getOpponentValue($event)"
+                        [(ngModel)]="model.opponent" name="opponent" required></p-dropdown>
+                    </div>
+
+                    <ng-template #OPPONENT>
+                    </ng-template>
+                  </div>
+                  <div class="col-md-6  mt-4">
+                    <div class="form-group">
+                      <p-dropdown class="pDropdwon dropdown" [options]="opponentData" optionLabel="teams"
+                        optionValue="_id"
+                        *ngIf="this.enableDisableStatus !== 'playallteam' && this.enableDisableStatus !== 'allteam'; else OPPONENT"
+                        placeholder="CHOOSE YEAR" (ngModelChange)="getOpponentValue($event)"
+                        [(ngModel)]="model.opponent" name="opponent" required></p-dropdown>
+                    </div>  
+
+                    <ng-template #GAMENUMBER>
+                    </ng-template>
+                  </div>
+                </div>
+
+                <div class="row justify-content-md-center">
+                  <div class="col-md-6  mt-4">
+                    <div class="form-group">
+                      <p-dropdown class="pDropdwon dropdown" [options]="opponentData" optionLabel="teams"
+                        optionValue="_id"
+                        *ngIf="this.enableDisableStatus !== 'playallteam' && this.enableDisableStatus !== 'allteam'; else OPPONENT"
+                        placeholder="CHOOSE TEAM" (ngModelChange)="getOpponentValue($event)"
+                        [(ngModel)]="model.opponent" name="opponent" required></p-dropdown>
+                    </div>
+
+                    <ng-template #OPPONENT>
+                    </ng-template>
+                  </div>
+                  <div class="col-md-6  mt-4">
+                    <div class="form-group">
+                      <p-dropdown class="pDropdwon dropdown" [options]="opponentData" optionLabel="teams"
+                        optionValue="_id"
+                        *ngIf="this.enableDisableStatus !== 'playallteam' && this.enableDisableStatus !== 'allteam'; else OPPONENT"
+                        placeholder="CHOOSE TEAM" (ngModelChange)="getOpponentValue($event)"
+                        [(ngModel)]="model.opponent" name="opponent" required></p-dropdown>
+                    </div>  
+
+                    <ng-template #GAMENUMBER>
+                    </ng-template>
+                  </div>
+                </div> -->
+
+
+
+
+
+                <div class="row justify-content-md-center">
+                  <div class="col-md-12 text-center">
+                    <button type="button" class="btn-yellow btn-lg" (click)="goto()"
+                      [style.margin]="this.enableDisableStatus !== 'playallteam' && this.enableDisableStatus !== 'allteam'? '' : 'unset'"
+                      [disabled]="!selectedDropdownForm.valid"> GO <i class="fa fa-angle-right  pt-1"
+                        aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

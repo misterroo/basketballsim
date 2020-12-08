@@ -1,0 +1,139 @@
+<div id="chooseteam">
+    <!-- <app-header></app-header> -->
+    <div class="container container-fluid-team">
+        <div class=" tt">  <!--row ki jagah par tt-->
+            <div class="col-md-12 ty"> 
+                <!-- <h1>Select Game Type</h1> -->
+                <!-- <div class="row choose_content">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 pt-4">
+                            <div class="img1">
+                                <div [routerLink]="['/choosemyteam']">
+                                    <h1 class="text-center">CHOOSE MY TEAM <br>& SEASON</h1>
+                                </div>
+                                <div class="details">
+                                    <div class="content">
+                                        <h2>CHOOSE YOUR TEAM AND SEASON AND PLAY WITH ALL OTHER TEAMS IN ONE GO OR YOU
+                                            CAN
+                                            CHOOSE ONE OPPONENT TEAM AND HAVE MATCHUPS N NUMBER OF TIMES WITH N NUMBER
+                                            Of
+                                            OPPONENT TEAM. </h2>
+                                    </div>
+                                </div> 
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 pt-4">
+                            <div class="img2" (click)="goToTeam('allteam')">
+                                <h1 class="text-center">CHOOSE ALL THE <br>TEAMS</h1>
+                            </div>
+                        </div>
+                    </div> -->
+                <!-- <div class="row choose_content">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 pt-4">
+                          <div class="img1">
+                            <h2 class="text-center text_size">CHOOSE MY TEAM <br>& SEASON</h2>
+                            <div class="overlay">
+                              <div class="text">CHOOSE YOUR TEAM SEASON AND PLAY WITH ALL <br>OTHER TEAMS IN ONE GO OR YOU CAN CHOOSE ONE <br>OPPONENT TEAM AND HAVE MATCHUPS N NUMBER OF TIMES <br>WITH N NUMBER OF OPPONENT TEAM.</div>
+                                <button type="button" class="btn btn-yellow text-center" [routerLink]="['/choosemyteam']"> GO <i class="fa fa-arrow-right"
+                                    aria-hidden="true"></i></button>
+                            </div>
+                          </div>
+            
+                        </div>
+                        <div class="col-md-5 pt-4">
+                          <div class="img2">
+                            <h2 class="text-center text_size1">CHOOSE ALL THE <br>TEAMS</h2>
+                            <div class="overlay1">
+                              <div class="text1">REPLAY ENTIRE SEASON MATCHES1 IN ONE GO </div>
+                              <button type="button" class="btn btn-yellow text-center" [routerLink]="['/playwithallteam']"> GO <i class="fa fa-arrow-right"
+                                aria-hidden="true" (click)="goToTeam('allteam')"></i></button>
+                            </div>
+                          </div>
+            
+                        </div>
+                    </div> -->
+
+                <div class="row choose_content">
+                    <div class="col-md-12 col-12 pb-5">   
+                         <button type="button" class="previos_btn ml-2" [routerLink]="['/dashboard3']"><i
+                                class="fa fa-chevron-left mr-2" aria-hidden="true"></i>                                                           
+                        </button>
+                        <h1>Select Game Type</h1>                                
+                    </div>
+
+                    <div class="col-md-6 col-12 pb-5">
+                        <div class="box14">
+                            <img src="../../../assets/img/choosemyteam.png" alt=""> 
+                            <div class="box-content-upper">
+                                <h2 class="text-center text_size">PLAY WITH ALL <br> TEAMS IN A <br>SEASON</h2>
+                            </div>
+                            <div class="box-content">
+                                <div class="title ">SELECT ONE TEAM AND PLAY N NUMBERS OF GAMES WITH ALL THE TEAMS PRESENT IN A SEASON</div>
+                                <ul class="icon">
+                                    <li>
+                                        <button type="button" class="btn btn-yellow text-center"  (click)="goToTeam('playallteam')" [routerLink]="['/dashboard3/choosemyteam']"> GO <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 pb-5">
+                        <div class="box14">
+                            <img src="../../../assets/img/playwithallteam.png" alt="">
+                            <div class="box-content-upper">
+                                <h2 class="text-center text_size">ONE ON ONE<br> MATCHUP</h2>
+                            </div>
+                            <div class="box-content">
+                                <div class="title">SELECT ONE TEAM OR MULTIPLE TEAMS AND PREDICT ONE ON ONE MATCH UP BETWEEN THEM</div>
+                                <ul class="icon">
+                                    <li>
+                                        <button type="button" class="btn btn-yellow text-center" (click)="goToTeam('oneonone')"> GO <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 off col-12 pb-5 yt">
+                        <div class="box14">
+                            <img src="../../../assets/img/playwithallteam.png" alt="">
+                            <div class="box-content-upper">
+                                <h2 class="text-center text_size">REPLAY ENTIRE SEASON </h2>
+                            </div>
+                            <div class="box-content">
+                                <div class="title">REPLAY ENTIRE SEASON MATCHES IN ONE GO</div>
+                                <ul class="icon">
+                                    <li>
+                                        <button type="button" class="btn btn-yellow text-center" (click)="goToTeam('allteam')"> GO <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 offset col-12 pb-5 ">
+                        <div class="box14">
+                            <img src="../../../assets/img/choosemyteam.png" alt="">
+                            <!-- <img src="../../../assets/img/playwithallteam.png" alt=""> -->
+                            <div class="box-content-upper">
+                                <h2 class="text-center text_size">SINGLE GAME VERSION </h2>
+                            </div>
+                            <div class="box-content">
+                                <div class="title">REPLAY ENTIRE SEASON MATCHES IN ONE GO</div>
+                                <ul class="icon">
+                                    <li>
+                                        <button type="button" class="btn btn-yellow text-center"  [routerLink]="['/dashboard3/singlegamecomponent']" > GO <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                    </li> 
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

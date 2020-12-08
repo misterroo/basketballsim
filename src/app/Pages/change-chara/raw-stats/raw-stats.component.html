@@ -1,0 +1,89 @@
+<div id="rowstats" class="">
+    <div class="container-fluid">
+        <!-- <app-header></app-header> -->
+        <div class="row">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-12 ">
+
+                        <div class="fix">
+                             <button type="button" class="previos_btn ml-3" (click)="backClicked()">
+                                     <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i> </button>
+
+                                     
+
+
+                            <div class="heading">
+                                <h1 class="mar">RAW STATS </h1>
+                                <ol class="breadcrumb col-md-7 bread_mrgin">      
+                                    <!-- <li class="breadcrumb-item point" *ngIf="this.oneononeData != 'playallteam'"><a class="a_color" href="choosemyteam">1 on 1 Matchup </a></li>                  
+                                    <li class="breadcrumb-item point" *ngIf="this.allTheTeams != 'oneonone'"><a class="a_color" href="choosemyteam">Play with All teams in a Season </a></li>                   -->
+                                            
+                                    <li class="breadcrumb-item point hover_clr" *ngIf="this.oneononeData == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>1 on 1 Matchup </a></li>                  
+                                    <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'playallteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>Play with All teams </a></li>                  
+                                     <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Replay entire season</a></li>
+                                    <li class="breadcrumb-item  point hover_clr"><a  class="a_color" [routerLink]='"/dashboard3/playwithallteam"'>{{leag_name}} </a> </li>
+                                </ol>
+                            </div>                               
+
+                                <span class="row">
+                                <div class="dropdown ">
+                                    <button class="btn btn-secondary dropdown-toggle btn-lg " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Choose a Team
+                                    </button>
+                                    <div class="dropdown-menu over" aria-labelledby="dropdownMenuButton">
+                                      <a *ngFor="let item of teamData" class="dropdown-item pointer " (click)="findThe(item)" >{{item.teams}}</a>
+                                    </div> &nbsp;&nbsp;&nbsp;
+                                </div>
+                                <div class="dropdown ">
+                                    <button class="btn btn-secondary dropdown-toggle btn-lg " type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stats Section</button>
+                                    <div class="dropdown-menu over" aria-labelledby="dropdownMenuButton1">
+                                      <a *ngFor="let value of selectDropdown" class="dropdown-item pointer" (click)="getDataa(value)" >{{value.label}}</a>
+                                    </div>                                     
+                                </div>
+                            </span>
+    
+
+
+                        </div>
+                    </div>
+
+                        <div class=" col-12" id="table">
+                            <div class="datatable pt-5" class="mar_top">
+                                <div class="raw-containerr media_font"   *ngIf="rawStatedata">
+                                    <div *ngFor="let item of rawStatedata; let i = index" [id]="i">
+                                        <div style="white-space: pre"> {{item.textlines}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <p-dialog header="Find" [(visible)]="display4" id="change-model" class="pDialog1">
+          <p-header>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" > 
+            </button>
+          </p-header>
+
+          <p-body>
+              <div class="modal-body">
+                  <div class="form-row">          
+                    <div class="form-group col-md-12 text-center">                                 
+                      <input type="text" name="data" class="form-control" id="input" placeholder="Text" [(ngModel)]="findInput.data" (keyup.enter)="findNew()" > 
+                    </div>          
+                  </div>
+              </div>
+          </p-body>
+     
+          <p-footer class="ok_button">
+              <button type="button" class="btn btn-warning" data-dismiss="modal"(click)="findNew()" >Find</button> 
+              <button type="button" class="btn btn-dark" >Close</button> 
+          </p-footer>    
+    </p-dialog>
+
+</div>

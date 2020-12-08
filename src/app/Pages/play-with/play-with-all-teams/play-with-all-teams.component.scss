@@ -1,0 +1,345 @@
+#playwithallteam{
+    // background-image: url('../../../assets/img/home-bg.jpg');
+    background-image: url('../../../../assets/img/home-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Fjalla One', sans-serif !important;
+    .playwithcontent{
+        width: 99%;
+    }
+    .basketball_player{
+        // background-image: url('../../../assets/img/img2.png');
+        background-image: url('../../../../assets/img/img2.png');
+        background-repeat: no-repeat;
+        height: 90vh;    
+        background-position: bottom center;
+    }
+    .previos_btn{
+        background-color: #2F3137;
+        border: 1px solid white;
+        padding: 9px 23px;
+        border-radius: 5px;
+        margin-top: 4%;
+        font-size: 26px;
+        color: #f6f6f7;
+    }
+    .input-field {
+        width: 100% !important;
+        background: #f3f2f2 !important;
+        padding: 2% 4% !important;
+        box-shadow: inset 6px 5px 1px 0px #dbdbdb !important;
+        border: 3px solid white !important;
+        min-height: 85px;
+        font-size: 25px !important;
+        font-family: "Fjalla One", sans-serif !important;
+    }
+    .one_on_one{
+        position: relative;
+        // padding-top: 90px;
+        .btn{
+            box-shadow: inset 2px 2px 6px #666c72;
+            // padding: 15px 12px 15px 20px;
+            padding: 11px 0px;
+            background-color: #dee2e6;
+            border-color: #dee2e6;
+            color: black;
+            font-size: 22px;
+            width: 375px;
+        }
+        i{
+            padding-left: 150px;
+            font-size: 35px;
+        }
+        .dropdown-toggle::after {
+            display: hidden !important;
+            // margin-left: .255em;
+            // vertical-align: .255em;
+            content: unset;
+            border-top: unset;
+            border-right: unset;
+            border-bottom: unset;
+            border-left: unset;
+        }
+        .center1{
+            margin-left: 28%;
+        }
+        .center2{
+            margin-right: 28%;
+        }
+        .center3{
+            margin-left: 67%;
+            margin-top: 10%;
+        }
+        .disable{
+            margin-top: 10%;
+            background-color: #4141a5;
+            border-color: #4141a5;
+            color: white;
+            // padding: 30px 47px;
+            text-align: center;
+            padding-top: 16px;
+            // font-size: 20px;
+            // width: 425px;
+            // margin-left: 67%;
+        }
+        .disable1{
+            background-color: #4141a5;
+            border-color: #4141a5;
+            color: white;
+            text-align: center;
+            padding-top: 16px;
+        }
+        .btn-yellow{
+            background-color: #f3cf01;
+            border: 3px solid white;
+            padding: 12px 28px;
+            border-radius: 5px;
+            margin-top: 5%;
+            box-shadow: inset 6px 6px 1px #d5b600;
+            font-size: 26px;
+            i{
+                padding-left: 15px;
+            }
+        }
+        .dropdown_border{
+            border-radius: 10% !important;
+        }             
+    }
+
+      .hover_clr a:hover {
+        color: yellow;
+        text-decoration: none;
+      }
+
+      .point{
+        cursor: pointer;
+      }
+
+      .a_color{
+        color: #fff;
+        font-size: 22px;
+      }
+      .b_color{
+        color: yellow;
+        font-size: 22px;
+      }
+
+      .bread_mrgin{
+        display: inline-flex;
+        margin-left: 7px;
+        width: auto;
+        float: right;
+        top: 67px;
+        font-size: x-large;
+        background-color: transparent;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: #fff;
+        }
+
+        @media only screen and (max-width: 1499px){
+
+            // #playwithallteam .previos_btn {
+            //     margin-top: 5%;
+            // }
+
+            .pad_up {
+                padding-top: 62px;
+            }
+
+        }
+
+
+    @media screen and (max-device-width : 414px){
+        .one_on_one{
+            padding-top: 0px;
+        }
+        .btn-yellow{
+            padding: 4px 18px !important;
+            font-size: 22px !important;
+        }
+        .previos_btn{
+            background-color: #2F3137;
+            border: 1px solid white;
+            padding: 7px 8px;
+            border-radius: 4px;
+            margin-top: 20%;
+            font-size: 12px;
+            color: #f6f6f7;
+        }
+     }
+     /* media query for ipad */
+     @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+        .btn-yellow{
+            padding: 4px 18px !important;
+            font-size: 22px !important;
+        }
+        .previos_btn{
+            background-color: #2F3137;
+            border: 1px solid white;
+            padding: 7px 8px;
+            border-radius: 4px;
+            margin-top: 20%;
+            font-size: 12px;
+            color: #f6f6f7;
+        }
+     }
+     @media all and (device-width: 1024px) and (device-height: 768px) and (orientation:landscape) {
+        .btn-yellow{
+            padding: 4px 18px !important;
+            font-size: 22px !important;
+        }
+        .previos_btn{
+            background-color: #2F3137;
+            border: 1px solid white;
+            padding: 7px 8px;
+            border-radius: 4px;
+            margin-top: 12%;
+            font-size: 12px;
+            color: #f6f6f7;
+        }
+     }
+        /* ----------- iPad Pro ----------- */
+        /* Portrait and Landscape */
+     @media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation:portrait ) and (-webkit-min-device-pixel-ratio: 1.5) {
+        .btn-yellow{
+            padding: 4px 18px !important;
+            font-size: 22px !important;
+        }
+        .previos_btn{
+            background-color: #2F3137;
+            border: 1px solid white;
+            padding: 7px 8px;
+            border-radius: 4px;
+            margin-top: 15%;
+            font-size: 12px;
+            color: #f6f6f7;
+        }
+     }
+      /* Landscape */
+    @media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1.5) {
+        .previos_btn{
+            background-color: #2F3137;
+            border: 1px solid white;
+            padding: 7px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #f6f6f7;
+            margin-top: 12% ;
+        }
+    }  
+}
+
+
+    .pad_up{
+        padding-top: 111px;
+    }
+
+
+.bread_mrgin{
+    display: inline-flex;
+    margin-left: 7px;
+    width: auto;//15%; //26%;
+    float: right;
+    top: 104px;
+    }
+
+.breadcrumb-item.active {
+        color: black;
+    }
+    .activeRow{
+        background: yellow !important;
+    }
+
+    @media only screen and (max-width: 1024px){
+        #playwithallteam .basketball_player {
+            height: 102vh;
+            background-position: 321px;
+        }
+
+        #playwithallteam .a_color {
+            font-size: 16px;
+        }
+
+
+        #playwithallteam .bread_mrgin{
+            top: 25px;
+        }
+
+        #playwithallteam .previos_btn{
+            margin-top: 4%;
+            padding: 9px 13px;
+            font-size: 16px;
+        }
+
+        #playwithallteam .btn-yellow {
+            padding: 8px 23px !important;
+            font-size: 22px !important;
+        }
+
+        #playwithallteam .pad_up {
+            padding-top: 130px; //159px;
+        }
+
+        #playwithallteam .basketball_player {
+            height: 125vh;
+            background-position: center;
+            background-size: 103%;
+        }
+
+        #playwithallteam .a_color {
+            font-size: 26px;
+        }
+
+        #playwithallteam .b_color {
+            font-size: 26px;
+        }
+    }
+
+    @media only screen and (max-width: 768px){
+        #playwithallteam .basketball_player {
+            height: 123vh;
+            background-position: center;
+            background-size: 105%;
+        }
+
+        #playwithallteam .bread_mrgin {
+            top: 14px;
+        }
+
+        #playwithallteam .previos_btn{
+            margin-top: 6%;
+        }
+
+        #playwithallteam .pad_up {
+            padding-top: 91px;
+        }
+
+        #playwithallteam .b_color {
+            font-size: 19px;
+        }
+
+        #playwithallteam .a_color {
+            font-size: 19px;
+        }
+
+        .dropdown .ui-dropdown-label {
+            font-size: 18px !important;
+        }
+
+    }
+
+    @media only screen and (max-width: 1499px){
+        #playwithallteam .bread_mrgin{
+            top: 45px;
+        }
+
+        #playwithallteam .previos_btn{
+            margin-top: 59px;
+            padding: 5px 17px;
+            font-size: 26px;
+        }
+    }

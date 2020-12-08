@@ -1,0 +1,186 @@
+.ui-chkbox-icon	{
+   background-color: #F7D500 !important;
+   color: black;
+}
+.ui-chkbox .ui-chkbox-box {
+   border: 1px solid #a6a6a6;
+   background-color: #a6a6a6 !important;
+}
+
+.ui-chkbox .ui-chkbox-box.ui-state-focus {
+   outline:unset !important;
+   outline-offset: unset !important;
+   box-shadow: 0 0 0 0.0em #F7D500 !important;
+   border-color: #F7D500 !important;
+}
+/* .ui-slider.ui-slider-horizontal {
+   height: 0.500em !important;
+   background-color: black;
+}
+.ui-slider.ui-slider-horizontal .ui-slider-handle {
+   background: yellow !important;
+   border: yellow !important;
+}
+.ui-slider .ui-slider-range {
+   background-color: yellow !important;
+} */
+.notrecordfound{
+   font-size: 20px!important;
+   font-family: 'Fjalla One', sans-serif !important;
+   color: #2F3137;
+}
+.error{
+   color: red;
+}
+.ng5-slider .ng5-slider-bar {
+   height: 5px !important;
+   background: black!important;
+}
+.ng5-slider .ng5-slider-pointer {
+   width: 25px !important;
+   height: 25px !important;
+   top: -10px !important;
+   background-color: yellow !important;
+}
+.ng5-slider .ng5-slider-pointer:after {
+   top: 8px !important;
+   left: 8px !important;
+   background-color: yellow !important;
+}
+.ng5-slider .ng5-slider-pointer:focus {
+   outline:unset !important;
+}
+.ng5-slider-inner-tooltip {
+   display: none !important;
+}
+.ng5-slider .ng5-slider-tick-legend {
+   top: -40px !important;
+   width: 124px !important;
+   max-width:unset !important;
+   background: yellow !important;
+   padding-top: 1px !important;
+   border: 1px solid black !important;
+}
+.ng5-slider .ng5-slider-tick-legend::after{
+   content: "";
+   width: 0;
+   height: 0;
+   margin-left: -0.5em;
+   left: 50%;
+   box-sizing: border-box;
+   top: 17px;
+   position: absolute;
+   border-bottom: 16px solid yellow;
+   border-right: 16px solid transparent;
+   transform: rotate(-45deg);
+   box-shadow: -1px 1px 0px 0px;
+ }
+.ng5-slider .ng5-slider-tick {
+   background: #2f3137 !important;
+   width: 0px !important;
+   height: 0px !important;
+}
+/* .ui-dropdown {
+   background: #f3f2f2 !important;
+   padding: 2% 4% !important;
+   box-shadow: inset 7px 9px 3px 0px #dbdbdb !important;
+   border: 3px solid white !important;
+}
+body .ui-inputtext {
+   min-height: 60px!important;
+   font-size: 24px!important;
+   font-family: 'Fjalla One', sans-serif !important;
+   color: #292b30 !important;
+   background: #f3f2f2 !important;
+   border-radius: 5%;
+   padding: 0.429em;
+   border: 1px solid #f3f2f2 !important;
+}
+.ui-dropdown-label{
+   padding-right: 13em !important;
+}
+.ui-dropdown .ui-dropdown-trigger {
+   background-color: #f3f2f2 !important;
+   color: black !important;
+   font-size: 26px !important;
+   box-shadow: inset 0px 9px 0px 0px #dbdbdb !important;
+} */
+
+/* p-dropdown .ui-dropdown{
+   border-radius: 5% !important;
+ } */
+   @media screen and (max-device-width : 414px){
+      /* .ui-dropdown {
+         background: #f3f2f2 !important;
+         padding: 2% 4% !important;
+         box-shadow: inset 7px 9px 3px 0px #dbdbdb !important;
+         border: 3px solid white !important;
+         min-width: 18.5em !important;
+      }
+      body .ui-inputtext {
+         min-height: 60px!important;
+         font-size: 22px!important;
+         font-family: 'Fjalla One', sans-serif !important;
+         color: #292b30 !important;
+         background: #f3f2f2 !important;
+         border-radius: 5%;
+         padding: 0.429em;
+         border: 1px solid #f3f2f2 !important;
+      }
+      .ui-dropdown-label{
+         padding-right: 3em !important;
+      }
+      .ui-dropdown .ui-dropdown-trigger {
+         box-shadow: inset 0px 6px 0px 0px #dbdbdb !important;
+      } */
+
+      /* range */
+      .ng5-slider .ng5-slider-tick-legend {
+         /* position: absolute; */
+         top: -27px !important;
+         width: 75px !important;
+         font-size: 12px;
+      }
+      .ng5-slider .ng5-slider-tick-legend::after{
+         top: 14px;
+         border-bottom: 10px solid yellow;
+         border-right: 10px solid transparent;
+       }
+   }
+   /* media query for ipad */
+   @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+      /* .ui-dropdown-label{
+         padding-right: 6em !important;
+      }
+      .ui-dropdown .ui-dropdown-trigger {
+         box-shadow: inset 0px 6px 0px 0px #dbdbdb !important;
+      } */
+      .ng5-slider .ng5-slider-tick-legend::after{
+         top: 18px;
+       }
+      
+   }
+   @media all and (device-width: 1024px) and (device-height: 768px) and (orientation:landscape) {
+      /* .ui-dropdown-label{
+         padding-right: 6em !important;
+      }
+      .ui-dropdown .ui-dropdown-trigger {
+         box-shadow: inset 0px 6px 0px 0px #dbdbdb !important;
+      } */
+      .ng5-slider .ng5-slider-tick-legend::after{
+         top: 18px;
+       }
+   }
+      /* ----------- iPad Pro ----------- */
+      /* Portrait and Landscape */
+   @media only screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      /* .ui-dropdown-label{
+         padding-right: 10em !important;
+      }
+      .ui-dropdown .ui-dropdown-trigger {
+         box-shadow: inset 0px 8px 0px 0px #dbdbdb !important;
+      } */
+      .ng5-slider .ng5-slider-tick-legend::after{
+         top: 18px;
+       }
+   }

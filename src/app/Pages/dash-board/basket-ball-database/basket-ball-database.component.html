@@ -1,0 +1,1275 @@
+<div id=basketballdatabase>
+    <div class="container-fluid">
+        <!-- <app-header></app-header> -->
+        <div class="row">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <button type="button" class="previos_btn ml-3" (click)="backClicked()">
+                            <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i></button>
+                            <h1>Basketball Statistics Database</h1>
+
+                            <ol class="breadcrumb col-md-4 bread_mrgin">        <!--*ngIf="this.databaseData && this.databaseData.length > 0"-->
+                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseData && this.databaseData.length > 0"><a class="a_color hov">Basketball Players - 39059</a></li>                              
+                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"><a class="a_color hov">Basketball Teams - 2739</a></li>                              
+                                <li class="breadcrumb-item point hover_clr" ><a class="a_color hov" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"  >Home </a></li>                              
+                            </ol>
+                            <div class="sortable_right_content read">
+                                <div class="dropdown fir point">
+                                    <button class="btn btn-secondary dropdown-toggle fnt" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Database
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item fnt_media" (click)="getStaticsDatabase()">Basketball Players</a>
+                                    <a class="dropdown-item fnt_media" (click)="getStaticsDatabaseTeam()"> Basketball Teams</a>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown sec point ">
+                                    <button class="btn btn-secondary dropdown-toggle fnt" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length > 0" (click)="filterRegPly('reg')">Select Regular Season Stats</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length > 0" (click)="filterRegPly('ply')">Select Playoffs Stats</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" (click)="filterReg()" >Select Regular Season Stats</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" (click)="filterPly()" >Select Playoffs Stats</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="showDialog9()">Select Position-All</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length > 0" (click)="showDialog10()">Select Position-Single</a>
+                                        <a class="dropdown-item fnt_media"  >Subtotal by Color</a> <!--(click)="subTotal()"-->
+                                        <a class="dropdown-item fnt_media" (click)="allyellowall()">Select All(In Yellow) </a> <!--[ngStyle]= "{'background-color':'green'}"-->
+                                        <a class="dropdown-item fnt_media" (click)="showDialog15()">Find</a>
+
+                                    <button class="dropdown-item point " type="button" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="dropdown-item">Subtotals</a>
+                                    </button>
+                                    <div class="dropdown-menu" [ngClass]="{'dropDown': this.databaseTeamData && this.databaseTeamData.length >0} || {'dropDown_Player': this.databaseData && this.databaseData.length >0}">
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('name')">Player Name</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('name,league')">Player Name/League</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('name,teamcode')">Player Name/Team Code</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('name,teamname')">Player Name/Team Name</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('name,year1')">Player Name/Year</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('name,playoffs')">Player Name/(Reg and Ply)</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('teamcode')">Team Code</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('teamname')">Team Name</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('year1')">Year</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('year1,league')">Year/League</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('year1,teamcode')">Year/Team Code</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('year1,teamname')">Year/Team Name</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('league')">League</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseData && this.databaseData.length >0" (click)="playerTeamName('playoffs')">Reg/Ply</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length">Year</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length">Team Code</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length">Team Code/Year</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length">Team Name</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length">Team Name/Year</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length">League</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length">League/Year</a>
+                                        <a class="dropdown-item fnt_media" *ngIf="this.databaseTeamData && this.databaseTeamData.length">Reg/Ply</a>
+                                    </div>
+                                  </div>
+                                </div>                              
+                                
+                                <span>
+                                    <div class="dropdown sec point">
+                                        <button class="btn btn-secondary dropdown-toggle fnt" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Options
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item fnt_media" (click)="showDialog14()">Color</a>                                            
+                                            <a class="dropdown-item fnt_media" (click)="showDialog11()">Unhide Columns</a>
+                                            <a class="dropdown-item fnt_media" (click)="showDialog13()">Column Positions</a>
+                                            <a class="dropdown-item fnt_media" (click)="showModalDialog1()"> <span> &nbsp; &nbsp;</span> Column Settings - Save</a>
+                                            <a class="dropdown-item fnt_media" (click)="showModalDialog()"> <span> &nbsp; &nbsp;</span> Column Settings - Change to defaults</a>
+                                            <a class="dropdown-item fnt_media" (click)="showDialog12()">Calculated Column</a>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span> <button class="s_reg" *ngIf="this.databaseData && this.databaseData.length > 0" (click)="filterRegPly('reg')" [disabled]="locate_disable">Select REG</button></span> 
+                                <span> <button class="s_reg" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" (click)="filterReg()" [disabled]="locate_disable">Select REG</button></span> 
+                                <span> <button class="s_ply" *ngIf="this.databaseData && this.databaseData.length > 0" (click)="filterRegPly('ply')" [disabled]="locate_disable">Select PLY</button></span> 
+                                <span> <button class="s_ply" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" (click)="filterPly()" [disabled]="locate_disable">Select PLY</button></span> 
+                                <span> <button class="s_pla" (click)="showDialog2()" [disabled]="locate_disablee">Select Player</button></span>
+                                <span> <button class="s_t" (click)="showDialog4()" [disabled]="locate_disable">Select Team</button></span>
+                                <span> <button class="s_y" (click)="showDialog1()" [disabled]="locate_disable">Select Year</button></span>
+                                <span> <button class="s_l" (click)="showDialog3()" [disabled]="locate_disable">Select League</button></span>
+
+                                <span> <button class="btn_sort" (click)="showDialog7()">Sort</button></span>
+                                <span> <button class="btn_limit" (click)="showDialog8()">Limit</button></span>
+                                <span> <button class="btn_print" (click)="reset()">Reset</button></span> 
+
+                                <span> <button class="btn_sos" (click)="showOnlySelected()" [disabled]="locate_disable">Show Only Sel</button></span>
+                                <span> <button class="btn_del" (click)="deleteSelected()" [disabled]="locate_disable">Delete Sel</button></span>  
+                            </div>
+                    </div>
+                    <div class="row ty"> <h2> Please select any Basketball Player or Team. </h2></div>
+                   
+                    <div class="col-md-12 col-12 mt-4" id="table" > 
+                        <p-table [columns]="scrollableCols"  
+                        [frozenColumns]="frozenCols"
+                        [value]="databaseData"
+                        [lazy]="true"
+                        [scrollable]="true"
+                        [rows]="50"
+                        frozenWidth="400px"
+                        sortMode="multiple"
+                        *ngIf="this.databaseData.length>0"
+                        infiniteScroll
+                        [infiniteScrollDistance]="2"
+                        [infiniteScrollThrottle]="50"
+                        [infiniteScrollContainer]="'.ui-table-scrollable-body'"
+                        [fromRoot]="true"
+                        (scrolled)="onScroll()"
+                        selectionMode="multiple"
+                        [(selection)]="selectedRows"
+                        [resizableColumns]="true"
+                        scrollHeight="calc(100vh - 360px)">
+                            <ng-template pTemplate="colgroup" let-columns>
+                                <colgroup>
+                                    <col *ngFor="let col of columns" [style.width.px]="col.width">
+                                </colgroup>
+                            </ng-template>
+                            <ng-template pTemplate="header" let-columns>
+                                <tr class="point">
+                                    <th *ngFor="let col of columns;let i=index" pResizableColumn class="button fnt_media" (dblclick)=" hideColumn(i+3)" [ngStyle]="{'display':col.hideData?'none':''}" [pSortableColumn]="col.field">                                        
+                                        {{col.title1}}<br/>
+                                        {{col.title2}}<br/>
+                                        {{col.title3}}<br/>
+                                        {{col.title4}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns" id="containerDiv" let-rowIndex="rowIndex">
+                                <tr class="fnt_media font_data" [pSelectableRow]="rowData" [id]="rowIndex">
+                                    <td *ngFor="let col of columns;let i=index" class="point ui-resizable-column" [id]="i" [ngStyle]="{'color': rowData.color == 1?firSetColorOn:secSetColorOn,'background-color': allyellow?'yellow' :'','display':col.hideData?'none':''}" > <!--[ngClass]="rowData.color == 1?'bl':'re'" -->
+                                        <div *ngIf="rowData[col.field] === '-999' || rowData[col.field] === null">---</div> <!---->
+                                        <div *ngIf="rowData[col.field] !== '-999'">{{rowData[col.field]}}</div> 
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        <div *ngIf="this.databaseData.length==0">
+                            <!-- No Data Found -->
+                        </div>
+                    </div> 
+
+                   <div class="col-md-12 col-12 mt-4 tabble" id="table" > 
+                        <p-table [columns]="scrollableCols"  
+                        [frozenColumns]="frozenCols"
+                        [value]="databaseTeamData"
+                        [lazy]="true"
+                        infiniteScroll
+                        [infiniteScrollDistance]="2"
+                        [infiniteScrollThrottle]="50"
+                        [infiniteScrollContainer]="'.ui-table-scrollable-body'"
+                        (scrolled)="onScrollTeam()"
+                        [scrollable]="true"
+                        [rows]="50"
+                        frozenWidth="400px"
+                        sortMode="multiple"
+                        *ngIf="this.databaseTeamData.length>0"                      
+                        [fromRoot]="true"                        
+                        selectionMode="multiple"
+                        [(selection)]="selectedRows"
+                        [resizableColumns]="true"
+                        scrollHeight="calc(100vh - 360px)">
+                            <ng-template pTemplate="colgroup" let-columns>
+                                <colgroup>
+                                    <col *ngFor="let col of columns" [style.width.px]="col.width">
+                                </colgroup>
+                            </ng-template>
+                            <ng-template pTemplate="header" let-columns>
+                                <tr class="point">
+                                    <th *ngFor="let col of columns;let i=index" pResizableColumn class="button fnt_media" (dblclick)=" hideColumn(i+2)" [ngStyle]="{'display':col.hideData?'none':''}" [pSortableColumn]="col.field">                                        
+                                        {{col.title1}}<br/>
+                                        {{col.title2}}<br/>
+                                        {{col.title3}}<br/>
+                                        {{col.title4}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns" id="containerDiv" let-rowIndex="rowIndex">
+                                <tr class="fnt_media font_data" [pSelectableRow]="rowData" [id]="rowIndex">
+                                    <td *ngFor="let col of columns;let i=index" class="point ui-resizable-column" [id]="i" [ngStyle]="{'color': rowData.color == 1?firSetColorOn:secSetColorOn,'background-color': allyellow?'yellow' :'','display':col.hideData?'none':''}" > <!--[ngClass]="rowData.color == 1?'bl':'re'" -->
+                                        <div *ngIf="rowData[col.field] === '-999' || rowData[col.field] === null">---</div> <!---->
+                                        <div *ngIf="rowData[col.field] !== '-999'">{{rowData[col.field]}}</div> 
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        <div *ngIf="this.databaseTeamData.length==0">
+                            <!-- No Data Found -->
+                        </div>
+                   </div>
+
+                    <div class="popup">
+                        <p-dialog header="Limits" [(visible)]="display8" [style]="{width: '650px'}"
+                            [baseZIndex]="10000" class="pDialog8">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8 col-8 limit_list">
+                                        <p-scrollPanel [style]="{width: '100%', height: '470px'}"
+                                            styleClass="custombar1" class="scrollbar">
+                                            <ul class=" pointer" *ngIf="this.databaseData && this.databaseData.length >0">
+                                                <li class="rr" *ngFor="let item of this.selectlist;let i=index;" (click)="selectLi(item)" [ngClass]="{'activeRow': item.activeRow}" > {{item.label}} </li>  <!--     -->
+                                            </ul>
+                                            <ul class=" pointer" *ngIf="this.databaseTeamData && this.databaseTeamData.length >0"> 
+                                                <li class="rr" *ngFor="let item of this.selectTeamList_Draft;let i=index;" (click)="selectLi(item)" [ngClass]="{'activeRow': item.activeRow}" > {{item.label}} </li>  <!--     -->
+                                            </ul>
+                                        </p-scrollPanel>
+                                    </div>
+
+                                    <div class="col-md-4 col-4">
+                                        <div class="limit_value mb-4">
+                                            <span>MINIMUM VALUE</span>
+                                            <div class="limit_count">
+                                                <input type="number" name="min" id="input" [(ngModel)]="lowLimit" > <!---->
+                                            </div>
+                                        </div>
+                                        <div class="limit_value mb-4">
+                                            <span>MAXIMUM VALUE</span>
+                                            <div class="limit_count">
+                                                <input type="number" name="max" id="input" [(ngModel)]="highLimit" > <!-- -->
+                                            </div>
+                                        </div>
+
+                                        <button class="btn limit_ok" (click)="filterLimit()"> <p> &#10003; OK</p></button> <!---->
+                                        <button class="btn limit_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>
+                                    </div>
+
+                                    <div class="col-md-12 col-12 mt-4 mb-4 limit_btn">
+
+                                        <div class="radiobtnn">
+                                            <span *ngIf="this.databaseData && this.databaseData.length > 0">
+                                                <p-radioButton name="val5" class="sortableradio" value="no"  [(ngModel)]="lowLimit1"
+                                                    label="Keep Min/Max Values" inputId="preopt1" ></p-radioButton> 
+                                            </span>
+                                            <span *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0">
+                                                <p-radioButton name="val5" class="sortableradio" value="no"  
+                                                    label="Keep Min/Max Values" inputId="preopt1" ></p-radioButton> <!--[(ngModel)]="lowLimit1"-->
+                                            </span>
+                                            <span class="limit_radio" *ngIf="this.databaseData && this.databaseData.length > 0">
+                                                <p-radioButton name="val5" class="sortableradio" value="yes" [(ngModel)]="lowLimit1" 
+                                                    label="Erase Min/Max Values" inputId="preopt2" ></p-radioButton> 
+                                            </span>
+                                            <span class="limit_radio" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0">
+                                                <p-radioButton name="val5" class="sortableradio" value="yes" 
+                                                    label="Erase Min/Max Values" inputId="preopt2" ></p-radioButton>  <!--[(ngModel)]="lowLimit1" -->
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </p-dialog>
+
+                        <p-dialog header="Select Players" [(visible)]="display2" [style]="{width: '600px'}"
+                            [baseZIndex]="10000" class="pDialog2"  >
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <div class="Playerradiobtn">
+                                            <span>
+                                                <p-radioButton name="val1" class="sortableradio" label="ASCENDING"  value="Ascending " label="ASCENDING" [(ngModel)]="fieldModelPlayer.item" (click)="sortPlayer('Ascending')" ></p-radioButton> 
+                                            </span>
+                                            <span>
+                                                <p-radioButton name="val1" class="sortableradio" label="DESCENDING"  value="Descending" label="DESCENDING" [(ngModel)]="fieldModelPlayer.item" (click)="sortPlayer('Descending')"></p-radioButton> 
+                                            </span>
+
+                                            <button class="btn team_ok" (click)="filterPlayer()" ><p> &#10003; OK</p></button>
+                                        <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-6 player">
+                                        <div class="player_list">
+                                            <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                                styleClass="custombar1">
+                                                   <ul>
+                                                       <li class="pointer rr"  *ngFor="let value of this.database_Player;let i=index;" (click)= "selectedNameclick(value.name,i)" [ngClass]="{'activeRow': sortPlayerId == i || playerSelectPlayer == true}"> {{value.name}} </li>
+                                                   </ul>
+                                            </p-scrollPanel>
+                                        </div>
+
+                                        <div class="playertotal mt-4 mb-5">
+                                            <p>LISTED = &nbsp; <span class="player_leftbtn rt"> {{database_Player.length}}  </span></p>  <!---->
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-6 player">
+                                        <div class="player_list">
+                                            <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custombar1">
+                                              <ul class="pointer" *ngFor="let value of this.selectedPlayerName;let i=index; " >
+                                                <li class="rr"> {{value.name}} </li>
+                                              </ul>
+                                            </p-scrollPanel>
+                                        </div>
+
+                                        <div class="playertotal mt-4 mb-5">
+                                            <p>SELECTED = &nbsp; <span class="player_rightbtn rt"> {{selectedPlayerName.length}} </span></p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12 col-12  mb-4 team_btn">
+                                        <!-- <button class="btn team_ok" (click)="filterPlayer()" ><p> &#10003; OK</p></button>
+                                        <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button> -->
+                                        <button class="btn team_Select_All" (click)="allyellowPlayerAll()"> Select All </button>  
+                                        <button class="btn team_Clear_Select ml-3" (click)="this.removeAll()"> Clear Selected Item </button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </p-dialog>
+
+                       <p-dialog header="Sort" [(visible)]="display7" [style]="{width: '1000px'}"
+                            [baseZIndex]="10000" class="pDialog7">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-5 col-12">
+                                        <div class="sortlist">
+                                            <div class="form-group">
+                                                <p>FIELD 1</p>
+                                                <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="selectlist" [(ngModel)]="fieldModel.sort1" name="sort1"
+                                                     optionLabel="label" optionValue="value" *ngIf="this.databaseData && this.databaseData.length > 0">
+                                                </p-dropdown>
+                                                <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="selectTeamList_Draft" 
+                                                     optionLabel="label" optionValue="value" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"> <!--[(ngModel)]="fieldModel.sort1" name="sort1"-->
+                                                </p-dropdown>
+                                            </div>
+                                            <div class="form-group">
+                                                <p>FIELD 2</p>
+                                                <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="selectlist" [(ngModel)]="fieldModel.sort2" name="sort2"
+                                                     optionLabel="label" optionValue="value" *ngIf="this.databaseData && this.databaseData.length > 0"> 
+                                                </p-dropdown>
+                                                <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="selectTeamList_Draft" 
+                                                     optionLabel="label" optionValue="value" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"> <!--[(ngModel)]="fieldModel.sort1" name="sort1"-->
+                                                </p-dropdown>
+                                            </div>
+                                            <div class="form-group">
+                                                <p>FIELD 3</p>
+                                                <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="selectlist" [(ngModel)]="fieldModel.sort3" name="sort3"
+                                                     optionLabel="label" optionValue="value" *ngIf="this.databaseData && this.databaseData.length > 0">                                           
+                                                </p-dropdown>
+                                                <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="selectTeamList_Draft" 
+                                                     optionLabel="label" optionValue="value" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"> <!--[(ngModel)]="fieldModel.sort1" name="sort1"-->
+                                                </p-dropdown>
+                                            </div>
+                                            <div class="form-group">
+                                                <p>FIELD 4</p>
+                                                <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="selectlist" [(ngModel)]="fieldModel.sort4" name="sort4"
+                                                     optionLabel="label" optionValue="value" *ngIf="this.databaseData && this.databaseData.length > 0"> <!--  -->
+                                                </p-dropdown>
+                                                <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="selectTeamList_Draft" 
+                                                     optionLabel="label" optionValue="value" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"> <!--[(ngModel)]="fieldModel.sort1" name="sort1"-->
+                                                </p-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-12">
+                                        <div class="sortradio">
+                                            <div class="radiobtn">
+                                                <span>
+                                                    <p-radioButton name="val1" class="sortableradio down_radio" label="ASCENDING "  [(ngModel)]="radiofieldModel.sort1a" value="true" inputId="preopt1" checked></p-radioButton> 
+                                                </span>
+                                                <span>
+                                                    <p-radioButton name="val1" class="sortableradio down_radio" label="DESCENDING" [(ngModel)]="radiofieldModel.sort1a" value="false" inputId="preopt2"></p-radioButton>  
+                                                </span>
+                                            </div>
+
+                                            <div class="radiobtn">
+                                                <span>
+                                                    <p-radioButton name="val2" class="sortableradio down_radio" label="ASCENDING"  value="true" [(ngModel)]="radiofieldModel.sort2a" inputId="preopt3" checked></p-radioButton> 
+                                                </span>
+                                                <span>
+                                                    <p-radioButton name="val2" class="sortableradio down_radio" label="DESCENDING"  value="false" [(ngModel)]="radiofieldModel.sort2a" inputId="preopt4"></p-radioButton> 
+                                                </span>
+                                            </div>
+                                            <div class="radiobtn">
+                                                <span>
+                                                    <p-radioButton name="val3" class="sortableradio down_radio"  label="ASCENDING"  value="true" [(ngModel)]="radiofieldModel.sort3a" inputId="preopt5" checked></p-radioButton> 
+                                                </span>
+                                                <span>
+                                                    <p-radioButton name="val3" class="sortableradio down_radio" label="DESCENDING"  value="false" [(ngModel)]="radiofieldModel.sort3a" inputId="preopt6"></p-radioButton>  
+                                                </span>
+                                            </div>
+                                            <div class="radiobtn">
+                                                <span>
+                                                    <p-radioButton name="val4" class="sortableradio down_radio" label="ASCENDING" value="true" [(ngModel)]="radiofieldModel.sort4a" inputId="preopt7" checked></p-radioButton> 
+                                                </span>
+                                                <span>
+                                                    <p-radioButton name="val4" class="sortableradio down_radio" label="DESCENDING" value="false" [(ngModel)]="radiofieldModel.sort4a" inputId="preopt8"></p-radioButton> 
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 sortradiolong">
+                                        <div class="radiobtn">
+                                            <span>
+                                                <p-radioButton name="val5" class="sortableradio down_radio" value="no" label="Keep Sort Setting with Reset" [(ngModel)]="fieldModel5.item" (ngModelChange)="tfclick($event)" ></p-radioButton>  
+                                            </span>
+                                            <span class="ty">
+                                                <p-radioButton name="val6" class="sortableradio down_radio" value="yes" label="Keep Last Sort Setting" [(ngModel)]="fieldModel6.item" (ngModelChange)="ftclick($event)" ></p-radioButton>
+                                                <!-- <p-radioButton name="val5" class="sortableradio" value="no" label="Erase Sort Setting with Reset" [(ngModel)]="fieldModel5.item" (ngModelChange)="tfclick($event)" ></p-radioButton>  -->
+                                            </span>
+                                            <div class="ft">
+                                                <span>
+                                                    <p-radioButton name="val5" class="sortableradio down_radio" value="yes" label="Erase Sort Setting with Reset" [(ngModel)]="fieldModel5.item" (ngModelChange)="tfclick($event)" ></p-radioButton>
+                                                    <!-- <p-radioButton name="val6" class="sortableradio" value="yes" label="Keep Last Sort Setting" [(ngModel)]="fieldModel6.item" (ngModelChange)="ftclick()" ></p-radioButton>   -->
+                                                </span> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span>
+                                                    <p-radioButton name="val6" class="sortableradio down_radio" value="no" label="Erase Last Sort Setting" [(ngModel)]="fieldModel6.item" (ngModelChange)="ftclick($event)" ></p-radioButton> 
+                                                </span>
+                                                <button class="btn sort_ok" (click)="sort()" > <p> &#10003; OK</p></button>  <!-- -->
+                                                <button class="btn sort_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>
+                                            </div>
+                                        </div>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </p-dialog>
+
+                        <p-dialog header="Select Team" [(visible)]="display4" [style]="{width: '600px'}"
+                            [baseZIndex]="10000" class="pDialog4">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <div class="Playerradiobtn">
+                                            <span>
+                                                <p-radioButton name="val2" class="sortableradio" label="ASCENDING" value="Ascending " label="ASCENDING" [(ngModel)]="fieldModelTeam.item"  (click)="sortTeam('Ascending')"></p-radioButton> 
+                                            </span>
+                                            <span>
+                                                <p-radioButton name="val2" class="sortableradio" label="DESCENDING" value="Descending" label="DESCENDING" [(ngModel)]="fieldModelTeam.item"  (click)="sortTeam('Descending')"></p-radioButton> 
+                                            </span>
+                                            <button class="btn team_ok" (click)="filterTeam()" ><p> &#10003; OK</p></button>  <!---->
+                                        <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-6 player">
+                                        <div class="team_list">
+                                            <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                                styleClass="custombar1">
+                                                    <ul >
+                                                        <li class="pointer rr" *ngFor="let value of this.database_Team;let i=index;" (click)= "selectedTeamclick(value.teamname,i)"   [ngClass]="{'activeRow': sortTeamId == i || playerSelectTeam == true}"> {{value.teamname}}</li> <!--      -->
+                                                    </ul>
+                                            </p-scrollPanel>
+                                        </div>
+                                        <div class="teamtotal mt-4 mb-5 ">
+                                            <p>LISTED = &nbsp; <span class="team_leftbtn rt"> {{database_Team.length}}  </span></p>   <!-- -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-6 team">
+                                        <div class="team_list">
+                                            <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                                styleClass="custombar1">
+                                                    <ul class="pointer" *ngFor="let value of this.selectedTeamName;let i=index; ">
+                                                        <li class="rr"> {{value.teamname}} </li>
+                                                    </ul>
+                                            </p-scrollPanel>
+                                        </div>
+                                        <div class="teamtotal mt-4 mb-5">
+                                            <p>SELECTED = &nbsp; <span class="team_rightbtn rt"> {{selectedTeamName.length}} </span></p>      <!---->
+                                         </div>
+                                    </div>
+                                    <div class="col-md-12 col-12  mb-4 team_btn">
+                                        <!-- <button class="btn team_ok" (click)="filterTeam()" ><p> &#10003; OK</p></button>  
+                                        <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button> -->
+                                    
+                                        <button class="btn team_Select_All" (click)="allyellowTeamAll()"> Select All </button>  
+                                        <button class="btn team_Clear_Select ml-3" (click)="this.removeAll()"> Clear Selected Item </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-dialog>
+
+                        <p-dialog header="Select Year" [(visible)]="display1" [style]="{width: '600px'}"
+                            [baseZIndex]="10000" class="pDialog1"  >
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <div class="Playerradiobtn">
+                                            <span>
+                                                <p-radioButton name="val2" class="sortableradio" label="ASCENDING" (ngModelChange)="getfieldDataYear($event)" value="Ascending " label="ASCENDING" [(ngModel)]="fieldModelYear.item" inputId="preopt1" (click)="sortYear('Ascending')"></p-radioButton> <!---->
+                                            </span>
+                                            <span>
+                                                <p-radioButton name="val2" class="sortableradio" label="DESCENDING" (ngModelChange)="getfieldDataYear($event)" value="Descending" label="DESCENDING" [(ngModel)]="fieldModelYear.item" inputId="preopt2" (click)="sortYear('Descending')"></p-radioButton> <!-- -->
+                                            </span>
+                                            <button class="btn team_ok" (click)="filterYear()" ><p> &#10003; OK</p></button>  <!-- -->
+                                        <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-6 player">
+                                        <div class="player_list">
+                                            <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                                styleClass="custombar1">
+                                                   <ul >
+                                                       <li class="pointer rr"  *ngFor="let value of this.database_Year;let i=index;" (click)= "selectedYearclick(value.year1,i)" [ngClass]="{'activeRow': sortYearId == i || playerSelectYear == true}"> {{value.year1}} </li>
+                                                   </ul>
+                                            </p-scrollPanel>
+                                        </div>
+                                        <div class="playertotal mt-4 mb-5">
+                                            <p>LISTED = &nbsp; <span class="player_leftbtn rt">  {{database_Year.length}}  </span></p>  <!---->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-6 player">
+                                        <div class="player_list">
+                                            <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                                styleClass="custombar1">
+                                                <ul class="pointer" *ngFor="let value of this.selectedYearName;let i=index; ">   <!-- -->
+                                                    <li class="rr"> {{value.year1}}</li>
+                                                </ul>
+                                            </p-scrollPanel>
+                                        </div>
+                                        <div class="playertotal mt-4 mb-5">
+                                            <p>SELECTED = &nbsp; <span class="player_rightbtn rt"> {{selectedYearName.length}} </span></p>  <!---->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-12  mb-4 team_btn">
+                                        <!-- <button class="btn team_ok" (click)="filterYear()" ><p> &#10003; OK</p></button>  
+                                        <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button> -->
+                                        
+                                        <button class="btn team_Select_All" (click)="allyellowYearAll()"> Select All </button>  
+                                        <button class="btn team_Clear_Select ml-3" (click)="removeAll()"> Clear Selected Item </button> <!---->
+                                    </div>
+                                </div>
+                            </div>
+                        </p-dialog>
+
+                        <p-dialog header="Select League" [(visible)]="display3" [style]="{width: '600px'}"
+                        [baseZIndex]="10000" class="pDialog3 font_head"  >
+                           <div class="container-fluid">
+                              <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="Playerradiobtn">
+                                        <span>
+                                            <p-radioButton name="val2" class="sortableradio" label="ASCENDING" (ngModelChange)="getfieldDataLeague($event)" value="Ascending " label="ASCENDING" [(ngModel)]="fieldModelLeague.item" inputId="preopt1" (click)="sortLeague('Ascending')"></p-radioButton> <!---->
+                                        </span>
+                                        <span>
+                                            <p-radioButton name="val2" class="sortableradio" label="DESCENDING" (ngModelChange)="getfieldDataLeague($event)" value="Descending" label="DESCENDING" [(ngModel)]="fieldModelLeague.item" inputId="preopt2" (click)="sortLeague('Descending')"></p-radioButton> <!-- -->
+                                        </span>
+
+                                        <button class="btn team_ok" (click)="filterLeague()" ><p> &#10003; OK</p></button>  <!---->
+                                    <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-6 player">
+                                    <div class="player_list">
+                                        <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                            styleClass="custombar1">
+                                               <ul >
+                                                   <li class="pointer rr"  *ngFor="let value of this.database_League;let i=index;" (click)= "selectedLeagueclick(value.league,i)" [ngClass]="{'activeRow': sortLeagueId == i || playerSelectLeague == true}"> {{value.league}} </li>
+                                               </ul>
+                                        </p-scrollPanel>
+                                    </div>
+                                    <div class="playertotal mt-4 mb-5">
+                                        <p>LISTED = &nbsp; <span class="player_leftbtn rt"> {{database_League.length}}  </span></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-6 player">
+                                    <div class="player_list">
+                                        <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custombar1">
+                                            <ul class="pointer" *ngFor="let value of this.selectedLeagueName;let i=index; " >   <!-- -->
+                                                <li class="rr"> {{value.league }}</li>
+                                            </ul>
+                                        </p-scrollPanel>
+                                    </div>
+                                    <div class="playertotal mt-4 mb-5">
+                                        <p>SELECTED = &nbsp; <span class="player_rightbtn rt"> {{selectedLeagueName.length}} </span></p>  <!---->
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12  mb-4 team_btn">
+                                    <!-- <button class="btn team_ok" (click)="filterLeague()" ><p> &#10003; OK</p></button>  
+                                    <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button> -->
+                                    
+                                    <button class="btn team_Select_All" (click)="allyellowLeagueAll()"> Select All </button>  
+                                        <button class="btn team_Clear_Select ml-3" (click)="removeAll()"> Clear Selected Item </button> <!--(remove)="this.removeAll"-->
+                                </div>
+                              </div>
+                            </div>
+                        </p-dialog>
+
+                        <p-dialog header="Calculated Column Attributes" [(visible)]="display5" [style]="{width: '800px'}"
+                        [baseZIndex]="10000" class="pDialog5"  >
+                        <div class="container-fluid">
+                            <div class="row">                       
+                                <div class="col-md-12 col-12">
+                                    <div>
+                                        <p *ngIf="this.databaseData && this.databaseData.length > 0" class="bh">Field Name <span class="in"> <input type="text" name="fieldname" [(ngModel)]="field_Name_Input" size="90"></span> </p>
+                                        <p *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" class="bh">Field Name <span class="in"> <input type="text" name="fieldname" [(ngModel)]="field_Name_Input"  size="90"></span> </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                  <div>
+                                    <p class="pt">Existing Fields
+                                     <span class="in bord">
+                                        <div class="custo">
+                                            <p-scrollPanel [style]="{width: '100%', height: '100px'}" styleClass="custombar1">
+                                                <ul *ngIf="this.databaseData && this.databaseData.length > 0"> 
+                                                  <ng-container *ngFor="let item of this.allData;let i=index;">
+                                                    <li class="pointer rr" *ngIf="i==5 || i>=9 " [ngClass]="{'activeRow': clickAttribute == i}" (dblclick)= "columnAttribute(i,item)"  >
+                                                    {{item.field_description }} </li> 
+                                                  </ng-container>                                                    
+                                                </ul>
+                                                <ul *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"> 
+                                                  <ng-container *ngFor="let item of this.allTeamData;let i=index;">
+                                                    <li class="pointer rr" *ngIf="i>=6"  [ngClass]="{'activeRow': clickAttribute == i}" (dblclick)= "columnAttribute(i,item)">
+                                                     {{item.field_description}} </li>
+                                                  </ng-container>
+                                                </ul>
+                                            </p-scrollPanel>
+                                        </div>
+                                      </span> 
+                                     </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div>
+                                        <p class="pt">Formula
+                                            <span class="in">
+                                            <div class="custo">
+                                            <p-scrollPanel [style]="{width: '100%', height: '100px'}" styleClass="custombar1">                                                
+                                                <span class="side" *ngFor="let item of this.symbols;let i=index;"> [{{item}}] </span>  
+                                            </p-scrollPanel>
+                                            </div>
+                                            </span> 
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12 op_top">
+                                    <div class="row">
+                                        <p class="tp">Operators </p>
+                                         <div> <button class="siz h hov btn btn-secondary" (click)="calculator('+')">   +   </button> <p> plus    </p> </div>                                           
+                                         <div> <button class="siz h hov btn btn-secondary" (click)="calculator('-')">   -   </button> <p> minus   </p> </div> 
+                                         <div> <button class="siz h hov btn btn-secondary" (click)="calculator('*')">   *   </button> <p> multiply</p> </div> 
+                                         <div> <button class="siz h hov btn btn-secondary" (click)="calculator('/')">   /   </button> <p> divide  </p> </div> 
+                                         <div> <button class="siz h hov btn btn-secondary" (click)="calculator('(')">   (   </button> <p> L paren </p> </div>  
+                                         <div> <button class="siz h hov btn btn-secondary" (click)="calculator(')')">   )   </button> <p> R paren </p> </div>  
+                                         <div> <button class="siz h hov btn btn-secondary" (click)="calculator('^')">   ^   </button> <p> power   </p> </div>   
+                                         <div> <button class="siz h hov btn btn-secondary" (click)="calculator('mod')"> mod </button> </div>                                  
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="row">
+                                        <p class="tp spa">Functions </p>
+                                         <div> <button class="si hov btn btn-secondary" (click)="calculator('abs(')">   abs(   </button> </div>                                           
+                                         <div> <button class="si hov btn btn-secondary" (click)="calculator('exp(')">   exp(   </button> </div> 
+                                         <div> <button class="si hov btn btn-secondary" (click)="calculator('ln(')">    ln(    </button> </div> 
+                                         <div> <button class="si hov btn btn-secondary" (click)="calculator('round(')"> round( </button> </div> 
+                                         <div> <button class="si hov btn btn-secondary" (click)="calculator('sqrt(')">  sqrt(  </button> </div>  
+                                         <div> <button class="si hov btn btn-secondary" (click)="calculator('sqr(')">   sqr(   </button> </div>                                          
+                                         <div> <button class="si hov btn btn-secondary" (click)="calculator('trunc(')"> trunc( </button> </div>                                  
+                                    </div>
+                                </div>                                                                               
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-md-6 col-12  tl">
+                                    <p class="op">Title Lines  </p>
+                                    <input *ngIf="this.databaseData && this.databaseData.length > 0" class="input_mar" type="text" name="fieldname" [(ngModel)]="field_Name_Title"> <br>
+                                    <input *ngIf="this.databaseData && this.databaseData.length > 0" class="input_mar" type="text" name="fieldname"  > <br>
+                                    <input *ngIf="this.databaseData && this.databaseData.length > 0" class="input_mar" type="text" name="fieldname"  > <br>
+
+                                    <input *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" class="input_mar" type="text" name="fieldname"  [(ngModel)]="field_Name_Title"> <br>
+                                    <input *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" class="input_mar" type="text" name="fieldname"  > <br>
+                                    <input *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" class="input_mar" type="text" name="fieldname"  > <br>
+                                </div>  
+                                <div class="col-md-4 col-12 two_field" >
+                                    <p> Field Width <span> <input type="text" size="4" placeholder="___8" class="int"></span> </p>
+                                    <p class="part"> Decimal Places <span> <input type="text" size="4" placeholder="___2"  class="tni"></span> </p>                                    
+                                </div>
+                                <div class="col-md-2 col-12 treat" *ngIf="this.databaseData && this.databaseData.length > 0">
+                                    <p> Treat Dashes as </p>   
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="radios">
+                                        <label class="form-check-label" for="materialUnchecked">Dash</label>   </div> 
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="radios">
+                                        <label class="form-check-label" for="materialUnchecked">Zero</label>   </div> 
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="radios">
+                                        <label class="form-check-label" for="materialUnchecked">One</label>   </div> 
+                                </div>                                
+                                <div class="col-md-2 col-12 treat" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0">
+                                    <p> Treat Dashes as </p>   
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="radios">
+                                        <label class="form-check-label" for="materialUnchecked">Dash</label>   </div> 
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="radios">
+                                        <label class="form-check-label" for="materialUnchecked">Zero</label>   </div> 
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="radios">
+                                        <label class="form-check-label" for="materialUnchecked">One</label>   </div> 
+                                </div>                                
+                            </div>
+
+
+                            <div class="col-md-12 col-12  mb-4 team_btn">
+                                <button class="btn team_cance" (click)="test()" >Test Formula</button>
+                                <button class="btn team_ok" (click)="test()"><p> &#10003; OK</p></button>  <!--(click)="filterPlayer()"-->
+                                <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>
+                            </div>
+                        </div>
+                        </p-dialog>
+
+                        <p-dialog header="Select Position All" [(visible)]="display9" [style]="{width: '600px'}"
+                            [baseZIndex]="10000" class="pDialog9"  >
+                         <div class="container-fluid">
+                            <div class="row">
+
+                                <div class="col-md-12 col-12">
+                                    <div class="Playerradiobtn">
+                                        <span>
+                                            <p-radioButton name="val2" class="sortableradio" label="ASCENDING" value="Ascending " label="ASCENDING" [(ngModel)]="selectedPositionAl.item"  (click)="sortPositionAll('Ascending')"></p-radioButton> 
+                                        </span>
+                                        <span>
+                                            <p-radioButton name="val2" class="sortableradio" label="DESCENDING" value="Descending" label="DESCENDING" [(ngModel)]="selectedPositionAl.item"  (click)="sortPositionAll('Descending')"></p-radioButton> 
+                                        </span>
+
+                                        <button class="btn team_ok" (click)="filterPositionAll()" ><p> &#10003; OK</p></button> 
+                                        <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-6 player">
+                                    <div class="player_list">
+                                        <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                            styleClass="custombar1">
+                                               <!-- <ul>
+                                                   <li class="pointer"  *ngFor="let value of this.databaseData;let i=index;" (click)= "selectedPositionclick(value,i)" [ngClass]="{'activeRow': sortPlaPositionId == i}"> {{value.position}} </li>  
+                                               </ul> -->
+                                               <ul > 
+                                                    <li class="pointer"  *ngFor="let value of this.playerPositionDataAllSort;let i=index;" (click)= "selectedPositionAlclick(value,i)" [ngClass]="{'activeRow': sortPositionAllId == i || playerSelectAllPosition == true }"> {{value}} </li> 
+                                               </ul>
+                                        </p-scrollPanel>
+                                    </div>
+                                    <div class="playertotal mt-4 mb-5">
+                                        <p>LISTED = &nbsp; <span class="player_leftbtn">  {{playerPositionDataAllSort.length}}  </span></p>  <!--{{playerDataSort.length}}-->
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-6 player">
+                                    <div class="player_list">
+                                        <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                        styleClass="custombar1">
+                                       <ul class="pointer"  *ngFor="let value of this.selectedPositionAl;let i=index; " >
+                                           <li > {{value}}</li>
+                                       </ul>
+                                        </p-scrollPanel>
+                                    </div>
+                                    <div class="playertotal mt-4 mb-5">
+                                        <p>SELECTED = &nbsp; <span class="player_rightbtn"> {{selectedPositionAl.length}}  </span></p> 
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12  mb-4 team_btn">
+                                    <!-- <button class="btn team_ok" (click)="filterPositionAll()" ><p> &#10003; OK</p></button> 
+                                    <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button> -->
+                                
+                                    <button class="btn team_Select_All" (click)="this.allyellowPositionAll()" > Select All </button>   <!---->
+                                    <button class="btn team_Clear_Select ml-3"  (click)="this.removeAll()"> Clear Selected Item </button>
+                                </div>
+                            </div>
+                          </div>
+                        </p-dialog>
+
+                        <p-dialog header="Select Position Single" [(visible)]="display10" [style]="{width: '600px'}"
+                        [baseZIndex]="10000" class="pDialog10"  >
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                <div class="col-md-12 col-12">
+                                    <div class="Playerradiobtn">
+                                        <span>
+                                            <p-radioButton name="val2" class="sortableradio" label="ASCENDING" value="Ascending " label="ASCENDING" [(ngModel)]="selectedPositionSingle.item"  (click)="sortPositionSigle('Ascending')"></p-radioButton> 
+                                        </span>
+                                        <span>
+                                            <p-radioButton name="val2" class="sortableradio" label="DESCENDING" value="Descending" label="DESCENDING" [(ngModel)]="selectedPositionSingle.item"  (click)="sortPositionSigle('Descending')"></p-radioButton> 
+                                        </span>
+
+                                        <button class="btn team_ok" (click)="filterPositionSingle()" ><p> &#10003; OK</p></button>  
+                                        <button class="btn team_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-6 player">
+                                    <div class="player_list">
+                                        <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                            styleClass="custombar1">
+                                            <ul> 
+                                                <li class="pointer"  *ngFor="let value of this.playerPositionDataSingleSort;let i=index;" (click)= "selectedPositionSingleclick(value,i)" [ngClass]="{'activeRow': sortPositionSingleId == i || playerSelectSinglePosition == true}"> {{value}} </li> 
+                                           </ul>
+                                        </p-scrollPanel>
+                                    </div>
+                                    <div class="playertotal mt-4 mb-5">
+                                        <p>LISTED = &nbsp; <span class="player_leftbtn">  {{playerPositionDataSingleSort.length}}  </span></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-6 player">
+                                    <div class="player_list">
+                                        <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                        styleClass="custombar1">
+                                        <ul class="pointer"  *ngFor="let value of this.selectedPositionSingle;let i=index; " >
+                                            <li > {{value}}</li>
+                                        </ul>
+                                        </p-scrollPanel>
+                                    </div>
+                                    <div class="playertotal mt-4 mb-5">
+                                        <p>SELECTED = &nbsp; <span class="player_rightbtn"> {{selectedPositionSingle.length}}  </span></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12  mb-4 team_btn">
+                                    <button class="btn team_Select_All" (click)="allyellowPositionSingle()"> Select All </button>  
+                                    <button class="btn team_Clear_Select ml-3" (click)="this.removeAll()"> Clear Selected Item </button>
+                                </div>
+                            </div>
+                        </div>
+                        </p-dialog>
+
+                        <p-dialog header="Unhide Columns" [(visible)]="display11" [style]="{width: '700px'}" [baseZIndex]="10000" class="pDialog11">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-8 col-12">
+                                        <div class="sortlist">
+                                            <div class="player_list">
+                                                <p-scrollPanel [style]="{width: '100%', height: '550px'}" styleClass="custombar1">
+                                                <ul>
+                                                    <li class="point"  *ngFor="let value of this.hideData;let i=index;"  [ngClass]="{'activeRow': unhideClickId == i}" (click)= "selectedUnhide(value,i)"> {{value.data.field_description}} </li> <!-- -->
+                                                </ul>
+                                                </p-scrollPanel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">                                    
+                                        <button class="btn unhide_ok" (click)="unhideColumn()"><p> &#10003; OK</p></button>
+                                        <button class="btn  unhidAll" (click)="this.getStaticsDatabase()">UNHIDE ALL</button> <!-- (click)="unhideColumn(i)"-->
+                                        <button class="btn unhide_cancel ml-3" (click)="cancelMulti()"><p> &#10008; CANCEL</p></button>                                  
+                                    </div>
+                                </div>
+                            </div>
+                        </p-dialog>
+
+                        <p-dialog header="Custom Calculated Columns" [(visible)]="display12" [style]="{width: '700px'}"
+                        [baseZIndex]="10000" class="pDialog12">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="sortlist">
+                                        <div class="player_list">
+                                            <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custombar1">
+                                                <ul>
+                                                    <li class="pointer"> {{this.field_Name_Title}} </li> 
+                                                </ul>
+                                            </p-scrollPanel>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-12  mb-4 team_btn">
+                                <button class="btn cust_add" (click)="showDialog5()" >ADD</button> <!---->
+                                <button class="btn cust_edit" (click)="showDialog5()" >EDIT</button>
+                                <button class="btn cust_delete"  >DELETE</button>
+                                <button class="btn cust_ok ml-3" (click)="cancelMulti()">OK/CLOSE</button>
+                            </div>
+                        </div>
+                        </p-dialog>
+
+                        <p-dialog header="Column Posititons" [(visible)]="display13" [style]="{width: '700px'}" [baseZIndex]="10000" class="pDialog13">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-8 col-12">
+                                        <div class="sortlist">
+                                            <div class="player_list">
+                                                <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custombar1">
+                                                  <ul *ngIf="this.databaseData && this.databaseData.length > 0">                                            
+                                                      <li class="pointer" *ngFor="let item of this.allData;let i=index;" (click)="selectColumPosition(item, i)"
+                                                          [ngClass]="{'activeRow': item.activeRow}"> {{item.field_description}} </li> 
+                                                  </ul>
+                                                  <ul *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" >                                            
+                                                      <li class="pointer" *ngFor="let item of this.allTeamData;let i=index;" (click)="selectColumPosition(item, i)"
+                                                          [ngClass]="{'activeRow': item.activeRow}"> {{item.field_description}} </li> 
+                                                  </ul>
+                                                </p-scrollPanel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">                                        
+                                       <button class="btn move_up" (click)= "move_up()" >MOVE UP</button>
+                                       <button class="btn  move_down" (click)="move_down()" >MOVE DOWN</button>
+                                       <button class="btn  move_ok" (click)="ok_columnPosition()" ><p> &#10003; OK</p></button>
+                                       <button class="btn move_cancel ml-3" (click)="cancelMulti()"> <p> &#10008; CANCEL</p></button>                                        
+                                    </div>
+                                    <div class="col-md-12 col-12 tyy">
+                                        <p>Use Mouse or ALT-U (up) or ALT-D (down) key combination to move column</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-dialog>
+
+                        <p-dialog header="Color Options" [(visible)]="display14" [style]="{width: '750px'}" [baseZIndex]="10000" class="pDialog14">
+                          <div class="container-fluid">
+                             <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="sortlist">
+                                        <div class="row ">
+                                            <h5> Alternate by</h5>
+
+                                            <div class="form-check">                                                
+                                                <span>
+                                                    <p-radioButton name="r1" class="sortableradio" label="Player" *ngIf="this.databaseData && this.databaseData.length > 0" value="true" [(ngModel)]="radioPlayer.radionPlayer" ></p-radioButton> 
+                                                </span>
+                                            </div>
+                                            <div class="form-check ">                                                
+                                                <span>
+                                                    <p-radioButton name="r2" class="sortableradio" label="Team" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" value="true" [(ngModel)]="radioPlayer.radionPlayer"></p-radioButton> 
+                                                </span>
+                                            </div>
+                                            <div class="form-check ">                                                
+                                                <span>
+                                                    <p-radioButton name="r2" class="sortableradio" label="Team" *ngIf="this.databaseData && this.databaseData.length > 0" value="b" [(ngModel)]="radioPlayer.radionPlayer"></p-radioButton> 
+                                                </span>
+                                            </div>
+                                            <div class="form-check ">                                                
+                                                <span>
+                                                    <p-radioButton name="r3" class="sortableradio" label="Year" value="c" [(ngModel)]="radioPlayer.radionPlayer"></p-radioButton> 
+                                                </span>
+                                            </div>
+                                            <div class="form-check gg">                                                
+                                                <span>
+                                                    <p-radioButton name="r4" class="sortableradio" label="League" value="d" [(ngModel)]="radioPlayer.radionPlayer"></p-radioButton> 
+                                                </span>
+                                            </div>
+                                            <div class="form-check g">                                                
+                                                <span>
+                                                    <p-radioButton name="r5" class="sortableradio" label="Reg/Ply" value="e" [(ngModel)]="radioPlayer.radionPlayer" ></p-radioButton> 
+                                                </span>
+                                            </div>
+                                            <div class="form-check division">                                                
+                                                <span>
+                                                    <p-radioButton name="r6" class="sortableradio" label="Division" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0" value="f" [(ngModel)]="radioPlayer.radionPlayer"></p-radioButton> 
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <h4 >Color Set 1</h4>
+                                    <div class="mar_left">
+                                     <div class="row">
+                                        <div class="form-check bg_grey col-sm-3 col-6 pointer">
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            <input class="form-check-input pointer " type="radio" name="r6" id="e1" value="grey" [(ngModel)]="firSetColor" > 
+                                            
+                                              Grey
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_silver col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r7" id="e2" value="silver" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                              Silver
+                                            </label>
+                                        </div>
+                                      </div> <br>
+
+                                      <div class="row">
+                                        <div class="form-check bg_maroon col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r8" id="e3" value="maroon" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Maroon
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_red col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r9" id="e4" value="red" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Red
+                                            </label>
+                                        </div>
+                                      </div> <br>
+
+                                      <div class="row">
+                                        <div class="form-check bg_green col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r10" id="e5" value="green" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Green
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_lime col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r11" id="e6" value="lime" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Lime
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_olive col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r12" id="e7" value="olive" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Olive
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_yellow col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r13" id="e8" value="yellow" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Yellow
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_navy col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r14" id="e9" value="navy" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Navy
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_blue col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r15" id="e10" value="blue" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Blue
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_purple col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r16" id="e11" value="purple" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Purple
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_fuchsia col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r17" id="e12" value="fuchsia" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            fuchsia
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_teal col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r18" id="e13" value="teal" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Teal
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_aqua col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r19" id="e14" value="aqua" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Aqua
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_black col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r20" id="e15" value="black" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Black
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_white col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r21" id="e16" value="white" [(ngModel)]="firSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            White
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <h4 >Color Set 2</h4>
+                                    <div class="mar_left">
+                                     <div class="row">
+                                        <div class="form-check bg_grey col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r22" id="e17" value="grey" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                              Grey
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_silver col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r23" id="e18" value="silver" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                              Silver
+                                            </label>
+                                        </div>
+                                      </div> <br>
+
+                                      <div class="row">
+                                        <div class="form-check bg_maroon col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r24" id="e19" value="maroon" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Maroon
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_red col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r25" id="e20" value="red" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Red
+                                            </label>
+                                        </div>
+                                      </div> <br>
+
+                                      <div class="row">
+                                        <div class="form-check bg_green col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r26" id="e21" value="green" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Green
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_lime col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r27" id="e22" value="lime" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                           Lime
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_olive col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r28" id="e23" value="olive" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Olive
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_yellow col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r29" id="e24" value="yellow" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Yellow
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_navy col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r30" id="e25" value="navy" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Navy
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_blue col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r31" id="e26" value="blue" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Blue
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_purple col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r32" id="e27" value="purple" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Purple
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_fuchsia col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r33"  value="fuchsia" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            fuchsia
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_teal col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r34"  value="teal" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Teal
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_aqua col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r35"  value="aqua" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Aqua
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_black col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r36"  value="black" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            Black
+                                            </label>
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_white col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" type="radio" name="r37" value="white" [(ngModel)]="secSetColor" > 
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            White
+                                            </label>
+                                        </div>
+                                      </div> <br>
+                                      <div class="row">
+                                        <div class="form-check bg_white col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" style="visibility: hidden;" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+
+                                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="form-check bg_white col-sm-3 col-6 pointer">
+                                            <input class="form-check-input pointer" style="visibility: hidden;" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-12 tophe">
+                                    <button class="btn  color_ok ntb" (click)="setColor()"> <p> &#10003; OK</p></button>
+                                    <button class="btn ml-3 color_cancel" (click)="cancelMulti()"> <p> &#10008; CANCEL</p></button>
+
+                                    <div class="flo">
+                                      <p-checkbox name="group1" class="check " value="ok" label="Alternating Gray Boxes" [(ngModel)]="selectedCheck.check" inputId="ny" ></p-checkbox> <br> <br><!---->
+                                      <p-checkbox name="group1" class="check " value="HOME" label="Horizontal Line"  inputId="ny"></p-checkbox> <br> <br>
+                                      <p-checkbox name="group1" class="check" value="HOME" label="Vertical Line"  inputId="ny"></p-checkbox> <br> <br>
+                                      <p-checkbox name="group1" class="check " value="HOME" label="Fixed Horizontal Line"  inputId="ny"></p-checkbox> <br> <br>
+                                      <p-checkbox name="group1" class="check " value="HOME" label="Fixed Vertical Line"  inputId="ny"></p-checkbox> <br><br>
+                                    </div>
+                                </div>                                
+                             </div>
+                          </div>
+                        </p-dialog>
+
+                        <p-dialog header="Find" [(visible)]="display15" [style]="{width: '35vw'}">
+                            <p-header><button type="button" class="close" data-dismiss="modal" aria-label="Close" ></button> </p-header>
+                            <p-body>
+                                <div class="modal-body">
+                                    <div class="form-row">
+                                      <div class="form-group col-md-12 text-center">
+                                        <label for="test1223" class="fonty">Text </label>
+                                        <input type="text"  name="data" class="form-control" id="input"  [(ngModel)]="findInput.data"  > 
+                                      </div>
+                                    </div>                                        
+                                </div>
+                            </p-body>
+                            <p-footer class="ok_button">
+                                <button type="button" class="btn btn-warning size"  data-dismiss="modal" (click)="findNew()">FIND</button> 
+                                <button type="button" class="btn btn-dark size" (click)="cancelMulti()">CLOSE</button>  
+                                <div class="row t">
+                                    <div class="form-check">                                                
+                                        <span>
+                                            <p-radioButton name="r50" class="sortableradio size_radio" label="Keep text" value="no" [(ngModel)]="findInput1"></p-radioButton> 
+                                        </span>
+                                    </div>
+                                    <div class="form-check">                                                
+                                        <span>
+                                            <p-radioButton name="r50" class="sortableradio size_radio" label="Clear text" value="yes" [(ngModel)]="findInput1"></p-radioButton> 
+                                        </span>
+                                    </div>
+                                </div>
+                            
+                            </p-footer>
+                        </p-dialog>
+
+                        <p-dialog header="Confirm" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+                            [draggable]="false" [resizable]="false">
+                            <p class="p-m-0">You will lose all your current column settings. Are you sure?</p>
+                                <p-footer class="ok_button">
+                                    <button type="button" class="btn btn-warning" data-dismiss="modal" (click)=" reset()" >OK</button> 
+                                    <button type="button" class="btn btn-dark" (click)="cancelMulti()">CANCEL</button>  
+                                </p-footer>
+                        </p-dialog>
+
+                        <p-dialog header="Info" [(visible)]="displayModal1" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+                            [draggable]="false" [resizable]="false">
+                            <p class="p-m-0"> Your column setting have been saved </p>
+                                <p-footer class="ok_button">
+                                    <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="cancelMulti()">OK</button>                                   
+                                </p-footer>
+                        </p-dialog>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

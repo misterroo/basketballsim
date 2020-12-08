@@ -1,0 +1,47 @@
+<div id="choosemyteam">
+    <div class="container-fluid">
+        <!-- <app-header></app-header> -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row choose_my_content">
+                        <div class="col-md-12 col-12 ">
+                            <button type="button" class="previos_btn ml-3" [routerLink]="['/dashboard/chooseteam']">
+                                <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i>  </button>
+                                
+                        </div>
+                        <div class="col-md-2">
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div class="content1 mt-4">
+                                <div>
+                                    <h1>ONE ON ONE<br> MATCHUP</h1>
+                                    <!-- <p>HAVE ONE TEAM PLAY A SPECIFC <br>TEAM A TIME AND PREDICT GAMES<br> BETWEEN THEM. -->
+                                    <p>SELECT ONE TEAM OR MULTIPLE TEAMS <br> AND PREDICT ONE ON ONE MATCH <br> UP BETWEEN THEM</p>
+                                    <div class="go_btn1">
+                                        <button type="button" class="btn btn-yellow" (click)="goToTeam('oneonone')"> GO
+                                            <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div id="triangle-right"></div> -->
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div class="content2 mt-4 ">
+                                <h1>PLAY WITH ALL <br> TEAMS IN A <br>SEASON </h1>
+                                <!-- <p>HAVE ONE TEAM PLAY ALL TEAMS IN <br>A SEASON & SCHEDULED A NUMBER<br> OF GAMES</p> -->
+                                <p> SELECT ONE TEAM AND PLAY N NUMBERS <br> OF GAMES WITH ALL THE TEAMS <br> PRESENT IN A SEASON </p>
+                                <div class="go_btn2">
+                                    <button type="button" class="btn btn-yellow" (click)="goToTeam('playallteam')"> GO
+                                        <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

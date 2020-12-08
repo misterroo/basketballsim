@@ -1,0 +1,925 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/angular-notifier/styles.scss";
+
+// ******************dropdown**************************
+  html, body {
+    height: 100%;
+  }
+  body .loading-text {
+    top: 50% !important;
+  }
+  body .la-ball-scale-multiple {
+    display: none !important;
+  }   
+.ui-table-scrollable-view {
+    position: absolute;
+    top: 0;
+}
+body .ui-table .ui-table-thead > tr > th {
+  color: #ffffff !important;
+  background-color: #333333 !important;
+  font-weight: 500 !important;
+}
+body .ui-table .ui-table-thead > tr > td {
+  font-weight: 500 !important;
+}
+.dropdown {
+  .ui-dropdown {
+    width: 100% !important;
+    background: #f3f2f2 !important;
+    padding: 2% 4% !important;
+    box-shadow: inset 6px 5px 1px 0px #dbdbdb !important;
+    border: 3px solid white !important;
+  }
+  body .ui-inputtext {
+    min-height: 60px !important;
+
+    color: #292b30 !important;
+    background: #f3f2f2 !important;
+    border-radius: 5%;
+    padding: 0.429em;
+    border: 1px solid #f3f2f2 !important;
+  }
+  .ui-dropdown-label {
+    background: #f3f2f2 !important;
+    font-size: 25px !important;
+    font-family: "Fjalla One", sans-serif !important;
+  }
+  .ui-dropdown .ui-dropdown-trigger {
+    background-color: #f3f2f2 !important;
+    color: black !important;
+    font-size: 26px !important;
+    box-shadow: inset 0px 5px 0px 0px #dbdbdb !important;
+  }
+}
+// sl css start
+.popup_dropdown {
+  .ui-dropdown:after {
+    content: "";
+    background: linear-gradient(0deg, #b1b1b1, transparent);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 24px;
+    bottom: 0;
+    border-radius: 10px;
+  }
+  .ui-dropdown .ui-dropdown-trigger {
+    background-color: #f3f2f2 !important;
+    color: black !important;
+    font-size: 26px !important;
+    box-shadow: inset 0px 5px 0px 0px #dbdbdb !important;
+    border-top-right-radius: 10px;
+  }
+  .ui-dropdown {
+    width: 75% !important;
+    background: #f3f2f2 !important;
+    padding: 1% 4% !important;
+    box-shadow: inset 6px 5px 1px 0px #dbdbdb !important;
+    border: 3px solid white !important;
+    height: 70px;
+    border-radius: 10px;
+  }
+  body .ui-inputtext {
+    min-height: 60px !important;
+    color: #292b30 !important;
+    background: #f3f2f2 !important;
+    border-radius: 5%;
+    padding: 0.429em;
+    border: 1px solid #f3f2f2 !important;
+  }
+  .ui-dropdown-label {
+    background: #f3f2f2 !important;
+    font-size: 25px !important;
+    font-family: "Fjalla One", sans-serif !important;
+  }
+}
+.popup_text:after {
+  content: "";
+  background: linear-gradient(0deg, #b1b1b1, transparent);
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 24px;
+  bottom: 0;
+  border-radius: 10px;
+}
+body .ui-widget {
+  font-family: "Fjalla One", sans-serif !important;
+}
+//sl css end
+.sortabledropdown {
+  .ui-dropdown {
+    width: 100% !important;
+    background: #f3f2f2 !important;
+    padding: 2% 4% !important;
+    box-shadow: inset 1px -5px 1px 0px #dbdbdb !important;
+    border: 3px solid white !important;
+    min-width: 20.5em !important;
+  }
+  body .ui-inputtext {
+    min-height: 60px !important;
+
+    color: #292b30 !important;
+    background: #f3f2f2 !important;
+    border-radius: 5%;
+    padding: 0.429em;
+    border: 1px solid #f3f2f2 !important;
+  }
+  .ui-dropdown-label {
+    background: #f3f2f2 !important;
+    font-size: 20px !important;
+    font-family: "Fjalla One", sans-serif !important;
+  }
+  .ui-dropdown .ui-dropdown-trigger {
+    background-color: #f3f2f2 !important;
+    color: black !important;
+    font-size: 16px !important;
+    box-shadow: inset -1px -5px 1px 0px #dbdbdb !important;
+  }
+}
+
+.sortablestatdropdown {
+  .ui-dropdown {
+    width: 100% !important;
+    background: #f3f2f2 !important;
+    padding: 2% 4% !important;
+    box-shadow: inset 1px -5px 1px 0px #dbdbdb !important;
+    border: 3px solid white !important;
+    min-width: 20.5em !important;
+  }
+  body .ui-inputtext {
+    min-height: 60px !important;
+
+    color: #292b30 !important;
+    background: #f3f2f2 !important;
+    border-radius: 5%;
+    padding: 0.429em;
+    border: 1px solid #f3f2f2 !important;
+  }
+  .ui-dropdown-label {
+    background: #f3f2f2 !important;
+    font-size: 20px !important;
+    font-family: "Fjalla One", sans-serif !important;
+  }
+  .ui-dropdown .ui-dropdown-trigger {
+    background-color: #f3f2f2 !important;
+    color: black !important;
+    font-size: 16px !important;
+    box-shadow: inset -1px -5px 1px 0px #dbdbdb !important;
+  }
+}
+
+//***********************dialog*************************
+.pDialog1,
+.pDialog2,
+.pDialog3,
+.pDialog4 {
+  .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    // box-shadow: 0 0 0 0.2em #f3ec18 !important;
+    box-shadow: unset;
+  }
+
+  .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon:hover {
+    color: #f3ec18 !important;
+  }
+  .ui-dialog .ui-dialog-titlebar {
+    border: 1px solid white !important;
+    background-color: white !important;
+    color: black !important;
+    font-size: 24px !important;
+    padding: 0px 0px 13px 16px !important;
+    font-weight: 700;
+    border-bottom: 0 none;
+  }
+  .ui-dialog .ui-dialog-titlebar-icons {
+    background: black !important;
+    padding: 5px 7px 9px 0px !important;
+  }
+  .ui-dialog-titlebar-icons:hover {
+    color: white !important;
+  }
+}
+.pDialogdashboard {
+  .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: unset;
+    //  box-shadow: 0 0 0 0.2em #f3ec18 !important;
+  }
+
+  .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon:hover {
+    color: #f3ec18 !important;
+  }
+  .ui-state-active {
+    background-color: #f3ec18 !important ;
+    border: 1px solid #f3ec18 !important;
+    color: white !important;
+  }
+  //    .ui-tabview.ui-tabview-center .ui-tabview-nav li{
+  //       border: 1px solid #f4f0ef ;
+  //       background-color: #f4f0ef ;
+  //       transition: background-color 0.2s, box-shadow 0.2s;
+  //   }
+  .ui-tabview.ui-tabview-top .ui-tabview-nav li,
+  body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li,
+  body .ui-tabview.ui-tabview-left .ui-tabview-nav li,
+  body .ui-tabview.ui-tabview-right .ui-tabview-nav li {
+    border: 1px solid #f4f0ef;
+    background-color: #f4f0ef;
+  }
+  .ui-dialog .ui-dialog-titlebar {
+    border: 1px solid #2f3137 !important;
+    background-color: #2f3137 !important;
+  }
+  .ui-tabview.ui-tabview-top .ui-tabview-nav li a {
+    font-size: 18px !important;
+    color: #2f3137;
+  }
+  .ui-tabview.ui-tabview-top
+    .ui-tabview-nav
+    li:not(.ui-state-active):not(.ui-state-disabled):hover {
+    border: 1px solid #f4f0ef;
+    background-color: #f4f0ef;
+  }
+}
+
+// *********************tabview*********************
+
+.dashboardtabview {
+  .ui-tabview .ui-tabview-panels {
+    background-color: #ffffff;
+    padding: 0.571em 1em;
+    border: 1px solid #c8c8c8;
+    color: #333333;
+    min-height: 52vh;
+  }
+  a:active {
+    color: #f3ec18;
+  }
+
+  a:hover {
+    color: #f3ec18;
+  }
+  .ui-tabview.ui-tabview-top .ui-tabview-nav li:focus {
+    // outline: 0px;
+    // outline-offset: 0px;
+    box-shadow: unset;
+  }
+}
+
+// ***********************scroll*************************
+.custombar1 {
+  .ui-scrollpanel-wrapper {
+    border-right: 6px solid #f7d501 !important;
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;
+  }
+  // .ui-scrollpanel-bar:hover {
+  //    background-color: black;
+  // }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 20px) !important;
+    padding: 0 18px 18px 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 6px !important;
+  }
+}
+.customtablescroll1 {
+  height: 350px;
+  padding-top: 20px;
+  .ui-scrollpanel-wrapper {
+    border-right: 8px solid #f7d501 !important;
+    padding-right: 5px;
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;
+  }
+  // .ui-scrollpanel-bar:hover {
+  //    background-color: black;
+  // }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 28px) !important;
+    padding: 0 18px 18px 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 8px !important;
+    padding-right: 5px;
+  }
+}
+.ui-dialog .ui-dialog-titlebar {
+  border: 1px solid #333333;
+  background-color: #333333 !important;
+  color: #ffffff;
+  padding: 1em;
+  font-weight: 700;
+  font-size: large;
+  border-bottom: 0 none;
+}
+
+.ui-widget {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+}
+// .customtablescroll2 {
+//   height: 500px;
+//   width: 550px !important;
+//   padding-top: 20px;
+//   .ui-scrollpanel-wrapper {
+//     border-right: 8px solid #f7d501 !important;
+//     padding-right: 5px;
+//   }
+//   .ui-scrollpanel-bar {
+//     background-color: black;
+//     opacity: 1;
+//     transition: background-color 0.3s;
+//   }
+//   // .ui-scrollpanel-bar:hover {
+//   //    background-color: black;
+//   // }
+//   .ui-scrollpanel-content {
+//     height: calc(100% + 5px) !important;
+//     width: calc(100% + 28px) !important;
+    
+//     padding: 0 18px 18px 0;
+//     position: relative;
+//     overflow: auto;
+//     box-sizing: border-box;
+//   }
+//   .ui-scrollpanel-bar-y {
+//     width: 8px !important;
+//     padding-right: 5px;
+//   }
+// }
+
+
+.customtablescroll3 {
+  height: 600px;  //500
+  // width: 500px !important;
+  padding-top: 20px;
+ // position: fixed;
+  .ui-scrollpanel-wrapper {
+    border-right: 8px solid #f7d501 !important;
+    padding-right: 5px;  // 5px
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;
+    margin-top: -10px;  // 11
+  }
+  // .ui-scrollpanel-bar:hover {
+  //    background-color: black;
+  // }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 28px) !important;
+    padding: 0 18px 18px 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 8px !important;
+    padding-right: 5px;
+  }
+}
+
+.customtablescroll4 {
+  height: 600px;
+  padding-top: 20px;
+  .ui-scrollpanel-wrapper {
+    border-right: 8px solid #f7d501 !important;
+    padding-right: 5px;
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;  
+    margin-top: 0px;
+  }
+  // .ui-scrollpanel-bar:hover {
+  //    background-color: black;
+  // }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 28px) !important;
+    padding: 0 18px 18px 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 8px !important;
+    padding-right: 5px;
+    // top: calc(0% - -37px);
+  }
+}
+
+
+
+.customtablescroll5 {
+  height: 600px;
+  padding-top: 20px;
+  .ui-scrollpanel-wrapper {
+    border-right: 8px solid #f7d501 !important;
+    // padding-right: 5px;
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;
+  }
+  // .ui-scrollpanel-bar:hover {
+  //    background-color: black;
+  // }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 28px) !important;
+    padding: 0 18px 18px 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 8px !important;
+    padding-right: 5px;
+  }
+}
+
+.customtablescroll6 {
+  height: 400px;  
+  padding-top: 20px;
+  .ui-scrollpanel-wrapper {
+    border-right: 8px solid #f7d501 !important;
+    padding-right: 5px;  
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;
+    margin-top: -10px;  
+  }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 28px) !important;
+    padding: 0 18px 18px 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 8px !important;
+    padding-right: 5px;
+  }
+}
+.customtablescroll7 {
+  height: 400px;  
+  padding-top: 20px;
+  .ui-scrollpanel-wrapper {
+    border-right: 8px solid #f7d501 !important;
+    padding-right: 5px;  
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;
+    margin-top: -10px;  
+  }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 28px) !important;
+    padding: 0 18px 18px 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 8px !important;
+    padding-right: 5px;
+  }
+}
+
+.customactualteamleague {
+  height: 800px;  //300
+  // padding: 1rem;
+  .ui-scrollpanel-wrapper {
+    border-right: 8px solid #f7d501 !important;
+    padding-right: 5px;
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;
+  }
+  // .ui-scrollpanel-bar:hover {
+  //    background-color: black;
+  // }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 28px) !important;
+    padding: 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 8px !important;
+    padding-right: 5px;
+  }
+}
+
+
+.customactualteamleaguee {
+  height: 551px;  //300
+  // padding: 1rem;
+  .ui-scrollpanel-wrapper {
+    border-right: 8px solid #f7d501 !important;
+    padding-right: 5px;
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;
+  }
+  // .ui-scrollpanel-bar:hover {
+  //    background-color: black;
+  // }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 28px) !important;
+    padding: 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 8px !important;
+    padding-right: 5px;
+  }
+}
+
+.customactualteamleagueee {
+  height: 551px;  //300
+  // padding: 1rem;
+  .ui-scrollpanel-wrapper {
+    border-right: 8px solid #f7d501 !important;
+    padding-right: 5px;
+  }
+  .ui-scrollpanel-bar {
+    background-color: black;
+    opacity: 1;
+    transition: background-color 0.3s;
+  }
+  // .ui-scrollpanel-bar:hover {
+  //    background-color: black;
+  // }
+  .ui-scrollpanel-content {
+    height: calc(100% + 5px) !important;
+    width: calc(100% + 28px) !important;
+    padding: 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  .ui-scrollpanel-bar-y {
+    width: 8px !important;
+    padding-right: 5px;
+  }
+  // .ui-scrollpanel-bar-x {
+  //   overflow-x: hidden;
+  // }
+    
+
+}
+// ********************radio**************************
+.sortableradio {
+  .ui-radiobutton .ui-radiobutton-box.ui-state-focus {
+    outline: unset !important;
+    outline-offset: 0;
+    box-shadow: unset !important;
+  }
+  .ui-radiobutton-label {
+    margin: 0px 0.7em 0 0.7em !important;
+  }
+  .ui-radiobutton .ui-radiobutton-box {
+    border: 1px solid #a6a6a6;
+    background-color: black !important;
+    width: 25px !important;
+    height: 25px !important;
+    text-align: center;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 50%;
+    top: -4px !important;
+  }
+  .ui-state-active .ui-radiobutton-icon {
+    background-color: #f7d501 !important;
+  }
+  .ui-radiobutton .ui-radiobutton-box .ui-radiobutton-icon {
+    width: 14px !important;
+    height: 14px !important;
+    margin-left: -7px !important;
+    margin-top: -7px !important;
+  }
+}
+
+// ***********************media Query***********************
+
+@media screen and (max-device-width: 414px) {
+  .dropdown {
+    .ui-dropdown {
+      background: #f3f2f2 !important;
+      padding: 2% 4% !important;
+      border: 3px solid white !important;
+      min-width: 18.5em !important;
+    }
+
+    body .ui-inputtext {
+      min-height: 60px !important;
+      font-size: 22px !important;
+      font-family: "Fjalla One", sans-serif !important;
+      color: #292b30 !important;
+      background: #f3f2f2 !important;
+      border-radius: 5%;
+      padding: 0.429em;
+      border: 1px solid #f3f2f2 !important;
+    }
+  }
+  //  .pDialogdashboard .ui-tabview.ui-tabview-top .ui-tabview-nav li a {
+  //    font-size: 16px !important;
+  //    color: #2F3137;
+  //   }
+
+  // .dashboardtabview{
+  //    .ui-tabview .ui-tabview-panels {
+  //        min-height: 315px ;
+  //     }
+  // }
+  // *******scroll******
+  .customtablescroll1 {
+    height: 200px;
+
+    .ui-scrollpanel-wrapper {
+      border-right: 6px solid #f7d501 !important;
+      padding-right: 5px;
+    }
+    .ui-scrollpanel-bar {
+      background-color: black !important;
+      opacity: 1;
+      transition: background-color 0.3s;
+    }
+    .ui-scrollpanel-bar-y {
+      width: 6px !important;
+      padding-right: 5px;
+    }
+    .ui-scrollpanel-bar-x {
+      width: 6px !important;
+    }
+    .ui-scrollpanel-bar {
+      position: relative;
+      background: #f7d501;
+      border-radius: 3px;
+      z-index: 2;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.25s linear;
+    }
+  }
+}
+
+// iphone 5/SE
+@media screen and (device-aspect-ratio: 40/71) {
+  .customtablescroll1 {
+    .ui-scrollpanel-wrapper {
+      border-right: 6px solid #f7d501 !important;
+      padding-right: 25px;
+    }
+    .ui-scrollpanel-bar-y {
+      width: 6px !important;
+      padding-right: 25px;
+    }
+  }
+}
+/* media query for ipad */
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  // body .ui-dialog .ui-dialog-content {
+  //       height: 50vh;
+  // }
+  // .dashboardtabview .ui-tabview .ui-tabview-panels {
+  //    min-height:400px;
+  //    }
+  // *******scroll******
+  .customtablescroll1 {
+    .ui-scrollpanel-wrapper {
+      border-right: 6px solid #f7d501 !important;
+      padding-right: 5px;
+    }
+    .ui-scrollpanel-bar-y {
+      width: 6px !important;
+      padding-right: 5px;
+    }
+    .ui-scrollpanel-bar-x {
+      width: 6px !important;
+    }
+    .ui-scrollpanel-bar {
+      position: relative;
+      background: #f7d501;
+      border-radius: 3px;
+      z-index: 2;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.25s linear;
+    }
+  }
+}
+@media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
+  // .dashboardtabview .ui-tabview .ui-tabview-panels {
+  //          min-height: 400px;
+  //    }
+  // *******scroll******
+  .customtablescroll1 {
+    .ui-scrollpanel-wrapper {
+      border-right: 6px solid #f7d501 !important;
+      padding-right: 5px;
+    }
+    .ui-scrollpanel-bar-y {
+      width: 6px !important;
+      padding-right: 5px;
+    }
+    .ui-scrollpanel-bar-x {
+      width: 6px !important;
+    }
+    .ui-scrollpanel-bar {
+      position: relative;
+      background: #f7d501;
+      border-radius: 3px;
+      z-index: 2;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.25s linear;
+    }
+  }
+}
+/* ----------- iPad Pro ----------- */
+/* Portrait and Landscape */
+@media only screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+  // .dashboardtabview .ui-tabview .ui-tabview-panels {
+  //          min-height: 455px;
+  //    }
+  // *******scroll******
+  .customtablescroll1 {
+    .ui-scrollpanel-wrapper {
+      border-right: 6px solid #f7d501 !important;
+      padding-right: 5px;
+    }
+    .ui-scrollpanel-bar-y {
+      width: 6px !important;
+      padding-right: 5px;
+    }
+    .ui-scrollpanel-bar-x {
+      width: 6px !important;
+    }
+    .ui-scrollpanel-bar {
+      position: relative;
+      background: #f7d501;
+      border-radius: 3px;
+      z-index: 2;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.25s linear;
+    }
+  }
+
+  //   responsive css
+
+  @media only screen and (min-width: 1200px) {
+    // .container {
+    //       max-width: 100%;
+    // }
+  }
+
+  @media only screen and (max-width: 1199px) {
+    .dashboardtabview .ui-tabview .ui-tabview-panels {
+      min-height: 340px;
+    }
+    .pDialogdashboard .ui-tabview.ui-tabview-top .ui-tabview-nav li a {
+      font-size: 15px !important;
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .dashboardtabview {
+      .ui-tabview .ui-tabview-panels {
+        min-height: 60vh;
+      }
+    }
+    .pDialogdashboard .ui-tabview.ui-tabview-top .ui-tabview-nav li a {
+      font-size: 15px !important;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    // .dashboardtabview .ui-tabview .ui-tabview-panels {
+    //    min-height: 400px;
+    // }
+  }
+  @media only screen and (max-width: 575px) {
+    // .dashboardtabview .ui-tabview .ui-tabview-panels {
+    //    min-height: 400px;
+    // }
+  }
+  @media only screen and (max-width: 375px) {
+  }
+
+  .pointer{
+    cursor: pointer;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .ui-dialog{
+max-height: 46%;
+    max-width: 618px;
+  }
+}
+
+// font family row and row box state
+.raw-container{
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.raw-containerr{
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+  font-size: 14px; //14
+  // margin-top: 239px;//50px;
+}
+
+.raw-containerrr{
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+
+}
+
+// @media only screen and (min-width:375px){
+//   .ui-dialog{
+//     max-height: 40%;
+//       max-width: 309px;
+//   }
+//   } 
+
+// / Chrome, Safari, Edge, Opera /
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+// / Firefox /
+input[type=number] {
+-moz-appearance: textfield;
+}
+@media only screen and (max-width: 1499px) {
+.fnt_media {
+  font-size: 12px;
+}  
+}
+.noscroll { position: fixed; overflow-y:scroll }
+.bl{
+  color:blue;
+}
+.re{
+  color:red;
+}
+
+body .ui-table .ui-table-tbody > tr.ui-state-highlight {
+  background-color: #fffb13 !important;
+  color: #000000 !important;
+}
+
+.dropdown .ui-dropdown-label {
+  font-size: 21px !important;
+}

@@ -1,0 +1,532 @@
+#singlegame{
+    // background-image: url("../../../assets/img/imgpsh_fullsize_anim\ \(1\).png");
+    background-image: url("../../../../assets/img/imgpsh_fullsize_anim\ \(1\).png");
+    background-repeat: no-repeat;
+    // background-size: cover;
+    height: 100vh;
+    // width: 100%;
+
+    background-repeat: no-repeat;
+    background-position: 94% 66px;
+      background-size: 31%;
+
+    font-family: 'Fjalla One', sans-serif !important;
+    .playwithcontent{
+        width: 99%;
+    }
+    .basketball_player{
+        // background-image: url('../../../assets/img/img2.png');
+        background-image: url('../../../../assets/img/img2.png');
+        background-repeat: no-repeat;
+        height: 90vh;    
+        background-position: bottom center;
+    }
+    .previos_btn{
+        background-color: #2F3137;
+        border: 1px solid white;
+        padding: 9px 23px;
+        border-radius: 5px;
+        margin-top: 5%;
+        font-size: 26px;
+        color: #f6f6f7;
+    }
+    .input-field {
+        width: 100% !important;
+        background: #f3f2f2 !important;
+        padding: 2% 4% !important;
+        box-shadow: inset 6px 5px 1px 0px #dbdbdb !important;
+        border: 3px solid white !important;
+        min-height: 85px;
+        font-size: 25px !important;
+        font-family: "Fjalla One", sans-serif !important;
+    }          
+}
+    h1 {
+        text-align: center;
+        color: #fff;
+        margin-top: -55px;
+    }
+    .mar {
+        margin-top: -34px;
+    }
+    button.btn_continue {
+        font-size: 20px;
+    }
+    button.btn_reset {
+        font-size: 17px;
+    }
+    button.btn_start {
+        font-size: 20px;
+    }
+    .btn-primary {
+        color: #fff;
+        background: rgb(96, 204, 96);
+    }
+    button.btn_sub {
+        margin-top: 22px;
+        font-size: 19px;
+    }
+    button.btn_sub1 {
+        margin-top: 22px;
+        font-size: 19px;
+    }
+    .dropdown.d2 {
+        top: 10px; 
+    }
+    .dropdown.d4 {
+        top: 10px;
+    }
+    .drop_down{
+        font-size: 20px;
+    }
+    .drop_down1{
+        font-size: 20px;
+        margin-top: -9px;
+    }
+    h4 {
+        color: #000;
+    }
+    .form-check.radio {
+        margin-top: -32px;
+    }
+    .form-check.radio1 {
+        font-size: 17px;
+    }
+    .margin_table {
+        margin-top: 20px;
+    }
+    table, tr.trtt {
+        border: 1px solid black;
+    }
+    table, td.tdtt {
+        border: 1px solid black;
+        text-align: center;
+      }
+    table, th.tdtt {
+        border: 1px solid black;
+      }
+    tbody, tr.t_trt {
+        border: 1px solid black;
+        border-color: #fff;
+      }
+    th.tab{
+        padding:0px 52px 0px 48px;
+    }
+    td.tad{
+        text-align: center
+    }
+    th.tad{
+        text-align: center
+    }
+    .new_rad {
+        margin-top: 33px;
+    }
+    th.ta{
+        padding: 0px 23px 0px 22px;
+        // padding: 0px 18px 0px 22px
+    }
+    tbody.td{
+        border: 0px;
+    }
+    table.org {
+        background: #e26720;
+        color: #fff;
+    }
+    .bnb {
+        margin-top: 20px;
+    }
+    .z {
+        margin-top: -18px;
+    }
+    .y {
+        margin-top: -18px;
+    }
+    .x {
+        margin-top: -14px;
+        // margin-top: -20px;
+    }
+    .btn_gro {
+        margin-top: 6px;
+    }
+    .btn_gro1 {
+        margin-left: -2px;
+        margin-top: 6px;
+    }
+    button.btn_1{
+        margin-left: 4px;
+        font-size: 22px;
+        padding: 3px 19px 0px 19px;
+        background-color: #6ec1e4;
+    }
+    button.btn_10{
+        margin-left: 4px;
+        font-size: 22px;
+        padding: 3px 19px 0px 19px;
+        background-color: #ff3f3f;
+    }
+    button.btn_11{
+        // margin-left: 18px !important;
+        margin-left: 20px !important;
+        font-size: 22px;
+        padding: 3px 19px 0px 19px;
+        background-color: #ff3f3f;
+    }
+    button.btn_2{
+        font-size: 22px;
+        margin-left: 17px !important;
+        // margin-left: 20px !important;
+        padding: 3px 19px 0px 19px;
+        background-color: #6ec1e4;
+    }
+    .accordian {
+        top: 14px;
+        padding: 0 0px 0 17px;
+    }
+    .coll{
+       background-color:  #77c11d;
+    }
+    button.btn_coll {
+        color: #fff;
+        font-size: 22px;
+    }
+    .mrtp {
+        margin-top: -36px;
+    }
+    .tprp {
+        margin-top: 5px;
+    }
+    .hea {
+        top: 82px;
+    }
+    h1{
+        text-align: left;
+        color: #83cfee;
+    }
+    .hae {
+        top: 82px;
+    }
+    .btn_group {
+        left: 324px;
+        bottom: 56px;
+    }
+    // .box_score {
+    //     margin-top: -37px;
+    // }
+    button.btn_csv{
+        font-size: 18px;
+    }
+    button.btn_undock {
+        margin-left: 14px !important;
+        font-size: 18px;
+    }
+    button.btn_dock {
+        margin-left: 14px !important;
+        font-size: 18px;
+    }
+    ng-footer.tr {
+        float: right;
+    }
+    thead.t1 {
+        border: 1px solid beige;
+    }
+    td.q {
+        padding: 5px 16px 4px 14px;
+    }
+    td.p {
+        padding: 4px 35px 5px 50px;
+    }
+    div#collapseOne {
+        background: wheat;
+    }
+    div#collapseTwo {
+        background: wheat;
+    }
+    
+
+    @media only screen and (max-width: 1499px){
+        .mrtp {
+            margin-top: -29px;
+        }
+        #singlegame .previos_btn{
+            margin-top: 87px;
+            padding: 5px 17px;
+            font-size: 26px;
+        }
+        button.btn_start {
+            font-size: 17px;
+        }
+        button.btn_reset {
+            font-size: 17px;
+        }
+        button.btn_continue {
+            font-size: 17px;
+        }
+        .drop_down {
+            font-size: 17px;
+        }
+        .drop_down1 {
+            font-size: 17px;
+            margin-top: -8px;
+        }
+        button.btn_sub1{
+            margin-top: 22px;
+        }
+        button.btn_sub{
+            margin-top: 22px;
+        }
+        label.form-check-label {
+            font-size: 13px;
+        }
+        button.btn_coll {
+            color: #fff;
+            font-size: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 1024px){
+        #singlegame .previos_btn {
+            margin-top: 54px;
+        }
+        .mrtp {
+            margin-top: 27px;
+        }
+        th.tab {
+            padding: 0px 40px 0px 37px;
+        }
+        th.ta {
+            padding: 0px 18px 0px 16px;
+        }
+        button.btn_2 {
+            margin-left: 12px !important;
+            padding: 3px 16px 0px 16px;
+        }
+        button.btn_1 {
+            margin-left: 0px;
+        }
+        button.btn_11 {
+            margin-left: 18px !important;
+            padding: 3px 13px 0px 13px;
+        }
+        button.btn_10 {
+            margin-left: 3px;
+        }
+        .btn_group {
+            left: 233px;
+        }
+        button.btn_csv {
+            font-size: 15px;
+        }
+    }
+
+    @media only screen and (max-width: 768px){
+        button.btn_start {
+            font-size: 13px;
+        }
+        button.btn_continue {
+            font-size: 13px;
+        }
+        button.btn_reset {
+            font-size: 13px;
+        }
+        .drop_down {
+            font-size: 13px;
+        }
+        .drop_down1 {
+            font-size: 13px;
+        }
+        button.btn_sub1 {
+            font-size: 13px;
+        }
+        button.btn_sub {
+            font-size: 13px;
+        }
+        th.tab {
+            padding: 0px 24px 0px 24px;
+        }
+        th.ta {
+            padding: 0px 9px 0px 9px;
+        }
+        button.btn_2 {
+            font-size: 17px;
+            margin-left: 11px !important;
+            padding: 0px 10px 0px 10px;
+        }
+        button.btn_11 {
+            font-size: 17px;
+            margin-left: 11px !important;
+            padding: 0px 10px 0px 10px;
+        }
+        button.btn_1 {
+            font-size: 17px;
+            padding: 0px 10px 0px 10px;
+        }
+        button.btn_10{
+            font-size: 17px;
+            padding: 0px 10px 0px 10px;
+        }
+        button.btn_csv {
+            font-size: 13px;
+            padding: 3px 6px 1px 6px;
+        }
+        button.btn_dock {
+            font-size: 13px;
+            margin-left: 5px !important;
+            padding: 3px 6px 1px 6px;
+        }
+        button.btn_undock {
+            font-size: 13px;
+            margin-left: 5px !important;
+            padding: 3px 5px 1px 8px;
+        }
+        .btn_group {
+            left: 193px;
+            bottom: 45px;
+        }
+        h1, .h1 {
+            font-size: 2rem;
+        }
+        button.btn_coll {
+            color: #fff;
+            font-size: 16px;
+        }
+        td.p {
+            padding: 4px 9px 5px 0;
+        }
+        label.form-check-label {
+            font-size: 12px;
+        }
+
+        .popup_right {
+            font-size: 9px;
+            padding: 6px 14px !important;
+        }
+        .popup_left {
+            font-size: 9px;
+            padding: 6px 14px !important;
+        }
+        .popup_zero {
+            font-size: 9px;
+            padding: 6px 14px !important;
+        }
+        body .ui-widget {
+            font-size: 9px !important;
+        }
+    }
+
+    // .ui-scrollpanel-bar {
+    //     background: white !important;
+    // }
+
+
+    .popup_left{
+        margin: 14px;
+        // padding: 8px 15px ;
+        padding: 8px 13px 0px 9px;
+        background: blue !important;           
+        color: white;
+        margin-right: 120px; 
+        // padding-top: 10px;   
+        border-radius: 5px;    
+    }
+    .popup_zero{
+        margin: 14px;
+        // padding: 8px 15px ;
+        padding: 8px 13px 0px 9px;
+        background: black;           
+        color: white;
+        margin-right: 120px; 
+        // padding-top: 10px;   
+        border-radius: 5px;    
+    }
+
+    .popup_right{
+        margin: 14px;
+        // padding: 8px 15px;
+        padding: 8px 13px 0px 9px;
+        margin-left: 120px; 
+        // padding-top: 10px;   
+        border-radius: 5px;  
+        color: white;                               
+         background-color: red;                     
+         box-shadow: inset 0px -5px 3px #f33131;        
+    }
+
+    .xyxy {
+        margin-top: 25px; 
+    }
+    button.btn_Away {
+        background-color: #8d918e;
+    }
+    button.btn_Home {
+        background-color: #8d918e;
+    }
+
+    .dropdown .ui-dropdown-label {
+        font-size: 21px !important;
+    }
+
+    td {
+        padding: 0 0 0 0;
+    }
+
+    td.o {
+        padding: 0 35px 0 0;
+    }
+    td.o1 {
+        padding: 0 0px 0 45px;
+        // padding: 0 0px 0 25px;
+    }
+    th.tat {
+        padding: 0 0 0 44px;
+    }
+    th.tar {
+        padding: 0 25px 0 0;
+    }
+    td.o2 {
+        // padding: 0 49px 0 0;
+        padding: 0 43px 0 0;
+    }
+    td.o3 {
+        padding: 0 0 0 35px;
+    }
+    th.taz {
+        padding: 0 34px 0 0px;
+    }
+    th.tazz {
+        padding: 0 0 0 36px;
+    }
+    td.ytyt {
+        padding: 0 0 0 5px;
+    }
+    th.er {
+        padding: 0 35px 0 42px;
+    }
+    td.mm {
+        padding: 0 0 0 25px;
+    }
+    th.tear {
+        padding: 0 35px 0 37px;
+    }
+    .point{
+        cursor: pointer;
+    }
+    .popup_left[_ngcontent-ppm-c118] {
+        padding: 8px 13px 0px 9px;
+    }
+
+.simple{
+::-webkit-scrollbar { // width
+     width: 10px;
+  }
+  ::-webkit-scrollbar-track { // track
+    box-shadow: inset 0 0 3px grey; 
+    border-radius: 10px;
+  }   
+  ::-webkit-scrollbar-thumb { // handle
+    background: #f7d501; 
+    border-radius: 10px;
+  }  
+  ::-webkit-scrollbar-thumb:hover { // handle on hover
+    background: #000; 
+  }
+}

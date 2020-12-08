@@ -1,0 +1,231 @@
+<div id="advancedsettingqtr">
+  <div class="container-fluid">
+    <!-- <app-header></app-header> -->
+
+    <div class="row">
+      <div class="container-fluid">
+        <div class="row body">
+          
+          <div class="col-md-12 col-12 pb-4">
+            <button type="button" class="previos_btn ml-3" [routerLink]="['/dashboard3/playwithallteam']"><i
+                class="fa fa-chevron-left mr-2" aria-hidden="true"></i> </button>
+                
+            <ol class="breadcrumb col-md-7 bread_mrgin">  <!--choosemyteam  <li class="breadcrumb-item"><a href="#">Home</a></li>-->           
+              <li class="breadcrumb-item point hover_clr" *ngIf="this.oneononeDataa == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>1 on 1 Matchup </a></li>                  
+              <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'playallteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>Play with All teams </a></li>                  
+              <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>Replay entire season</a></li>                  
+              
+              <li class="breadcrumb-item point hover_clr" ><a class="a_color" [routerLink]='"/dashboard3/playwithallteam"'>{{draftTeamA}} </a></li>     <!--href="playwithallteam"-->              
+            </ol>
+
+          </div>
+          <div class="col-md-8 bottom-btn">
+            <button type="button" [ngClass]="(isShow) ? 'btn simulation' : 'btn setting'" (click)="showAdvance(false)">QUICK
+              SIMULATION</button>
+            <button type="button" [ngClass]="(isShow) ? 'btn setting' : 'btn simulation'" (click)="showAdvance(true)">ADVANCE
+              SETTING</button>
+            <button type="button" class="btn simulation" *ngIf="this.enableDisableStatus == 'oneonone'" (click)="showbuttonModalDialog()">PLAY
+              MULTIPLE
+              GAMES</button>
+          </div>
+          <div class="col-md-8 checkboxs">
+            <div class="chekbox-align" *ngIf="this.enableDisableStatus === 'oneonone'">
+              <p-checkbox name="group1" class="check" value="HOME" label="HOME" [(ngModel)]="selectedCities" 
+                inputId="ny" (onChange)="onChange('HOME')"></p-checkbox>
+
+              <p-checkbox name="group1" class="check" value="AWAY" label="AWAY" [(ngModel)]="selectedCities"
+                inputId="sf" (onChange)="onChange('AWAY')"></p-checkbox>
+
+              <p-checkbox name="group1" class="check" value="BOTH" label="BOTH" [(ngModel)]="selectedCities"
+                inputId="la" (onChange)="onChange('BOTH')"></p-checkbox>
+
+              <p-checkbox name="group1" class="check" value="NEUTRAL" label="NEUTRAL" [(ngModel)]="selectedCities"
+                inputId="la" (onChange)="onChange('NEUTRAL')"></p-checkbox>
+            </div>
+            <!-- <div class="col-md-8 range">
+              <span class="semiaccurate">SEMI ACCURATE</span>
+              <ng5-slider [options]="options" [(value)]="sliderValue" class="range_circle"
+                (valueChange)="rangeslider($event)"></ng5-slider>
+
+              <span class="accurate1 pt-4">LEAST ACCURATE</span>
+              <span class="accurate2">MOST ACCURATE</span>
+             <p-slider [(ngModel)]="val1" id="range"></p-slider>
+
+            </div> -->
+            <div class="col-md-8 range" *ngIf="enableDisableStatus == 'playallteam' ">
+              <ng5-slider [options]="options" (valueChange)="rangeslider($event)" [(ngModel)]="localT"></ng5-slider>
+              <span class="accurate1 pt-4">LEAST ACCURATE</span>
+              <span class="accurate2">MOST ACCURATE</span>
+              <!-- <p-slider [(ngModel)]="val1" id="range"></p-slider>-->
+          </div>
+            <div class="col-md-8 run text-center">    
+              <button type="button" class="btn bg-warn " (click)="tableAdd()">RUN SIMULATION</button>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-12 five_btn" *ngIf="isShow">
+            <!-- <div class="checkbox label">
+              <label><input type="checkbox" value="">Turn off play by play  to speed up execution</label>
+            </div>  -->
+            <div  class="custom-control custom-checkbox checkbox-lg label-playbyplay-enable">
+              <!-- <input type="checkbox" class="custom-control-input" id="plycheck" (change)="playbtn($event)" [(ngModel)]="pbpChecked">
+              <label class="custom-control-label" for="plycheck">Turn off play by play  to speed up execution</label> -->
+              <!-- <div class="form-group">
+                <input type="checkbox" id="css" (change)="playbtn($event)" [(ngModel)]="pbpChecked">
+                <label for="css">Turn off play by play  to speed up execution</label>
+              </div> -->
+              <label class="control control--checkbox">Turn off play by play
+                <input type="checkbox" (change)="playbtn($event)" [(ngModel)]="pbpChecked"  />
+                <div class="control__indicator"></div>
+              </label>
+            </div>            
+
+            <button type="button" class="btn  five_color"  (click)="goto('dashboard3/substitutionpattern')">SUBSTITUTION PATTERN</button>
+            <button type="button" class="btn  five_color"  (click)="goto('dashboard2/draftplayer')">DRAFT PLAYER</button>
+            <button type="button" class="btn  five_color" (click)="goto('dashboard1/changeplayercharacteristics')" >CHANGE PLAYER CHARACTERISTICS</button>
+            
+          </div>
+          <div class="col-md-7" id="table" *ngIf="showTable === true">
+            <div class="datatable">
+              <h4>RESULTS</h4>
+              <div class="table-responsive-sm">
+                <p-scrollPanel [style]="{width: '100%'}" styleClass="customtablescroll1">
+                  <table class="table table-striped">
+                    <thead class="table-dark">
+                      <tr style="font-family: sans-serif !important; font-weight: lighter !important;">
+                        <th class="note1 pl-5">GAME</th>
+                        <th>TEAM</th>
+                        <th>OPPONENT</th>
+                        <th class="note2 pr-5">SCORE</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="this.getTableData && this.getTableData.length > 0; else noRecord" >
+                      <tr *ngFor="let value of this.getTableData" class="rm">
+                        <td class="pl-5 rm">{{value.game_number}}</td>
+                        <td >{{value.team_name1 +' '+ value.team1_homeaway}}</td>
+                        <td>{{value.team_name2 +' '+ value.team2_homeaway}}</td>
+                        <td>{{value.team1_score +' - '+ value.team2_score}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                </p-scrollPanel>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-12 five_btn">
+            <h5>DETAILS</h5>
+            <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color" (click)="goto('dashboard1/rowstats')" disabled>RAW STATS</button>
+            <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color"  
+             (click)="goto('dashboard1/rowboxscores')" disabled>RAW BOX SCORES / PLAY BY PLAY</button>
+            <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color"    (click)="goto('dashboard1/sortablestats')"  disabled>SORTABLE STATS</button>
+            <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color"   (click)="goto('dashboard2/sortableboxscore')" disabled>SORTABLE BOX SCORES</button>
+            <!-- <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color"  (click)="goto('playbyplay')" disabled>PLAY BY PLAY</button> -->
+
+            <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color" (click)="goto('dashboard1/rowstats')" >RAW STATS</button>
+            <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color"  
+             (click)="goto('dashboard1/rowboxscores')" >RAW BOX SCORES / PLAY BY PLAY</button>
+            <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color"    (click)="goto('dashboard1/sortablestats')"  >SORTABLE STATS</button>
+            <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color"   (click)="goto('dashboard2/sortableboxscore')">SORTABLE BOX SCORES</button>
+            <!-- <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color"  (click)="goto('playbyplay')" >PLAY BY PLAY</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noRecord>
+      <tr class="notrecordfound">
+        <td colspan="4">No Record Found</td>
+      </tr>
+    </ng-template>
+  </div>
+  <p-dialog header="PLAY MULTIPLE GAMES" [(visible)]="showPlayMultiple" [style]="{width: '80%'}" [position]="position"
+    [baseZIndex]="10000" class="pDialogdashboard">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-8 checkboxs_popup">
+          <div class="chekbox-align">
+            <p-checkbox name="group1" class="check" value="HOME" label="HOME" [(ngModel)]="selectedCities" inputId="ny"
+              (onChange)="onChange('HOME')"></p-checkbox>
+
+            <p-checkbox name="group1" class="check" value="AWAY" label="AWAY" [(ngModel)]="selectedCities" inputId="sf"
+              (onChange)="onChange('AWAY')"></p-checkbox>
+
+            <p-checkbox name="group1" class="check" value="BOTH" label="BOTH" [(ngModel)]="selectedCities" inputId="la"
+              (onChange)="onChange('BOTH')"></p-checkbox>
+
+            <p-checkbox name="group1" class="check" value="NEUTRAL" label="NEUTRAL" [(ngModel)]="selectedCities"
+              inputId="la" (onChange)="onChange('NEUTRAL')"></p-checkbox>
+          </div>
+
+        </div>
+        <div class="col-md-4 run_popup">
+          <!-- <button pButton type="button"  label="RUN SIMULATION"></button> -->
+          <button type="button" class="btn bg-warn btn_left" (click)="resetMulti()">CLEAR ALL</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="table-responsive-sm">
+      <!-- <p-scrollPanel [style]="{width: '100%'}" styleClass="customtablescroll1"> -->
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr style="font-family: sans-serif !important; font-weight: lighter !important;">
+
+            <th class="note1 pl-5">TEAM</th>
+            <th>GAME[{{this.gameTotalvalue}}]</th>
+            <th class="note2 pr-5">OPPONENT</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <div  *ngIf="this.getTableData && this.getTableData.length > 0; else noRecord"> -->
+          <tr *ngFor="let value of this.gameList;let i = index">
+
+            <!-- <td class="pl-5">{{value.game_number}}</td> -->
+            <td>
+              <div class="form-group ">
+                <p-dropdown class="pDropdwon dropdown popup_dropdown" [(ngModel)]="value.predictaway" name="predictaway{{i}}"
+                  [options]="teamData" optionLabel="teams" optionValue="teams"
+                  *ngIf="this.enableDisableStatus !== 'allteam'; else TEAM" placeholder="CHOOSE A TEAM"
+                  (ngModelChange)="getTeamValue($event)" required>
+                </p-dropdown>
+                <ng-template #TEAM>
+                </ng-template>
+              </div>
+            </td>
+            <td>
+              <input class="form-control input-field_adv popup_text" id="input" (change)="totalCount()" type="number"
+                name="predictgames{{i}}" placeholder="ENTER GAME" [(ngModel)]="value.predictgames" /> </td>
+            <td>
+              <div class="form-group ">
+                <p-dropdown class="pDropdwon  popup_dropdown" [(ngModel)]="value.predicthome" name="predicthome{{i}}"
+                  [options]="teamData" optionLabel="teams" optionValue="teams" placeholder="CHOOSE A TEAM"
+                  (ngModelChange)="getTeamValue($event)" required>
+                </p-dropdown>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- </p-scrollPanel> -->
+    </div>
+    <p-footer>
+
+
+      <div class="col-md-12 mt-3">
+        <div class="row">
+          <div class="run_popup">
+            <button type="button" class="btn bg-warn" (click)="saveMulti()">SAVE</button>
+
+            <button type="button" class="btn bg-warn_cancle" (click)="cancelMulti()">CANCEL</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="message_txt">
+        <h5>ONCE SAVED PLEASE CLICK RUN SIMULATION</h5>
+      </div>
+    </p-footer>
+
+  </p-dialog>
+</div>

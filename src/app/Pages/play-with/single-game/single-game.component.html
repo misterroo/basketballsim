@@ -1,0 +1,411 @@
+    <div id="singlegame">
+      <!-- <app-header></app-header> -->
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12 col-12">
+                <button type="button" class="previos_btn ml-3" (click)="backClicked()">
+                  <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i></button>
+                  </div>
+            </div>
+        </div>
+        <div class="container mrtp">
+          <div class="row">
+            <div class="col-md-3 x">
+                <button class="btn btn-success btn-block btn_start" [disabled]="locate_disable" (click)="playSingleGame_Initial()" > Start Game</button>
+                <button class="btn btn-warning btn-block btn_reset" [disabled]="button_disable1" (click)="reset()"> Reset Game</button> <!---->
+                <button class="btn btn-primary btn-block btn_continue" [disabled]="button_disable"  (click)="continueChat()"> Continue Game</button>
+
+              <div class="xyxy">                
+                <button class="btn btn-block btn_Home" [routerLink]="['/dashboard3/actualplayer']" > Actual Player Statistics </button>
+              </div>
+            </div>
+            <div class="col-md-6 y">
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="dropdown d1">  
+                          <p-dropdown class="pDropdwon dropdown" [(ngModel)]="model.season1" name="season"
+                          [options]="seasonData" optionLabel="league_name" optionValue="_id" placeholer="CHOOSE A SEASON"
+                          (ngModelChange)="getAwaySeasonValue($event)" required></p-dropdown>                        
+                      </div>
+                      <div class="dropdown d2">  
+                          <p-dropdown class="pDropdwon dropdown_border dropdown" [options]="opponentData" optionLabel="teams" 
+                            optionValue="_id" placeholder="CHOOSE A TEAM" (ngModelChange)="getTeamValue($event)" [(ngModel)]="model.opponent" name="team" required></p-dropdown> <!--*ngIf="this.enableDisableStatus !== 'allteam'; else TEAM"-->
+                      </div>
+                      <button class="btn btn-dark btn-block btn_sub1"  routerLinkActive="router-link-active" (click)="goSubPattern('Away')">Away Team Sub Pattern</button> <!---->
+                    </div>
+                    <div class="col-md-6">
+                      <div class="dropdown d3">  
+                          <p-dropdown class="pDropdwon dropdown" optionLabel="league_name" [(ngModel)]="model.season" name="season" 
+                          [options]="seasonData" optionLabel="league_name" optionValue="_id" placeholer="CHOOSE A SEASON" 
+                          (ngModelChange)=" getHomeSeasonValue($event)" required></p-dropdown>
+                      </div>
+                      <div class="dropdown d4">                        
+                          <p-dropdown class="pDropdwon dropdown" [options]="teamData" optionLabel="teams" optionValue="_id" 
+                          placeholder="CHOOSE OPPONENT" (ngModelChange)="getOpponentValue($event)" [(ngModel)]="model.team" name="opponent" required></p-dropdown> <!--*ngIf="this.enableDisableStatus !== 'playallteam' && this.enableDisableStatus !== 'allteam'; else OPPONENT"-->
+                      </div>
+                      <button class="btn btn-dark btn-block btn_sub"  routerLinkActive="router-link-active" (click)="goSubPattern('Home')"> Home Team Sub Pattern</button> <!--[routerLink]="['/substitutionpattern']"-->
+                    </div>
+                </div>      
+                <div class="row">
+                    <div class="col-md-6 margin_table">
+                        <table>
+                            <thead>
+                                <tr class="trtt">
+                                  <th class="tab tdtt">QTR:1</th>
+                                  <th class="tab tdtt">Away Team</th>
+                                  <th class="tab tdtt">Home Team</th>
+                                  <th class="tab tdtt">Clock</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <!-- <tr class="trtt" *ngFor="let item of this.play_Single_Stats" >
+                                  <td class="tdtt">{{item.quarter}}</td>
+                                  <td class="tad tdtt">{{item.away_score}}</td>
+                                  <td class="tad tdtt">{{item.home_score}}</td>
+                                  <td class="tdtt">{{item.clock}}</td>
+                                </tr> -->
+                                <tr class="trtt" >
+                                  <td class="tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].quarter:'-'}}</td>
+                                  <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_score:'-'}}</td>
+                                  <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_score:'-'}}</td>
+                                  <td class="tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].clock:'-'}}</td>
+                                </tr>
+                                <tr class="trtt">                                             
+                                  <th class="tad tdtt" >Fouls</th>
+                                  <th class="tad tdtt" >Possession</th>
+                                  <th class="tad tdtt" >Possession</th>
+                                  <th class="tad tdtt" >Fouls</th>
+                                </tr>
+                                <tr class="trtt">
+                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_fouls:'-'}}</td>
+                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_possessions:'-'}}</td>
+                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_possessions:'-'}}</td>
+                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_fouls:'-'}}</td>
+                                  </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>                           
+            </div>
+            <div class="col-md-3">
+                <div class="row">                    
+                    <div class="col-md-12 z">
+                        <h4> Pause options </h4> <br>                            
+                        <div class="form-check radio">
+                            <input type="radio" class="form-check-input point" name="radios" value = "1" [(ngModel)]="option" (ngModelChange)="after_Each_line($event)"> 
+                            <label class="form-check-label" for="materialUnchecked"  >After each line</label> 
+                        </div> 
+                        <div class="form-check radio1">
+                            <input type="radio" class="form-check-input point" name="radios" value = "2" [(ngModel)]="option" (ngModelChange)="after_Each_line($event)">
+                            <label class="form-check-label" for="materialUnchecked" >After each team possession</label>  
+                        </div> 
+                        <div class="form-check radio1">
+                            <input type="radio" class="form-check-input point" name="radios" value = "3" [(ngModel)]="option" (ngModelChange)="after_Each_line($event)">
+                            <label class="form-check-label" for="materialUnchecked" >After each quarter</label> 
+                        </div> 
+                        <div class="form-check radio1">
+                            <input type="radio" class="form-check-input point" name="radios" value = "4"  [(ngModel)]="option" (ngModelChange)="after_Each_line($event)">
+                            <label class="form-check-label" for="materialUnchecked" >Do not pause</label> 
+                        </div> 
+                    </div> 
+                </div>
+                <div class="row">                    
+                    <div class="col-md-12 new_rad">
+                        <h4> Computer Team </h4> <br>  
+                        <div class="form-check radio">
+                            <input type="radio" class="form-check-input point" name="radios1" >
+                            <label class="form-check-label" for="materialUnchecked">None</label> 
+                        </div> 
+                        <div class="form-check radio1">
+                            <input type="radio" class="form-check-input point" name="radios1">
+                            <label class="form-check-label" for="materialUnchecked">Home Team</label>  
+                        </div> 
+                        <div class="form-check radio1">
+                            <input type="radio" class="form-check-input point" name="radios1">
+                            <label class="form-check-label" for="materialUnchecked">Away Team</label> 
+                        </div> 
+                        <div class="form-check radio1">
+                            <input type="radio" class="form-check-input point" name="radios1" checked>
+                            <label class="form-check-label" for="materialUnchecked">Both</label> 
+                        </div> 
+                    </div> 
+                </div>                            
+            </div>
+          </div>
+            <div class="col-md-12 bnb">
+              <div class="row">
+                  <div class="col-md-6 mtab">
+                      <table class="org">
+                        <thead>
+                          <tr >
+                            <th class="ta">Pts</th>
+                            <th class="taz">Reb</th>
+                            <th class="taz">Ast</th>
+                            <th class="taz">PF</th>
+                            <th class="taz">St</th>
+                            <th class="er">Player</th>
+                            <th class="tazz">P#</th>
+                            <th class="ta">Pos</th>
+                          </tr>
+                        </thead>
+                        <tbody >
+                          <tr class="t_trt">
+                            <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player1_pts:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player1_reb:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player1_ast:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player1_pf:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player1_possfact:'-'}}</td>
+                            <td class="ytyt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player1:'-'}}</td>
+                            <td class="o3">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player1_possfact:'-'}}</td>
+                            <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].off_position1:'-'}}</td>
+                          </tr>
+                          <tr class="t_trt">
+                            <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player2_pts:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player2_reb:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player2_ast:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player2_pf:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player2_possfact:'-'}}</td>
+                            <td class="ytyt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player2:'-'}}</td>
+                            <td class="o3">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player2_possfact:'-'}}</td>
+                            <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].off_position2:'-'}}</td>
+                          </tr>
+                          <tr class="t_trt">
+                            <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player3_pts:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player3_reb:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player3_ast:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player3_pf:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player3_possfact:'-'}}</td>
+                            <td class="ytyt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player3:'-'}}</td>
+                            <td class="o3">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player3_possfact:'-'}}</td>
+                            <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].off_position3:'-'}}</td>
+                          </tr>
+                          <tr class="t_trt">
+                            <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player4_pts:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player4_reb:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player4_ast:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player4_pf:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player4_possfact:'-'}}</td>
+                            <td class="ytyt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player4:'-'}}</td>
+                            <td class="o3">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player4_possfact:'-'}}</td>
+                            <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].off_position4:'-'}}</td>
+                          </tr>
+                          <tr class="t_trt">
+                            <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player5_pts:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player5_reb:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player5_ast:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player5_pf:'-'}}</td>
+                            <td class="o2">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player5_possfact:'-'}}</td>
+                            <td class="ytyt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player5:'-'}}  </td>
+                            <td class="o3">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player5_possfact:'-'}}</td>
+                            <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].off_position5:'-'}}</td>
+                          </tr>
+                        </tbody>
+                      </table>  
+                  </div>  
+                  <div class="col-md-6 m">
+                    <table class="org">
+                      <thead>
+                        <tr>
+                          <th class="ta">Pos</th>
+                          <th class="tar">P#</th>
+                          <th class="tear">Player</th>
+                          <th class="tat">Pts</th>
+                          <th class="tat">Reb</th>
+                          <th class="tat">Ast</th>
+                          <th class="tat">PF</th>
+                          <th class="ta">St</th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                              <tr class="t_trt">
+                                <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].def_position1:'-'}}</td>
+                                <td class="o">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player1_possfact:'-'}}</td>
+                                <td >{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player1:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player1_pts:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player1_reb:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player1_ast:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player1_pf:'-'}}</td>
+                                <td >{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_player1_possfact:'-'}}</td>
+                              </tr>
+                              <tr class="t_trt"> 
+                                <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].def_position2:'-'}}</td>
+                                <td class="o">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player2_possfact:'-'}}</td>
+                                <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player2:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player2_pts:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player2_reb:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player2_ast:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player2_pf:'-'}}</td>
+                                <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player2_possfact:'-'}}</td>                                          
+                              </tr>
+                              <tr class="t_trt">
+                                <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].def_position3:'-'}}</td>
+                                <td class="o">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player3_possfact:'-'}}</td>
+                                <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player3:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player3_pts:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player3_reb:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player3_ast:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player3_pf:'-'}}</td>
+                                <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player3_possfact:'-'}}</td>                                         
+                              </tr>
+                              <tr class="t_trt">
+                                <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].def_position4:'-'}}</td>
+                                <td class="o">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player4_possfact:'-'}}</td>
+                                <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player4:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player4_pts:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player4_reb:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player4_ast:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player4_pf:'-'}}</td>
+                                <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player4_possfact:'-'}}</td>                                          
+                              </tr>
+                              <tr class="t_trt">
+                                <td class="tad">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].def_position5:'-'}}</td>
+                                <td class="o">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player5_possfact:'-'}}</td>
+                                <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player5:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player5_pts:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player5_reb:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player5_ast:'-'}}</td>
+                                <td class="o1">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player5_pf:'-'}}</td>
+                                <td>{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_player5_possfact:'-'}}</td>                                          
+                              </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              </div>  
+              <div class="row tprp">
+                  <div class="col-md-6 btn_gro">
+                      <div class="btn-group">
+                          <button type="button" class="btn btn-secondary btn_1">PG</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable1:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_2">SG</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable2:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_2">SF</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable3:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_2">PF</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable4:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_2">C</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable5:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_2">R</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable6:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_2">HC</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable7:'-'}}-->
+                      </div>
+                  </div>
+                  <div class="col-md-6 btn_gro1">
+                      <div class="btn-group">
+                          <button type="button" class="btn btn-secondary btn_10">PG</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable7:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_11">SG</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable6:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_11">SF</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable5:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_11">PF</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable4:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_11">C</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable3:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_11">R</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable2:'-'}}-->
+                          <button type="button" class="btn btn-secondary btn_11">HC</button> <!--{{play_Single_Stats.length > 0 ? play_Single_Stats[0].passable1:'-'}}-->
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 accordian">
+                  <div class="accordion" id="accordionExample">
+                    <div class="card coll">
+                      <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link btn_coll" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            + &nbsp; Bench Players
+                          </button>
+                        </h2>
+                      </div>                            
+                      <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                          Anim pariatur cliche reprehenderit
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card coll">
+                      <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link btn_coll" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            + &nbsp; Game Options
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                          Food truck quinoa nesciunt laborum eiusmod.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 hea">
+                  <h1 class=""> PLAY BY PLAY</h1>
+                  <div class="popup simple">
+                    <div style="width: '100%';height: 410px;overflow: auto;" styleClass="customtablescroll6"  id="fir">
+                      <!-- <ng-container>                                   
+                        <div  class="media_font">
+                          <div  class="commentbox">
+                            <div class="text-comments  popup_zero">
+                              <div *ngFor="let item of play_by_playComments; let i=index">
+                                <p>{{item.text}}</p>
+                              </div>  
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>     -->
+                    
+                      <ng-container >              
+                         <div  class="media_font " >
+                            <div  class="commentboxx" *ngFor="let item of play_by_playComments; let i = index">
+                                <div class="text-comments  popup_zero"   *ngIf= "item && item.color === '0'"  > <!--item.color === '0'-->
+                                  <p>{{item.text}}</p>
+                                </div>
+                                <div class="text-comments  popup_left"   *ngIf= "item && item.color === '1'"  > <!--item.color === '1'-->
+                                  <p>{{item.text}}</p>
+                                </div>
+                                <div class="text-comments  popup_right"   *ngIf= "item && item.color === '2'"  > <!--item.color === '2'-->
+                                  <p>{{item.text}}</p>
+                                </div>
+                             </div>
+                          </div>
+                      </ng-container>  
+                      
+                      <div id="sec"></div>              
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 hae">
+                  <h1> BOX SCORE</h1>    
+                  <div class="row">
+                    <div class="btn-group btn_group" role="group" aria-label="Basic example">
+                      <!-- <button type="button" class="btn btn-warning btn_csv" (click)="showModalDialog()">CSV</button> -->
+                      <!-- <button type="button" class="btn btn-warning btn_dock">Dock</button> -->
+                      <!-- <button type="button" class="btn btn-warning btn_undock">Undock</button> -->
+                    </div>
+                  </div>
+                  <div class="box_score simple">
+                    <!-- <p-scrollPanel [style]="{width: '100%'}" styleClass="customtablescroll7"> -->
+                    <div style="width: '100%';height: 410px;overflow: auto;" styleClass="customtablescroll7" id="scrollP">
+                      <ng-container>                                   
+                        <div  class="media_font">
+                          <div  class="commentbox">
+                            <div class="text-comments">                              
+                              <div class="raw-containerrr"  *ngIf="rawBoxScore.length > 0"> <!---->
+                                <div *ngFor="let item of this.rawBoxScore;let i = index" >
+                                  <div style="white-space: pre" > {{item.text}}</div>
+                                </div>          
+                              </div>                         
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>                                              
+                      <div id="yu"></div>         
+                    </div>
+                    <!-- </p-scrollPanel> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p-dialog header="Done" [(visible)]="displayModal" [style]="{width: '30vw'}" [baseZIndex]="10000">
+              <p>File Written to disk</p>
+              <ng-footer class="tr">
+               <p-button class="rr" icon="pi pi-check" (click)="displayModal=false" label="Yes"  styleClass="p-button-text"></p-button> 
+              </ng-footer>
+            </p-dialog>
+
+        </div>     
+      </div> 
