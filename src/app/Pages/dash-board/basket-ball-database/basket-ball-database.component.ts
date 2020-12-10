@@ -10,7 +10,6 @@ import { PipeTransform, Pipe } from '@angular/core';
 import { isNgTemplate } from '@angular/compiler';
 import * as $ from 'jquery';
 import { element } from 'protractor';
-
 @Component({
   selector: 'app-basket-ball-database',
   templateUrl: './basket-ball-database.component.html',
@@ -18,6 +17,7 @@ import { element } from 'protractor';
 })
 export class BasketBallDatabaseComponent implements OnInit {
   totalPlayerTeamCount: number;
+  recordLength: number = 0;
   getDatabaseStatistics: any[] = [];
   model: any = { data: '' }
   scrollableCols: any =[];
@@ -224,6 +224,7 @@ export class BasketBallDatabaseComponent implements OnInit {
     private notifierService: NotifierService
   ) { 
     this.totalPlayerTeamCount = 0;
+    this.databaseData = [];
    }
 
   showDialog0() {
@@ -565,6 +566,9 @@ export class BasketBallDatabaseComponent implements OnInit {
     // this.Team_Team_Data()
     // this.Team_Year_Data()
     // this.team_Data()
+    setTimeout(() => {
+      this.GetScrollerEndPoint();
+    }, 500)
   }
 
 
@@ -628,36 +632,37 @@ export class BasketBallDatabaseComponent implements OnInit {
     this.locate_disable = false
     this.locate_disablee = false
     // this.all_Color = false
-    this.databaseTeamData =[]
-    let data = {"apikey"     : "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
-                "start"      : this.startPoint,
-                "length"     : this.lengthPoint,
-                "players"    : this.playerName.length > 0 ? this.playerName : null,
-                "years"      : this.yearName.length   > 0 ? this.yearName   : null,
-                "teams"      : this.teamName.length   > 0 ? this.teamName   : null,
-                "leagues"    : this.leagueName.length > 0 ? this.leagueName : null,
-                "filter1"    : this.filter1,
-                "coloroption": this.coloroption1,
-                "subtotal"   : this.subtotal,     
-    };    
-    let i =1;
-    for(const [key, val] of Object.entries(this.fieldModel)){
-      data['sort'+i] = val['value'];
+    this.databaseTeamData = []
+    let data = {
+      "apikey": "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
+      "start": this.startPoint,
+      "length": this.lengthPoint,
+      "players": this.playerName.length > 0 ? this.playerName : null,
+      "years": this.yearName.length > 0 ? this.yearName : null,
+      "teams": this.teamName.length > 0 ? this.teamName : null,
+      "leagues": this.leagueName.length > 0 ? this.leagueName : null,
+      "filter1": this.filter1,
+      "coloroption": this.coloroption1,
+      "subtotal": this.subtotal,
+    };
+    let i = 1;
+    for (const [key, val] of Object.entries(this.fieldModel)) {
+      data['sort' + i] = val['value'];
       i++;
     }
-    let j =1;
-    for(const [key, val] of Object.entries(this.radiofieldModel)){
-      data['sort'+j+'a'] = val;
+    let j = 1;
+    for (const [key, val] of Object.entries(this.radiofieldModel)) {
+      data['sort' + j + 'a'] = val;
       j++;
-    }    
+    }
 
-    if(this.regply !== '') {
+    if (this.regply !== '') {
       data['regply'] = this.regply
     }
 
     if (this.limit1 !== null) {
-         data['limit1'] = this.limit1;
-       data['lowlimit'] = this.lowLimit;
+      data['limit1'] = this.limit1;
+      data['lowlimit'] = this.lowLimit;
       data['highlimit'] = this.highLimit;
     }
 
@@ -694,80 +699,81 @@ export class BasketBallDatabaseComponent implements OnInit {
       }
     },
 
-      () => {        
+      () => {
         this.spinner.hide();
-        if(resultdata !== null){          
-        this.scrollableCols = [];
-        this.frozenCols = [];
-        this.allData = resultdata.headers;
-        // this.allData.push(this.addHeader)
+        if (resultdata !== null) {
+          this.scrollableCols = [];
+          this.frozenCols = [];
+          this.allData = resultdata.headers;
+          // this.allData.push(this.addHeader)
 
-        if(resultdata.PlayerData !== null) {
-          this.databaseData = this.databaseData.concat(resultdata.PlayerData);
-          if( this.all_Color == true){
-          this.selectedRows = this.databaseData;
-          }
-        }
-        this.totalPlayerTeamCount = resultdata.recordsTotal;
-        this.databaseData.map((item,index) =>{ // For All Position
-          if(index > 0){          
-            this.playerPositionDataAllSort.push(item.position)            
-            this.playerPositionDataAllSort.sort((a, b) => a < b ? -1 : 1);
-            this.playerPositionDataAllSort = [...new Set(this.playerPositionDataAllSort)] 
-          }
-        })
-        
-        this.databaseData.map((item,index) =>{ // For All Position => Select All
-          if(index > 0){          
-            this.playerPositionDataAllSortData.push(item.position)     
-            this.playerPositionDataAllSortData = [...new Set(this.playerPositionDataAllSortData)] 
-          }
-        })
-         
-        this.databaseData.map((item,index) =>{ // For Single Position
-          const tytu= item.position.split(' ');
-          if(index > 0){          
-            this.playerPositionDataSingleSort.push(tytu[0])            
-            this.playerPositionDataSingleSort.sort((a, b) => a < b ? -1 : 1);
-            this.playerPositionDataSingleSort = [...new Set(this.playerPositionDataSingleSort)] 
-          }
-        })
-
-        this.databaseData.map((item,index) =>{ // For Single Position => Select All
-          const tytu= item.position.split(' ');
-          if(index > 0){          
-            this.playerPositionDataSingleSortAll.push(tytu[0])            
-            this.playerPositionDataSingleSortAll = [...new Set(this.playerPositionDataSingleSortAll)] 
-          }
-        })
-          
-          let i = 0;
-          for (let item of this.allData){
-            if(i > 2){
-            let obj = { 
-                        header  : item.field_description,
-                        title1  : item.title1,
-                        title2  : item.title2,
-                        title3  : item.title3,
-                        title4  : item.title4,
-                        field   : item.field_name, 
-                        width   : item.width*12,
-            };
-             this.scrollableCols.push(obj)
-          }
-          i++;
-          }
-             this.frozenCols = [
-              { field: this.allData[0].field_name , header: this.allData[0].field_description, title1: this.allData[0].title1, title2: this.allData[0].title2, title3: this.allData[0].title3, title4: this.allData[0].title4, width: this.allData[0].width},
-              { field: this.allData[1].field_name , header: this.allData[1].field_description, title1: this.allData[1].title1, title2: this.allData[1].title2, title3: this.allData[1].title3, title4: this.allData[1].title4, width: this.allData[1].width},
-              { field: this.allData[2].field_name , header: this.allData[2].field_description, title1: this.allData[2].title1, title2: this.allData[2].title2, title3: this.allData[2].title3, title4: this.allData[2].title4, width: this.allData[2].width},
-              ];
+          if (resultdata.PlayerData !== null) {
+            this.databaseData = this.databaseData.concat(resultdata.PlayerData);
+            if (this.all_Color == true) {
+              this.selectedRows = this.databaseData;
             }
+          }
+          this.totalPlayerTeamCount = resultdata.recordsTotal;
+          this.databaseData.map((item, index) => { // For All Position
+            if (index > 0) {
+              this.playerPositionDataAllSort.push(item.position)
+              this.playerPositionDataAllSort.sort((a, b) => a < b ? -1 : 1);
+              this.playerPositionDataAllSort = [...new Set(this.playerPositionDataAllSort)]
+            }
+          })
 
-           });
-           this.display11 = false;
-           this.hideData =[]
-          this.allyellowall
+          this.databaseData.map((item, index) => { // For All Position => Select All
+            if (index > 0) {
+              this.playerPositionDataAllSortData.push(item.position)
+              this.playerPositionDataAllSortData = [...new Set(this.playerPositionDataAllSortData)]
+            }
+          })
+
+          this.databaseData.map((item, index) => { // For Single Position
+            const tytu = item.position.split(' ');
+            if (index > 0) {
+              this.playerPositionDataSingleSort.push(tytu[0])
+              this.playerPositionDataSingleSort.sort((a, b) => a < b ? -1 : 1);
+              this.playerPositionDataSingleSort = [...new Set(this.playerPositionDataSingleSort)]
+            }
+          })
+
+          this.databaseData.map((item, index) => { // For Single Position => Select All
+            const tytu = item.position.split(' ');
+            if (index > 0) {
+              this.playerPositionDataSingleSortAll.push(tytu[0])
+              this.playerPositionDataSingleSortAll = [...new Set(this.playerPositionDataSingleSortAll)]
+            }
+          })
+
+          let i = 0;
+          for (let item of this.allData) {
+            if (i > 2) {
+              let obj = {
+                header: item.field_description,
+                title1: item.title1,
+                title2: item.title2,
+                title3: item.title3,
+                title4: item.title4,
+                field: item.field_name,
+                width: item.width * 12,
+              };
+              this.scrollableCols.push(obj)
+            }
+            i++;
+          }
+          this.frozenCols = [
+            { field: this.allData[0].field_name, header: this.allData[0].field_description, title1: this.allData[0].title1, title2: this.allData[0].title2, title3: this.allData[0].title3, title4: this.allData[0].title4, width: this.allData[0].width },
+            { field: this.allData[1].field_name, header: this.allData[1].field_description, title1: this.allData[1].title1, title2: this.allData[1].title2, title3: this.allData[1].title3, title4: this.allData[1].title4, width: this.allData[1].width },
+            { field: this.allData[2].field_name, header: this.allData[2].field_description, title1: this.allData[2].title1, title2: this.allData[2].title2, title3: this.allData[2].title3, title4: this.allData[2].title4, width: this.allData[2].width },
+          ];
+          this.recordLength = this.databaseData.length;
+        }
+
+      });
+    this.display11 = false;
+    this.hideData = []
+    this.allyellowall
   }
 
   async team_Data() {
@@ -889,7 +895,32 @@ export class BasketBallDatabaseComponent implements OnInit {
 
       });
   }
+  findIndex(o) {
+  }
+  GetScrollerEndPoint() {
+    console.log('sadssad')
+   var scrollHeight = $(".ui-table-scrollable-body").prop('scrollHeight');
+   var divHeight = $(".ui-table-scrollable-body").height();
+   var scrollerEndPoint = scrollHeight - divHeight;
 
+   var divScrollerTop =  $(".ui-table-scrollable-body").scrollTop();
+   if(divScrollerTop === scrollerEndPoint)
+   {
+       alert('End')
+   }
+}
+  loadLazy(event) {
+    setTimeout(() => {
+        //load data of required page
+        let loadedCars = this.databaseData.slice(event.first, (event.first + event.rows));
+
+        //populate page of virtual cars
+        Array.prototype.splice.apply(this.databaseData, [...[event.first, event.rows], ...loadedCars]);
+        
+        //trigger change detection
+        this.databaseData = [...this.databaseData];
+    }, Math.random() * 1000 + 100);
+  }
   async getStaticsDatabaseTeam() {
     this.firSetColorOn = "blue";
     this.secSetColorOn = "red";

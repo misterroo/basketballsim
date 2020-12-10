@@ -114,15 +114,16 @@
                         frozenWidth="400px"
                         sortMode="multiple"
                         *ngIf="this.databaseData.length>0"
+                        (scrolled)="onScroll()"
+                        [fromRoot]="true"
                         infiniteScroll
                         [infiniteScrollDistance]="2"
                         [infiniteScrollThrottle]="50"
                         [infiniteScrollContainer]="'.ui-table-scrollable-body'"
-                        [fromRoot]="true"
-                        (scrolled)="onScroll()"
                         selectionMode="multiple"
                         [(selection)]="selectedRows"
                         [resizableColumns]="true"
+                        (onLazyLoad)="loadLazy($event)"
                         scrollHeight="calc(100vh - 360px)">
                             <ng-template pTemplate="colgroup" let-columns>
                                 <colgroup>
@@ -172,6 +173,7 @@
                         selectionMode="multiple"
                         [(selection)]="selectedRows"
                         [resizableColumns]="true"
+                        [virtualScroll]="true" [virtualRowHeight]="34" 
                         scrollHeight="calc(100vh - 360px)">
                             <ng-template pTemplate="colgroup" let-columns>
                                 <colgroup>
