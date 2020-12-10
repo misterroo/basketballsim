@@ -17,6 +17,7 @@ import { element } from 'protractor';
   styleUrls: ['./basket-ball-database.component.scss']
 })
 export class BasketBallDatabaseComponent implements OnInit {
+  totalPlayerTeamCount: number;
   getDatabaseStatistics: any[] = [];
   model: any = { data: '' }
   scrollableCols: any =[];
@@ -221,7 +222,9 @@ export class BasketBallDatabaseComponent implements OnInit {
     private adminService: AdminService,
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService
-  ) {  }
+  ) { 
+    this.totalPlayerTeamCount = 0;
+   }
 
   showDialog0() {
     this.display0 = false;
@@ -611,7 +614,14 @@ export class BasketBallDatabaseComponent implements OnInit {
     }
   }
 
-
+  getStaticsDatabasePlayer() {
+    this.resetData()
+    this.getStaticsDatabase();
+  }
+  getStaticsDatabaseTeamData() {
+    this.resetData()
+    this.getStaticsDatabaseTeam();
+  }
   async getStaticsDatabase() {
     this.firSetColorOn = "blue";
     this.secSetColorOn = "red";
@@ -698,7 +708,7 @@ export class BasketBallDatabaseComponent implements OnInit {
           this.selectedRows = this.databaseData;
           }
         }
-         
+        this.totalPlayerTeamCount = resultdata.recordsTotal;
         this.databaseData.map((item,index) =>{ // For All Position
           if(index > 0){          
             this.playerPositionDataAllSort.push(item.position)            
@@ -916,7 +926,7 @@ export class BasketBallDatabaseComponent implements OnInit {
         this.scrollableCols = [];
         this.frozenCols = [];
         this.allTeamData = result_Data_Team.headers;
-
+        this.totalPlayerTeamCount = result_Data_Team.recordsTotal;
         if(result_Data_Team.TeamData !== null) {
           this.databaseTeamData = this.databaseTeamData.concat(result_Data_Team.TeamData);
           if( this.all_Color == true){
@@ -1212,7 +1222,73 @@ export class BasketBallDatabaseComponent implements OnInit {
       this.selectedPositionSingle.push(value)
     }
   }
-
+  resetData(){
+    if(this.databaseData && this.databaseData.length >0){
+      this.databaseData = [];
+      this.radiofieldModel={}            
+      this.playerName = [];
+      this.teamName = [];
+      this.yearName = [];
+      this.leagueName = [];
+      this.filter1 =null;
+      this.selectedRows = ""
+      this.regply ='';
+      this.selectedPlayerName =[];
+      this.selectedTeamName  =[];
+      this.selectedYearName =[];
+      this.selectedLeagueName =[];
+      this.display0= false;
+      this.display1= false;
+      this.display2= false;
+      this.display3= false;
+      this.display4= false;
+      this.display5= false;
+      this.display6= false;
+      this.display7= false;
+      this.display8= false;
+      this.display9= false;
+      this.display10= false;
+      this.display11= false;
+      this.display12= false;
+      this.display13= false;
+      this.display14= false;
+      this.display15= false;
+      this.allyellow = false;
+      this.subtotal = null;
+      this.symbols =[]
+      this.takeValue = null;
+      this.all_Color = false;
+      this.limit1 =null;
+      this.tempData = [];
+      this.displayModal= false;
+      this.displayModal1= false;
+      if(this.fieldModel5.item == 'yes'){
+        this.fieldModel.sort1 = ""
+        this.fieldModel.sort2 = ""
+        this.fieldModel.sort3 = ""
+        this.fieldModel.sort4 = ""
+        this.radiofieldModel.sort1a = null; 
+        this.radiofieldModel.sort2a = null; 
+        this.radiofieldModel.sort3a = null; 
+        this.radiofieldModel.sort4a = null; 
+      }
+      this.selectedPositionAl = [];
+      this.playerPositionDataAllSort = [];
+      this.tempTeamData = [];
+    } else if(this.databaseTeamData && this.databaseTeamData.length > 0){
+      this.databaseTeamData =[]
+      this.teamName = [];
+      this.yearName = [];
+      this.leagueName = [];
+      this.all_Color = false
+      this.selectedRows = ""
+      this.displayModal = false;
+      this.tempData = []
+      this.symbols =[]
+      this.takeValue = null;
+      this.tempTeamData = [] 
+    }
+}
 
   reset(){
       if(this.databaseData && this.databaseData.length >0){

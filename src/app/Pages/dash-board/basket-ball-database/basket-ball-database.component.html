@@ -10,8 +10,8 @@
                             <h1>Basketball Statistics Database</h1>
 
                             <ol class="breadcrumb col-md-4 bread_mrgin">        <!--*ngIf="this.databaseData && this.databaseData.length > 0"-->
-                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseData && this.databaseData.length > 0"><a class="a_color hov">Basketball Players - 39059</a></li>                              
-                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"><a class="a_color hov">Basketball Teams - 2739</a></li>                              
+                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseData && this.databaseData.length > 0"><a class="a_color hov">Basketball Players - {{totalPlayerTeamCount}}</a></li>                              
+                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"><a class="a_color hov">Basketball Teams - {{totalPlayerTeamCount}}</a></li>                              
                                 <li class="breadcrumb-item point hover_clr" ><a class="a_color hov" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"  >Home </a></li>                              
                             </ol>
                             <div class="sortable_right_content read">
@@ -20,8 +20,8 @@
                                         Database
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item fnt_media" (click)="getStaticsDatabase()">Basketball Players</a>
-                                    <a class="dropdown-item fnt_media" (click)="getStaticsDatabaseTeam()"> Basketball Teams</a>
+                                    <a class="dropdown-item fnt_media" (click)="getStaticsDatabasePlayer()">Basketball Players</a>
+                                    <a class="dropdown-item fnt_media" (click)="getStaticsDatabaseTeamData()"> Basketball Teams</a>
                                     </div>
                                 </div>
 
