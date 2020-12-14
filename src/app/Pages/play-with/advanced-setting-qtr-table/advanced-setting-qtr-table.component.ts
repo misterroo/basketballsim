@@ -6,6 +6,7 @@ import { AdminService } from '../../../../services/admin.service';
 import { Router, ActivatedRoute, Params, Data } from '@angular/router';
 import { NotifierService } from "angular-notifier";
 import { SharedService } from '../../../services/shared.service';
+import {TabViewModule} from 'primeng/tabview';
 
 
 @Component({
@@ -63,6 +64,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   selectedRange: string;
   seasonName: string;
   showTable: boolean;
+  showModal: boolean = false;
 
   showPlayMultiple: boolean = false;
   draftTeam:any;
@@ -333,6 +335,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     //   $("#table").toggle();
     // });
     this.showTable = true;
+    this.showModal = true
 
     // this.tableData();
     if(this.enableDisableStatus == 'oneonone') {
@@ -576,6 +579,42 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     this.shared.setPlaybyPlayData(this.getTableData);
 
   }
+  // goto(url) {
+  //   if(url != 'substitutionpattern' && url != 'draftplayer' 
+  //   && url != 'changeplayercharacteristics'  && this.getTableData.length == 0) {
+    
+  //     this.notifierService.notify("info", "Please run  simulation first");
+  //     return false;
+  //   }
+  //   this.router.navigate(['/' +url]);
+  //   if(this.enableDisableStatus == 'oneonone') {
+  //     localStorage.setItem('gameData',JSON.stringify(this.gameArray));
+  //     localStorage.setItem('gameOppData',JSON.stringify(this.gameArrayy));
+
+  //   }
+  //   if(this.enableDisableStatus == 'playallteam') {
+  //     let x  = 82;
+  //     if (this.showIndex == 'normal') {
+  //       x = 82
+
+  //     }  else if ( this.showIndex == '10') {
+  //       x = 82 *10
+
+  //     }  else if (this.showIndex == '100') {
+  //       x = 82 *100
+
+  //     }
+  //     this.gameArray[0]['predictgames'] = x;
+  //     localStorage.setItem('gameData',JSON.stringify(this.gameArray));
+      
+
+  //   }
+  //   if (this.enableDisableStatus === "allteam") {
+  //   }
+
+  //   this.shared.setPlaybyPlayData(this.getTableData);
+
+  // }
 
   async tableDataAllteam() {
     // const formData = new FormData();

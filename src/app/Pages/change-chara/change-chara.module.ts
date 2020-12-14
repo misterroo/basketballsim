@@ -41,6 +41,7 @@ import { RawStatsComponent } from './raw-stats/raw-stats.component';
 import { RawBoxScoresComponent } from './raw-box-scores/raw-box-scores.component';
 import { SortableStatsComponent } from './sortable-stats/sortable-stats.component';
 import { ChangeRoutingModule } from './change-routing.module';
+import { PlayRoutingModule } from '../play-with/play-routing.module';
 // import { HeaderComponent } from '../header/header.component';
 
 
@@ -56,7 +57,8 @@ import { ChangeRoutingModule } from './change-routing.module';
     
     ChangeRoutingModule,
     CommonModule,
-    
+    PlayRoutingModule,
+    CommonModule,
     CheckboxModule,
     ButtonModule,
     FormsModule,
@@ -75,7 +77,7 @@ import { ChangeRoutingModule } from './change-routing.module';
     TabViewModule,
     ScrollPanelModule,
     RadioButtonModule,
-    PaginatorModule,
+    PaginatorModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [AdminService, MessageService, ConfirmationService, DatePipe, CookieService, SharedService, { provide: AuthGuardService, useClass: AuthGuardService }],

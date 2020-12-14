@@ -1,0 +1,439 @@
+<div id="changeplayercharacteristics">
+  <div class="container-fluid">
+    <!-- <app-header></app-header> -->
+    <div class="row">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 col-12  pos">
+            <div>
+              <button type="button" class="previos_btn ml-3" (click)="backClicked()"> <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i>  </button>
+
+              <h1 class="heading_txt">Change Player Characteristics</h1>
+              <div>
+                <ol class="breadcrumb bread_mrgin">                
+                  <!-- <li class="breadcrumb-item point" *ngIf="this.oneononeData != 'playallteam'"><a class="a_color" href="choosemyteam">1 on 1 Matchup </a></li>                  
+                  <li class="breadcrumb-item point" *ngIf="this.allTheTeams != 'oneonone'"><a class="a_color" href="choosemyteam">Play with All teams in a Season </a></li>                   -->
+                                  
+                  <li class="breadcrumb-item point hover_clr" *ngIf="this.oneononeData == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>1 on 1 Matchup </a></li>                  
+                  <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'playallteam'"><a class="a_color"[routerLink]='"/dashboard/chooseteam"'>Play with All teams</a></li>                  
+                  <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Replay entire season</a></li>
+                  
+                  <li class="breadcrumb-item  point hover_clr"><a  class="a_color" [routerLink]='"/dashboard3/playwithallteam"' >{{leag_name}} </a> </li>
+                  <li class="breadcrumb-item active point hover_clr" aria-current="page"> <a class="a_color" [routerLink]='"/dashboard3/advancedsettingqtrtable"' > Advance setting</a></li>
+                </ol>
+              </div>
+            </div>
+              <div class="row" style="width: 100%; margin: 0">
+                <div class="col-md-3 mt-2">
+                  <div class="form-group " *ngIf="this.oneononeData != 'playallteam'">             
+                      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="team_name" (change)="changeTeam($event)">
+                        <option *ngFor="let item of gameData">{{item}}</option>
+                    </select>
+                  </div>
+    
+                  <h3 *ngIf="this.oneononeData == 'playallteam'" class="hd"> {{team_name}}</h3>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                  <div class="sortable_right_content">
+                    <div class="btn_right">
+                      <span> <button class="btn_clear"  (click)="openMode()" >CHANGE</button></span>
+                      <button type="button" class="reset_default_btn" (click) = "reset()"> RESET DEFAULT STATISTICS </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="sortable_right_content">
+                <div class="btn_right">
+                  <span> <button class="btn_clear"  (click)="openMode()" >CHANGE</button></span>
+                  <button type="button" class="reset_default_btn" (click) = "reset()"> RESET DEFAULT STATISTICS </button>
+                </div>
+              </div> -->
+
+              <!-- <div class="form-group col-2" *ngIf="this.oneononeData != 'playallteam'"  style="margin-top: 15px;">
+                <label for="exampleFormControlSelect1"></label>              
+                  <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="team_name" (change)="changeTeam($event)">
+                    <option *ngFor="let item of gameData">{{item}}</option>
+                </select>
+              </div>
+
+              <h3 *ngIf="this.oneononeData == 'playallteam'" class="hd"> {{team_name}}</h3> -->
+          </div>
+          <div class="col-md-12 col-12 mart" id="table">             
+              
+            <div class="datatable pt-2  ">   
+              <div class="viewt fnt">
+                <p-table [value]="playerData" [scrollable]="true" scrollHeight="calc(100vh - 420px)" > 
+                  <ng-template pTemplate="header">
+                      <tr class="tu">
+                        <th>YEAR</th>
+                        <th>TM</th>
+                        <th style="width: 150px">PLAYER NAME</th>
+                        <th>POS</th>
+                        <th>POSS FACT</th>
+                        <th>2PT FG%</th>
+                        <th>3PT FG%</th>
+                        <th>FT%</th>
+                        <th>%SHOT</th>
+                        <th>3PT %SHOT</th>
+                        <th>% FOULED</th>
+                        <th> %TO</th>
+                        <th> %PASS</th>
+                        <th>OFF REB</th>
+                        <th>DEF REB</th>
+                        <th>DEF FG%</th>
+                        <th>%PF</th>
+                        <th>%ST</th>
+                        <th>%BS</th>
+                        <th>DENY FACT</th>
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+                      <tr class="nm">
+                        <td>{{item.year}}</td>
+                        <td>{{item.team_code}}</td>
+                        <td style="width: 150px">{{item.name}} </td>
+                        <td>{{item.position}} </td>   
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'poss_fact' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('POSS FACT','poss_fact',rowIndex)">{{item.poss_fact}} </td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'two_pt_fg_pct' && rowIndex ==  selectedItem['index']} " 
+                        (click)="openModel('2PT FG%', 'two_pt_fg_pct', rowIndex)">{{item.two_pt_fg_pct}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'three_pt_fg_pct' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('3PT FG%', 'three_pt_fg_pct', rowIndex)"> {{item.three_pt_fg_pct}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'ft_pct' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('FT%','ft_pct',rowIndex)">{{item.ft_pct}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'pct_shot' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('%SHOT', 'pct_shot', rowIndex)">{{item.pct_shot}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'three_pt_pct_shot' && rowIndex ==  selectedItem['index']} " 
+                        (click)="openModel('3PT %SHOT', 'three_pt_pct_shot', rowIndex)">{{item.three_pt_pct_shot}}</td>
+                        <td class="pointer"[ngClass]="{'bgyellow' : selectedItem.selectedKey == 'pct_fouled' && rowIndex ==  selectedItem['index']} " 
+                        (click)="openModel('% FOULED', 'pct_fouled', rowIndex)">{{item.pct_fouled}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'pct_to' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('%TO', 'pct_to', rowIndex)">{{item.pct_to}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'pct_pass' && rowIndex ==  selectedItem['index']} "
+                        >{{item.pct_pass}}</td> <!--(click)="openModel('%PASS','pct_pass',i)"-->
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'off_reb' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('OFF REB','off_reb', rowIndex)">{{item.off_reb}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'def_reb' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('DEF REB','def_reb', rowIndex)">{{item.def_reb}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'def_fg_pct' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('DEF FG%','def_fg_pct', rowIndex)">{{item.def_fg_pct}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'pct_pf' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('%PF','pct_pf', rowIndex)">{{item.pct_pf}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'pct_st' && rowIndex ==  selectedItem['index']} " 
+                        (click)="openModel('%ST','pct_st', rowIndex)">{{item.pct_st}}</td>
+                        <td class="pointer" [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'pct_bs' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel('%BS', 'pct_bs', rowIndex)">{{item.pct_bs }}</td>
+                        <td class="pointer"  [ngClass]="{'bgyellow' : selectedItem.selectedKey == 'deny_fact' && rowIndex ==  selectedItem['index']} "
+                        (click)="openModel( 'DENY FACT', 'deny_fact', rowIndex)">{{item.deny_fact}} </td>
+                      </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+              <!-- <div>
+                <div class="float-right">
+                  <span> <button class="reset_default_btn" (click)="backClicked()" >CANCEL</button></span> &nbsp; 
+                  <button type="button" class=  "btn_clear_ok" (click)="setPlayerCharacteristics()"> OK</button>
+                </div>
+              </div> -->
+              
+            </div>
+            <div>
+              <div class="float-right">
+                <span> <button class="reset_default_btn" (click)="backClicked()" >CANCEL</button></span> &nbsp; 
+                <button type="button" class=  "btn_clear_ok" (click)="setPlayerCharacteristics()"> OK</button>
+              </div>
+            </div>
+            
+            <div class="popup">
+              <p-dialog header="LIMIT" [(visible)]="display1" [style]="{width: '650px'}" [baseZIndex]="10000"
+                class="pDialog1">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-8 col-8 limit_list">
+                      <p-scrollPanel [style]="{width: '100%', height: '470px'}" styleClass="custombar1"
+                        class="scrollbar">
+                        <ul class="">
+                          <li>GAME</li>
+                          <li>TEAM</li>
+                          <li>OPP - OPPONENT</li>
+                          <li>PLAYER</li>
+                          <li>MIN - MINUTES</li>
+                          <li>FGM - FILED GOAL MADE</li>
+                          <li>FGA - FIELD GOALS ATTEMPTED</li>
+                          <li>3PT GET - THREE POINT FIELD GOALS ATTEMPTED</li>
+                          <li>FTM - FREE THROWS ATTEMPTED</li>
+                          <li>OFF REB - OFFENSIVE REBOUNDS</li>
+                          <li>DEF REB - OFFENSIVE REBOUNDS</li>
+                          <li>TOT REB - TOTLA REBOUNDS</li>
+                          <li>AST - ASSISTS</li>
+                        </ul>
+                      </p-scrollPanel>
+                    </div>
+                    <div class="col-md-4 col-4">
+                      <div class="limit_value mb-4">
+                        <span>MINIMUM VALUE</span>
+                        <div class="limit_count">
+                          <p>0</p>
+                        </div>
+                      </div>
+                      <div class="limit_value mb-4">
+                        <span>MAXIMUM VALUE</span>
+                        <div class="limit_count">
+                          <p>9999</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 col-12 mt-4 mb-4 limit_btn">
+                      <button class="btn limit_ok">OK</button>
+                      <button class="btn limit_cancel ml-3">CANCEL</button>
+                    </div>
+                  </div>
+                </div>
+              </p-dialog>
+              <p-dialog header="SELECT PLAYERS" [(visible)]="display2" [style]="{width: '600px'}" [baseZIndex]="10000"
+                class="pDialog2">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-6 col-6 player">
+                      <div class="player_list">
+                        <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custombar1">
+                          <ul>
+                            <li>AFFLALO ARRON</li>
+                            <li>ALDROGE LAMACRUS</li>
+                            <li>ALLEN MALIK</li>
+                            <li>ALLEN RAY</li>
+                            <li>ALLEN RAFER</li>
+                            <li>AMUNDSON CHRIS</li>
+                            <li>ANDERSEN DAVID</li>
+                            <li>ANDERSON RYAN</li>
+                            <li>ANTHONY CARMELO</li>
+                            <li>ARIZA TRVOR</li>
+                            <li>ARROYO CARLOS</li>
+                            <li>ATLEST RON</li>
+                            <li>ARTHUR DARRELL</li>
+                          </ul>
+                        </p-scrollPanel>
+                      </div>
+
+                      <div class="playertotal mt-4 mb-5">
+                        <p>LISTED = &nbsp; <span class="player_leftbtn">412</span></p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-6 player">
+                      <div class="player_list">
+                        <ul>
+                          <li>AFFLASO ARRON</li>
+                          <li>ALDRDGE LAMACRUS</li>
+                          <li>ALLEN MALIK</li>
+                          <li>PLAYER</li>
+                          <li>ALLEN RAY</li>
+                          <li>ALLEN RAFER</li>
+                          <li>AMUNDSON CHRIS</li>
+                          <li>ANDERSEN DAVID</li>
+                          <li>ANDERSON RYAN</li>
+                        </ul>
+                      </div>
+
+                      <div class="playertotal mt-4 mb-5">
+                        <p>SELECTED = &nbsp; <span class="player_rightbtn">08</span></p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </p-dialog>
+              <p-dialog header="SORT" [(visible)]="display3" [style]="{width: '700px'}" [baseZIndex]="10000"
+                class="pDialog3">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-5 col-12">
+                      <div class="sortlist">
+                        <div class="form-group">
+                          <p>FIELD 1</p>
+                          <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="sortdropdown"
+                            optionLabel="label" optionValue="_id">
+                          </p-dropdown>
+                        </div>
+                        <div class="form-group">
+                          <p>FIELD 2</p>
+                          <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="sortdropdown"
+                            optionLabel="label" optionValue="_id">
+                          </p-dropdown>
+                        </div>
+                        <div class="form-group">
+                          <p>FIELD 3</p>
+                          <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="sortdropdown"
+                            optionLabel="label" optionValue="_id">
+                          </p-dropdown>
+                        </div>
+                        <div class="form-group">
+                          <p>FIELD 4</p>
+                          <p-dropdown class="pDropdwon sortabledropdown mb-4" [options]="sortdropdown"
+                            optionLabel="label" optionValue="_id">
+                          </p-dropdown>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="col-md-7 col-12">
+                      <div class="sortradio">
+                        <div class="radiobtn">
+                          <span>
+                            <p-radioButton name="val1" class="sortableradio" value="Option 1" label="ASCENDING"
+                              [(ngModel)]="val1" inputId="preopt1"></p-radioButton>
+                          </span>
+                          <span>
+                            <p-radioButton name="val1" class="sortableradio" value="Option 2" label="DESCENDING"
+                              [(ngModel)]="val1" inputId="preopt2"></p-radioButton>
+                          </span>
+                        </div>
+                        <div class="radiobtn">
+                          <span>
+                            <p-radioButton name="val2" class="sortableradio" value="Option 1" label="ASCENDING"
+                              [(ngModel)]="val2" inputId="preopt1"></p-radioButton>
+                          </span>
+                          <span>
+                            <p-radioButton name="val2" class="sortableradio" value="Option 2" label="DESCENDING"
+                              [(ngModel)]="val2" inputId="preopt2"></p-radioButton>
+                          </span>
+                        </div>
+                        <div class="radiobtn">
+                          <span>
+                            <p-radioButton name="val3" class="sortableradio" value="Option 1" label="ASCENDING"
+                              [(ngModel)]="val3" inputId="preopt1"></p-radioButton>
+                          </span>
+                          <span>
+                            <p-radioButton name="val3" class="sortableradio" value="Option 2" label="DESCENDING"
+                              [(ngModel)]="val3" inputId="preopt2"></p-radioButton>
+                          </span>
+                        </div>
+                        <div class="radiobtn">
+                          <span>
+                            <p-radioButton name="val4" class="sortableradio" value="Option 1" label="ASCENDING"
+                              [(ngModel)]="val4" inputId="preopt1"></p-radioButton>
+                          </span>
+                          <span>
+                            <p-radioButton name="val4" class="sortableradio" value="Option 2" label="DESCENDING"
+                              [(ngModel)]="val4" inputId="preopt2"></p-radioButton>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12 sortradiolong">
+                      <div class="radiobtn">
+                        <span>
+                          <p-radioButton name="val5" class="sortableradio" value="Option 1"
+                            label="KEEP LAST SORT SETTING" [(ngModel)]="val5" inputId="preopt1"></p-radioButton>
+                        </span>
+                        <span>
+                          <p-radioButton name="val5" class="sortableradio" value="Option 2"
+                            label="ERASE LAST SORT SETTING" [(ngModel)]="val5" inputId="preopt2"></p-radioButton>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-12 col-12  mb-4 sort_btn">
+                      <button class="btn sort_ok">OK</button>
+                      <button class="btn sort_cancel ml-3">CANCEL</button>
+                    </div>
+
+                  </div>
+                </div>
+              </p-dialog>
+              <p-dialog header="SELECT TEAM" [(visible)]="display4" [style]="{width: '600px'}" [baseZIndex]="10000"
+                class="pDialog4">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-6 col-6 team">
+                      <div class="team_list">
+                        <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custombar1">
+                          <ul>
+                            <li>ATLANTA HAWKS</li>
+                            <li>BOSTON CELTICS</li>
+                            <li>CHARLOTTE BOBCATS</li>
+                            <li>CHICAGO BULLS</li>
+                            <li>CLEVELAND CAVALLERS</li>
+                            <li>DALLAS MAVERICKS</li>
+                            <li>DENVER NUGGETS</li>
+                            <li>DETROIT POSTONS</li>
+                            <li>GOLDEN STATE WARRIORS</li>
+                            <li>HOUSTON ROCKERS</li>
+                            <li>INDIANA PACERS</li>
+                            <li>LOS ANGELES LAKERS</li>
+                            <li>LOS ANGELES CLIPPERS</li>
+                          </ul>
+                        </p-scrollPanel>
+                      </div>
+
+                      <div class="teamtotal mt-4 mb-5 ">
+                        <p>LISTED = &nbsp; <span class="team_leftbtn">30</span></p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-6 team">
+                      <div class="team_list">
+                        <ul>
+                          <li>ATLANTA HAWKS</li>
+                          <li>BOSTON CELTICS</li>
+                          <li>CHARLOTTE BOBCATS</li>
+                        </ul>
+                      </div>
+
+                      <div class="teamtotal mt-4 mb-5">
+                        <p>SELECTED = &nbsp; <span class="team_rightbtn">03</span></p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 col-12  mb-4 team_btn">
+                      <button class="btn team_ok">OK</button>
+                      <button class="btn team_cancel ml-3" (click)="cloaseChangeModel()">CANCEL</button>
+                    </div>
+
+                  </div>
+                </div>
+              </p-dialog>
+            </div>
+
+
+<button type="button" class="btn btn-primary d-none"  id="change-model"data-toggle="modal" data-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>
+
+
+
+<p-dialog header="Change Player" [(visible)]="display" >
+        <p-header>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cloaseChangeModel()">
+          </button>
+        </p-header>
+
+        <p-body>
+            <div class="modal-body">
+                <div class="form-row">
+          
+                  <div class="form-group col-md-12 text-center">
+                    <label for="test1223" >{{selectedItem.key}} 
+                    </label>
+                    <input type="number"  name="input" class="form-control" id="test1223" [(ngModel)]="this.selectedItem['value']" >
+                 </div>
+          
+                </div>
+                       {{this.show}}
+            </div>
+        </p-body>
+     
+
+      <p-footer class="ok_button">
+        <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="onChangePlayer()">OK</button>
+        <button type="button" class="btn btn-dark" (click)="closeChangeModel()">CANCEL</button> 
+      </p-footer>    
+</p-dialog>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

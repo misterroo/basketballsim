@@ -1,0 +1,367 @@
+<div id="sortablestats">
+    <div class="container-fluid">
+        <!-- <app-header></app-header> -->
+        <div class="row">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-12 ">
+                        <button type="button" class="previos_btn ml-3" (click)="backClicked()" >  
+                            <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i> </button>
+                            <h1 class="left h31">SORTABLE STATS </h1>
+                    </div>                
+                    <div class="col-md-12 col-12" id="table">
+                        <div class="datatable pt-5 ">                                                                                    
+                            <ol class="breadcrumb col-md-4 bread_mrgin">                            
+                                <!-- <li class="breadcrumb-item point" *ngIf="this.oneononeData != 'playallteam'"><a class="a_color" href="choosemyteam">1 on 1 Matchup </a></li>                  
+                                    <li class="breadcrumb-item point" *ngIf="this.allTheTeams != 'oneonone'"><a class="a_color" href="choosemyteam">Play with All teams in a Season </a></li>                   -->
+                                      
+                                <li class="breadcrumb-item point hover_clr" *ngIf="this.oneononeData == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>1 on 1 Matchup </a></li>                  
+                                <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'playallteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>Play with All teams </a></li>                  
+                                <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Replay entire season</a></li>
+                                <li class="breadcrumb-item  point hover_clr"><a  class="a_color" [routerLink]='"/dashboard3/playwithallteam"'>{{leag_name}} </a> </li>
+                              </ol>
+
+                            <div class="dropdown sortable_right_content">
+                                <button class="btn btn-secondary dropdown-toggle btn-lg large " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    SELECT/SORT OPTIONS
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a *ngFor="let item of selectDropdown" class="dropdown-item pointer" (click)="getData(item)" >{{item.label}}</a>
+                                </div>
+
+                                <span> <button class="btn_clear"  (click)= "reset()">RESET</button></span>
+                              </div>
+
+
+                            
+                            <!-- <div class="raw-container">                                                                       
+                                    <p-table [columns]="scrollableCols" [frozenColumns]="frozenCols" [value]="this.getSortableStats" [scrollable]="true" scrollHeight="calc(100vh - 265px)" frozenWidth="400px" 
+                                    [resizableColumns]="true" sortMode="multiple">
+
+                                        <ng-template pTemplate="colgroup" let-columns >
+                                            <colgroup>
+                                                <col *ngFor="let col of columns" [style.width.px]="col.width">
+                                            </colgroup>
+                                        </ng-template>
+
+                                        <ng-template pTemplate="header" let-columns >
+                                            <tr>                                            
+                                                <th *ngFor="let col of columns" pResizableColumn class="button fnt_media" [pSortableColumn]="col.field" >
+                                                {{col.header}}  <p-sortIcon [field]="col.field"  > </p-sortIcon> 
+                                                </th>                                    
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                            <tr class="fnt_media"> 
+                                                <td *ngFor="let col of columns" class="ui-resizable-column" >
+                                                    {{rowData[col.field]}}
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                            </div> -->
+
+
+                            <div class="raw-container">
+                                <p-table [columns]="scrollableCols" [value]="this.getSortableStats" [frozenColumns]="frozenCols" [scrollable]="true" scrollHeight="calc(100vh - 265px)"
+                                     frozenWidth="400px" [resizableColumns]="true" sortMode="multiple">
+                                    
+                                    <ng-template pTemplate="colgroup" let-columns >
+                                        <colgroup>
+                                            <col *ngFor="let col of columns" [style.width.px]="col.width">
+                                        </colgroup>
+                                    </ng-template>
+
+                                    <ng-template pTemplate="header" let-columns>
+                                        <tr>
+                                            <th *ngFor="let col of columns" pResizableColumn class="button fnt_media" [pSortableColumn]="col.field" >
+                                                {{col.header}}  <p-sortIcon [field]="col.field"  > </p-sortIcon> 
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                        <tr style="height:34px" class="fnt_media"> 
+                                            <td *ngFor="let col of columns" class="ui-resizable-column" >
+                                                {{rowData[col.field]}}
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+
+
+                        <div class="popup">
+                                 
+
+                            <p-dialog header="LIMIT" [(visible)]="display1" [style]="{width: '650px'}"
+                               [baseZIndex]="10000" class="pDialog1">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8 col-8 limit_list">
+                                        <p-scrollPanel [style]="{width: '100%', height: '470px'}"
+                                            styleClass="custombar1" class="scrollbar">
+                                            <ul class=" pointer">
+                                                <li  *ngFor="let item of this.selectlist;let i=index;" (click)="selectLi(item)" [ngClass]="{'activeRow': item.activeRow}" >{{item.label}}</li>                                                
+                                            </ul>
+                                        </p-scrollPanel>
+                                    </div>
+
+                                    <div class="col-md-4 col-4">
+                                        <div class="limit_value mb-4">
+                                            <span>MINIMUM VALUE</span>
+                                            <div class="limit_count">
+                                                <input type="number" name="min" id="input"  [(ngModel)]="limitModelMin.min">                                            
+                                            </div>
+                                        </div>
+                                        <div class="limit_value mb-4">
+                                            <span>MAXIMUM VALUE</span>
+                                            <div class="limit_count">
+                                                <input type="number" name="max" id="input"   [(ngModel)]="limitModelMin.max">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-12 mt-4 mb-4 limit_btn">
+                                        <button class="btn limit_ok" (click)="filterLimit()">OK</button>
+                                        <button class="btn limit_cancel ml-3" (click)="cancelMulti()">CANCEL</button> 
+                                    </div>
+                                </div>
+                            </div>
+                            </p-dialog>
+
+
+
+                            <p-dialog header="SELECT PLAYERS" [(visible)]="display2" [style]="{width: '600px'}"
+                                [baseZIndex]="10000" class="pDialog2"  > 
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-6 col-6 player">
+                                            <div class="player_list">
+                                                <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                                    styleClass="custombar1">
+                                                       <ul > <!-- [ngClass]="{'activeRow': value.activeRow}"-->
+                                                           <li class="pointer"  *ngFor="let value of this.playerDataSort;let i=index;" (click)= "selectedNameclick(value,i)" [ngClass]="{'activeRow': sortPlayerId == i}"> {{value}} </li> 
+                                                       </ul>
+                                                       
+
+                                                </p-scrollPanel>
+                                            </div>
+
+                                            <div class="playertotal mt-4 mb-5">
+                                                <p>LISTED = &nbsp; <span class="player_leftbtn">  {{playerDataSort.length}}  </span></p> 
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-6 player">
+                                            <div class="player_list">
+                                                <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                                styleClass="custombar1">
+                                               <ul class="pointer"  *ngFor="let value of this.selectedName;let i=index; " >  
+                                                   <li > {{value}}</li>  
+                                               </ul>
+                                                </p-scrollPanel>
+                                            </div>
+
+                                            <div class="playertotal mt-4 mb-5">
+                                                <p>SELECTED = &nbsp; <span class="player_rightbtn"> {{selectedName.length}}  </span></p>  
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-12 col-12  mb-4 team_btn">
+                                            <button class="btn team_ok" (click)="filterPlayer()" >OK</button>  <!---->  
+                                            <button class="btn team_cancel ml-3" (click)="cancelMulti()">CANCEL</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </p-dialog>
+
+
+                            <p-dialog header="SORT" [(visible)]="display3" [style]="{width: '700px'}"
+                                [baseZIndex]="10000" class="pDialog3">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-5 col-12">
+                                            <div class="sortlist">
+                                                <div class="form-group">
+                                                    <p>FIELD 1</p>
+                                                    <p-dropdown class="pDropdwon sortabledropdown mb-4"  (ngModelChange)="getfieldData($event)"
+                                                        [(ngModel)]="fieldModel.data" name="data"  [options]="sortdropdown"                  
+                                                        optionLabel="label" optionValue="_id">
+                                                    </p-dropdown>
+ 
+                                                   
+
+
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <p>FIELD 2</p>
+                                                    <p-dropdown class="pDropdwon sortabledropdown mb-4"   (ngModelChange)="getfieldDataa1($event)"
+                                                    [(ngModel)]="fieldModell.data"    [options]="sortdropdown" optionLabel="label" optionValue="_id">
+                                                    </p-dropdown>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p>FIELD 3</p>
+                                                    <p-dropdown class="pDropdwon sortabledropdown mb-4"  (ngModelChange)="getfieldDataa2($event)"
+                                                    [(ngModel)]="fieldModelll.data"   [options]="sortdropdown" optionLabel="label" optionValue="_id">
+                                                    </p-dropdown>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p>FIELD 4</p>
+                                                    <p-dropdown class="pDropdwon sortabledropdown mb-4"   (ngModelChange)="getfieldDataa3($event)"
+                                                    [(ngModel)]="fieldModellll.data"   [options]="sortdropdown" optionLabel="label" optionValue="_id">
+                                                    </p-dropdown>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-7 col-12">
+                                            <div class="sortradio">
+                                                <div class="radiobtn">
+                                                    <span>
+                                                        <p-radioButton name="val1" class="sortableradio" (ngModelChange)="getfieldData1($event)"
+                                                        value="Ascending" label="ASCENDING"  [(ngModel)]="fieldModel1.item" 
+                                                            inputId="preopt1"   ></p-radioButton> 
+                                                    </span>
+                                                    <span>
+                                                        <p-radioButton name="val1" class="sortableradio"  (ngModelChange)="getfieldData1($event)"
+                                                            value="Descending" label="DESCENDING"   [(ngModel)]="fieldModel1.item" 
+                                                            inputId="preopt2"      ></p-radioButton> 
+                                                    </span>
+                                                </div>
+
+                                                <div class="radiobtn">
+                                                    <span>
+                                                        <p-radioButton name="val2" class="sortableradio" (ngModelChange)="getfieldData2($event)"
+                                                            value="Ascending " label="ASCENDING" [(ngModel)]="fieldModel2.item"
+                                                            inputId="preopt1"></p-radioButton>
+                                                    </span>
+                                                    <span>
+                                                        <p-radioButton name="val2" class="sortableradio"  (ngModelChange)="getfieldData2($event)"
+                                                            value="Descending" label="DESCENDING" [(ngModel)]="fieldModel2.item"
+                                                            inputId="preopt2"></p-radioButton>
+                                                    </span>
+                                                </div>
+                                                <div class="radiobtn">
+                                                    <span>
+                                                        <p-radioButton name="val3" class="sortableradio"  (ngModelChange)="getfieldData3($event)"
+                                                            value="Ascending" label="ASCENDING" [(ngModel)]="fieldModel3.item"
+                                                            inputId="preopt1"></p-radioButton>
+                                                    </span>
+                                                    <span>
+                                                        <p-radioButton name="val3" class="sortableradio"  (ngModelChange)="getfieldData3($event)"
+                                                            value="Descending" label="DESCENDING" [(ngModel)]="fieldModel3.item"
+                                                            inputId="preopt2"></p-radioButton>
+                                                    </span>
+                                                </div>
+                                                <div class="radiobtn">
+                                                    <span>
+                                                        <p-radioButton name="val4" class="sortableradio"   (ngModelChange)="getfieldData4($event)"
+                                                            value="Ascending " label="ASCENDING" [(ngModel)]="fieldModel4.item"
+                                                            inputId="preopt1"></p-radioButton>
+                                                    </span>
+                                                    <span>
+                                                        <p-radioButton name="val4" class="sortableradio"  (ngModelChange)="getfieldData4($event)"
+                                                            value="Descending" label="DESCENDING" [(ngModel)]="fieldModel4.item"
+                                                            inputId="preopt2"></p-radioButton>
+                                                    </span>
+                                                </div>
+
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 sortradiolong">
+                                            <div class="radiobtn">
+                                                <span>
+                                                    <p-radioButton name="val5" class="sortableradio" value="yes"
+                                                        label="KEEP LAST SORT SETTING" [(ngModel)]="fieldModel5.item"
+                                                        inputId="preopt1"></p-radioButton>
+                                                </span>
+                                                <span>
+                                                    <p-radioButton name="val5" class="sortableradio" value="no" (ngModelChange)="getErase($event)"
+                                                        label="ERASE LAST SORT SETTING" [(ngModel)]="fieldModel5.item" 
+                                                        inputId="preopt2"></p-radioButton>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-12  mb-4 sort_btn">
+                                            <button class="btn sort_ok" (click)="sort()">OK</button>  <!---->
+                                            <button class="btn sort_cancel ml-3" (click)="cancelMulti()">CANCEL</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </p-dialog>
+
+
+
+                            <p-dialog header="SELECT TEAM" [(visible)]="display4" [style]="{width: '600px'}"
+                                [baseZIndex]="10000" class="pDialog4">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-6 col-6 team">
+                                            <div class="team_list">
+                                                <p-scrollPanel [style]="{width: '100%', height: '450px'}"
+                                                    styleClass="custombar1">
+                                                    
+                                                        <!-- <ul class="pointer"  (click)= "selectedTeamclick(value.teams)"  *ngFor="let value of this.teamData;let i=index;"  > 
+                                                            <li> {{value.teams}} </li>  
+                                                        </ul> -->
+
+                                                        <ul>  
+                                                            <li class="pointer"  (click)= "selectedTeamclick(value.teams,i)"  *ngFor="let value of this.teamData;let i=index;" [ngClass]="{'activeRow': sortTeamId == i}"> {{value.teams}} </li>
+                                                        </ul>
+                                      
+                                                  
+                                                </p-scrollPanel>
+                                            </div>
+
+                                            <div class="teamtotal mt-4 mb-5 ">
+                                                <p>LISTED = &nbsp; <span class="team_leftbtn">  {{teamData.length}} </span></p>  <!--{{playerTeam.length}}-->
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-6 team">
+                                            <div class="team_list">
+                                        
+                                               
+                                                <ul class="pointer" *ngFor="let value of this.selectedName1;let i=index; "  >  <!--*ngFor="let value of this.selectedName1;let i=index; "-->
+                                                    <li > {{value}} </li>  <!--{{value}}-->
+                                                </ul>
+                                                
+                                            </div>
+
+                                            <div class="teamtotal mt-4 mb-5">
+                                                <p>SELECTED = &nbsp; <span class="team_rightbtn"> {{selectedName1.length}} </span></p>  <!--{{selectedName1.length}}-->
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-12  mb-4 team_btn">
+                                            <button class="btn team_ok" (click)="filterTeam()" >OK</button>  <!--(click)="filterTeam()"-->
+                                            <button class="btn team_cancel ml-3" (click)="cancelMulti()">CANCEL</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </p-dialog>
+
+
+
+
+                        </div>
+
+
+
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>

@@ -39,7 +39,12 @@ import { AdvancedSettingQtrTableComponent } from './advanced-setting-qtr-table/a
 import { SubstitutionPatternComponent } from './substitution-pattern/substitution-pattern.component';
 import { SingleGameComponent } from './single-game/single-game.component';
 import { PlayRoutingModule } from './play-routing.module';
-// import { HeaderComponent } from '../header/header.component';
+
+import { ChangePlayerCharacteristicsComponent } from '../play-with/change-player-characteristics/change-player-characteristics.component';
+import { RawStatsComponent } from '../play-with/raw-stats/raw-stats.component';
+import { RawBoxScoresComponent } from '../play-with/raw-box-scores/raw-box-scores.component';
+import { SortableStatsComponent } from '../play-with/sortable-stats/sortable-stats.component';
+import { SortableBoxScoreComponent } from '../play-with/sortable-box-score/sortable-box-score.component';
 
 
 @NgModule({
@@ -49,7 +54,12 @@ import { PlayRoutingModule } from './play-routing.module';
     SubstitutionPatternComponent,
     SingleGameComponent,
     ToggleButtonComponent,
-    // HeaderComponent,
+
+    ChangePlayerCharacteristicsComponent,
+    RawStatsComponent,
+    RawBoxScoresComponent,
+    SortableStatsComponent,
+    SortableBoxScoreComponent,
     
   ],
   imports: [

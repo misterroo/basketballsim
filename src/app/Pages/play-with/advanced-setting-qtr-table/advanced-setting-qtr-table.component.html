@@ -20,14 +20,48 @@
 
           </div>
           <div class="col-md-8 bottom-btn">
-            <button type="button" [ngClass]="(isShow) ? 'btn simulation' : 'btn setting'" (click)="showAdvance(false)">QUICK
-              SIMULATION</button>
-            <button type="button" [ngClass]="(isShow) ? 'btn setting' : 'btn simulation'" (click)="showAdvance(true)">ADVANCE
-              SETTING</button>
-            <button type="button" class="btn simulation" *ngIf="this.enableDisableStatus == 'oneonone'" (click)="showbuttonModalDialog()">PLAY
-              MULTIPLE
-              GAMES</button>
+            <button type="button" class="btn simulation" [ngClass]="(isShow) ? 'btn simulation' : 'btn setting'" (click)="showAdvance(false)">QUICK SIMULATION</button>
+            <button type="button" [ngClass]="(isShow) ? 'btn setting' : 'btn simulation'" (click)="showAdvance(true)">ADVANCE SETTING</button>
+            <button type="button" class="btn simulation" *ngIf="this.enableDisableStatus == 'oneonone'" (click)="showbuttonModalDialog()">PLAY MULTIPLE GAMES</button>
           </div>
+          <!-- <div class="col-md-10 bottom-btn">
+            <button type="button" [ngClass]="(isShow) ? 'btn simulation' : 'btn setting'" (click)="showAdvance(false)">GAME SETUP</button>
+            <button type="button" class="btn simulation"  (click)="goto('dashboard1/rowstats')">RAW STATS</button>
+            <button type="button" class="btn simulation" (click)="goto('dashboard1/rowboxscores')">RAW BOX SCORE/PLAY BY PLAY</button>
+            <button type="button" class="btn simulation" (click)="goto('dashboard1/sortablestats')">SORTABLE STATS</button>
+            <button type="button" class="btn simulation" (click)="goto('dashboard2/sortableboxscore')">SORTABLE BOX SCORE</button>
+          </div> -->
+        <div class="col-md-10 bottom-btn">
+          <p-tabView *ngIf="showModal === true">
+            <p-tabPanel header="GAME SETUP">
+            </p-tabPanel>
+            <p-tabPanel header="RAW STATS">
+              <app-raw-stats> </app-raw-stats>
+            </p-tabPanel>
+            <p-tabPanel header="RAW BOX SCORE / PLAY BY PLAY">
+              <app-raw-box-scores> </app-raw-box-scores>
+            </p-tabPanel>
+            <p-tabPanel header="SORTABLE STATS">
+              <app-sortable-stats> </app-sortable-stats>
+            </p-tabPanel>
+            <p-tabPanel header="SORTABLE BOX SCORE">
+              <app-sortable-box-score> </app-sortable-box-score>
+            </p-tabPanel>
+          </p-tabView>
+        </div>
+
+        <!-- <div class="col-md-12 col-lg-12 five_btn" *ngIf="isShow">
+          <div  class="custom-control custom-checkbox checkbox-lg label-playbyplay-enable">
+            <label class="control control--checkbox">Turn off play by play
+              <input type="checkbox" (change)="playbtn($event)" [(ngModel)]="pbpChecked"  />
+              <div class="control__indicator"></div>
+            </label>
+          </div>            
+          <button type="button" class="btn  five_color"  (click)="goto('dashboard3/substitutionpattern')">SUBSTITUTION PATTERN</button>
+          <button type="button" class="btn  five_color"  (click)="goto('dashboard2/draftplayer')">DRAFT PLAYER</button>
+          <button type="button" class="btn  five_color" (click)="goto('dashboard1/changeplayercharacteristics')" >CHANGE PLAYER CHARACTERISTICS</button>
+        </div> -->
+
           <div class="col-md-8 checkboxs">
             <div class="chekbox-align" *ngIf="this.enableDisableStatus === 'oneonone'">
               <p-checkbox name="group1" class="check" value="HOME" label="HOME" [(ngModel)]="selectedCities" 
@@ -62,10 +96,8 @@
               <button type="button" class="btn bg-warn " (click)="tableAdd()">RUN SIMULATION</button>
             </div>
           </div>
+
           <div class="col-md-12 col-lg-12 five_btn" *ngIf="isShow">
-            <!-- <div class="checkbox label">
-              <label><input type="checkbox" value="">Turn off play by play  to speed up execution</label>
-            </div>  -->
             <div  class="custom-control custom-checkbox checkbox-lg label-playbyplay-enable">
               <!-- <input type="checkbox" class="custom-control-input" id="plycheck" (change)="playbtn($event)" [(ngModel)]="pbpChecked">
               <label class="custom-control-label" for="plycheck">Turn off play by play  to speed up execution</label> -->
@@ -78,12 +110,11 @@
                 <div class="control__indicator"></div>
               </label>
             </div>            
-
             <button type="button" class="btn  five_color"  (click)="goto('dashboard3/substitutionpattern')">SUBSTITUTION PATTERN</button>
             <button type="button" class="btn  five_color"  (click)="goto('dashboard2/draftplayer')">DRAFT PLAYER</button>
             <button type="button" class="btn  five_color" (click)="goto('dashboard1/changeplayercharacteristics')" >CHANGE PLAYER CHARACTERISTICS</button>
-            
           </div>
+
           <div class="col-md-7" id="table" *ngIf="showTable === true">
             <div class="datatable">
               <h4>RESULTS</h4>
@@ -112,22 +143,20 @@
               </div>
             </div>
           </div>
-          <div class="col-md-12 col-lg-12 five_btn">
+          <!-- <div class="col-md-12 col-lg-12 five_btn">
             <h5>DETAILS</h5>
             <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color" (click)="goto('dashboard1/rowstats')" disabled>RAW STATS</button>
             <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color"  
              (click)="goto('dashboard1/rowboxscores')" disabled>RAW BOX SCORES / PLAY BY PLAY</button>
             <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color"    (click)="goto('dashboard1/sortablestats')"  disabled>SORTABLE STATS</button>
             <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color"   (click)="goto('dashboard2/sortableboxscore')" disabled>SORTABLE BOX SCORES</button>
-            <!-- <button *ngIf="this.getTableData && this.getTableData.length === 0" type="button" class="btn  five_color"  (click)="goto('playbyplay')" disabled>PLAY BY PLAY</button> -->
 
             <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color" (click)="goto('dashboard1/rowstats')" >RAW STATS</button>
             <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color"  
              (click)="goto('dashboard1/rowboxscores')" >RAW BOX SCORES / PLAY BY PLAY</button>
             <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color"    (click)="goto('dashboard1/sortablestats')"  >SORTABLE STATS</button>
             <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color"   (click)="goto('dashboard2/sortableboxscore')">SORTABLE BOX SCORES</button>
-            <!-- <button *ngIf="this.getTableData && this.getTableData.length > 0" type="button" class="btn  five_color"  (click)="goto('playbyplay')" >PLAY BY PLAY</button> -->
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

@@ -865,6 +865,10 @@ max-height: 46%;
 }
 
 // font family row and row box state
+.raw-container1{
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+}
 .raw-container{
   font-family: 'Roboto Mono', monospace;
   font-weight: bold;
@@ -922,4 +926,37 @@ body .ui-table .ui-table-tbody > tr.ui-state-highlight {
 
 .dropdown .ui-dropdown-label {
   font-size: 21px !important;
+}
+span.ui-tabview-title.ng-star-inserted {
+  font-size: 24px !important;
+  color: #a39595 !important;
+    font-weight: 500 !important;
+}
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active {
+  border: 1px solid yellow !important;
+  background-color: yellow !important;
+  margin: 0 19px 0 0;
+  color:#000 !important;
+}
+.ui-state-active span.ui-tabview-title {
+  color: #000 !important;
+}
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li {
+  margin-right: 20px !important;
+  padding: 3px 5px 1px 5px;
+}
+body .ui-tabview.ui-tabview-top .ui-tabview-nav li {
+  border: 1px solid #dee2e6 !important;
+  background-color: #dee2e6 !important;
+}
+li.list.nav-item.hover_clr.active {
+  // background: #ffc107;
+  background: #ecc400;
+  color: #000 !important;
+}
+li.list.nav-item.hover_clr.active a.col {
+  color: #000 !important;
+}
+.ui-tabview.ui-widget.ui-widget-content.ui-corner-all.ui-tabview-top {
+  margin: 0 0 0 8px;
 }

@@ -94,11 +94,11 @@ export class SubstitutionPatternComponent implements OnInit {
         // this.teamName = localStorage.getItem('homeTeam');
         if(localStorage.getItem('gameData') != ""){
             const gameArray = JSON.parse(localStorage.getItem('gameData'));
-            console.log("check1")
+            // console.log("check1")
           this.teamName = gameArray[0].predictaway;
           }else if(localStorage.getItem('homeTeam')){
           this.teamName = localStorage.getItem('homeTeam');
-          console.log("check2")
+          // console.log("check2")
           }    
         // this.leag_name = localStorage.getItem('homeSeason') || localStorage.getItem('awaySeason');
         this.leag_name = localStorage.getItem('SeasonName');      
@@ -252,7 +252,7 @@ export class SubstitutionPatternComponent implements OnInit {
           item.data = myDaya;
         }
       }
-      console.log(this.listData);
+      // console.log(this.listData);
     }
 
     backClicked() {               

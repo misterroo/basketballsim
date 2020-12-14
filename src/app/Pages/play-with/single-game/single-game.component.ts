@@ -24,8 +24,8 @@ export class SingleGameComponent implements OnInit {
   getPlay_Single_Stp:any  =[]
   count:any ="1";
   count_Single:number =0;
-  leag_name:""
-  teams_n:""
+  leag_name:any =""
+  teams_n:any =""
 
   model: any = {
     'season': '',
@@ -45,6 +45,8 @@ export class SingleGameComponent implements OnInit {
   locate_disable:boolean = true;
   button_disable :boolean = true;
   button_disable1 :boolean = true;
+  button_dis_Away :boolean = true;
+  button_dis_Home :boolean = true;
   raw_New: any =[]
   tempData:any = [];
   tempTeamData:any = [];
@@ -54,6 +56,7 @@ export class SingleGameComponent implements OnInit {
   dont_Pause:any = []
   option:any="1"
   oneononeData:any
+  lo:any
 
   constructor(
     private _location: Location,
@@ -61,7 +64,34 @@ export class SingleGameComponent implements OnInit {
     private adminService: AdminService,
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService
-  ) { }
+  ) { 
+    
+    // if(localStorage.getItem('SeasonName') != ""){
+    // this.model.season = {league_name:localStorage.getItem('SeasonName')}
+    // this.seasonValue = localStorage.getItem('SeasonName');
+    // // this.model.season = {league_name:localStorage.getItem('Seasoame')}
+    // this.opponent();  
+    // this.team();
+    // }
+    // if(localStorage.getItem('homeTeam') != ""){
+    // console.log(localStorage.getItem('homeTeam'))
+    // this.model.team = {teams:localStorage.getItem('homeTeam')}
+    // this.locate_disable = false;
+    //   this.button_disable1 =false;
+    //   this.button_dis_Away = false;   
+    //   this.button_dis_Home = false;
+    // }
+    // if(localStorage.getItem('awayTeam') != ""){
+    // console.log(localStorage.getItem('awayTeam'))
+    // this.model.opponent = {teams:localStorage.getItem('awayTeam')}
+    // this.locate_disable = false;
+    //   this.button_disable1 =false;
+    //   this.button_dis_Away = false;   
+    //   this.button_dis_Home = false;
+    // }
+    
+    
+  }
 
   ngOnInit(): void {
     this.season();
@@ -101,7 +131,7 @@ export class SingleGameComponent implements OnInit {
   
     showModalDialog() {
       this.displayModal = true;
-  }
+    }
 
     backClicked() {
       this._location.back();
@@ -145,6 +175,7 @@ export class SingleGameComponent implements OnInit {
         }
       },  
         () => {  
+         
           if (resultData.status == "true") {
             this.spinner.hide();
             this.seasonData = resultData.data 
@@ -153,6 +184,7 @@ export class SingleGameComponent implements OnInit {
               _id: ''
             }
             this.seasonData.splice(0, 0, objectName)
+            
   
           } else {
             this.spinner.hide();
@@ -235,20 +267,24 @@ export class SingleGameComponent implements OnInit {
       this.team();
       localStorage.setItem('SeasonName', this.seasonValue);
     }
+
     getAwaySeasonValue(event) {
       this.seasonValue = event.league_name;
       this.locate_disable =true;
       this.opponent();
       localStorage.setItem('SeasonName', this.seasonValue);
     }
+
     getTeamValue(event){
       this.teamValue = event.teams;
       this.locate_disable = true
-        this.locate_disable =false;
-        this.button_disable1 =false      
-        localStorage.setItem('homeTeam', this.teamValue);
-
+      this.locate_disable =false;
+      this.button_disable1 =false;
+      this.button_dis_Away = false;   
+      this.button_dis_Home = false;   
+      localStorage.setItem('homeTeam', this.teamValue);
     }
+
     getOpponentValue(event){
       this.opponentValue = event.teams;
       // if( this.teamValue.length > 0){ 
@@ -256,8 +292,12 @@ export class SingleGameComponent implements OnInit {
       // this.button_disable1 =false
       // }
       this.locate_disable = false;
-      this.button_disable1 =false
-      localStorage.setItem('homeTeam', this.opponentValue);
+      this.button_disable1 =false;
+      this.button_dis_Away = false;   
+      this.button_dis_Home = false;
+      // localStorage.setItem('awayTeam', this.opponentValue);      
+      localStorage.setItem('homeTeam', this.opponentValue);      
+      
     }
 
 
@@ -319,8 +359,8 @@ export class SingleGameComponent implements OnInit {
           if(this.count === "1"){
             this.spinner.hide();
             this.playSingleGame_Stats()
-              this.getComments()
-              this.getRawBoxState()
+            this.getComments()
+            this.getRawBoxState()
             this.locate_disable =true
             this.button_disable =false
           }
