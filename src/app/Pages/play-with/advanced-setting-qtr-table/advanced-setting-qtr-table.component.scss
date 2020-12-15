@@ -16,16 +16,20 @@
     padding-top: 0px;
     padding-left: 76px;
     .btn {
-      font-size: x-large;
-      padding: 0.375rem 2.5rem !important;
-      height: 52px;
-      padding-top: 10px !important;
+      // font-size: x-large;
+      // padding: 0.375rem 2.5rem !important;
+      // height: 52px;
+      font-size: 21px;
+      margin: 0 25px 0 0;
+      // padding-top: 10px !important;
     }
   }
   .simulation {
-    background-color: #dee2e6;
+    // background-color: #dee2e6;
+    background-color: #000;
     margin: 10px;
-    color: #a39595;
+    // color: #a39595;
+    color: #fff;
   }
   .setting {
     background-color: yellow;
@@ -90,9 +94,6 @@
     padding-top: 10px;
     padding-left: 70px;
     .btn {
-      // padding: 0.375rem 1.5rem !important;
-      // height: 37px;
-      // margin: 8px;
       padding: -4.625rem 2.5rem !important;
       height: 55px;
       margin: 10px;
@@ -182,7 +183,6 @@
     }
     .run {
       padding-top: 8%;
-      // padding-left: 30%;
       .btn {
         font-size: 22px;
         padding: 0.375rem 2.5rem !important;
@@ -624,3 +624,24 @@
     font-size: 21px !important;
   }
 
+  li.ere {
+    margin: 0 23px 0 0;
+  }
+  .abt_fnt{
+    font-size: 22px;
+    color: #a39595;
+    text-decoration: none;
+  }
+  li.hov:hover {
+    background: yellow;
+    padding: 11px 20px 10px 20px;
+  }
+.bottom {
+  padding: 26px 0 0 0;
+}
+  .tab_top{
+    margin: 23px 0 0 0;
+  }
+  .tab-pane {
+    margin: 0 0 0 0;
+  }

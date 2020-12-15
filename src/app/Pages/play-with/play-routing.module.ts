@@ -9,6 +9,7 @@ import { ChangePlayerCharacteristicsComponent } from '../play-with/change-player
 import { RawBoxScoresComponent } from '../play-with/raw-box-scores/raw-box-scores.component';
 import { RawStatsComponent } from '../play-with/raw-stats/raw-stats.component';
 import { SortableBoxScoreComponent } from '../play-with/sortable-box-score/sortable-box-score.component';
+import { DraftPlayerComponent } from '../play-with/draft-player/draft-player.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
 { path: 'rowstats', component: RawStatsComponent},
 { path: 'sortablestats', component: SortableStatsComponent},
 { path: 'sortableboxscore', component: SortableBoxScoreComponent},
+{ path: 'draftplayer', component: DraftPlayerComponent},
 
 ];
 

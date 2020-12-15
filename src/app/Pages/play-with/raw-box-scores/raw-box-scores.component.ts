@@ -109,7 +109,6 @@ export class RawBoxScoresComponent implements OnInit {
         if (this.resultAll.status === 'true') {
           this.spinner.hide();
           this.getTableData = this.resultAll.data;
-          console.log(this.getTableData)
           // this.addDiv(this.getTableData[0]) // first show
         } else {
           this.spinner.hide();

@@ -45,6 +45,7 @@ import { RawStatsComponent } from '../play-with/raw-stats/raw-stats.component';
 import { RawBoxScoresComponent } from '../play-with/raw-box-scores/raw-box-scores.component';
 import { SortableStatsComponent } from '../play-with/sortable-stats/sortable-stats.component';
 import { SortableBoxScoreComponent } from '../play-with/sortable-box-score/sortable-box-score.component';
+import { DraftPlayerComponent } from '../play-with/draft-player/draft-player.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { SortableBoxScoreComponent } from '../play-with/sortable-box-score/sorta
     RawBoxScoresComponent,
     SortableStatsComponent,
     SortableBoxScoreComponent,
+    DraftPlayerComponent,
     
   ],
   imports: [

@@ -67,6 +67,9 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   showModal: boolean = false;
 
   showPlayMultiple: boolean = false;
+  showSubstitution: boolean = false;
+  showCharacter: boolean = false;
+  showDraft: boolean = false;
   draftTeam:any;
   draftTeamA:any;        
  gameset : any;
@@ -530,6 +533,24 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     this.gameList = this.playGamesMulti;
     this.showPlayMultiple = true;
   }
+
+  showbuttonModalDialogS() {
+    this.showSubstitution = true;
+    this.showCharacter = false;
+    this.showDraft = false;
+  }
+
+  showbuttonModalDialogC() {
+    this.showCharacter = true;
+    this.showSubstitution = false;
+    this.showDraft = false;
+  }
+  showbuttonModalDialogD() {
+    this.showDraft = true;
+    this.showCharacter = false;
+    this.showSubstitution = false;
+  }
+
   cancelMulti() {
     this.showPlayMultiple = false;
     
@@ -544,12 +565,12 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   }
 
   goto(url) {
-    if(url != 'substitutionpattern' && url != 'draftplayer' 
-    && url != 'changeplayercharacteristics'  && this.getTableData.length == 0) {
+    // if(url != 'substitutionpattern' && url != 'draftplayer' 
+    // && url != 'changeplayercharacteristics'  && this.getTableData.length == 0) {
     
-      this.notifierService.notify("info", "Please run  simulation first");
-      return false;
-    }
+    //   this.notifierService.notify("info", "Please run  simulation first");
+    //   return false;
+    // }
     this.router.navigate(['/' +url]);
     if(this.enableDisableStatus == 'oneonone') {
       localStorage.setItem('gameData',JSON.stringify(this.gameArray));

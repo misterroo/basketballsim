@@ -14,7 +14,7 @@
     }
     font-family: 'Fjalla One', sans-serif !important;
     .mysubtitutionpage {
-        padding-top: 80px;
+        padding-top: 1px;
     }
     .uth {
         padding-bottom: 23px;
@@ -37,17 +37,18 @@
 
 
 
-    h1{                                   // 18, 26, 8, 341, 327
-        margin-left: 153px; 
-        margin-top: 1%;  //4%
-        font-size: 31px;
+    h1{                                   
+        // margin-left: 153px; 
+        margin-left: 91px; 
+        // margin-top: 1%;
+        // font-size: 31px;
         text-align: center;
  
     }
 
-    h2{                                  // 26, 18, 341, 8, 327
+    h2{                                  
         margin-top: -31px;
-        font-size: 23px;  
+        // font-size: 23px;  
     }
 
     .back{
@@ -408,7 +409,8 @@
 
     .z{
         margin-left: 28px;
-        margin-top:   33px;//50px;// 59px;//106px;
+        // margin-top:   33px;
+        margin-top:   9px;
 
     }
     
@@ -927,17 +929,16 @@
 
 }
     
-.poss{
-    margin-top:  131px;
-}
+// .poss{
+//     margin-top:  131px;
+// }
 
 .fmar{
-    position: fixed;
     width: 100%;
-    position: fixed;
+    // position: fixed;
     background: #fff;
-    z-index: 100;
-    margin-top: -12px;
+    // z-index: 100;
+    // margin-top: -12px;
 }
 
 .bread_mrgin{
@@ -946,7 +947,6 @@
     width: auto;//19%; //43%;
     // top: 18px;
     float: right;
-  top: -58px;
 //   font-size: x-large;
   background-color: transparent;
 }
@@ -976,7 +976,8 @@
 
   .a_color {
       color: black;
-      font-size: 22px;
+    //   font-size: 22px;
+      font-size: 18px;
   }
   .hover_clr a:hover {
     color: yellow;
@@ -989,7 +990,8 @@
 }
 .rr{
     position: absolute;
-    margin-left: 75%;
+    // margin-left: 75%;
+    margin-left: 66%;
     margin-top: 5px;
 }
 
