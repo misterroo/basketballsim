@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminService } from '../../../../services/admin.service';
 import { NotifierService } from 'angular-notifier';
@@ -32,7 +32,7 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
   other_Name;
   allTheTeams;
 
-
+  @Output('toggleMenu') toggleMenu: EventEmitter<any> = new EventEmitter();
   constructor(
   //  private toastr: ToastrService,
     private router: Router,
@@ -47,7 +47,9 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
     if(this.oneononeData != 'allteam'){
     
       this.leag_name = localStorage.getItem('SeasonName');
-      this.gameData = JSON.parse(localStorage.getItem('gameData'));
+      if(localStorage.getItem('gameData') && localStorage.getItem('gameData') != ''){
+        this.gameData = JSON.parse(localStorage.getItem('gameData'));
+      }
       if(localStorage.getItem('Predictgames') != ""){
         this.other_Name =JSON.parse(localStorage.getItem('Predictgames'));
         this.gameData = this.other_Name      
@@ -155,6 +157,10 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
   }
 
 
+  closed(): void{
+    this.toggleMenu.emit();
+    console.log("dcd")
+  }
 
   async getPlayerCharacteristics(data) {
     const Token: string = localStorage.getItem('userToken');

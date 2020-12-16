@@ -1,11 +1,11 @@
 #rowboxscores{
     font-family: 'Fjalla One', sans-serif !important;
-    // background-image: url('../../../assets/img/imgpsh_fullsize_anim.png');
-    background-image: url('../../../../assets/img/imgpsh_fullsize_anim.png');
+    // background-image: url('../../../../assets/img/imgpsh_fullsize_anim.png');
     background-repeat: no-repeat;
     height: 100vh;
     background-position: right bottom;
     background-size: 36%;
+    width: 149%;
     .datatable{
         // padding-left: 63px;
         width: 100%;
@@ -379,10 +379,7 @@ h3.h {
 
 .righth{
     float: right;
-    // background-color: white;
-    margin-top: -39px;
-    // margin-top: -39px;
-    margin-top: 13px;
+    // margin-top: 13px;
     margin-right: 27px
 }
 
@@ -426,10 +423,13 @@ h3.h {
 
 .bg{
     width: 100%;
-    // position: fixed;
     background: #fff;
     z-index: 100;
-    height: 24%;
+    height: 90%;
+}
+
+h1.h {
+    padding: 9px 0 0 0;
 }
 
 .mar{
@@ -521,13 +521,11 @@ span.ui-button-text.ui-clickable.size {
     }
     
     .heading {
-        margin-top: -44px;
         text-align: center;
     }
 
     .bread_mrgin{
         display: inline-flex;
-        margin-left: 1%; 
         width: auto;
         margin-left: -35%;
         width: auto;

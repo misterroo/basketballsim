@@ -5,14 +5,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 col-12 ">
-                        <button type="button" class="previos_btn ml-3" (click)="backClicked()"><i class="fa fa-chevron-left mr-2" aria-hidden="true"></i>  </button>
+                        <!-- <button type="button" class="previos_btn ml-3" (click)="backClicked()"><i class="fa fa-chevron-left mr-2" aria-hidden="true"></i>  </button> -->
                         <h1 class="left">SORTABLE BOX SCORE</h1>
-                    </div>
-                    <!-- <ol class="breadcrumb col-md-3 bread_mrgin">                        
-                        <li class="breadcrumb-item"><a class="b_color" href="/advancedsettingqtrtable">Quick Simulation</a></li>      
-                        <li class="breadcrumb-item active" aria-current="page">Sortable Box Score</li> 
-                      </ol> -->
-
+                    </div>                  
                     <div class="col-md-12 col-12" id="table">
                         <div class="datatable pt-5">                                         
                             <ol class="breadcrumb col-md-5 bread_mrgin">                                                              
@@ -20,25 +15,31 @@
                                  <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'playallteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>Play with All teams </a></li>                  
                                 <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Replay entire season</a></li>
                                 <li class="breadcrumb-item  point hover_clr"><a  class="a_color" [routerLink]='"/dashboar3/playwithallteam"'>{{leag_name}} </a> </li>
-                              </ol>
-                            <div class="dropdown sortable_right_content">
+                            </ol>
+                            <!-- <div class="dropdown sortable_right_content">
                                 <button class="btn btn-secondary dropdown-toggle btn-lg large" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     SELECT/SORT OPTIONS
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                   <a *ngFor="let item of selectDropdown" class="dropdown-item pointer" (click)="getData(item)" >{{item.label}}</a>
-                                </div>
-
+                                </div>  
                                 <span> <button class="btn_clear"  (click)= "reset()">RESET</button></span>
-                              </div>
+                            </div> -->
 
-
-
-
-
-
-                    <div class="raw-container rwcnt">
-                                
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="dropdown sortable_right_content">
+                                        <button class="btn btn-secondary dropdown-toggle btn-lg large" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            SELECT/SORT OPTIONS
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                          <a *ngFor="let item of selectDropdown" class="dropdown-item pointer" (click)="getData(item)" >{{item.label}}</a>
+                                        </div>  
+                                        <span> <button class="btn_clear"  (click)= "reset()">RESET</button></span>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="raw-container rwcnt">
                             <!-- <p-scrollPanel [style]="{width: '100%'}" styleClass="customactualteamleagueee"> -->
                             <p-table [columns]="scrollableCols" [frozenColumns]="frozenCols"  [value]="this.playerData" [scrollable]="true" scrollHeight="calc(100vh - 280px)" frozenWidth="250px"  [resizableColumns]="true"  sortMode="multiple">
                                 <ng-template pTemplate="colgroup" let-columns >
@@ -64,22 +65,8 @@
 
                         <!-- </p-scrollPanel> -->
                         </div>
-
-
-
-
-
-
-
-
-
                         </div>
-
-
-
-
-                        <!-- <div class="raw-container">
-                                
+                        <!-- <div class="raw-container">      
                             <p-scrollPanel [style]="{width: '100%'}" styleClass="customactualteamleaguee">
                             <p-table [columns]="scrollableCols"  [value]="this.playerData" [scrollable]="true" scrollHeight="calc(100vh - 365px)" frozenWidth="300px" >
                                 <ng-template pTemplate="colgroup" let-columns >
@@ -106,15 +93,7 @@
                         </p-scrollPanel>
                         </div> -->
 
-
-
-
-
-
-
-
                         <div class="popup">
-
                             <p-dialog header="LIMIT" [(visible)]="display1" [style]="{width: '650px'}"
                                 [baseZIndex]="10000" class="pDialog1">
                                 <div class="container">

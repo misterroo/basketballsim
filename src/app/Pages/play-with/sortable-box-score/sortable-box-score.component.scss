@@ -18,11 +18,11 @@
         background: yellow !important;
     }
     .datatable{        
-            // background-image: url('../../../assets/img/imgpsh_fullsize_anim.png') !important;
             background-image: url('../../../../assets/img/imgpsh_fullsize_anim.png') !important;
             background-repeat: no-repeat;
             height: 100vh !important;
-            width: 100% !important;
+            // width: 100% !important;
+            width: 145% !important;
             background-position: right;
             background-size: contain;
         padding-left: 2rem;
@@ -71,9 +71,10 @@
         .sortable_right_content{
             float: right;
             position: absolute;
-            top:  2%;
-            right: 69px;
-            // display: inline-block;
+            // top:  2%;
+            // right: 69px;
+            top: -31px;
+            right: 36px;
             span{
                 padding: 0px 10px;
                 display: inline-block;
@@ -246,10 +247,9 @@
     }
 
     .left{
-        // margin-left: -1rem;
-        // margin-left: 700px;
         text-align: center;
-    margin-top: -48px;
+    // margin-top: -48px;
+        margin: 1% 0 0 46%;
     }
 
     .team_btn{
@@ -707,13 +707,11 @@
 .bread_mrgin{
     display: inline-flex;
     margin-left: 34px;
-    width: auto;//18%;//40%;
-    top: 46px;
-    
+    width: auto;
+    bottom: 97px;
     margin-left: -35%;
     width: auto;
     float: right;
-    top: -110px; //-82px;
     // font-size: x-large;
     background-color: transparent;
     margin-right: 0;
@@ -740,7 +738,7 @@
           }
 
           .rwcnt{
-            margin-top: 32px;
+            margin-top: 59px;
           }
 
      @media only screen and (max-width: 1499px) {

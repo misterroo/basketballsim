@@ -321,9 +321,9 @@
         <div> <app-substitution-pattern></app-substitution-pattern> </div>
       </p-dialog>
 
-      <p-dialog header="CHANGE PALYER CHARACTERISTICS" [(visible)]="showCharacter" [style]="{width: '80%'}" [position]="position"
+      <p-dialog header="CHANGE PALYER CHARACTERISTICS"  [(visible)]="showCharacter" [style]="{width: '80%'}" [position]="position"
         [baseZIndex]="10000" class="pDialogdashboard">
-        <div> <app-change-player-characteristics></app-change-player-characteristics> </div>
+        <div> <app-change-player-characteristics (toggleMenu)="toggleMenu()"></app-change-player-characteristics> </div>
       </p-dialog>
 
       <p-dialog header="DRAFT PALYER" [(visible)]="showDraft" [style]="{width: '80%'}" [position]="position"

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as $ from 'jquery';
 import { Options } from 'ng5-slider';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -87,6 +87,8 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   showIndex: string;
   isShow: boolean = false;
 
+  // @Output('closed') closed: EventEmitter<any> = new EventEmitter();
+
   // quickForm: boolean = true;
   // advancedForm: boolean = false;
   // playMultipleForm: boolean = false;
@@ -96,8 +98,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     private adminService: AdminService,
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService,
-    private shared: SharedService
-
+    private shared: SharedService,
   ) {
     let checkPlaybyPlay = localStorage.getItem('keyy');
     if (checkPlaybyPlay === null) {
@@ -328,10 +329,10 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     
   }
 
-
-  
-
-
+  toggleMenu(): void{
+    console.log("ap")
+    this.showCharacter = false
+  }
 
   tableAdd() {
     // $(document).ready(function () {
@@ -565,12 +566,12 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   }
 
   goto(url) {
-    // if(url != 'substitutionpattern' && url != 'draftplayer' 
-    // && url != 'changeplayercharacteristics'  && this.getTableData.length == 0) {
+    if(url != 'substitutionpattern' && url != 'draftplayer' 
+    && url != 'changeplayercharacteristics'  && this.getTableData.length == 0) {
     
-    //   this.notifierService.notify("info", "Please run  simulation first");
-    //   return false;
-    // }
+      this.notifierService.notify("info", "Please run  simulation first");
+      return false;
+    }
     this.router.navigate(['/' +url]);
     if(this.enableDisableStatus == 'oneonone') {
       localStorage.setItem('gameData',JSON.stringify(this.gameArray));
@@ -756,4 +757,6 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
         }
       })
   }
+
+ 
 }

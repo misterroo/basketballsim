@@ -1,12 +1,12 @@
 
  #sortablestats{
 font-family: 'Fjalla One', sans-serif !important;
-// background-image: url('../../../assets/img/imgpsh_fullsize_anim.png');
-background-image: url('../../../../assets/img/imgpsh_fullsize_anim.png');
+// background-image: url('../../../../assets/img/imgpsh_fullsize_anim.png');
 background-repeat: no-repeat;
 height: 100vh;
 background-position: right bottom;
 background-size: 36%; 
+width: 145%;
 .previos_btn{
     background-color: #2F3137;
     border: 1px solid white;
@@ -92,15 +92,13 @@ background-size: 36%;
 //     float: left;
 
 .left {
-    // margin-left: 18px;
-    // margin-left: 789px;
     text-align: center;
-    margin-top:  -53px//-35px;
 
 }
 
 .h31{
-    margin-bottom: -25px;
+    // margin-bottom: -25px;
+    margin-top: 9px;
 }
 
 // .sortable_right_content {
@@ -306,7 +304,8 @@ background-size: 36%;
 .sortable_right_content{
     float: right;
     position: absolute;
-    top: 28%;   
+    // top: 28%;   
+    top: 7%;   
     right: 53px;
     span{
         padding: 0px 10px;
@@ -328,12 +327,9 @@ background-size: 36%;
 
 .bread_mrgin{
     display: inline-flex;
-    margin-left: 34px;
-    margin-left: -35%;
     width: auto;
     float: right;
-    top: -84px;
-    // font-size: x-large;
+    top: -103px;
     background-color: transparent;
     margin-right: 1%;
     }
@@ -479,3 +475,6 @@ background-size: 36%;
             background-size: 114%;
         }
     }
+    .rwcnt{
+        margin-top: 59px;
+      }

@@ -7,12 +7,8 @@
                     <div class="col-md-12 col-12 ">
 
                         <div class="fix">
-                             <button type="button" class="previos_btn ml-3" (click)="backClicked()">
-                                     <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i> </button>
-
-                                     
-
-
+                             <!-- <button type="button" class="previos_btn ml-3" (click)="backClicked()">
+                                     <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i> </button> -->                              
                             <div class="heading">
                                 <h1 class="mar">RAW STATS </h1>
                                 <ol class="breadcrumb col-md-7 bread_mrgin">      
@@ -46,8 +42,8 @@
                     </div>
 
                         <div class=" col-12" id="table">
-                            <div class="datatable pt-5" class="mar_top">
-                                <div class="raw-containerr media_font"   *ngIf="rawStatedata">
+                            <div class="datatable pt-5" class="mar_top" id="scrollParent">
+                                <div class="raw-containerr media_font"  *ngIf="rawStatedata">
                                     <div *ngFor="let item of rawStatedata; let i = index" [id]="i">
                                         <div style="white-space: pre"> {{item.textlines}}</div>
                                     </div>

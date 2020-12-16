@@ -84,7 +84,7 @@ export class SortableBoxScoreComponent implements OnInit {
 
 
     this.scrollableCols = [
-      { field: 'away_team', header: 'OPP', width: 130 },
+      { field: 'away_team', header: 'OPP', width: 150 },
       { field: 'player_name', header: 'PLAYER', width: 130 },
       { field: 'minutes', header: 'MIN', width: 80 },
       { field: 'fgm', header: 'FGM', width: 80 },

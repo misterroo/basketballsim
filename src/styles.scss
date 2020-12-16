@@ -14,7 +14,8 @@
   }   
 .ui-table-scrollable-view {
     position: absolute;
-    top: 0;
+    // top: 0;
+    top: -23px;
 }
 body .ui-table .ui-table-thead > tr > th {
   color: #ffffff !important;
@@ -872,7 +873,8 @@ max-height: 46%;
 .raw-container{
   font-family: 'Roboto Mono', monospace;
   font-weight: bold;
-  margin-top: 50px;
+  // margin-top: 50px;
+  margin-top: 26px;
 }
 
 .raw-containerr{
@@ -959,4 +961,8 @@ li.list.nav-item.hover_clr.active a.col {
 }
 .ui-tabview.ui-widget.ui-widget-content.ui-corner-all.ui-tabview-top {
   margin: 0 0 0 8px;
+}
+
+.ui-table-unfrozen-view{
+  top: -23px !important;
 }

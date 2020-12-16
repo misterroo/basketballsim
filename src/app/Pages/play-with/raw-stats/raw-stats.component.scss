@@ -1,11 +1,11 @@
 #rowstats{
     font-family: 'Fjalla One', sans-serif !important;
-    // background-image: url('../../../assets/img/imgpsh_fullsize_anim.png');
-    background-image: url('../../../../assets/img/imgpsh_fullsize_anim.png');
+    // background-image: url('../../../../assets/img/imgpsh_fullsize_anim.png');
     background-repeat: no-repeat;
     height: 100vh;
     background-position: right bottom;
     background-size: 36%;
+    width: 152%;
     // #table{
     //     padding-top: 145px;
     // }
@@ -45,14 +45,14 @@
     }
 
 .mar{
-    margin-top:  -62px;
-    // margin-left: 770px;
+    margin-top: 60px;
+    padding: 8px 0 0 0;
     text-align: center;
 }
 
 .fix{
     width: 100%;
-    // position: fixed;
+    height: 91%;
     background: #fff;
     z-index: 100;
 }
@@ -388,7 +388,7 @@
     margin-left: -35%;
     width: auto;
     float: right;
-    top: -66px;
+    top: -59px;
     // font-size: x-large;
     background-color: transparent;
     margin-right: 3%;

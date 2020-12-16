@@ -85,8 +85,11 @@ selectValue = { key: '',selectedKey: ''};
     // console.log('leaguege',this.oneononeData)
     if (this.oneononeData != 'allteam') {
       this.leag_name = localStorage.getItem('SeasonName');
+      console.log(localStorage.getItem('gameData'))
+      if(localStorage.getItem('gameData') && localStorage.getItem('gameData') != ''){
+        this.gameData = JSON.parse(localStorage.getItem('gameData'));
+      }
 
-      this.gameData = JSON.parse(localStorage.getItem('gameData'));
       if (localStorage.getItem('Predictgames') != "") {
         this.other_Name = JSON.parse(localStorage.getItem('Predictgames'));
         this.gameData = this.other_Name
@@ -187,7 +190,7 @@ selectValue = { key: '',selectedKey: ''};
 
     this.team_name = this.gameData[0];
     
-     this.opp_name = this.gameData[0].predicthome;
+    //  this.opp_name = this.gameData[0].predicthome;
     
      this.team(league_name)
     //  this.leagueName = this.team(league_name)
