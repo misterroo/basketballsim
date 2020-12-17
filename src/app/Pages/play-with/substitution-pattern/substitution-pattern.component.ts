@@ -1,10 +1,9 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component,  OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminService } from '../../../../services/admin.service';
 import { NotifierService } from 'angular-notifier';
 import {Location} from '@angular/common';  //5, 19
 import { Router} from '@angular/router';
-import { EventEmitter } from 'protractor';
 import { timeout } from 'rxjs/operators';
 import {DialogModule} from 'primeng/dialog';
 import { unsupported } from '@angular/compiler/src/render3/view/util';
@@ -58,8 +57,12 @@ export class SubstitutionPatternComponent implements OnInit {
   static_Id:any;
   static_Idd:any;
   show_back: boolean=true;
-  button_disable:boolean=true
-  locate_disable:boolean=true
+  button_disable:boolean=true;
+  locate_disable:boolean=true;
+  draftTeam:any;
+  draftTeamA:any;
+  @Output('toggleMenu') toggleMenu: EventEmitter<any> = new EventEmitter();
+
     constructor(
       private router: Router,
       private _location: Location,       // 19, 5
@@ -67,6 +70,10 @@ export class SubstitutionPatternComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService,
     ) { 
+
+      this.draftTeam = localStorage.getItem('PredictData1')
+      this.draftTeamA = localStorage.getItem('SeasonName')
+      
       this.allTheTeams = localStorage.getItem('showStatus');
 
       this.oneononeData = localStorage.getItem('showStatus');
@@ -84,6 +91,8 @@ export class SubstitutionPatternComponent implements OnInit {
         for(let item of this.gameData){
           obj.push(item.predictaway)
           obj.push(item.predicthome)
+          // obj.push(item.PredictData2)
+          // obj.push(item.PredictData1)
         }
       }
       
@@ -151,19 +160,21 @@ export class SubstitutionPatternComponent implements OnInit {
     if(!localStorage.getItem('userToken')){
       this.router.navigateByUrl('/');
     }
-
-    let league_name =  localStorage.getItem('SeasonName');
-    this.team_name = this.gameData[0];
-    let data = {
-    "apikey":"Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
-    "keeppbp":"N",
-    "league_name":league_name,
-    "team_name":this.team_name,
+      let league_name =  localStorage.getItem('SeasonName');
+      this.team_name = this.gameData[0];
+      let data = {
+      "apikey":"Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
+      "keeppbp":"N",
+      "league_name":league_name,
+      "team_name":this.team_name,
+      }     
     }
 
+    closed(): void{
+      this.toggleMenu.emit();
+      console.log("dcd")
+    }
   
-      
-    }
 
    
     async getPlayersSubs() {

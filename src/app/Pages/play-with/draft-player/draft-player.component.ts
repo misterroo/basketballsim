@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Location} from '@angular/common'; 
 import { AdminService } from 'src/services/admin.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -65,6 +65,10 @@ selectValue = { key: '',selectedKey: ''};
   league_valuee:any
   team1:any =[];
   allTheTeams;
+  selectedOpTeam:any;
+
+  @Output('toggleMenu') toggleMenu: EventEmitter<any> = new EventEmitter();
+
   constructor(
     private router: Router,
     private adminService: AdminService,
@@ -74,7 +78,7 @@ selectValue = { key: '',selectedKey: ''};
 
     private _location: Location,
   ) {
-
+    this.selectedOpTeam = localStorage.getItem('PredictData2');
     this.allTheTeams = localStorage.getItem('showStatus');
     this.draftTeam = localStorage.getItem('PredictData1')
     this.draftTeamA = localStorage.getItem('SeasonName')
@@ -83,9 +87,9 @@ selectValue = { key: '',selectedKey: ''};
 
     this.oneononeData = localStorage.getItem('showStatus');
     // console.log('leaguege',this.oneononeData)
-    if (this.oneononeData != 'allteam') {
+    if (this.oneononeData != 'allteam' && this.oneononeData == 'oneonone') {
       this.leag_name = localStorage.getItem('SeasonName');
-      console.log(localStorage.getItem('gameData'))
+      console.log(localStorage.getItem('gameData'),"adad")
       if(localStorage.getItem('gameData') && localStorage.getItem('gameData') != ''){
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
       }
@@ -98,14 +102,19 @@ selectValue = { key: '',selectedKey: ''};
       for (let item of this.gameData) {
         obj.push(item.predictaway)
         obj.push(item.predicthome)
+        // obj.push(item.PredictData2)
+        // obj.push(item.PredictData1)
+        console.log(item.predictaway)
+        console.log(item.predicthome)
       }
-
+      
+      console.log(this.gameData)
       this.gameData = [...new Set(obj)]
     } else {
       let team = JSON.parse(localStorage.getItem('allTeamData'))
-      for (let item of team) {
-        this.gameData.push(item.teams)
-      }
+      // for (let item of team) {
+      //   this.gameData.push(item.teams)
+      // }
       this.teamName = this.gameData[0]
       this.team_name = this.teamName;
       this.leag_name = localStorage.getItem('SeasonName');
@@ -201,6 +210,11 @@ selectValue = { key: '',selectedKey: ''};
   
   backClicked() {                  
     this._location.back();
+  }
+
+  closed(): void{
+    this.toggleMenu.emit();
+    console.log("dcd")
   }
 
   async setPlayerDraft() {

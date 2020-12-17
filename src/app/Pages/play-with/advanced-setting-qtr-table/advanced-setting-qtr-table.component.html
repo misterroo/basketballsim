@@ -318,7 +318,7 @@
 
       <p-dialog header="SUBSTITUTION PATTERN" [(visible)]="showSubstitution" [style]="{width: '80%'}" [position]="position"
         [baseZIndex]="10000" class="pDialogdashboard">
-        <div> <app-substitution-pattern></app-substitution-pattern> </div>
+        <div> <app-substitution-pattern (toggleMenu)="toggleMenu()"></app-substitution-pattern> </div>
       </p-dialog>
 
       <p-dialog header="CHANGE PALYER CHARACTERISTICS"  [(visible)]="showCharacter" [style]="{width: '80%'}" [position]="position"
@@ -328,7 +328,7 @@
 
       <p-dialog header="DRAFT PALYER" [(visible)]="showDraft" [style]="{width: '80%'}" [position]="position"
         [baseZIndex]="10000" class="pDialogdashboard">
-        <div> <app-draft-player></app-draft-player> </div>
+        <div> <app-draft-player (toggleMenu)="toggleMenu()"></app-draft-player> </div>
       </p-dialog>
 
 </div>

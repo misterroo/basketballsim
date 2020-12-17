@@ -12,11 +12,6 @@
   body .la-ball-scale-multiple {
     display: none !important;
   }   
-.ui-table-scrollable-view {
-    position: absolute;
-    // top: 0;
-    top: -23px;
-}
 body .ui-table .ui-table-thead > tr > th {
   color: #ffffff !important;
   background-color: #333333 !important;
@@ -965,4 +960,7 @@ li.list.nav-item.hover_clr.active a.col {
 
 .ui-table-unfrozen-view{
   top: -23px !important;
+}
+.ui-table-scrollable-view {
+  top: 0 !important;
 }

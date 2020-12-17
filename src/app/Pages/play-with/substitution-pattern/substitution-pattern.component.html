@@ -25,8 +25,7 @@
                             
                             </ol>
 
-                            <h2 class="z"  *ngIf="this.oneononeData == 'playallteam'">{{teamName}}</h2>
-                            <!-- <h2 class="z"  *ngIf="this.teamName_single && this.teamName_single != null">{{teamName_single}}</h2> -->
+                            <h2 class="z"  *ngIf="this.oneononeData == 'playallteam'">{{draftTeam}} - {{draftTeamA}}</h2>
                             
                             
                             <div class="form-group col-2 bread" *ngIf="this.oneononeData != 'playallteam'">
@@ -34,7 +33,7 @@
                                 <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="team_name" (change)="changeTeam($event)">
                                   <option *ngFor="let item of gameData">{{item}}</option>
                                 </select>
-                            </div>                          
+                            </div>                           
 
 
                     </div>
@@ -435,7 +434,7 @@
                                                     </div>
                                                     <div class="right">
                                                         <button type="button" class="btn_yellow"  (click)="onSetSubtitution()" >OK</button>   <!--[disabled]="locate_disable"-->
-                                                        <button type="button" class="btn_black" (click)="backClicked()">CANCEL</button>  <!--(click)="cancel()"-->
+                                                        <button type="button" class="btn_black" (click)="closed()">CANCEL</button>  <!--(click)="cancel()"-->
                                                     </div>
                                                 </div>
                                             </div>

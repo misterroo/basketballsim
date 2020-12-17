@@ -65,7 +65,7 @@
             // background-image: url('../../../assets/img/imgpsh_fullsize_anim.png') !important;
             background-image: url('../../../../assets/img/imgpsh_fullsize_anim.png') !important;
             background-repeat: no-repeat;
-            height: 100vh !important;
+            // height: 100vh !important;
             width: 100% !important;
             background-position: right;
             background-size: contain;
@@ -944,10 +944,8 @@
 .bread_mrgin{
     display: inline-flex;
     margin-left: 18px;
-    width: auto;//19%; //43%;
-    // top: 18px;
+    width: auto;
     float: right;
-//   font-size: x-large;
   background-color: transparent;
 }
 
@@ -960,7 +958,7 @@
  }
 
  .bread{
-    margin-top: 14px;//47px;
+    // margin-top: 14px;
     margin-left: 11px;
  }
 
@@ -1246,4 +1244,7 @@
 
 @media only screen and (max-width: 1499px){
     
+}
+h2.z {
+    font-size: 23px;
 }

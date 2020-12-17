@@ -31,8 +31,11 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
   oppTeamName= '';
   other_Name;
   allTheTeams;
-
+  draftTeam:any;
+  draftTeamA:any;
+  
   @Output('toggleMenu') toggleMenu: EventEmitter<any> = new EventEmitter();
+  
   constructor(
   //  private toastr: ToastrService,
     private router: Router,
@@ -41,6 +44,9 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
     private notifierService: NotifierService,
     private _location: Location, 
   ) {
+    this.draftTeam = localStorage.getItem('PredictData1')
+    this.draftTeamA = localStorage.getItem('SeasonName')
+
     this.allTheTeams = localStorage.getItem('showStatus');
 
     this.oneononeData = localStorage.getItem('showStatus');
@@ -58,6 +64,8 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
       for(let item of this.gameData){
         obj.push(item.predictaway)
         obj.push(item.predicthome)
+        // obj.push(item.PredictData2)
+        // obj.push(item.PredictData1)
       }
       
       this.gameData = [...new Set(obj)]}
@@ -159,7 +167,6 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
 
   closed(): void{
     this.toggleMenu.emit();
-    console.log("dcd")
   }
 
   async getPlayerCharacteristics(data) {

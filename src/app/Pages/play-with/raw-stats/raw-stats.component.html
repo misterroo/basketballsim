@@ -1,25 +1,19 @@
 <div id="rowstats" class="">
     <div class="container-fluid">
-        <!-- <app-header></app-header> -->
         <div class="row">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 col-12 ">
 
-                        <div class="fix">
-                             <!-- <button type="button" class="previos_btn ml-3" (click)="backClicked()">
-                                     <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i> </button> -->                              
+                        <div class="fix">                            
                             <div class="heading">
                                 <h1 class="mar">RAW STATS </h1>
-                                <ol class="breadcrumb col-md-7 bread_mrgin">      
-                                    <!-- <li class="breadcrumb-item point" *ngIf="this.oneononeData != 'playallteam'"><a class="a_color" href="choosemyteam">1 on 1 Matchup </a></li>                  
-                                    <li class="breadcrumb-item point" *ngIf="this.allTheTeams != 'oneonone'"><a class="a_color" href="choosemyteam">Play with All teams in a Season </a></li>                   -->
-                                            
+                                <!-- <ol class="breadcrumb col-md-7 bread_mrgin">
                                     <li class="breadcrumb-item point hover_clr" *ngIf="this.oneononeData == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>1 on 1 Matchup </a></li>                  
                                     <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'playallteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>Play with All teams </a></li>                  
                                      <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Replay entire season</a></li>
                                     <li class="breadcrumb-item  point hover_clr"><a  class="a_color" [routerLink]='"/dashboard3/playwithallteam"'>{{leag_name}} </a> </li>
-                                </ol>
+                                </ol> -->
                             </div>                               
 
                             <span class="row spn">
@@ -54,15 +48,11 @@
             </div>
         </div>
     </div>
-
-
-
     <p-dialog header="Find" [(visible)]="display4" id="change-model" class="pDialog1">
           <p-header>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" > 
             </button>
           </p-header>
-
           <p-body>
               <div class="modal-body">
                   <div class="form-row">          
@@ -72,11 +62,9 @@
                   </div>
               </div>
           </p-body>
-     
           <p-footer class="ok_button">
               <button type="button" class="btn btn-warning" data-dismiss="modal"(click)="findNew()" >Find</button> 
               <button type="button" class="btn btn-dark" >Close</button> 
           </p-footer>    
     </p-dialog>
-
 </div>

@@ -100,6 +100,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     private notifierService: NotifierService,
     private shared: SharedService,
   ) {
+    
     let checkPlaybyPlay = localStorage.getItem('keyy');
     if (checkPlaybyPlay === null) {
       localStorage.setItem('keyy', 'false')
@@ -140,7 +141,6 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     
     this.showTable = false;
     
-    // console.log(this.selectedTeamName)
     this.gameList = [];
     this.playGamesMulti = [
       {
@@ -239,8 +239,12 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     })
 
     this.gameArray = gameArrayData;
-    // console.log('testdata',this.gameArray);
+    console.log('testdata',this.gameArray);
 
+    if(this.enableDisableStatus == 'oneonone') {
+      localStorage.setItem('gameData',JSON.stringify(this.gameArray));
+      localStorage.setItem('gameOppData',JSON.stringify(this.gameArrayy));
+    }
   }
 
   ngOnInit(): void {
@@ -330,8 +334,9 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   }
 
   toggleMenu(): void{
-    console.log("ap")
-    this.showCharacter = false
+    this.showCharacter    = false;
+    this.showSubstitution = false;
+    this.showDraft        = false;
   }
 
   tableAdd() {
@@ -515,6 +520,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     }
     this.gameArray = gameArrayNew;
     localStorage.setItem('Predictgames', JSON.stringify(this.gameArray));
+    console.log(this.gameArray, "gameTest")
 
     this.showPlayMultiple = false;
   }
@@ -566,12 +572,12 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   }
 
   goto(url) {
-    if(url != 'substitutionpattern' && url != 'draftplayer' 
-    && url != 'changeplayercharacteristics'  && this.getTableData.length == 0) {
+    // if(url != 'substitutionpattern' && url != 'draftplayer' 
+    // && url != 'changeplayercharacteristics'  && this.getTableData.length == 0) {
     
-      this.notifierService.notify("info", "Please run  simulation first");
-      return false;
-    }
+    //   this.notifierService.notify("info", "Please run  simulation first");
+    //   return false;
+    // }
     this.router.navigate(['/' +url]);
     if(this.enableDisableStatus == 'oneonone') {
       localStorage.setItem('gameData',JSON.stringify(this.gameArray));
