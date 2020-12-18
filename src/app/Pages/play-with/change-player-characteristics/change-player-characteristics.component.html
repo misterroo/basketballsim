@@ -129,18 +129,10 @@
                       </tr>
                   </ng-template>
                 </p-table>
-              </div>
-              <!-- <div>
-                <div class="float-right">
-                  <span> <button class="reset_default_btn" (click)="backClicked()" >CANCEL</button></span> &nbsp; 
-                  <button type="button" class=  "btn_clear_ok" (click)="setPlayerCharacteristics()"> OK</button>
-                </div>
-              </div> -->
-              
+              </div>              
             </div>
             <div>
               <div class="float-right" style="margin-top: 26px">
-                <!-- <span> <button class="reset_default_btn" (click)="backClicked()" >CANCEL</button></span> &nbsp;  -->
                 <span> <button class="reset_default_btn" (click)="closed()" >CANCEL</button></span> &nbsp; 
                 <button type="button" class=  "btn_clear_ok" (click)="setPlayerCharacteristics()"> OK</button>
               </div>
@@ -161,15 +153,13 @@
         <p-body>
             <div class="modal-body">
                 <div class="form-row">
-          
                   <div class="form-group col-md-12 text-center">
                     <label for="test1223" >{{selectedItem.key}} 
                     </label>
                     <input type="number"  name="input" class="form-control" id="test1223" [(ngModel)]="this.selectedItem['value']" >
                  </div>
-          
                 </div>
-                       {{this.show}}
+                {{this.show}}
             </div>
         </p-body>
      

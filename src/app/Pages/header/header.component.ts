@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit {
   sessoinId: string;
   guestResult: any;
   pageUrl: any;
+  uri:any = '';
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -55,6 +56,9 @@ export class HeaderComponent implements OnInit {
     private notifierService: NotifierService,
     public sharedService: SharedService,
   ) {
+    this.uri = router.url;
+    console.log(router.url)
+    console.log(this.uri)
     this.sharedService.currentModel.subscribe(message => {
       if (message === true) {
         this.display = true;
@@ -110,7 +114,8 @@ export class HeaderComponent implements OnInit {
           // this.sharedService.changeToken(this.result.data[0].username);
           this.userName = localStorage.getItem('customerName');
           this.sharedService.updateToken(this.result.data[0].id);
-          this.router.navigate(['/dashboard']);
+          // this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard3/singlegamecomponent']);
           this.notifierService.notify("success", "user login successfully");
           // window.location.reload();
         } else {
@@ -199,5 +204,29 @@ export class HeaderComponent implements OnInit {
   showModalDialog(position: string) {
     // this.sharedService.changeModel(true);
     this.display = true
+  }
+  goToNext() {
+    if (localStorage.getItem('userToken') === '' || localStorage.getItem('userToken') === null || localStorage.getItem('userToken') === undefined) {
+      this.doGuestLogin();
+    } else {
+      this.router.navigate(['/dashboard/chooseteam']);
+    }
+  }
+  async doGuestLogin() {
+
+    this.spinner.show();
+    (await this.adminService.guestLogin()).subscribe(result => {
+      this.guestResult = result;
+    }, (err) => console.log(err),
+      () => {
+        this.spinner.hide();
+        if (this.guestResult.status === 'true' || this.guestResult.status === true) {
+          console.log(this.guestResult);
+          this.sharedService.updateToken(this.guestResult.data[0].id);
+          localStorage.setItem('userToken', this.guestResult.data[0].id);
+          this.router.navigate(['/dashboard/chooseteam']);
+          // window.location.reload();
+        }
+      });
   }
 }

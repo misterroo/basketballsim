@@ -1,21 +1,20 @@
 <div id="sortablebox">
     <div class="container-fluid">
-        <!-- <app-header></app-header> -->
         <div class="row">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 col-12 ">
-                        <!-- <button type="button" class="previos_btn ml-3" (click)="backClicked()"><i class="fa fa-chevron-left mr-2" aria-hidden="true"></i>  </button> -->
                         <h1 class="left">SORTABLE BOX SCORE</h1>
                     </div>                  
                     <div class="col-md-12 col-12" id="table">
                         <div class="datatable pt-5">                                         
-                            <ol class="breadcrumb col-md-5 bread_mrgin">                                                              
+                            <!-- <ol class="breadcrumb col-md-5 bread_mrgin">                                                              
                                 <li class="breadcrumb-item point hover_clr" *ngIf="this.oneononeData == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>1 on 1 Matchup </a></li>                  
                                  <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'playallteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>Play with All teams </a></li>                  
                                 <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Replay entire season</a></li>
                                 <li class="breadcrumb-item  point hover_clr"><a  class="a_color" [routerLink]='"/dashboar3/playwithallteam"'>{{leag_name}} </a> </li>
-                            </ol>
+                            </ol> -->
+
                             <!-- <div class="dropdown sortable_right_content">
                                 <button class="btn btn-secondary dropdown-toggle btn-lg large" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     SELECT/SORT OPTIONS
@@ -191,17 +190,9 @@
                                             <div class="sortlist">
                                                 <div class="form-group">
                                                     <p>FIELD 1</p>
-                                                    <p-dropdown class="pDropdwon sortabledropdown mb-4" (ngModelChange)="getfieldData($event)"
-                                                    [(ngModel)]="fieldModel.data" name="data" 
+                                                    <p-dropdown class="pDropdwon sortabledropdown mb-4" (ngModelChange)="getfieldData($event)" [(ngModel)]="fieldModel.data" name="data" 
                                                         [options]="sortdropdown" optionLabel="label" optionValue="_id">
-
-
-            
                                                     </p-dropdown>
-
-                                                   
-
-
                                                 </div>
                                                 <div class="form-group">
                                                     <p>FIELD 2</p>

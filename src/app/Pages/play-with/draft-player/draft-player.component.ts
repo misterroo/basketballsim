@@ -86,10 +86,8 @@ selectValue = { key: '',selectedKey: ''};
 
 
     this.oneononeData = localStorage.getItem('showStatus');
-    // console.log('leaguege',this.oneononeData)
     if (this.oneononeData != 'allteam' && this.oneononeData == 'oneonone') {
       this.leag_name = localStorage.getItem('SeasonName');
-      console.log(localStorage.getItem('gameData'),"adad")
       if(localStorage.getItem('gameData') && localStorage.getItem('gameData') != ''){
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
       }
@@ -102,17 +100,11 @@ selectValue = { key: '',selectedKey: ''};
       for (let item of this.gameData) {
         obj.push(item.predictaway)
         obj.push(item.predicthome)
-        // obj.push(item.PredictData2)
-        // obj.push(item.PredictData1)
-        console.log(item.predictaway)
-        console.log(item.predicthome)
       }
-      
-      console.log(this.gameData)
       this.gameData = [...new Set(obj)]
     } else {
       let team = JSON.parse(localStorage.getItem('allTeamData'))
-      // for (let item of team) {
+      // for (let item of team) {  // Error 
       //   this.gameData.push(item.teams)
       // }
       this.teamName = this.gameData[0]
@@ -214,7 +206,6 @@ selectValue = { key: '',selectedKey: ''};
 
   closed(): void{
     this.toggleMenu.emit();
-    console.log("dcd")
   }
 
   async setPlayerDraft() {
@@ -441,30 +432,25 @@ selectValue = { key: '',selectedKey: ''};
 
   getSeasonValue(event) {
     this.seasonValue = event.league_name;
-    // console.log('jai ho', this.seasonValue)
     // this.team()
   }
  
-  playertodraft(e){
+  playertodraft(e) {
     this.newTeamName = e.teams
     this.teamData1.map(value => {
       value.activeRow = false
     })
     e.activeRow = true
     this.getPlayerDraft(e.teams)
-
   }
 
 
-  draftTeamPlayerData(e,i){
-    // console.log('xyz',e);
+  draftTeamPlayerData(e,i) {
     this.playerToDraftDataIndex = i;
     this.playerToDraftData = e.player_name
-
     this.draftTeamData.map(value => {
       value.activeRow = false
     })
-    // console.log("loggg",this.draftTeamData)
     e.activeRow = true;
     this.selectedDraftPlayerName = e.player_name;
   }
@@ -553,7 +539,7 @@ selectValue = { key: '',selectedKey: ''};
   }
 
   
-  session_list(k) {      
+  session_list(k) {
     this.seasson_arry.map(item => {
       item.activeRow = false
     })

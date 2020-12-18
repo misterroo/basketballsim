@@ -947,10 +947,10 @@ body .ui-tabview.ui-tabview-top .ui-tabview-nav li {
   background-color: #dee2e6 !important;
 }
 li.list.nav-item.hover_clr.active {
-  // background: #ffc107;
   background: #ecc400;
   color: #000 !important;
 }
+
 li.list.nav-item.hover_clr.active a.col {
   color: #000 !important;
 }
@@ -963,4 +963,12 @@ li.list.nav-item.hover_clr.active a.col {
 }
 .ui-table-scrollable-view {
   top: 0 !important;
+}
+
+.nav-tabs .nav-link.active {
+  color: #495057 !important;
+  background-color: yellow !important; 
+}
+a.act:active {
+  background: #F7D500 !important;
 }

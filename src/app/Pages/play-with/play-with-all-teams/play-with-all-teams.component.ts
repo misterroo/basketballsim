@@ -95,15 +95,7 @@ export class PlayWithAllTeamsComponent implements OnInit {
   }
   
   goto() {
-    if (this.enableDisableStatus === "allteam") {
-      this.router.navigate(['/dashboard3/advancedsettingqtrtable']);
-    }
-    if (this.enableDisableStatus === "oneonone") {
-      this.router.navigate(['/dashboard3/advancedsettingqtrtable']);
-    }
-    if (this.enableDisableStatus === "playallteam") {
-      this.router.navigate(['/dashboard3/advancedsettingqtrtable']);
-    }
+    this.router.navigate(['/dashboard3/advancedsettingqtrtable']);
   }
 
   async team() {

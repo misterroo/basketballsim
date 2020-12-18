@@ -36,26 +36,27 @@ import { DashboardComponent } from '../dash-board/dashboard/dashboard.component'
 
 import { PlayWithAllTeamsComponent } from './play-with-all-teams/play-with-all-teams.component';
 import { AdvancedSettingQtrTableComponent } from './advanced-setting-qtr-table/advanced-setting-qtr-table.component';
-import { SubstitutionPatternComponent } from './substitution-pattern/substitution-pattern.component';
+
 import { SingleGameComponent } from './single-game/single-game.component';
 import { PlayRoutingModule } from './play-routing.module';
 
-import { ChangePlayerCharacteristicsComponent } from '../play-with/change-player-characteristics/change-player-characteristics.component';
-import { RawStatsComponent } from '../play-with/raw-stats/raw-stats.component';
-import { RawBoxScoresComponent } from '../play-with/raw-box-scores/raw-box-scores.component';
-import { SortableStatsComponent } from '../play-with/sortable-stats/sortable-stats.component';
-import { SortableBoxScoreComponent } from '../play-with/sortable-box-score/sortable-box-score.component';
-import { DraftPlayerComponent } from '../play-with/draft-player/draft-player.component';
+import { SubstitutionPatternComponent } from './substitution-pattern/substitution-pattern.component';
+import { ChangePlayerCharacteristicsComponent } from './change-player-characteristics/change-player-characteristics.component';
+import { RawStatsComponent } from './raw-stats/raw-stats.component';
+import { RawBoxScoresComponent } from './raw-box-scores/raw-box-scores.component';
+import { SortableStatsComponent } from './sortable-stats/sortable-stats.component';
+import { SortableBoxScoreComponent } from './sortable-box-score/sortable-box-score.component';
+import { DraftPlayerComponent } from './draft-player/draft-player.component';
 
 
 @NgModule({
   declarations: [
     PlayWithAllTeamsComponent,
     AdvancedSettingQtrTableComponent,
-    SubstitutionPatternComponent,
     SingleGameComponent,
     ToggleButtonComponent,
 
+    SubstitutionPatternComponent,
     ChangePlayerCharacteristicsComponent,
     RawStatsComponent,
     RawBoxScoresComponent,

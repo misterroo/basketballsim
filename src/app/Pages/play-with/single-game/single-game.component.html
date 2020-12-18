@@ -2,14 +2,14 @@
         <div class="container-fluid">
             <div class="row">
               <div class="col-md-12 col-12">
-                <button type="button" class="previos_btn ml-3" (click)="backClicked()">
-                  <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i></button>
+                <!-- <button type="button" class="previos_btn ml-3" (click)="backClicked()">
+                  <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i></button> -->
                   </div>
             </div>
         </div>
         <div class="container mrtp">
           <div class="row">
-            <div class="col-md-3 x">
+            <div class="col-md-3 ">
                 <button class="btn btn-success btn-block btn_start" [disabled]="locate_disable" (click)="playSingleGame_Initial()" > Start Game</button>
                 <button class="btn btn-warning btn-block btn_reset" [disabled]="button_disable1" (click)="reset()"> Reset Game</button> <!---->
                 <button class="btn btn-primary btn-block btn_continue" [disabled]="button_disable"  (click)="continueChat()"> Continue Game</button>
@@ -18,7 +18,7 @@
                 <button class="btn btn-block btn_Home" [routerLink]="['/dashboard3/actualplayer']" > Actual Player Statistics </button>
               </div>
             </div>
-            <div class="col-md-6 y">
+            <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6">
                       <div class="dropdown d1">  
@@ -88,7 +88,7 @@
             </div>
             <div class="col-md-3">
                 <div class="row">                    
-                    <div class="col-md-12 z">
+                    <div class="col-md-12">
                         <h4> Pause options </h4> <br>                            
                         <div class="form-check radio">
                             <input type="radio" class="form-check-input point" name="radios" value = "1" [(ngModel)]="option" (ngModelChange)="after_Each_line($event)"> 

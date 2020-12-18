@@ -582,67 +582,23 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     if(this.enableDisableStatus == 'oneonone') {
       localStorage.setItem('gameData',JSON.stringify(this.gameArray));
       localStorage.setItem('gameOppData',JSON.stringify(this.gameArrayy));
-
     }
     if(this.enableDisableStatus == 'playallteam') {
       let x  = 82;
       if (this.showIndex == 'normal') {
         x = 82
-
       }  else if ( this.showIndex == '10') {
         x = 82 *10
-
       }  else if (this.showIndex == '100') {
         x = 82 *100
-
       }
       this.gameArray[0]['predictgames'] = x;
       localStorage.setItem('gameData',JSON.stringify(this.gameArray));
-      
-
     }
     if (this.enableDisableStatus === "allteam") {
     }
-
     this.shared.setPlaybyPlayData(this.getTableData);
-
   }
-  // goto(url) {
-  //   if(url != 'substitutionpattern' && url != 'draftplayer' 
-  //   && url != 'changeplayercharacteristics'  && this.getTableData.length == 0) {
-    
-  //     this.notifierService.notify("info", "Please run  simulation first");
-  //     return false;
-  //   }
-  //   this.router.navigate(['/' +url]);
-  //   if(this.enableDisableStatus == 'oneonone') {
-  //     localStorage.setItem('gameData',JSON.stringify(this.gameArray));
-  //     localStorage.setItem('gameOppData',JSON.stringify(this.gameArrayy));
-
-  //   }
-  //   if(this.enableDisableStatus == 'playallteam') {
-  //     let x  = 82;
-  //     if (this.showIndex == 'normal') {
-  //       x = 82
-
-  //     }  else if ( this.showIndex == '10') {
-  //       x = 82 *10
-
-  //     }  else if (this.showIndex == '100') {
-  //       x = 82 *100
-
-  //     }
-  //     this.gameArray[0]['predictgames'] = x;
-  //     localStorage.setItem('gameData',JSON.stringify(this.gameArray));
-      
-
-  //   }
-  //   if (this.enableDisableStatus === "allteam") {
-  //   }
-
-  //   this.shared.setPlaybyPlayData(this.getTableData);
-
-  // }
 
   async tableDataAllteam() {
     // const formData = new FormData();
