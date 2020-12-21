@@ -947,12 +947,14 @@ body .ui-tabview.ui-tabview-top .ui-tabview-nav li {
   background-color: #dee2e6 !important;
 }
 li.list.nav-item.hover_clr.active {
-  background: #ecc400;
-  color: #000 !important;
+  // background: #ecc400;
+  // color: #000 !important;
+  color:#fff !important;
 }
 
 li.list.nav-item.hover_clr.active a.col {
-  color: #000 !important;
+  // color: #000 !important;
+  color: #fff;
 }
 .ui-tabview.ui-widget.ui-widget-content.ui-corner-all.ui-tabview-top {
   margin: 0 0 0 8px;

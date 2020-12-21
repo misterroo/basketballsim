@@ -239,7 +239,6 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     })
 
     this.gameArray = gameArrayData;
-    console.log('testdata',this.gameArray);
 
     if(this.enableDisableStatus == 'oneonone') {
       localStorage.setItem('gameData',JSON.stringify(this.gameArray));

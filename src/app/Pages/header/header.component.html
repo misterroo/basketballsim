@@ -14,8 +14,7 @@
                   <a class="nav-link col home" [routerLink]='"/dashboard3/singlegamecomponent"'>HOME</a>
                 </li>
               </ul>            
-            </div>                   
-
+            </div>   
           </div>
           <div class="col-9">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -24,14 +23,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <ul class="navbar-nav ">
-                <!-- [ngClass]="{'activew': router.url == '/dashboard3/playwithallteam' || '/dashboard3/advancedsettingqtrtable'}" -->
-                <!-- <li class="list nav-item hover_clr"  routerLinkActive="active"> <a class="col"  [routerLink]="['/dashboard/chooseteam']"  routerLinkActive="router-link-active" >Full Season Version</a> </li> -->
-                <li class="list nav-item hover_clr"  routerLinkActive="active"> <a class="col" (click)="this.goToNext()" routerLinkActive="router-link-active" >Full Season Version</a> </li>
-                <li class="list nav-item hover_clr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> <a class="col"  [routerLink]="['/dashboard3/singlegamecomponent']" >Single Game Version</a> </li>
-                <li class="list nav-item hover_clr" routerLinkActive="active"><a class="col" [routerLink]="['/dashboard/basketballdatabasecomponent']" routerLinkActive="router-link-active"  >Basketball Statistics Database</a> </li>
-                
-                
-                
+                <li class="list nav-item hover_clr" [ngClass]="{'active': lastPath === 'chooseteam' || this.lastPath === 'playwithallteam' ||  this.lastPath === 'advancedsettingqtrtable'}"> 
+                  <a class="col" (click)="this.goToNext()" >Full Season Version</a> </li>       
+                <li class="list nav-item hover_clr" [ngClass]="{'active': lastPath === 'singlegamecomponent'}">
+                  <a class="col" (click)="this.goToSingleGame()">Single Game Version</a> </li>
+                <li class="list nav-item hover_clr" [ngClass]="{'active': lastPath === 'basketballdatabasecomponent'}">
+                  <a class="col"  (click)="this.goToDatabase()" routerLinkActive="router-link-active"  >Basketball Statistics Database</a> </li>
                 <li class="nav-item help">
                   <a class="nav-link" href="#"><i class="fa fa-question-circle-o "></i>HELP</a>
                 </li>
@@ -40,9 +37,7 @@
                     REGISTER</a> 
                 </li>
               </ul>
-
             </div>
-            <!-- <div id="triangle-bottomright"></div> -->
           </div>
         </div>
       </div>

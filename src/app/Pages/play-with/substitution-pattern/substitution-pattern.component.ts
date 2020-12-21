@@ -76,7 +76,7 @@ export class SubstitutionPatternComponent implements OnInit {
     this.allTheTeams = localStorage.getItem('showStatus');
 
     this.allTheTeams = localStorage.getItem('showStatus');
-    console.log('this.gameData', this.allTheTeams)
+    // console.log('this.gameData', this.allTheTeams)
 
     this.oneononeData = localStorage.getItem('showStatus');
     if (this.oneononeData != 'allteam') {
@@ -102,7 +102,7 @@ export class SubstitutionPatternComponent implements OnInit {
       // this.teamName = localStorage.getItem('homeTeam');
       if (localStorage.getItem('gameData') != "") {
         const gameArray = JSON.parse(localStorage.getItem('gameData'));
-        console.log("check1")
+        // console.log("check1")
         this.teamName = gameArray[0].predictaway;
       } else if (localStorage.getItem('homeTeam')) {
         this.teamName = localStorage.getItem('homeTeam');
@@ -253,7 +253,7 @@ export class SubstitutionPatternComponent implements OnInit {
         item.data = myDaya;
       }
     }
-    console.log(this.listData);
+    // console.log(this.listData);
   }
 
   backClicked() {
@@ -267,11 +267,15 @@ export class SubstitutionPatternComponent implements OnInit {
     if (!this.selectedPlayer) {
       this.isLocate = true;
       this.selectedPlayer = Object.assign({}, this.assignedPlayer);
+      console.log(this.selectedPlayer)
     } else if (this.selectedPlayer2) {
-
       this.isLocate = true
       this.selectedPlayer = this.selectedPlayer2
     }
+    // else if(this.selectPlayer) {
+    //   console.log('P')
+    //   this.isLocate = true
+    // }
     this.locate_disable = true
   }
 
@@ -290,8 +294,6 @@ export class SubstitutionPatternComponent implements OnInit {
 
 
   selectPlayer(item) {
-
-
     this.playersubsData.rightdata.map(item => {
       item.activeRow = false
     })
@@ -333,9 +335,7 @@ export class SubstitutionPatternComponent implements OnInit {
     this.isLocate = false;
     this.selectedPlayer = { player_name: this.b, minutes: 0 };
 
-
     for (let item of this.listData) {
-
       for (let op of item) {
         if (op.pos1 == this.selectedPlayer.player_name) { i++ }
         else if (op.pos2 == this.selectedPlayer.player_name) { i++ }
@@ -359,8 +359,10 @@ export class SubstitutionPatternComponent implements OnInit {
   mdl() {
     if (!this.leftHandSideSelected) {
       this.displayBasic = true;
+      this.isLocate = true
     } else {
       this.changePosition()
+      this.isLocate = true
     }
   }
 
@@ -390,7 +392,6 @@ export class SubstitutionPatternComponent implements OnInit {
         if ((i + 1) == this.listData.length) {
           this.changeRightSideData(this.selectedPlayer, this.multiCheckedValue)
         }
-
       });
     }
     else if (this.leftHandSideSelected) {   // single wala
@@ -405,21 +406,16 @@ export class SubstitutionPatternComponent implements OnInit {
               else if (obj.pos3 == this.selectedPlayer.player_name) { obj.pos3 = this.selectedPlayer2.player_name }
               else if (obj.pos4 == this.selectedPlayer.player_name) { obj.pos4 = this.selectedPlayer2.player_name }
               else if (obj.pos5 == this.selectedPlayer.player_name) { obj.pos5 = this.selectedPlayer2.player_name }
-
               this.isLocate = true;
-
             }
           });
-
           this.spinner.hide();
           if ((i + 1) == this.listData.length) {
 
             this.changeRightSideData(this.selectedPlayer, this.selectedPlayer2)
           }
-
         });
-
-
+        this.isLocate = true
       }
       this.locatPlayer()
     }
@@ -433,11 +429,9 @@ export class SubstitutionPatternComponent implements OnInit {
               if (obj[item] == this.selectedPlayer.player_name) {
                 obj[item] = this.selectedPlayer2.player_name
                 this.isLocate = true;
-
               }
             })
           });
-
           this.spinner.hide();
           if ((i + 1) == this.listData.length) {
 
@@ -536,8 +530,6 @@ export class SubstitutionPatternComponent implements OnInit {
         })
       }
     }
-
-
   }
 
 
@@ -621,46 +613,9 @@ export class SubstitutionPatternComponent implements OnInit {
     this.getPlayersSubs();
   }
 
-  reactToControlClick(op, data, i, j) {
-  }
-
-  //  multiCheck(e,op,pos,i,j,m){
-  //   //  this.static_Id = m;
-  //    this.leftHandSideSelected =false;
-  //   //  console.log("e",e.target.checked)
-  //   if(this.multiCheckedValue.length > 0){
-  //     let matched = this.multiCheckedValue.findIndex(item => item.pos == i && item.subpos == j);
-  //     if(matched != -1){
-  //       this.multiCheckedValue[matched] = {
-  //         pos:i,
-  //         subpos:j,
-  //         selPlayer:pos,
-  //         // static_Id : m
-  //       }
-  //     }else{
-  //       this.multiCheckedValue.push({
-  //         pos:i,
-  //         subpos:j,
-  //         selPlayer:pos,
-  //         // static_Id : m
-  //       })
-  //     }
-  //   }else{
-  //     this.multiCheckedValue.push({
-  //       pos:i,
-  //       subpos:j,
-  //       selPlayer:pos,
-  //       // static_Id : m
-  //     })
-  //   }
-  //  }
-
-
-
   multiCheck(e, op, pos, i, j, l) {
     console.log("multicheck", pos)
     this.leftHandSideSelected = false;
-    //  console.log("e",e.target.checked)
     if (this.multiCheckedValue.length > 0) {
       let matched = this.multiCheckedValue.findIndex(item => item.pos == i && item.subpos == j);
       if (matched != -1) {
@@ -691,7 +646,7 @@ export class SubstitutionPatternComponent implements OnInit {
 
 
   getTRetrunSelect(pos, i, j, l) {
-    console.log(pos, i, j, l)
+    // console.log(pos, i, j, l)
     if (this.multiCheckedValue.length > 0) {
       let val = this.multiCheckedValue.filter(item => item.pos == i && item.subpos == j && item.metaSubPos == l && item.selPlayer == pos)
       if (val.length > 0) {

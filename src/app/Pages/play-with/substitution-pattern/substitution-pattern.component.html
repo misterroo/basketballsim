@@ -69,296 +69,192 @@
                                                 </div>
                                             </div>
 
-
-                                            <ng-container *ngFor="let item of listData; let i = index;">
-                                                
-                                                <div>  <!--col-md-6-->
-                                                    <div class="leagues-teams-box plr-15 media_font">
-                                                        
-                                                        <ng-container>
-                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title point">
-                                                                    <ng-container *ngIf="i < 4">
-                                                                        <ng-container *ngIf="i === 0">
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title ">
-                                                                                    <div class="col-md-4 qtr">QTR - 1</div>
-                                                                                    <div class="col-md-8 number_txt_clr  zff">0-4</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4"></div>
-                                                                                    <div class="col-md-8 number_txt_clr fe">4-8</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4"></div>
-                                                                                    <div class="col-md-8 number_txt_clr et">8-12</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </ng-container>
-                                                                        <ng-container *ngIf="i === 1">
-                                                                            <div class="col-md-4 ">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4 qtr">QTR - 2</div>
-                                                                                    <div class="col-md-8 number_txt_clr zf">12-16</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4"></div>
-                                                                                    <div class="col-md-8 number_txt_clr fe">16-20</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4"></div>
-                                                                                    <div class="col-md-8 number_txt_clr et">20-24</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </ng-container>
-                                                                        <ng-container *ngIf="i === 2">
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4 qtr">QTR - 3</div>
-                                                                                    <div class="col-md-8 number_txt_clr zf">24-28</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4"></div>
-                                                                                    <div class="col-md-8 number_txt_clr fe">28-32</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4"></div>
-                                                                                    <div class="col-md-8 number_txt_clr et">32-36</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </ng-container>
-                                                                        <ng-container *ngIf="i === 3">
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4 qtr">QTR - 4</div>
-                                                                                    <div class="col-md-8 number_txt_clr zf">36-40</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4"></div>
-                                                                                    <div class="col-md-8 number_txt_clr fe">40-44</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
-                                                                                    <div class="col-md-4"></div>
-                                                                                    <div class="col-md-8 number_txt_clr et">44-48</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </ng-container>
-                                                                    </ng-container>
-                                                                </div>
-
-                                                                <div class="row ">   
-                                                                    <div class="col-md-4" *ngFor="let op of item;let j = index" >
-                                                                        <div class="row dark-row-substitution-inner">
-                                                                            <div class="col-4 cs">
-                                                                                C
-                                                                            </div>                                                                          
-                                                                            <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,1) && static_Id == 1)? true : false}" > -->
-                                                                                <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos1,i,j,1)? true : false}" > 
-                                                                                    <label class="pointer"> 
-                                                                                        <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos1,i,j,1)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos1+'1'">
-                                                                                        {{op.pos1}}
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos1,i,j,1)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos1 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos1  && static_Id == 1) ? true : false} "> 
-                                                                                    <div >
-                                                                                        {{op.pos1}}
-                                                                                    </div>                                                                                
-                                                                                </div>                                                                             
-                                                                        </div> 
-
-                                                                        <div class="row dark-row-substitution-inner" >
-                                                                            <div class="col-4 cs">
-                                                                                PF
-                                                                            </div>                                                                    
-                                                                            <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,2) && static_Id == 2)? true : false}" > -->
-                                                                                <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos2,i,j,2)? true : false}" >  
-                                                                                    <label class="pointer">           
-                                                                                        <input type="radio" style="visibility: hidden;" (change)="multiCheck($event,op,op.pos2,i,j,2)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos2+'2'">
-                                                                                        {{op.pos2}}
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos2,i,j,2)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos2 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos2  && static_Id == 2) ? true : false} "> 
-                                                                                    <div >
-                                                                                        {{op.pos2}}
-                                                                                    </div>                                                                                
-                                                                                </div>
-                                                                        </div> 
-
-                                                                        <div class="row dark-row-substitution-inner">
-                                                                            <div class="col-4 cs">
-                                                                                SF
-                                                                            </div>                                                                         
-                                                                            <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,3) && static_Id == 3)? true : false}" > -->
-                                                                                    <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos3,i,j,3)? true : false}" > 
-                                                                                <label class="pointer"> 
-                                                                                    <input type="radio" style="visibility: hidden;" (change)="multiCheck($event,op,op.pos3,i,j,3)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos3+'3'">
-                                                                                    {{op.pos3}}
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos3,i,j,3)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos3 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos3  && static_Id == 3) ? true : false} "> 
-                                                                                <div >
-                                                                                    {{op.pos3}}
-                                                                                </div>                                                                                
-                                                                            </div>
-                                                                        </div> 
-
-                                                                        <div class="row dark-row-substitution-inner">
-                                                                            <div class="col-4 cs">
-                                                                                SG
-                                                                            </div>                                                                            
-                                                                            <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,4) && static_Id == 4)? true : false}" > -->
-                                                                                <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos4,i,j,4)? true : false}" > 
-                                                                                <label class="pointer"> 
-                                                                                    <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos4,i,j,4)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos4+'4'">
-                                                                                    {{op.pos4}}
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos4,i,j,4)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos4 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos4  && static_Id == 4) ? true : false} "> 
-                                                                                <div >
-                                                                                    {{op.pos4}}
-                                                                                </div>                                                                                
-                                                                            </div>
-                                                                        </div> 
-                                                                        
-                                                                        <div class="row dark-row-substitution-inner">
-                                                                            <div class="col-4 cs">
-                                                                                PG
-                                                                            </div>                                                                   
-                                                                            <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,5) && static_Id == 5)? true : false}" > -->
-                                                                            <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos5,i,j,5)? true : false}" > 
-                                                                                <label class="pointer">  
-                                                                                    <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos5,i,j,5)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos5+'5'">
-                                                                                    {{op.pos5}}
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos5,i,j,5)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos5 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos5 && static_Id == 5) ? true : false} "> 
-                                                                                <div >
-                                                                                    {{op.pos5}}
-                                                                                </div>                                                                                
+                                        <ng-container *ngFor="let item of listData; let i = index;"> 
+                                            <div> 
+                                                <div class="leagues-teams-box plr-15 media_font">
+                                                    <ng-container>
+                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title point">
+                                                                <ng-container *ngIf="i < 4">
+                                                                    <ng-container *ngIf="i === 0">
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title ">
+                                                                                <div class="col-md-4 qtr">QTR - 1</div>
+                                                                                <div class="col-md-8 number_txt_clr  zff">0-4</div>
                                                                             </div>
                                                                         </div>
-                                                                    </div> 
-                                                                </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4"></div>
+                                                                                <div class="col-md-8 number_txt_clr fe">4-8</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4"></div>
+                                                                                <div class="col-md-8 number_txt_clr et">8-12</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="i === 1">
+                                                                        <div class="col-md-4 ">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4 qtr">QTR - 2</div>
+                                                                                <div class="col-md-8 number_txt_clr zf">12-16</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4"></div>
+                                                                                <div class="col-md-8 number_txt_clr fe">16-20</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4"></div>
+                                                                                <div class="col-md-8 number_txt_clr et">20-24</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="i === 2">
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4 qtr">QTR - 3</div>
+                                                                                <div class="col-md-8 number_txt_clr zf">24-28</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4"></div>
+                                                                                <div class="col-md-8 number_txt_clr fe">28-32</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4"></div>
+                                                                                <div class="col-md-8 number_txt_clr et">32-36</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="i === 3">
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4 qtr">QTR - 4</div>
+                                                                                <div class="col-md-8 number_txt_clr zf">36-40</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4"></div>
+                                                                                <div class="col-md-8 number_txt_clr fe">40-44</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row dark-row-substitution-inner dark-row-substitution-inner-title">
+                                                                                <div class="col-md-4"></div>
+                                                                                <div class="col-md-8 number_txt_clr et">44-48</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </div>
 
-
-                                                                <!-- <div class="row ">   
-                                                                    <div class="col-md-4" *ngFor="let op of item;let j = index" >
-                                                                        <div class="row dark-row-substitution-inner">
-                                                                            <div class="col-4">
-                                                                                C
-                                                                            </div>                                                                          
-                                                                           
-                                                                                <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos1,i,j,1)? true : false}" > 
+                                                            <div class="row ">   
+                                                                <div class="col-md-4" *ngFor="let op of item;let j = index" >
+                                                                    <div class="row dark-row-substitution-inner">
+                                                                        <div class="col-4 cs">
+                                                                            C
+                                                                        </div>                                                                          
+                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,1) && static_Id == 1)? true : false}" > -->
+                                                                            <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos1,i,j,1)? true : false}" > 
                                                                                 <label class="pointer"> 
-                                                                           
-                                                                                    <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos1,i,j,1)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos1">
+                                                                                    <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos1,i,j,1)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos1+'1'">
                                                                                     {{op.pos1}}
                                                                                 </label>
                                                                             </div>
-                                                                            <div class="col-8 pointer" (click)="selectPlayerl(op,op.pos1,i,j,1)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos1 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos1  && static_Id == 1) ? true : false} "> 
+                                                                            <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos1,i,j,1)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos1 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos1  && static_Id == 1) ? true : false} "> 
                                                                                 <div >
                                                                                     {{op.pos1}}
                                                                                 </div>                                                                                
                                                                             </div>                                                                             
-                                                                        </div> 
+                                                                    </div> 
 
-                                                                        <div class="row dark-row-substitution-inner" >
-                                                                            <div class="col-4">
-                                                                                PF
-                                                                            </div>                                                                       
-                                                                            
-                                                                                <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos2,i,j,2)? true : false}" >  
-                                                                                <label class="pointer"> 
-                                                                                    
-                                                                                    <input type="radio" style="visibility: hidden;" (change)="multiCheck($event,op,op.pos2,i,j,2)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos2">
+                                                                    <div class="row dark-row-substitution-inner" >
+                                                                        <div class="col-4 cs">
+                                                                            PF
+                                                                        </div>                                                                    
+                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,2) && static_Id == 2)? true : false}" > -->
+                                                                            <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos2,i,j,2)? true : false}" >  
+                                                                                <label class="pointer">           
+                                                                                    <input type="radio" style="visibility: hidden;" (change)="multiCheck($event,op,op.pos2,i,j,2)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos2+'2'">
                                                                                     {{op.pos2}}
                                                                                 </label>
                                                                             </div>
-                                                                            <div class="col-8 pointer" (click)="selectPlayerl(op,op.pos2,i,j,2)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos2 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos2  && static_Id == 2) ? true : false} "> 
+                                                                            <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos2,i,j,2)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos2 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos2  && static_Id == 2) ? true : false} "> 
                                                                                 <div >
                                                                                     {{op.pos2}}
                                                                                 </div>                                                                                
                                                                             </div>
-                                                                        </div> 
+                                                                    </div> 
 
-                                                                        <div class="row dark-row-substitution-inner">
-                                                                            <div class="col-4">
-                                                                                SF
-                                                                            </div>                                                                         
-                                                                            
-                                                                                    <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos3,i,j,3)? true : false}" > 
-                                                                                <label class="pointer"> 
-                                                                            
-                                                                                    <input type="radio" style="visibility: hidden;" (change)="multiCheck($event,op,op.pos3,i,j,3)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos3">
-                                                                                    {{op.pos3}}
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="col-8 pointer" (click)="selectPlayerl(op,op.pos3,i,j,3)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos3 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos3  && static_Id == 3) ? true : false} "> 
-                                                                                <div >
-                                                                                    {{op.pos3}}
-                                                                                </div>                                                                                
-                                                                            </div>
-                                                                        </div> 
-
-                                                                        <div class="row dark-row-substitution-inner">
-                                                                            <div class="col-4">
-                                                                                SG
-                                                                            </div>                                                                            
-                                                                            
-                                                                                <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos4,i,j,4)? true : false}" > 
-                                                                                <label class="pointer"> 
-                                                                            
-                                                                                    <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos4,i,j,4)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos4">
-                                                                                    {{op.pos4}}
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="col-8 pointer" (click)="selectPlayerl(op,op.pos4,i,j,4)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos4 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos4  && static_Id == 4) ? true : false} "> 
-                                                                                <div >
-                                                                                    {{op.pos4}}
-                                                                                </div>                                                                                
-                                                                            </div>
-                                                                        </div> 
-                                                                        
-                                                                        <div class="row dark-row-substitution-inner">
-                                                                            <div class="col-4">
-                                                                                PG
-                                                                            </div>                                                                  
-                                                                            
-                                                                            <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos5,i,j,5)? true : false}" > 
-                                                                                <label class="pointer">  
-                                                                            
-                                                                                    <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos5,i,j,5)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos5">
-                                                                                    {{op.pos5}}
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="col-8 pointer" (click)="selectPlayerl(op,op.pos5,i,j,5)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos5 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos5 && static_Id == 5) ? true : false} "> 
-                                                                                <div >
-                                                                                    {{op.pos5}}
-                                                                                </div>                                                                                
-                                                                            </div>
+                                                                    <div class="row dark-row-substitution-inner">
+                                                                        <div class="col-4 cs">
+                                                                            SF
+                                                                        </div>                                                                         
+                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,3) && static_Id == 3)? true : false}" > -->
+                                                                                <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos3,i,j,3)? true : false}" > 
+                                                                            <label class="pointer"> 
+                                                                                <input type="radio" style="visibility: hidden;" (change)="multiCheck($event,op,op.pos3,i,j,3)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos3+'3'">
+                                                                                {{op.pos3}}
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos3,i,j,3)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos3 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos3  && static_Id == 3) ? true : false} "> 
+                                                                            <div >
+                                                                                {{op.pos3}}
+                                                                            </div>                                                                                
                                                                         </div>
                                                                     </div> 
-                                                                </div> -->
-                                                            
-                                                        </ng-container>
-                                                    </div>
+
+                                                                    <div class="row dark-row-substitution-inner">
+                                                                        <div class="col-4 cs">
+                                                                            SG
+                                                                        </div>                                                                            
+                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,4) && static_Id == 4)? true : false}" > -->
+                                                                            <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos4,i,j,4)? true : false}" > 
+                                                                            <label class="pointer"> 
+                                                                                <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos4,i,j,4)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos4+'4'">
+                                                                                {{op.pos4}}
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos4,i,j,4)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos4 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos4  && static_Id == 4) ? true : false} "> 
+                                                                            <div >
+                                                                                {{op.pos4}}
+                                                                            </div>                                                                                
+                                                                        </div>
+                                                                    </div> 
+                                                                    
+                                                                    <div class="row dark-row-substitution-inner">
+                                                                        <div class="col-4 cs">
+                                                                            PG
+                                                                        </div>                                                                   
+                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,5) && static_Id == 5)? true : false}" > -->
+                                                                        <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos5,i,j,5)? true : false}" > 
+                                                                            <label class="pointer">  
+                                                                                <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos5,i,j,5)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos5+'5'">
+                                                                                {{op.pos5}}
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos5,i,j,5)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos5 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos5 && static_Id == 5) ? true : false} "> 
+                                                                            <div >
+                                                                                {{op.pos5}}
+                                                                            </div>                                                                                
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                            </div>                                                            
+                                                    </ng-container>
                                                 </div>
-                                            </ng-container>
+                                            </div>
+                                        </ng-container>
                                         </div>
                                         <br />
                                         <div class="col-sm-12">

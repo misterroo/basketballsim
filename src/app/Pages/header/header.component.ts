@@ -6,11 +6,16 @@ import { AdminService } from '../../../services/admin.service';
 import * as $ from 'jquery';
 import { NotifierService } from "angular-notifier";
 import { SharedService } from 'src/app/services/shared.service';
+
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
+
 export class HeaderComponent implements OnInit {
   Data: any = []
   userName: any = '';
@@ -48,6 +53,8 @@ export class HeaderComponent implements OnInit {
   guestResult: any;
   pageUrl: any;
   uri:any = '';
+  lastPath: any;
+  
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -56,9 +63,6 @@ export class HeaderComponent implements OnInit {
     private notifierService: NotifierService,
     public sharedService: SharedService,
   ) {
-    this.uri = router.url;
-    console.log(router.url)
-    console.log(this.uri)
     this.sharedService.currentModel.subscribe(message => {
       if (message === true) {
         this.display = true;
@@ -82,7 +86,8 @@ export class HeaderComponent implements OnInit {
   @ViewChild('forgotForm', { static: false }) forgotForm: NgForm;
 
   ngOnInit(): void {
-    
+    this.uri = this.router.url.split('/').pop();
+    this.lastPath = window.location.href.split('/').pop()   
     var current_url=window.location.href;
     var pageUrlll=current_url.substr(current_url.lastIndexOf('/') + 1);
     this.pageUrl = pageUrlll;
@@ -97,6 +102,9 @@ export class HeaderComponent implements OnInit {
 
     // this.sharedService.currentToken.subscribe(message => this.userName = message);
   }
+
+  
+
   async login() {
 
     this.spinner.show();
@@ -210,8 +218,29 @@ export class HeaderComponent implements OnInit {
       this.doGuestLogin();
     } else {
       this.router.navigate(['/dashboard/chooseteam']);
+      setTimeout(()=>{
+        this.lastPath = window.location.href.split('/').pop();
+      },1000)
     }
   }
+  goToSingleGame() {
+    if (localStorage.getItem('userToken') === '' || localStorage.getItem('userToken') === null || localStorage.getItem('userToken') === undefined) {
+      this.doGuestLogin();
+    } else {
+      this.router.navigate(['/dashboard3/singlegamecomponent']);
+      setTimeout(()=>{
+        this.lastPath = window.location.href.split('/').pop();
+      },1000)
+    }
+  }
+  goToDatabase() {
+      this.router.navigate(['/dashboard/basketballdatabasecomponent']);
+      setTimeout(()=>{
+        this.lastPath = window.location.href.split('/').pop();
+      },1000)
+  }
+
+
   async doGuestLogin() {
 
     this.spinner.show();
