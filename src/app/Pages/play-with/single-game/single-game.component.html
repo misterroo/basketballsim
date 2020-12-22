@@ -30,7 +30,7 @@
                           <p-dropdown class="pDropdwon dropdown_border dropdown" [options]="opponentData" optionLabel="teams" 
                             optionValue="_id" placeholder="CHOOSE A TEAM" (ngModelChange)="getTeamValue($event)" [(ngModel)]="model.opponent" name="team" required></p-dropdown> <!--*ngIf="this.enableDisableStatus !== 'allteam'; else TEAM"-->
                       </div>
-                      <button class="btn btn-dark btn-block btn_sub1"  routerLinkActive="router-link-active" (click)="goSubPattern('Away')">Away Team Sub Pattern</button> <!---->
+                      <button class="btn btn-dark btn-block btn_sub1"  routerLinkActive="router-link-active" (click)="goSubPattern('Away')">Away Team Sub Pattern</button>
                     </div>
                     <div class="col-md-6">
                       <div class="dropdown d3">  
@@ -42,12 +42,12 @@
                           <p-dropdown class="pDropdwon dropdown" [options]="teamData" optionLabel="teams" optionValue="_id" 
                           placeholder="CHOOSE OPPONENT" (ngModelChange)="getOpponentValue($event)" [(ngModel)]="model.team" name="opponent" required></p-dropdown> <!--*ngIf="this.enableDisableStatus !== 'playallteam' && this.enableDisableStatus !== 'allteam'; else OPPONENT"-->
                       </div>
-                      <button class="btn btn-dark btn-block btn_sub"  routerLinkActive="router-link-active" (click)="goSubPattern('Home')"> Home Team Sub Pattern</button> <!--[routerLink]="['/substitutionpattern']"-->
+                      <button class="btn btn-dark btn-block btn_sub"  routerLinkActive="router-link-active" (click)="goSubPattern('Home')"> Home Team Sub Pattern</button> 
                     </div>
                 </div>      
                 <div class="row">
-                    <div class="col-md-6 margin_table">
-                        <table>
+                    <div class="col-md-12 margin_table">
+                        <!-- <table>
                             <thead>
                                 <tr class="trtt">
                                   <th class="tab tdtt">QTR:1</th>
@@ -57,17 +57,11 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <!-- <tr class="trtt" *ngFor="let item of this.play_Single_Stats" >
-                                  <td class="tdtt">{{item.quarter}}</td>
-                                  <td class="tad tdtt">{{item.away_score}}</td>
-                                  <td class="tad tdtt">{{item.home_score}}</td>
-                                  <td class="tdtt">{{item.clock}}</td>
-                                </tr> -->
                                 <tr class="trtt" >
-                                  <td class="tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].quarter:'-'}}</td>
-                                  <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_score:'-'}}</td>
-                                  <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_score:'-'}}</td>
-                                  <td class="tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].clock:'-'}}</td>
+                                  <td class="tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].quarter:'0'}}</td>
+                                  <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_score:'0'}}</td>
+                                  <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_score:'0'}}</td>
+                                  <td class="tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].clock:'0'}}</td>
                                 </tr>
                                 <tr class="trtt">                                             
                                   <th class="tad tdtt" >Fouls</th>
@@ -76,15 +70,79 @@
                                   <th class="tad tdtt" >Fouls</th>
                                 </tr>
                                 <tr class="trtt">
-                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_fouls:'-'}}</td>
-                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_possessions:'-'}}</td>
-                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_possessions:'-'}}</td>
-                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_fouls:'-'}}</td>
+                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_fouls:'0'}}</td>
+                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_possessions:'0'}}</td>
+                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_possessions:'0'}}</td>
+                                    <td class="tad tdtt">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_fouls:'0'}}</td>
                                   </tr>
                             </tbody>
-                        </table>
+                        </table> -->
+                       <div class="row">
+                        <div class="col-md-3">
+                          <!-- <p class="font">Away Team</p> -->
+                          <div class="homebx">
+                          <p class="font">AWAY TEAM</p>
+                          <p class="zero">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_score:'0'}}</p>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <!-- <p class="fot">Clock</p> -->
+                          <div class="circle">
+                            <p class="cl_font">CLOCK</p>
+                            <p class="zer">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].clock:'0'}}</p>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <!-- <p class="font">Home Team</p> -->
+                          <div class="awaybx">
+                          <p class="font">HOME TEAM</p>
+                          <p class="zero">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_score:'0'}}</p>
+                          </div>
+                        </div>
+                       </div>
                     </div>
-                </div>                           
+                </div>      
+                <div class="row jk">
+                  <div class="col-md-3">
+                    <!-- <p class="fon">Foul</p> -->
+                    <div class="fou">
+                      <p class="font">FOUL</p>
+                      <p class="z">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_fouls:'0'}}</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <!-- <p class="fot">QTR</p> -->
+                    <div class="qtr">
+                    <p class="font">QTR</p>
+                    <p class="ze">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].quarter:'0'}}</p>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <!-- <p class="fon">Foul</p> -->
+                    <div class="fo">
+                     <p class="font">FOUL</p>
+                     <p class="z">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_fouls:'0'}}</p>
+                    </div>
+                  </div>
+                  
+                </div>                     
+                <div class="row jk">
+                  <div class="col-md-3">
+                    <!-- <p class="font">Possession</p> -->
+                    <div class="pos">
+                      <p class="font">POSSESSION</p>
+                      <p class="p">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].away_possessions:'0'}}</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6"> </div>
+                  <div class="col-md-3">
+                    <!-- <p class="font">Possession</p> -->
+                    <div class="pos">
+                     <p class="font">POSSESSION</p>
+                     <p class="p">{{play_Single_Stats.length > 0 ? play_Single_Stats[0].home_possessions:'0'}}</p>
+                    </div>
+                  </div>
+                </div>       
             </div>
             <div class="col-md-3">
                 <div class="row">                    
