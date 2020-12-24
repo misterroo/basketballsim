@@ -8,9 +8,11 @@
                         <!-- <button type="button" class="previos_btn ml-3" (click)="backClicked()">
                             <i class="fa fa-chevron-left mr-2" aria-hidden="true"></i></button>
                             <h1>Draft player</h1> -->
-                            <div class="sortable_right_content read">
+                            <div class="sortable_right_content read ">
                                 <span> <button class="btn_clear" (click)="replace()">REPLACE</button></span>
                                 <span> <button class="btn_clean" (click)="add()" >ADD</button></span>
+                                <span> <button class="btn_clear" (click)="setPlayerDraft()">OK</button></span> 
+                                <span> <button class="btn_clean" (click)="closed()">CANCEL</button></span>
                             </div> 
                             <!-- <ol class="breadcrumb col-md-7 bread_mrgin">                                           
                                 <li class="breadcrumb-item point hover_clr" *ngIf="this.oneononeData == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >1 on 1 Matchup </a></li>                  
@@ -139,7 +141,7 @@
 
                             <div class="path"> 
                                 <span> <button class="btn_ok" (click)="setPlayerDraft()">OK</button></span> 
-                                <span> <button class="btn_cancel" (click)="closed()">CANCEL</button></span><!--cancelClicked()-->
+                                <span> <button class="btn_cancel" (click)="closed()">CANCEL</button></span>
                             </div>
                         </div>
                     </div>
