@@ -559,13 +559,13 @@
       }
 
       .bread_mrgin {
-        top: 80px;
+        top: 65%;
       }
 
       #advancedsettingqtr .previos_btn{
           padding: 5px 17px;
           font-size: 26;
-          margin-top: 7%;
+          margin-top: 6%;
       }
 
       #advancedsettingqtr .simulation{
@@ -589,6 +589,9 @@
       #advancedsettingqtr .five_btn {
         padding-top: 73px;
       }
+      li.ere {
+        margin: 28px 0 0 0 !important;
+      }
 
    }
 
@@ -596,6 +599,9 @@
   @media screen and (max-device-width: 768px) {
     .bread_mrgin{
       top: 76px;
+    }
+    #advancedsettingqtr .bottom-btn .btn {
+      font-size: 15px;
     }
 
     #advancedsettingqtr{

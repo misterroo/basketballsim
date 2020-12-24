@@ -1044,11 +1044,13 @@
 
 @media only screen and (max-width: 1499px) {
 
+    th.note1 {
+        font-size: 12px;
+    }
     #substitutionpattern .previos_btn{
         padding: 5px 17px;
         font-size: 26px;
     }
-
     .media_font {
         font-size: 12px;
     }
@@ -1056,33 +1058,33 @@
         font-size: 17px;
     }
     .rr {
-        margin-left: 67%;
-    }
-
-    #substitutionpattern .btn_black1{
-        padding: 7px 17px;
+        margin-left: 58%;
         font-size: 17px;
     }
-
-    #substitutionpattern .btn_black{
-        padding: 9px 20px;
+    #substitutionpattern .btn_black1 {
+        padding: 7px 11px;
+        margin: 0 0 0 0;
+        font-size: 17px;
+    }
+    #substitutionpattern .btn_black {
+        padding: 7px 13px;
+        // padding: 9px 20px;
         margin-left: 0px;
     }
-
-    #substitutionpattern .btn_yellow{
-        padding: 7px 17px;
+    #substitutionpattern .btn_yellow {
+        // padding: 7px 17px;
+        padding: 6px 13px;
+        margin: 0 6px 0 7px;
     }
-
-    #substitutionpattern h1{
+    #substitutionpattern h1 {
         margin-left: 102px;
     }
-
     .pt-5, .py-5 {
         padding-top: 0rem !important;
     }
-
-    
-
+    .bread {
+        margin: 0 0 0 10px;
+    }   
 }
 
 @media only screen and (max-width: 1024px){
@@ -1242,9 +1244,6 @@
     }
 }
 
-@media only screen and (max-width: 1499px){
-    
-}
 h2.z {
     font-size: 23px;
 }

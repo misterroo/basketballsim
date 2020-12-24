@@ -742,6 +742,12 @@
           }
 
      @media only screen and (max-width: 1499px) {
+        #sortablebox .datatable .sortable_right_content {
+            right: 23%;
+        }
+        #sortablebox .left {
+            margin: 1% 0 0 7%;
+        }
             #sortablebox .previos_btn{
                 padding: 5px 17px;
             }

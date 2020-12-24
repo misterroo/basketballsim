@@ -3,7 +3,7 @@
     background-repeat: no-repeat;
     background-position: right bottom;
     background-size: 36%;
-    
+    margin-bottom: 50px;
     font-family: 'Fjalla One', sans-serif !important;
     .navi{
         position: relative;
@@ -12,7 +12,7 @@
         background-color: #2F3137 !important;
     }
     nav.navbar {
-        display: block;
+        // display: block;
       }
       .navbar .container {
         display: block;
@@ -41,9 +41,9 @@
         // margin-left: 60px;
         // height: 152px;
         // width: 111px;
-        position: absolute;
-        top: -4px;
-        width: 70px;
+        // position: absolute;
+        // top: -4px;
+        width: 55px;
     }
     #triangle-bottomleft {
         width: 0;
@@ -69,7 +69,7 @@
     ul li {
         // letter-spacing: 1px;
         font-size: 22px;
-        padding: 5px 0px 16px 13px;
+        // padding: 5px 0px 16px 13px;
     }
     ul li i{
         padding: 0px 10px;
@@ -192,6 +192,7 @@
         #img {
             width: 45px;
         }
+        // margin-bottom: 150px !important;
     }
     @media only screen and (max-width:767px) {
         .navbar-dark .col-7 {
@@ -199,7 +200,7 @@
         }
         .navbar-collapse.show {
             width: 100%;
-            text-align: right;
+            // text-align: right;
         }
         .navbar-dark .navbar-toggler {
             outline: none;
@@ -212,8 +213,12 @@
     }
     @media only screen and (max-width:575px) {
         #img {
-            width: 65px;
+            width: 40px;
         }
+        nav.navbar::after {
+            display: none;
+        }
+        
 
     }
     @media only screen and (max-width:375px) {
@@ -257,9 +262,25 @@ a.col {
     color: rgb(221, 219, 219);
     cursor: pointer;
   }
-  li.help {
-    margin: 0 0 0 195px;
-  }
   li.d {
     margin: 0 115px 0 0;
     }
+
+    @media only screen and (max-width:1499px){
+        #header ul li {
+            font-size: 14px;
+            // padding: 12px 0px 18px 0;
+        }
+        li.list.nav-item.hover_clr.active a.col {
+            font-size: 16px;
+        }
+    }
+.w-40 {
+    width: 40%;
+}
+.nav-item {
+    a {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+}

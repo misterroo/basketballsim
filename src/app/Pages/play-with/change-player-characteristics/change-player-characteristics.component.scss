@@ -742,19 +742,24 @@ body .ui-dialog .ui-dialog-titlebar {
 
   @media only screen and (max-width: 1499px) {
 
+    th {
+      font-size: 11px;
+    }
+    h3.hd {
+      font-size: 18px !important;
+      margin: 15px 0 0 3px;
+    }
     .bread_mrgin {
       margin-top: -51px;
     }
-
-      .theigth {
-        margin-top: 9px;
-        font-size: 12px;
-      }
-
-      .fix {
-           width: 89%;
-           margin-top: -23px;
-      }
+    .theigth {
+      margin-top: 9px;
+      font-size: 12px;
+    }
+    .fix {
+          width: 89%;
+          margin-top: -23px;
+    }
 
       #changeplayercharacteristics .datatable .note1:after {
         left: 0px;
@@ -791,7 +796,7 @@ body .ui-dialog .ui-dialog-titlebar {
 
     #changeplayercharacteristics .btn_right {
       margin-right: 23px;
-      margin-top: 33px;
+      // margin-top: 33px;
     } 
 
     #changeplayercharacteristics .heading_txt {
@@ -840,6 +845,14 @@ body .ui-dialog .ui-dialog-titlebar {
 }
 
 @media only screen and (max-width: 1024px) {
+  h3.hd {
+    font-size: 13px !important;
+    margin: 64px 0 0 3px;
+  }
+  #changeplayercharacteristics .btn_right {
+    margin-right: 1%;
+    margin-top: 0;
+  }
   #changeplayercharacteristics .btn_right{
     margin-right: 1%;
     margin-top: 53px;
@@ -902,6 +915,13 @@ body .ui-dialog .ui-dialog-titlebar {
 
 
 @media only screen and (max-width: 768px) {
+
+  #changeplayercharacteristics .reset_default_btn {
+    font-size: 10px;
+  }
+  .btn_clear {
+    font-size: 10px;
+  } 
     #changeplayercharacteristics .btn_right{
       margin-right: -4%;    
     }

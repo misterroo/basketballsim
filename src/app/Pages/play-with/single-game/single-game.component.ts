@@ -313,14 +313,14 @@ export class SingleGameComponent implements OnInit {
                   }
       
       const Token: string = localStorage.getItem('userToken');
-      this.spinner.show();
+      // this.spinner.show();
       let resultdata;
       (await this.adminService.playGame_Single_One(data ,Token)).subscribe(result => {
         resultdata = result;
       },  
       (err) =>{ 
-        console.log(err)
-        this.spinner.hide();
+        // console.log(err)
+        // this.spinner.hide();
         if(err.status == 401){
           localStorage.clear();
           this.router.navigateByUrl('/');
@@ -341,12 +341,13 @@ export class SingleGameComponent implements OnInit {
                   "options": this.option
                   }
       const Token: string = localStorage.getItem('userToken');
-      this.spinner.show();
+      // this.spinner.show();
       let resultdata:any;
       (await this.adminService.getPlay_Single_Step(data ,Token)).subscribe(result => {
         resultdata = result;
       },  
-      (err) =>{ this.spinner.hide();
+      (err) =>{ 
+        // this.spinner.hide();
         if(err.status == 401){
           localStorage.clear();
           this.router.navigateByUrl('/');
@@ -357,7 +358,7 @@ export class SingleGameComponent implements OnInit {
           // this.spinner.hide();
           this.getPlay_Single_Stp = resultdata
           if(this.count === "1"){
-            this.spinner.hide();
+            // this.spinner.hide();
             this.playSingleGame_Stats()
             this.getComments()
             this.getRawBoxState()
@@ -365,7 +366,7 @@ export class SingleGameComponent implements OnInit {
             this.button_disable =false
           }
           if(this.count === "2"){
-            this.spinner.hide();
+            // this.spinner.hide();
             this.playSingleGame_Stats()
             this.getComments()
             this.getRawBoxState()
@@ -381,7 +382,7 @@ export class SingleGameComponent implements OnInit {
                 this.getRawBoxState()
               this.button_disable = true
             }else if(this.getPlay_Single_Stp.continue === 'no'){
-              this.spinner.hide();
+              // this.spinner.hide();
               this.playSingleGame_Stats()
               this.getComments()
               this.getRawBoxState()
@@ -392,7 +393,7 @@ export class SingleGameComponent implements OnInit {
               console.log("325 spineer run")
               this.button_disable = true  // conti
               this.locate_disable =false
-              this.spinner.hide();
+              // this.spinner.hide();
             }
           }
           if(this.count === "4"){
@@ -405,7 +406,7 @@ export class SingleGameComponent implements OnInit {
             this.get_Single_Step()
           }else if(this.getPlay_Single_Stp.continue === 'gameover'){
             console.log("4 = gameover")
-            this.spinner.hide();
+            // this.spinner.hide();
             this.button_disable = true
             this.locate_disable =false
           }         
@@ -419,14 +420,15 @@ export class SingleGameComponent implements OnInit {
                   }
       
       const Token: string = localStorage.getItem('userToken');
-      this.spinner.show();
+      // this.spinner.show();
       let resultdata;
       (await this.adminService.playGame_Single(data ,Token)).subscribe(result => {
         // console.log(result)
         resultdata = result;
       },  
     
-      (err) =>{ this.spinner.hide();
+      (err) =>{ 
+        // this.spinner.hide();
 
         if(err.status == 401){
           localStorage.clear();
@@ -454,12 +456,13 @@ export class SingleGameComponent implements OnInit {
                   "game_number":"ALL"
                   }      
       const Token: string = localStorage.getItem('userToken');
-      this.spinner.show();
+      // this.spinner.show();
       let resultdata;
       (await this.adminService.getComments(data ,Token)).subscribe(result => {
         resultdata = result;
       },      
-      (err) =>{ this.spinner.hide();
+      (err) =>{ 
+        // this.spinner.hide();
         if(err.status == 401){
           localStorage.clear();
           this.router.navigateByUrl('/');
@@ -483,12 +486,13 @@ export class SingleGameComponent implements OnInit {
                   "game_number": "ALL"                  
                   }      
       const Token: string = localStorage.getItem('userToken');
-      this.spinner.show();
+      // this.spinner.show();
       let resultdata;
       (await this.adminService.rawBoxScore(data ,Token)).subscribe(result => {
         resultdata = result;
       }, 
-      (err) =>{ this.spinner.hide();
+      (err) =>{ 
+        // this.spinner.hide();
         if(err.status == 401){
           localStorage.clear();
           this.router.navigateByUrl('/');

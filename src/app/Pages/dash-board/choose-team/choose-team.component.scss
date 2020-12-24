@@ -303,41 +303,12 @@
         margin-top: 25%;
       }
     @media screen and (max-device-width : 414px){
-        // #chooseteam{
-        //     height: 117vh;
-        // }
-        // .text,.text1 {
-        //     font-size: 12px;
-        // }
-        // .btn-yellow{
-        //     padding: 6px 15px !important;
-        //     left: 43% !important;
-        //     font-size: 10px !important;
-        // }
-        // .text_size{
-        //     font-size: 32px !important;
-        // }
-        // .text_size1{
-        //     font-size: 32px !important;
-        // }
-        // .choose_content{
-        //     padding-top: 40px !important;
-        // } 
-
-        // .previos_btn{
-        //     background-color: #2F3137;
-        //     border: 1px solid white;
-        //     padding: 7px 8px;
-        //     border-radius: 4px;
-        //     margin-top: 5%;
-        //     font-size: 12px;
-        //     color: #f6f6f7;
-        // }
-        // .box14{
-        //     .box-content .title{
-        //         font-size: 10px !important;
-        //     }
-        // }       
+        .yt {
+            margin-left: 1%;
+        }
+        #chooseteam .choose_content {
+            padding-left: 19px !important;
+        }
     }
     // media query for ipad
     @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
@@ -584,9 +555,16 @@
         }
     }
     @media only screen and (max-width:375px) {
-        // #chooseteam{
-
-        // }
+        #chooseteam .choose_content {
+            padding-top: 13% !important;
+            padding-left: 32px !important;
+        }
+        .yt {
+            margin-left: 2% !important;
+        }
+        h1.seletGame {
+            font-size: 25px !important;
+        }
     }
     @media only screen and (max-width:1366px){
         // .box14{
@@ -685,17 +663,26 @@
             margin-top: 1%;
             font-size: 26px;
         }
+        .off {
+            margin-left: 30%;
+        }
     }
 
     @media only screen and (max-width:1024px){
+        #chooseteam .choose_content {
+            padding-top: 10%;
+            padding-left: 1%;
+        }
         .ty {
             max-width: 100%;
             margin-left: 13px;
         }
 
         .yt {
-            margin-left: 0%;
-            margin-top: 4%;
+            // margin-left: 0%;
+            margin-left: 24%;
+            // margin-top: 4%;
+            margin-top: 1%;
 
         }
     
@@ -711,8 +698,13 @@
 
 
     @media only screen and (max-width:768px){
+        #chooseteam .choose_content {
+            padding-top: 14%;
+            padding-left: 6px;
+        }
          .yt{
-             margin-left: 0%;
+            //  margin-left: 0%;
+             margin-left: 24%;
          }
 
         .ty {
@@ -730,6 +722,15 @@
             font-size: 28px;
         }
 
+    }
+    @media screen and (max-device-width : 411px){
+        .yt {
+            margin-left: 1%;
+        }
+        #chooseteam .choose_content {
+    padding-top: 14%;
+    padding-left: 15px;
+}
     }
 
 
