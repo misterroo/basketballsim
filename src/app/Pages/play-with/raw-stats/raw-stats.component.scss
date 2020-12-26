@@ -5,10 +5,17 @@
     height: 100vh;
     background-position: right bottom;
     background-size: 36%;
-    width: 152%;
+    width: 100%;
     // #table{
     //     padding-top: 145px;
     // }
+    .dropdown-width {
+        width: 220px;
+    }
+    .dropdown-menu {
+        max-width: 14rem;
+    }
+    
     .datatable{
         padding-left: 63px;
         width: 100%;
@@ -116,7 +123,7 @@
 
     span.row {
         float: right;
-        margin-right: 67px;
+        margin-right: 20px;
         // margin-top: -64px;
         margin-top: 4px;
     }

@@ -11,12 +11,12 @@
               <h1 class="heading_txt">Change Player Characteristics</h1> -->
               <div>
                 <ol class="breadcrumb bread_mrgin">                
-                  <!-- <li class="breadcrumb-item point" *ngIf="this.oneononeData != 'playallteam'"><a class="a_color" href="choosemyteam">1 on 1 Matchup </a></li>                  
-                  <li class="breadcrumb-item point" *ngIf="this.allTheTeams != 'oneonone'"><a class="a_color" href="choosemyteam">Play with All teams in a Season </a></li>                   -->
+                  <!-- <li class="breadcrumb-item point" *ngIf="this.gameStatus != 'playallteam'"><a class="a_color" href="choosemyteam">1 on 1 Matchup </a></li>                  
+                  <li class="breadcrumb-item point" *ngIf="this.gameStatus != 'oneonone'"><a class="a_color" href="choosemyteam">Play with All teams in a Season </a></li>                   -->
                                   
-                  <li class="breadcrumb-item point hover_clr" *ngIf="this.oneononeData == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>1 on 1 Matchup </a></li>                  
-                  <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'playallteam'"><a class="a_color"[routerLink]='"/dashboard/chooseteam"'>Play with All teams</a></li>                  
-                  <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Replay entire season</a></li>
+                  <li class="breadcrumb-item point hover_clr" *ngIf="this.gameStatus == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"'>1 on 1 Matchup </a></li>                  
+                  <li class="breadcrumb-item point hover_clr" *ngIf="this.gameStatus == 'playallteam'"><a class="a_color"[routerLink]='"/dashboard/chooseteam"'>Play with All teams</a></li>                  
+                  <li class="breadcrumb-item point hover_clr" *ngIf="this.gameStatus == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Replay entire season</a></li>
                   
                   <li class="breadcrumb-item  point hover_clr"><a  class="a_color" [routerLink]='"/dashboard3/playwithallteam"' >{{leag_name}} </a> </li>
                   <li class="breadcrumb-item active point hover_clr" aria-current="page"> <a class="a_color" [routerLink]='"/dashboard3/advancedsettingqtrtable"' > Advance setting</a></li>
@@ -25,13 +25,13 @@
             </div>
               <div class="row" style="width: 100%; margin: 0">
                 <div class="col-md-3 mt-2">
-                  <div class="form-group " *ngIf="this.oneononeData != 'playallteam'">             
+                  <div class="form-group " *ngIf="this.gameStatus != 'playallteam'">             
                       <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="team_name" (change)="changeTeam($event)">
                         <option *ngFor="let item of gameData">{{item}}</option>
                     </select>
                   </div>
     
-                  <h3 *ngIf="this.oneononeData == 'playallteam'" class="hd"> {{draftTeam}} - {{draftTeamA}}</h3>
+                  <h3 *ngIf="this.gameStatus == 'playallteam'" class="hd"> {{draftTeam}} - {{leag_name}}</h3>
                 </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
@@ -50,14 +50,14 @@
                 </div>
               </div> -->
 
-              <!-- <div class="form-group col-2" *ngIf="this.oneononeData != 'playallteam'"  style="margin-top: 15px;">
+              <!-- <div class="form-group col-2" *ngIf="this.gameStatus != 'playallteam'"  style="margin-top: 15px;">
                 <label for="exampleFormControlSelect1"></label>              
                   <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="team_name" (change)="changeTeam($event)">
                     <option *ngFor="let item of gameData">{{item}}</option>
                 </select>
               </div>
 
-              <h3 *ngIf="this.oneononeData == 'playallteam'" class="hd"> {{team_name}}</h3> -->
+              <h3 *ngIf="this.gameStatus == 'playallteam'" class="hd"> {{team_name}}</h3> -->
           </div>
           <div class="col-md-12 col-12 mart" id="table">             
               

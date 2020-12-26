@@ -255,7 +255,7 @@ export class SortableBoxScoreComponent implements OnInit {
             "game_number":"ALL"
             }
     this.getSortableBoxScore(data);
-
+    console.log('hjhjhjhjhj')
       
     // this.getPlayerTeam();   
 

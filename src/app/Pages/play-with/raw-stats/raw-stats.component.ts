@@ -69,32 +69,32 @@ toScrollInto = 0
 
 
   getData(event) {
-    this.selectedValuestand=event.label
+    this.selectedValuestand = event.label
     if (this.selectedValuestand == 'Final OVERALL League Standings') {
-    
-            let name=  this.rawStatedata.findIndex(({ textlines }) => textlines.includes(this.selectedValuestand));
-            // console.log("abbac",name)
-            if(name){
-                      const yOffset = -280;              //-100;
-                      const element = document.getElementById(name);
-                      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                      window.scrollTo({top: y, behavior: 'smooth'})
-                  } 
-          }
-    else{
-                this.selectedValue = event.label.toUpperCase()
-                // console.log(this.selectedValuestand)
-                let name=  this.rawStatedata.findIndex(({ textlines }) => textlines.includes(this.selectedValue));
-                // console.log("abbac",name)
-                if(name){
-                        const yOffset = -280;        //-100;
-                        const element = document.getElementById(name);
-                        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                        window.scrollTo({top: y, behavior: 'smooth'})
-                    }           
-        }
 
-        
+      let name = this.rawStatedata.findIndex(({ textlines }) => textlines.includes(this.selectedValuestand));
+      // console.log("abbac",name)
+      if (name) {
+        const yOffset = -280;              //-100;
+        const element = document.getElementById(name);
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      }
+    }
+    else {
+      this.selectedValue = event.label.toUpperCase()
+      // console.log(this.selectedValuestand)
+      let name = this.rawStatedata.findIndex(({ textlines }) => textlines.includes(this.selectedValue));
+      // console.log("abbac",name)
+      if (name) {
+        const yOffset = -280;        //-100;
+        const element = document.getElementById(name);
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      }
+    }
+
+
   }
 
 
@@ -189,7 +189,7 @@ getDataa(event){
           // this.spinner.hide();
           this.teamData = this.result.data
           let objectName = {
-            teams: 'CHOOSE A TEAM',
+            teams: 'Choose a Team',
             _id: ''
           }
           this.teamData.splice(0, 0, objectName);
@@ -224,19 +224,19 @@ getDataa(event){
 
 
 
-  findThe(e){
-          let aary = [];                
-          let  aar=[];
-          let name=  this.rawStatedata.findIndex(({ textlines }) => textlines.includes(e.teams));
-          // console.log("abbac",name)
+  findThe(e) {
+    let aary = [];
+    let aar = [];
+    let name = this.rawStatedata.findIndex(({ textlines }) => textlines.includes(e.teams));
+    // console.log("abbac",name)
 
-          if(name){
-                  const yOffset = -290;
-                  const element = document.getElementById(name);
-                  const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                  window.scrollTo({top: y, behavior: 'smooth'})
-                }                                              
-      }
+    if (name) {
+      const yOffset = -290;
+      const element = document.getElementById(name);
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    }
+  }
 
 
       findNew(){

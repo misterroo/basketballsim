@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminService } from '../../../../services/admin.service';
 import { NotifierService } from 'angular-notifier';
 import * as $ from 'jquery';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 // import { ToastrService } from 'ngx-toastr';
 
 
@@ -17,71 +17,68 @@ import { Router} from '@angular/router';
 export class ChangePlayerCharacteristicsComponent implements OnInit {
   model: any = { data: '' }
   playerData;
-  selectedItem = { key: '',selectedKey: ''};
+  selectedItem = { key: '', selectedKey: '' };
   team_name;
-  gameData:any =[];
-  show:any;
+  gameData: any = [];
+  show: any;
   leag_name = '';
 
   display: boolean = false;
-  oneononeData;
-  teamData:any;
-  teamResult:any;
-  teamName= '';
-  oppTeamName= '';
+  teamData: any;
+  teamResult: any;
+  teamName = '';
+  oppTeamName = '';
   other_Name;
-  allTheTeams;
-  draftTeam:any;
-  draftTeamA:any;
-  
+  draftTeam: any;
+  gameStatus = '';
+  activeCell: boolean;
+  playerDataOld: any = [];
   @Output('toggleMenu') toggleMenu: EventEmitter<any> = new EventEmitter();
-  
+
   constructor(
-  //  private toastr: ToastrService,
+    //  private toastr: ToastrService,
     private router: Router,
     private adminService: AdminService,
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService,
-    private _location: Location, 
+    private _location: Location,
   ) {
-    this.draftTeam = localStorage.getItem('PredictData1')
-    this.draftTeamA = localStorage.getItem('SeasonName')
+    this.activeCell = false;
+    this.playerDataOld = [];
+    this.gameStatus = localStorage.getItem('showStatus');
+    this.leag_name = localStorage.getItem('SeasonName');
+    if (this.gameStatus === 'playallteam') {
+      this.draftTeam = localStorage.getItem('PredictData1');
+      this.gameData.push(this.draftTeam);
 
-    this.allTheTeams = localStorage.getItem('showStatus');
+    } else if (this.gameStatus === 'oneonone') {
+      this.draftTeam = localStorage.getItem('PredictData1');
 
-    this.oneononeData = localStorage.getItem('showStatus');
-    if(this.oneononeData != 'allteam'){
-    
-      this.leag_name = localStorage.getItem('SeasonName');
-      if(localStorage.getItem('gameData') && localStorage.getItem('gameData') != ''){
+      if (localStorage.getItem('gameData') && localStorage.getItem('gameData') != '') {
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
       }
-      if(localStorage.getItem('Predictgames') != ""){
-        this.other_Name =JSON.parse(localStorage.getItem('Predictgames'));
-        this.gameData = this.other_Name      
-      }          
+      if (localStorage.getItem('Predictgames') != "") {
+        this.other_Name = JSON.parse(localStorage.getItem('Predictgames'));
+        this.gameData = this.other_Name
+      }
       let obj = []
-      for(let item of this.gameData){
+      for (let item of this.gameData) {
         obj.push(item.predictaway)
         obj.push(item.predicthome)
-        // obj.push(item.PredictData2)
-        // obj.push(item.PredictData1)
       }
-      
-      this.gameData = [...new Set(obj)]}
-    else{
+      this.gameData = [...new Set(obj)]
+    } else if (this.gameStatus === 'allteam') {
       let team = JSON.parse(localStorage.getItem('allTeamData'))
-      for(let item of team){
+      for (let item of team) {
         this.gameData.push(item.teams)
       }
       this.teamName = this.gameData[0]
       this.team_name = this.teamName;
-      this.leag_name = localStorage.getItem('SeasonName');
     }
 
-   }
+  }
 
-   
+
   selectDropdown: any = [
     { label: 'SELECT/SORT OPTIONS', value: '', },
     { label: 'LIMIT', value: '' },
@@ -149,23 +146,26 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!localStorage.getItem('userToken')){
+    if (!localStorage.getItem('userToken')) {
       this.router.navigateByUrl('/');
     }
+    // console.log('this.gameData', this.gameData)
 
-    let league_name =  localStorage.getItem('SeasonName');
+    let league_name = localStorage.getItem('SeasonName');
     this.team_name = this.gameData[0];
-    let data = {"apikey":"Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
-      "keeppbp":"N",
-      "league_name":league_name,
-      "team_name":this.team_name
+    let data = {
+      "apikey": "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
+      "keeppbp": "N",
+      "league_name": league_name,
+      "team_name": this.team_name
     }
     this.getPlayerCharacteristics(data);
-    
+    // console.log('kkkkkk')
+
   }
 
 
-  closed(): void{
+  closed(): void {
     this.toggleMenu.emit();
   }
 
@@ -173,7 +173,7 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
     const Token: string = localStorage.getItem('userToken');
     this.spinner.show();
     let resultdata;
-    (await this.adminService.getCharacteristics(data ,Token)).subscribe(result => {
+    (await this.adminService.getCharacteristics(data, Token)).subscribe(result => {
       resultdata = result;
 
     }, (err) => {
@@ -189,6 +189,7 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
         this.spinner.hide();
         if (resultdata.status === 'true' || resultdata.status === true) {
           this.playerData = resultdata.data;
+          this.playerDataOld = resultdata.data;
         } else {
           this.notifierService.notify('error', resultdata.message);
         }
@@ -232,34 +233,35 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
         }
       });
   }
- 
 
 
 
-  openMode( ) {
+
+  openMode() {
     document.getElementById('change-model').click();
-    
+
     this.display = true;
+
   }
 
- 
 
-  showToaster(){
+
+  showToaster() {
     // this.toastr.success("Hello, I'm the toastr message.")
   }
-  openModel( key, selectedkey, index) {
-    console.log(key);
-    console.log(selectedkey);
-    console.log(index);
+  openModel(key, selectedkey, index) {
+    // console.log(key);
+    // console.log(selectedkey);
+    // console.log(index);
     this.selectedItem.key = key;
     this.selectedItem.selectedKey = selectedkey;
     this.selectedItem['value'] = this.playerData[index][selectedkey];
     this.selectedItem['index'] = index;
 
     // this.show = '';
-   this.onChangePlayer()
+    this.onChangePlayer()
   }
-  
+
   onChangePlayer() {
     if (this.selectedItem.key == 'POSS FACT') {
       this.show = "Possession Factor(touches/min): -100% to 500%"
@@ -351,7 +353,7 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
         alert("% TO 3.5 to 20.0")
       }
 
-    } 
+    }
     else if (this.selectedItem.key == '%PASS') {
       this.show = " "
     }
@@ -510,7 +512,7 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
     { label: '%PF', value: 'pct_pf' },
     { label: '%ST', value: 'pct_st' },
     { label: '%BS', value: 'pct_bs' },
-    { label: 'DENY FACT', value: 'poss_fact' }, 
+    { label: 'DENY FACT', value: 'poss_fact' },
   ];
 
 

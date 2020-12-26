@@ -18,7 +18,7 @@
 
                             <span class="row spn">
                                 <div class="dropdown ">
-                                    <button class="btn btn-secondary dropdown-toggle btn-lg " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-secondary dropdown-toggle btn-lg dropdown-width" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Choose a Team
                                     </button>
                                     <div class="dropdown-menu over" aria-labelledby="dropdownMenuButton">
@@ -26,11 +26,16 @@
                                     </div> &nbsp;&nbsp;&nbsp;
                                 </div>
                                 <div class="dropdown ">
-                                    <button class="btn btn-secondary dropdown-toggle btn-lg " type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stats Section</button>
+                                    <button class="btn btn-secondary dropdown-toggle btn-lg dropdown-width" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stats Section</button>
                                     <div class="dropdown-menu over" aria-labelledby="dropdownMenuButton1">
                                       <a *ngFor="let value of selectDropdown" class="dropdown-item pointer" (click)="getDataa(value)" >{{value.label}}</a>
                                     </div>                                     
                                 </div>
+                                <!-- <div class="dropdown d1">  
+                                    <p-dropdown class="pDropdwon dropdown" [(ngModel)]="model.team" name="team"
+                                    [options]="teamData" optionLabel="teams" optionValue="_id" placeholer="Choose a Team"
+                                    (ngModelChange)="findThe($event)" required></p-dropdown>                        
+                                </div> -->
                             </span>
                         </div>
                     </div>

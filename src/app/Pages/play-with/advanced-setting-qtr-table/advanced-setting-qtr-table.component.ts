@@ -519,7 +519,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     }
     this.gameArray = gameArrayNew;
     localStorage.setItem('Predictgames', JSON.stringify(this.gameArray));
-    console.log(this.gameArray, "gameTest")
+    // console.log(this.gameArray, "gameTest")
 
     this.showPlayMultiple = false;
   }
