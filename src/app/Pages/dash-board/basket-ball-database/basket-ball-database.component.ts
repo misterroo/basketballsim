@@ -73,10 +73,10 @@ export class BasketBallDatabaseComponent implements OnInit {
   findData:any = -1;
   finValue:any;
   radiofieldModel:any = {
-    sort1a: '',
-    sort2a: '',
-    sort3a: '',
-    sort4a: '',
+    sort1a: 'true',
+    sort2a: 'true',
+    sort3a: 'true',
+    sort4a: 'true',
   }
   radioPlayer:any = {
     radionPlayer: 'true'
@@ -169,11 +169,11 @@ export class BasketBallDatabaseComponent implements OnInit {
   fieldModel4:any ={item:''}
   fieldModel5:any ={item:'yes'}
   fieldModel6:any ={item:'no'}
-  fieldModelPlayer:any ={item:''}
-  fieldModelTeam:any ={item:''}
-  fieldModelPostionAll:any ={item:''}
-  fieldModelYear:any ={item:''}
-  fieldModelLeague:any ={item:''}
+  fieldModelPlayer:any ={item:'Ascending'}
+  fieldModelTeam:any ={item:'Ascending'}
+  fieldModelPostionAll:any ={item:'Ascending'}
+  fieldModelYear:any ={item:'Ascending'}
+  fieldModelLeague:any ={item:'Ascending'}
   selectlisthe:any;
   limitModelMin:any = {min:'',max:''}
   parentNode:any = [];
@@ -245,6 +245,7 @@ export class BasketBallDatabaseComponent implements OnInit {
     this.display14 = false;
   }
   showDialog1() {
+    console.log('select year')
     this.display0 = false;
     this.display1 = true;
     if(this.databaseData && this.databaseData.length > 0){
@@ -1298,10 +1299,10 @@ export class BasketBallDatabaseComponent implements OnInit {
         this.fieldModel.sort2 = ""
         this.fieldModel.sort3 = ""
         this.fieldModel.sort4 = ""
-        this.radiofieldModel.sort1a = null; 
-        this.radiofieldModel.sort2a = null; 
-        this.radiofieldModel.sort3a = null; 
-        this.radiofieldModel.sort4a = null; 
+        this.radiofieldModel.sort1a = 'true'; 
+        this.radiofieldModel.sort2a = 'true'; 
+        this.radiofieldModel.sort3a = 'true'; 
+        this.radiofieldModel.sort4a = 'true'; 
       }
       this.selectedPositionAl = [];
       this.playerPositionDataAllSort = [];
@@ -1366,10 +1367,10 @@ export class BasketBallDatabaseComponent implements OnInit {
           this.fieldModel.sort2 = ""
           this.fieldModel.sort3 = ""
           this.fieldModel.sort4 = ""
-          this.radiofieldModel.sort1a = null; 
-          this.radiofieldModel.sort2a = null; 
-          this.radiofieldModel.sort3a = null; 
-          this.radiofieldModel.sort4a = null; 
+          this.radiofieldModel.sort1a = 'true'; 
+          this.radiofieldModel.sort2a = 'true'; 
+          this.radiofieldModel.sort3a = 'true'; 
+          this.radiofieldModel.sort4a = 'true'; 
         }
         this.selectedPositionAl = [];
         this.playerPositionDataAllSort = [];
@@ -1434,19 +1435,23 @@ export class BasketBallDatabaseComponent implements OnInit {
   selectedLeagueclick(value,i){
     this.sortLeagueId = i
     if(this.selectedLeagueName.length > 0){
-      let val = this.selectedLeagueName.findIndex(element => element.league == value)
+      let val = this.selectedLeagueName.findIndex(element => element.league == value.league)
       if(val >= 0 ){
         this.selectedLeagueName.splice(val,1)
-        this.playerSelectLeague = false
+        this.playerSelectLeague = false;
+        value.checked = false
       }else{
-        this.selectedLeagueName.push({league:value})
+        this.selectedLeagueName.push({league:value.league})
+        value.checked = true
       }
     }else{
-      this.selectedLeagueName.push({league:value})
+      this.selectedLeagueName.push({league:value.league})
+      value.checked = true
     }
   }
 
   getfieldDataLeague(element){
+    console.log(element)
     this.asenItemLeague = element
     // console.log(this.asenItemLeague)
     }
@@ -1493,15 +1498,18 @@ export class BasketBallDatabaseComponent implements OnInit {
   selectedYearclick(value,i){
     this.sortYearId = i
     if(this.selectedYearName.length > 0){
-      let val = this.selectedYearName.findIndex(element => element.year1 == value)
+      let val = this.selectedYearName.findIndex(element => element.year1 == value.year1)
       if(val >= 0 ){
         this.selectedYearName.splice(val,1)
-        this.playerSelectYear = false
+        this.playerSelectYear = false;
+        value.checked = false;
       }else{
-        this.selectedYearName.push({year1:value})
+        this.selectedYearName.push({year1:value.year1})
+        value.checked = true;
       }
     }else{
-      this.selectedYearName.push({year1:value})
+      this.selectedYearName.push({year1:value.year1})
+      value.checked = true;
     }
   }
 
@@ -1545,15 +1553,18 @@ export class BasketBallDatabaseComponent implements OnInit {
   selectedNameclick(value,i){
     this.sortPlayerId = i
     if(this.selectedPlayerName.length > 0){
-      let val = this.selectedPlayerName.findIndex(element => element.name == value)
+      let val = this.selectedPlayerName.findIndex(element => element.name == value.name)
       if(val >= 0 ){
         this.selectedPlayerName.splice(val,1)
         this.playerSelectPlayer = false
+        value.checked = false;
       }else{
-        this.selectedPlayerName.push({name:value})
+        this.selectedPlayerName.push({name:value.name})
+        value.checked = true;
       }
     }else{
-      this.selectedPlayerName.push({name:value})
+      this.selectedPlayerName.push({name:value.name})
+      value.checked = true;
     }
   }
 
@@ -1612,14 +1623,17 @@ export class BasketBallDatabaseComponent implements OnInit {
   selectedTeamclick(value,i){
     this.sortTeamId = i
     if(this.selectedTeamName.length > 0){
-      let val = this.selectedTeamName.findIndex(element => element.teamname == value)
+      let val = this.selectedTeamName.findIndex(element => element.teamname == value.teamname)
       if(val >= 0 ){
         this.selectedTeamName.splice(val,1)
+        value.checked = false;
       }else{
-        this.selectedTeamName.push({teamname:value})
+        this.selectedTeamName.push({teamname:value.teamname})
+        value.checked = true;
       }
     }else{
-      this.selectedTeamName.push({teamname:value})
+      this.selectedTeamName.push({teamname:value.teamname})
+      value.checked = true;
     }
   }
 
@@ -2507,11 +2521,9 @@ export class BasketBallDatabaseComponent implements OnInit {
   // }
 
   showOnlySelected() {
-    console.log(this.selectedRows)
     if(this.databaseTeamData != undefined){
-      this.databaseData = []
+      // this.databaseData = []
       if (this.selectedRows.length > 0) {
-        console.log(this.selectedRows)
         this.databaseTeamData = this.selectedRows;
         this.selectedRows = [];
         this.all_Color = false;
@@ -2520,9 +2532,8 @@ export class BasketBallDatabaseComponent implements OnInit {
       }
     }
     else if(this.databaseData != undefined ){
-      this.databaseTeamData =[]
+      // this.databaseTeamData =[]
       if (this.selectedRows.length > 0) {
-        console.log(this.selectedRows)
         this.databaseData = this.selectedRows;
         this.selectedRows = [];
         this.all_Color = false;

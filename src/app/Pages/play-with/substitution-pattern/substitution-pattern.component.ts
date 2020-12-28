@@ -63,6 +63,7 @@ export class SubstitutionPatternComponent implements OnInit {
   locate_disable: boolean = true
   draftTeam:any;
  draftTeamA:any;
+ gameStatus: string = '';
  @Output('toggleMenu') toggleMenu: EventEmitter<any> = new EventEmitter();
   constructor(
     private router: Router,
@@ -71,56 +72,82 @@ export class SubstitutionPatternComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService,
   ) {
-    this.draftTeam = localStorage.getItem('PredictData1')
+    this.draftTeam = localStorage.getItem('PredictData1');
+    this.leag_name = localStorage.getItem('SeasonName');
     this.draftTeamA = localStorage.getItem('SeasonName')
     this.allTheTeams = localStorage.getItem('showStatus');
+    this.gameStatus = localStorage.getItem('showStatus');
+    if (this.gameStatus === 'playallteam') {
+      this.teamName = localStorage.getItem('PredictData1');
+      this.gameData.push(this.draftTeam);
+      if (localStorage.getItem('homeTeam') !== '') {
+        this.teamName = localStorage.getItem('homeTeam');
+      }
+      this.getPlayersSubs();
 
-    this.allTheTeams = localStorage.getItem('showStatus');
-    // console.log('this.gameData', this.allTheTeams)
 
-    this.oneononeData = localStorage.getItem('showStatus');
-    if (this.oneononeData != 'allteam') {
-      if (localStorage.getItem('gameData') != "") {
+    } else if (this.gameStatus === 'oneonone') {
+      this.teamName = localStorage.getItem('PredictData1');
+
+      if (localStorage.getItem('gameData') && localStorage.getItem('gameData') != '') {
         this.gameData = JSON.parse(localStorage.getItem('gameData'));
       }
       if (localStorage.getItem('Predictgames') != "") {
         this.other_Name = JSON.parse(localStorage.getItem('Predictgames'));
         this.gameData = this.other_Name
       }
-      let obj = [];
-      if (this.gameData) {
-        for (let item of this.gameData) {
-          obj.push(item.predictaway)
-          obj.push(item.predicthome)
-        }
+      let obj = []
+      for (let item of this.gameData) {
+        obj.push(item.predictaway)
+        obj.push(item.predicthome)
       }
-
-
       this.gameData = [...new Set(obj)]
-      // const gameArray = JSON.parse(localStorage.getItem('gameData'));
-      // this.teamName = gameArray[0].predictaway;
-      // this.teamName = localStorage.getItem('homeTeam');
-      if (localStorage.getItem('gameData') != "") {
-        const gameArray = JSON.parse(localStorage.getItem('gameData'));
-        // console.log("check1")
-        this.teamName = gameArray[0].predictaway;
-      } else if (localStorage.getItem('homeTeam')) {
-        this.teamName = localStorage.getItem('homeTeam');
-        console.log("check2")
-      }
-      // this.leag_name = localStorage.getItem('homeSeason') || localStorage.getItem('awaySeason');
-      this.leag_name = localStorage.getItem('SeasonName');
       this.getPlayersSubs()
-    } else {
+    } else if (this.gameStatus === 'allteam') {
       let team = JSON.parse(localStorage.getItem('allTeamData'))
       for (let item of team) {
         this.gameData.push(item.teams)
       }
       this.teamName = this.gameData[0]
       this.team_name = this.teamName;
-      this.leag_name = localStorage.getItem('SeasonName');
       this.getPlayersSubs()
     }
+
+    // this.oneononeData = localStorage.getItem('showStatus');
+    // if (this.oneononeData != 'allteam') {
+    //   if (localStorage.getItem('gameData') != "") {
+    //     this.gameData = JSON.parse(localStorage.getItem('gameData'));
+    //   }
+    //   if (localStorage.getItem('Predictgames') != "") {
+    //     this.other_Name = JSON.parse(localStorage.getItem('Predictgames'));
+    //     this.gameData = this.other_Name
+    //   }
+    //   let obj = [];
+    //   if (this.gameData) {
+    //     for (let item of this.gameData) {
+    //       obj.push(item.predictaway)
+    //       obj.push(item.predicthome)
+    //     }
+    //   }
+    //   this.gameData = [...new Set(obj)]
+    //   if (localStorage.getItem('gameData') != "") {
+    //     const gameArray = JSON.parse(localStorage.getItem('gameData'));
+    //     this.teamName = gameArray[0].predictaway;
+    //   } else if (localStorage.getItem('homeTeam')) {
+    //     this.teamName = localStorage.getItem('homeTeam');
+    //   }
+    //   this.leag_name = localStorage.getItem('SeasonName');
+    //   this.getPlayersSubs()
+    // } else {
+    //   let team = JSON.parse(localStorage.getItem('allTeamData'))
+    //   for (let item of team) {
+    //     this.gameData.push(item.teams)
+    //   }
+    //   this.teamName = this.gameData[0]
+    //   this.team_name = this.teamName;
+    //   this.leag_name = localStorage.getItem('SeasonName');
+    //   this.getPlayersSubs()
+    // }
 
 
     this.subpatter = [
@@ -159,9 +186,8 @@ export class SubstitutionPatternComponent implements OnInit {
     if (!localStorage.getItem('userToken')) {
       this.router.navigateByUrl('/');
     }
-
-    let league_name = localStorage.getItem('SeasonName');
     this.team_name = this.gameData[0];
+    console.log('dsds')
   }
 
 

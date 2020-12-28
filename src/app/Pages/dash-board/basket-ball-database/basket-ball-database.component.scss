@@ -201,7 +201,9 @@ p.groove {
         }
 
 
-        .pointer {cursor: pointer;}
+        .pointer {
+            cursor: pointer;
+        }
        
 
         .fonts{
@@ -629,7 +631,11 @@ p.groove {
 
 .pointer {cursor: pointer;}
 td.point {cursor: pointer;}
-li.pointer {cursor: pointer;}
+li.pointer {
+    cursor: pointer; 
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
 ul.pointer {cursor: pointer;}
 
 .radioo{

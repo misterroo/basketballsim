@@ -272,7 +272,7 @@
                                     <div class="col-md-12 col-12">
                                         <div class="Playerradiobtn">
                                             <span>
-                                                <p-radioButton name="val1" class="sortableradio" label="ASCENDING"  value="Ascending " label="ASCENDING" [(ngModel)]="fieldModelPlayer.item" (click)="sortPlayer('Ascending')" ></p-radioButton> 
+                                                <p-radioButton name="val1" class="sortableradio" label="ASCENDING"  value="Ascending" label="ASCENDING" [(ngModel)]="fieldModelPlayer.item" (click)="sortPlayer('Ascending')" ></p-radioButton> 
                                             </span>
                                             <span>
                                                 <p-radioButton name="val1" class="sortableradio" label="DESCENDING"  value="Descending" label="DESCENDING" [(ngModel)]="fieldModelPlayer.item" (click)="sortPlayer('Descending')"></p-radioButton> 
@@ -287,7 +287,7 @@
                                             <p-scrollPanel [style]="{width: '100%', height: '450px'}"
                                                 styleClass="custombar1">
                                                    <ul>
-                                                       <li class="pointer rr"  *ngFor="let value of this.database_Player;let i=index;" (click)= "selectedNameclick(value.name,i)" [ngClass]="{'activeRow': sortPlayerId == i || playerSelectPlayer == true}"> {{value.name}} </li>
+                                                       <li class="pointer rr"  *ngFor="let value of this.database_Player;let i=index;" (click)= "selectedNameclick(value,i)" [ngClass]="{'activeRow': value.checked === true}" style="text-transform: capitalize;"> {{value.name}} </li>
                                                    </ul>
                                             </p-scrollPanel>
                                         </div>
@@ -300,8 +300,8 @@
                                     <div class="col-md-6 col-6 player">
                                         <div class="player_list">
                                             <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custombar1">
-                                              <ul class="pointer" *ngFor="let value of this.selectedPlayerName;let i=index; " >
-                                                <li class="rr"> {{value.name}} </li>
+                                              <ul class="pointer"  >
+                                                <li *ngFor="let value of this.selectedPlayerName;let i=index; " class="rr" style="text-transform: capitalize;"> {{value.name}} </li>
                                               </ul>
                                             </p-scrollPanel>
                                         </div>
@@ -372,7 +372,7 @@
                                         <div class="sortradio">
                                             <div class="radiobtn">
                                                 <span>
-                                                    <p-radioButton name="val1" class="sortableradio down_radio" label="ASCENDING "  [(ngModel)]="radiofieldModel.sort1a" value="true" inputId="preopt1" checked></p-radioButton> 
+                                                    <p-radioButton name="val1" class="sortableradio down_radio" label="ASCENDING"  [(ngModel)]="radiofieldModel.sort1a" value="true" inputId="preopt1" checked></p-radioButton> 
                                                 </span>
                                                 <span>
                                                     <p-radioButton name="val1" class="sortableradio down_radio" label="DESCENDING" [(ngModel)]="radiofieldModel.sort1a" value="false" inputId="preopt2"></p-radioButton>  
@@ -438,7 +438,7 @@
                                     <div class="col-md-12 col-12">
                                         <div class="Playerradiobtn">
                                             <span>
-                                                <p-radioButton name="val2" class="sortableradio" label="ASCENDING" value="Ascending " label="ASCENDING" [(ngModel)]="fieldModelTeam.item"  (click)="sortTeam('Ascending')"></p-radioButton> 
+                                                <p-radioButton name="val2" class="sortableradio" label="ASCENDING" value="Ascending" label="ASCENDING" [(ngModel)]="fieldModelTeam.item"  (click)="sortTeam('Ascending')"></p-radioButton> 
                                             </span>
                                             <span>
                                                 <p-radioButton name="val2" class="sortableradio" label="DESCENDING" value="Descending" label="DESCENDING" [(ngModel)]="fieldModelTeam.item"  (click)="sortTeam('Descending')"></p-radioButton> 
@@ -452,7 +452,7 @@
                                             <p-scrollPanel [style]="{width: '100%', height: '450px'}"
                                                 styleClass="custombar1">
                                                     <ul >
-                                                        <li class="pointer rr" *ngFor="let value of this.database_Team;let i=index;" (click)= "selectedTeamclick(value.teamname,i)"   [ngClass]="{'activeRow': sortTeamId == i || playerSelectTeam == true}"> {{value.teamname}}</li> <!--      -->
+                                                        <li class="pointer rr" *ngFor="let value of this.database_Team;let i=index;" (click)= "selectedTeamclick(value, i)"   [ngClass]="{'activeRow': value.checked === true}" style="text-transform: capitalize;"> {{value.teamname}}</li> <!--      -->
                                                     </ul>
                                             </p-scrollPanel>
                                         </div>
@@ -464,8 +464,8 @@
                                         <div class="team_list">
                                             <p-scrollPanel [style]="{width: '100%', height: '450px'}"
                                                 styleClass="custombar1">
-                                                    <ul class="pointer" *ngFor="let value of this.selectedTeamName;let i=index; ">
-                                                        <li class="rr"> {{value.teamname}} </li>
+                                                    <ul class="pointer" >
+                                                        <li class="rr" *ngFor="let value of this.selectedTeamName;let i=index; " style="text-transform: capitalize;"> {{value.teamname}} </li>
                                                     </ul>
                                             </p-scrollPanel>
                                         </div>
@@ -491,7 +491,7 @@
                                     <div class="col-md-12 col-12">
                                         <div class="Playerradiobtn">
                                             <span>
-                                                <p-radioButton name="val2" class="sortableradio" label="ASCENDING" (ngModelChange)="getfieldDataYear($event)" value="Ascending " label="ASCENDING" [(ngModel)]="fieldModelYear.item" inputId="preopt1" (click)="sortYear('Ascending')"></p-radioButton> <!---->
+                                                <p-radioButton name="val2" class="sortableradio" label="ASCENDING" (ngModelChange)="getfieldDataYear($event)" value="Ascending" label="ASCENDING" [(ngModel)]="fieldModelYear.item" inputId="preopt1" (click)="sortYear('Ascending')"></p-radioButton> <!---->
                                             </span>
                                             <span>
                                                 <p-radioButton name="val2" class="sortableradio" label="DESCENDING" (ngModelChange)="getfieldDataYear($event)" value="Descending" label="DESCENDING" [(ngModel)]="fieldModelYear.item" inputId="preopt2" (click)="sortYear('Descending')"></p-radioButton> <!-- -->
@@ -505,7 +505,7 @@
                                             <p-scrollPanel [style]="{width: '100%', height: '450px'}"
                                                 styleClass="custombar1">
                                                    <ul >
-                                                       <li class="pointer rr"  *ngFor="let value of this.database_Year;let i=index;" (click)= "selectedYearclick(value.year1,i)" [ngClass]="{'activeRow': sortYearId == i || playerSelectYear == true}"> {{value.year1}} </li>
+                                                       <li class="pointer rr"  *ngFor="let value of this.database_Year;let i=index;" (click)= "selectedYearclick(value,i)" [ngClass]="{'activeRow': value.checked === true}" style="text-transform: capitalize;"> {{value.year1}} </li>
                                                    </ul>
                                             </p-scrollPanel>
                                         </div>
@@ -517,8 +517,8 @@
                                         <div class="player_list">
                                             <p-scrollPanel [style]="{width: '100%', height: '450px'}"
                                                 styleClass="custombar1">
-                                                <ul class="pointer" *ngFor="let value of this.selectedYearName;let i=index; ">   <!-- -->
-                                                    <li class="rr"> {{value.year1}}</li>
+                                                <ul class="pointer" >   <!-- -->
+                                                    <li class="rr" *ngFor="let value of this.selectedYearName;let i=index; " style="text-transform: capitalize;"> {{value.year1}}</li>
                                                 </ul>
                                             </p-scrollPanel>
                                         </div>
@@ -544,7 +544,7 @@
                                 <div class="col-md-12 col-12">
                                     <div class="Playerradiobtn">
                                         <span>
-                                            <p-radioButton name="val2" class="sortableradio" label="ASCENDING" (ngModelChange)="getfieldDataLeague($event)" value="Ascending " label="ASCENDING" [(ngModel)]="fieldModelLeague.item" inputId="preopt1" (click)="sortLeague('Ascending')"></p-radioButton> <!---->
+                                            <p-radioButton name="val2" class="sortableradio" label="ASCENDING" (ngModelChange)="getfieldDataLeague($event)" value="Ascending" label="ASCENDING" [(ngModel)]="fieldModelLeague.item" inputId="preopt1" (click)="sortLeague('Ascending')"></p-radioButton> <!---->
                                         </span>
                                         <span>
                                             <p-radioButton name="val2" class="sortableradio" label="DESCENDING" (ngModelChange)="getfieldDataLeague($event)" value="Descending" label="DESCENDING" [(ngModel)]="fieldModelLeague.item" inputId="preopt2" (click)="sortLeague('Descending')"></p-radioButton> <!-- -->
@@ -559,7 +559,7 @@
                                         <p-scrollPanel [style]="{width: '100%', height: '450px'}"
                                             styleClass="custombar1">
                                                <ul >
-                                                   <li class="pointer rr"  *ngFor="let value of this.database_League;let i=index;" (click)= "selectedLeagueclick(value.league,i)" [ngClass]="{'activeRow': sortLeagueId == i || playerSelectLeague == true}"> {{value.league}} </li>
+                                                   <li class="pointer rr"  *ngFor="let value of this.database_League;let i=index;" (click)= "selectedLeagueclick(value,i)" [ngClass]="{'activeRow': value.checked === true}" style="text-transform: capitalize;"> {{value.league}} </li>
                                                </ul>
                                         </p-scrollPanel>
                                     </div>
@@ -570,8 +570,8 @@
                                 <div class="col-md-6 col-6 player">
                                     <div class="player_list">
                                         <p-scrollPanel [style]="{width: '100%', height: '450px'}" styleClass="custombar1">
-                                            <ul class="pointer" *ngFor="let value of this.selectedLeagueName;let i=index; " >   <!-- -->
-                                                <li class="rr"> {{value.league }}</li>
+                                            <ul class="pointer">   <!-- -->
+                                                <li class="rr" *ngFor="let value of this.selectedLeagueName;let i=index; " style="text-transform: capitalize;"> {{value.league }}</li>
                                             </ul>
                                         </p-scrollPanel>
                                     </div>
@@ -723,7 +723,7 @@
                                 <div class="col-md-12 col-12">
                                     <div class="Playerradiobtn">
                                         <span>
-                                            <p-radioButton name="val2" class="sortableradio" label="ASCENDING" value="Ascending " label="ASCENDING" [(ngModel)]="selectedPositionAl.item"  (click)="sortPositionAll('Ascending')"></p-radioButton> 
+                                            <p-radioButton name="val2" class="sortableradio" label="ASCENDING" value="Ascending" label="ASCENDING" [(ngModel)]="selectedPositionAl.item"  (click)="sortPositionAll('Ascending')"></p-radioButton> 
                                         </span>
                                         <span>
                                             <p-radioButton name="val2" class="sortableradio" label="DESCENDING" value="Descending" label="DESCENDING" [(ngModel)]="selectedPositionAl.item"  (click)="sortPositionAll('Descending')"></p-radioButton> 
@@ -742,7 +742,7 @@
                                                    <li class="pointer"  *ngFor="let value of this.databaseData;let i=index;" (click)= "selectedPositionclick(value,i)" [ngClass]="{'activeRow': sortPlaPositionId == i}"> {{value.position}} </li>  
                                                </ul> -->
                                                <ul > 
-                                                    <li class="pointer"  *ngFor="let value of this.playerPositionDataAllSort;let i=index;" (click)= "selectedPositionAlclick(value,i)" [ngClass]="{'activeRow': sortPositionAllId == i || playerSelectAllPosition == true }"> {{value}} </li> 
+                                                    <li class="pointer"  *ngFor="let value of this.playerPositionDataAllSort;let i=index;" (click)= "selectedPositionAlclick(value,i)" [ngClass]="{'activeRow': sortPositionAllId == i || playerSelectAllPosition == true }" style="text-transform: capitalize;"> {{value}} </li> 
                                                </ul>
                                         </p-scrollPanel>
                                     </div>
@@ -754,8 +754,8 @@
                                     <div class="player_list">
                                         <p-scrollPanel [style]="{width: '100%', height: '450px'}"
                                         styleClass="custombar1">
-                                       <ul class="pointer"  *ngFor="let value of this.selectedPositionAl;let i=index; " >
-                                           <li > {{value}}</li>
+                                       <ul class="pointer" >
+                                           <li *ngFor="let value of this.selectedPositionAl;let i=index; " style="text-transform: capitalize;"> {{value}}</li>
                                        </ul>
                                         </p-scrollPanel>
                                     </div>
@@ -782,7 +782,7 @@
                                 <div class="col-md-12 col-12">
                                     <div class="Playerradiobtn">
                                         <span>
-                                            <p-radioButton name="val2" class="sortableradio" label="ASCENDING" value="Ascending " label="ASCENDING" [(ngModel)]="selectedPositionSingle.item"  (click)="sortPositionSigle('Ascending')"></p-radioButton> 
+                                            <p-radioButton name="val2" class="sortableradio" label="ASCENDING" value="Ascending" label="ASCENDING" [(ngModel)]="selectedPositionSingle.item"  (click)="sortPositionSigle('Ascending')"></p-radioButton> 
                                         </span>
                                         <span>
                                             <p-radioButton name="val2" class="sortableradio" label="DESCENDING" value="Descending" label="DESCENDING" [(ngModel)]="selectedPositionSingle.item"  (click)="sortPositionSigle('Descending')"></p-radioButton> 
@@ -798,7 +798,7 @@
                                         <p-scrollPanel [style]="{width: '100%', height: '450px'}"
                                             styleClass="custombar1">
                                             <ul> 
-                                                <li class="pointer"  *ngFor="let value of this.playerPositionDataSingleSort;let i=index;" (click)= "selectedPositionSingleclick(value,i)" [ngClass]="{'activeRow': sortPositionSingleId == i || playerSelectSinglePosition == true}"> {{value}} </li> 
+                                                <li class="pointer"  *ngFor="let value of this.playerPositionDataSingleSort;let i=index;" (click)= "selectedPositionSingleclick(value,i)" [ngClass]="{'activeRow': sortPositionSingleId == i || playerSelectSinglePosition == true}" style="text-transform: capitalize;"> {{value}} </li> 
                                            </ul>
                                         </p-scrollPanel>
                                     </div>
@@ -811,8 +811,8 @@
                                     <div class="player_list">
                                         <p-scrollPanel [style]="{width: '100%', height: '450px'}"
                                         styleClass="custombar1">
-                                        <ul class="pointer"  *ngFor="let value of this.selectedPositionSingle;let i=index; " >
-                                            <li > {{value}}</li>
+                                        <ul class="pointer" >
+                                            <li *ngFor="let value of this.selectedPositionSingle;let i=index; " style="text-transform: capitalize;"> {{value}}</li>
                                         </ul>
                                         </p-scrollPanel>
                                     </div>

@@ -44,7 +44,7 @@
                             <div class="datatable pt-5" class="mar_top" >
                                 <div class="raw-containerr media_font"  *ngIf="rawStatedata" id="scrollParent">
                                     <div *ngFor="let item of rawStatedata; let i = index" [id]="i">
-                                        <div style="white-space: pre"> {{item.textlines}}</div>
+                                        <div style="white-space: pre" ref={{item.textlines}}> {{item.textlines}}</div>
                                     </div>
                                 </div>
                             </div>

@@ -225,17 +225,18 @@ getDataa(event){
 
 
   findThe(e) {
-    let aary = [];
-    let aar = [];
-    let name = this.rawStatedata.findIndex(({ textlines }) => textlines.includes(e.teams));
-    // console.log("abbac",name)
+    document.getElementById(e.teams).scrollIntoView();
+    // let aary = [];
+    // let aar = [];
+    // let name = this.rawStatedata.findIndex(({ textlines }) => textlines.includes(e.teams));
+    // // console.log("abbac",name)
 
-    if (name) {
-      const yOffset = -290;
-      const element = document.getElementById(name);
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' })
-    }
+    // if (name) {
+    //   const yOffset = -290;
+    //   const element = document.getElementById(name);
+    //   const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    //   window.scrollTo({ top: y, behavior: 'smooth' })
+    // }
   }
 
 
