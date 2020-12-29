@@ -3,7 +3,7 @@
         <div class="row">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 col-12 ">
+                    <div class="col-md-12 col-12 " style="padding-bottom: 10px;">
 
                         <div class="fix">                            
                             <div class="heading">
@@ -41,10 +41,10 @@
                     </div>
 
                         <div class=" col-12" id="table">
-                            <div class="datatable pt-5" class="mar_top" >
+                            <div class="datatable pt-5 mar_top tab-custom-scroll" >
                                 <div class="raw-containerr media_font"  *ngIf="rawStatedata" id="scrollParent">
-                                    <div *ngFor="let item of rawStatedata; let i = index" [id]="i">
-                                        <div style="white-space: pre"> {{item.textlines}}</div>
+                                    <div *ngFor="let item of rawStatedata; let i = index" >
+                                        <div style="white-space: pre" [id]="i"> {{item.textlines}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
           </p-body>
           <p-footer class="ok_button">
               <button type="button" class="btn btn-warning" data-dismiss="modal"(click)="findNew()" >Find</button> 
-              <button type="button" class="btn btn-dark" >Close</button> 
+              <button type="button" class="btn btn-dark" (click)="this.hideDialog4()">Close</button> 
           </p-footer>    
     </p-dialog>
 </div>

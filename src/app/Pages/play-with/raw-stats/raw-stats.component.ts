@@ -75,10 +75,11 @@ toScrollInto = 0
       let name = this.rawStatedata.findIndex(({ textlines }) => textlines.includes(this.selectedValuestand));
       // console.log("abbac",name)
       if (name) {
-        const yOffset = -280;              //-100;
-        const element = document.getElementById(name);
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' })
+        // const yOffset = -280;              //-100;
+        // const element = document.getElementById(name);
+        // const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        // window.scrollTo({ top: y, behavior: 'smooth' })
+        document.getElementById(name).scrollIntoView();
       }
     }
     else {
@@ -87,10 +88,11 @@ toScrollInto = 0
       let name = this.rawStatedata.findIndex(({ textlines }) => textlines.includes(this.selectedValue));
       // console.log("abbac",name)
       if (name) {
-        const yOffset = -280;        //-100;
-        const element = document.getElementById(name);
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' })
+        // const yOffset = -280;        //-100;
+        // const element = document.getElementById(name);
+        // const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        // window.scrollTo({ top: y, behavior: 'smooth' })
+        document.getElementById(name).scrollIntoView();
       }
     }
 
@@ -113,7 +115,9 @@ getDataa(event){
   showDialog4() {
     this.display4 = true;
   }
-
+  hideDialog4() {
+    this.display4 = false;
+  }
 
 
 
@@ -225,18 +229,17 @@ getDataa(event){
 
 
   findThe(e) {
-    document.getElementById(e.teams).scrollIntoView();
-    // let aary = [];
-    // let aar = [];
-    // let name = this.rawStatedata.findIndex(({ textlines }) => textlines.includes(e.teams));
-    // // console.log("abbac",name)
+    // document.getElementById("content").scrollIntoView();
+    let name = this.rawStatedata.findIndex(({ textlines }) => textlines.includes(e.teams));
 
-    // if (name) {
-    //   const yOffset = -290;
-    //   const element = document.getElementById(name);
-    //   const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    //   window.scrollTo({ top: y, behavior: 'smooth' })
-    // }
+    if (name) {
+      // const yOffset = -290;
+      // const element = document.getElementById(name);
+
+      // const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      // window.scrollTo({ top: y, behavior: 'smooth' })
+      document.getElementById(name).scrollIntoView();
+    }
   }
 
 
@@ -251,6 +254,7 @@ getDataa(event){
                 const element = document.getElementById(name);
                 const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
                 window.scrollTo({top: y, behavior: 'smooth'})
+                document.getElementById(name).scrollIntoView();
         }
         this.model.data=""
       }

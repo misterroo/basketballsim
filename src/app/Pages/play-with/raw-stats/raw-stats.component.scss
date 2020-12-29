@@ -2,7 +2,7 @@
     font-family: 'Fjalla One', sans-serif !important;
     // background-image: url('../../../../assets/img/imgpsh_fullsize_anim.png');
     background-repeat: no-repeat;
-    height: 100vh;
+    // height: 100vh;
     background-position: right bottom;
     background-size: 36%;
     width: 100%;
@@ -15,9 +15,13 @@
     .dropdown-menu {
         max-width: 14rem;
     }
-    
+    .tab-custom-scroll {
+        height: calc(100vh - 400px);
+        overflow: auto;
+
+    }
     .datatable{
-        padding-left: 63px;
+        // padding-left: 63px;
         width: 100%;
        .btn-warning{
         background-color: #f7d501;
