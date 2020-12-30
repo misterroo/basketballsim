@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminService } from '../../../../services/admin.service';
 import { NotifierService } from 'angular-notifier';
@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./raw-stats.component.scss']
 })
 export class RawStatsComponent implements OnInit {
+  @ViewChildren('listingData') listingData: QueryList<any>;
+  @ViewChild('scrollMe') scrollMe: ElementRef;
+
   model: any = {
     'season': '',
     'opponent': '',
@@ -131,7 +134,15 @@ getDataa(event){
 
     this.team();
   }
-  
+  ngAfterViewInit() {
+    this.scrollToBottom();
+    this.listingData.changes.subscribe(this.scrollToBottom);
+  }
+  scrollToBottom = () => {
+    try {
+      this.scrollMe.nativeElement.scrollTop = this.scrollMe.nativeElement.scrollHeight;
+    } catch (err) {}
+  }
   async getRawState() {
     let data = {"apikey":"Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A"
    }
@@ -160,6 +171,8 @@ getDataa(event){
             item['id'] = item.textlines.replace(/ /g,'');
           }
           this.rawStatedata = resultdata.data;
+          this.scrollToBottom();
+
         } else {
           this.notifierService.notify('error', resultdata.message);
         }

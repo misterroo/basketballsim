@@ -41,9 +41,9 @@
                     </div>
 
                         <div class=" col-12" id="table">
-                            <div class="datatable pt-5 mar_top tab-custom-scroll" >
+                            <div class="datatable pt-5 mar_top tab-custom-scroll" #scrollMe>
                                 <div class="raw-containerr media_font"  *ngIf="rawStatedata" id="scrollParent">
-                                    <div *ngFor="let item of rawStatedata; let i = index" >
+                                    <div #listingData *ngFor="let item of rawStatedata; let i = index" >
                                         <div style="white-space: pre" [id]="i"> {{item.textlines}}</div>
                                     </div>
                                 </div>
