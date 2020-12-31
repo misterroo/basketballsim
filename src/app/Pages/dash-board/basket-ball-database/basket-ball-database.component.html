@@ -118,13 +118,14 @@
                         [fromRoot]="true"
                         infiniteScroll
                         [infiniteScrollDistance]="2"
-                        [infiniteScrollThrottle]="50"
+                        [infiniteScrollThrottle]="this.databaseData.length"
                         [infiniteScrollContainer]="'.ui-table-scrollable-body'"
                         selectionMode="multiple"
                         [(selection)]="selectedRows"
                         [resizableColumns]="true"
-                        (onLazyLoad)="loadLazy($event)"
+                        
                         scrollHeight="calc(100vh - 360px)">
+                        <!-- (onLazyLoad)="loadLazy($event)" -->
                             <ng-template pTemplate="colgroup" let-columns>
                                 <colgroup>
                                     <col *ngFor="let col of columns" [style.width.px]="col.width">
@@ -161,11 +162,11 @@
                         [lazy]="true"
                         infiniteScroll
                         [infiniteScrollDistance]="2"
-                        [infiniteScrollThrottle]="50"
+                        [infiniteScrollThrottle]="this.databaseData.length"
                         [infiniteScrollContainer]="'.ui-table-scrollable-body'"
                         (scrolled)="onScrollTeam()"
                         [scrollable]="true"
-                        [rows]="50"
+                        [rows]="this.databaseData.length"
                         frozenWidth="400px"
                         sortMode="multiple"
                         *ngIf="this.databaseTeamData.length>0"                      
@@ -173,8 +174,9 @@
                         selectionMode="multiple"
                         [(selection)]="selectedRows"
                         [resizableColumns]="true"
-                        [virtualScroll]="true" [virtualRowHeight]="34" 
+                        
                         scrollHeight="calc(100vh - 360px)">
+                        <!-- [virtualScroll]="true" [virtualRowHeight]="34"  -->
                             <ng-template pTemplate="colgroup" let-columns>
                                 <colgroup>
                                     <col *ngFor="let col of columns" [style.width.px]="col.width">
@@ -193,7 +195,7 @@
                             <ng-template pTemplate="body" let-rowData let-columns="columns" id="containerDiv" let-rowIndex="rowIndex">
                                 <tr class="fnt_media font_data" [pSelectableRow]="rowData" [id]="rowIndex">
                                     <td *ngFor="let col of columns;let i=index" class="point ui-resizable-column" [id]="i" [ngStyle]="{'color': rowData.color == 1?firSetColorOn:secSetColorOn,'background-color': allyellow?'yellow' :'','display':col.hideData?'none':''}" > <!--[ngClass]="rowData.color == 1?'bl':'re'" -->
-                                        <div *ngIf="rowData[col.field] === '-999' || rowData[col.field] === null">---</div> <!---->
+                                        <div *ngIf="rowData[col.field] === '-999' || rowData[col.field] === null">...</div> <!---->
                                         <div *ngIf="rowData[col.field] !== '-999'">{{rowData[col.field]}}</div> 
                                     </td>
                                 </tr>

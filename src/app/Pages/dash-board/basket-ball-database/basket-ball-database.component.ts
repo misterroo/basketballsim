@@ -16,6 +16,7 @@ import { element } from 'protractor';
   styleUrls: ['./basket-ball-database.component.scss']
 })
 export class BasketBallDatabaseComponent implements OnInit {
+  databaseGamePlay: string = '';
   totalPlayerTeamCount: number;
   recordLength: number = 0;
   getDatabaseStatistics: any[] = [];
@@ -224,6 +225,7 @@ export class BasketBallDatabaseComponent implements OnInit {
     private notifierService: NotifierService
   ) { 
     this.totalPlayerTeamCount = 0;
+    this.databaseGamePlay = '';
     this.databaseData = [];
    }
 
@@ -620,10 +622,12 @@ export class BasketBallDatabaseComponent implements OnInit {
   }
 
   getStaticsDatabasePlayer() {
+    this.databaseGamePlay = 'playerMode';
     this.resetData()
     this.getStaticsDatabase();
   }
   getStaticsDatabaseTeamData() {
+    this.databaseGamePlay = 'teamMode';
     this.resetData()
     this.getStaticsDatabaseTeam();
   }
@@ -1255,7 +1259,7 @@ export class BasketBallDatabaseComponent implements OnInit {
     }
   }
   resetData(){
-    if(this.databaseData && this.databaseData.length >0){
+    if(this.databaseGamePlay === 'playerMode'){
       this.databaseData = [];
       this.radiofieldModel={}            
       this.playerName = [];
@@ -1307,7 +1311,7 @@ export class BasketBallDatabaseComponent implements OnInit {
       this.selectedPositionAl = [];
       this.playerPositionDataAllSort = [];
       this.tempTeamData = [];
-    } else if(this.databaseTeamData && this.databaseTeamData.length > 0){
+    } else if(this.databaseGamePlay === 'teamMode'){
       this.databaseTeamData =[]
       this.teamName = [];
       this.yearName = [];
@@ -1319,11 +1323,56 @@ export class BasketBallDatabaseComponent implements OnInit {
       this.symbols =[]
       this.takeValue = null;
       this.tempTeamData = [] 
+
+      this.filter1 =null;
+        this.selectedRows = ""
+        this.regply ='';
+        this.selectedPlayerName =[];
+        this.selectedTeamName  =[];
+        this.selectedYearName =[];
+        this.selectedLeagueName =[];
+        this.display0= false;
+        this.display1= false;
+        this.display2= false;
+        this.display3= false;
+        this.display4= false;
+        this.display5= false;
+        this.display6= false;
+        this.display7= false;
+        this.display8= false;
+        this.display9= false;
+        this.display10= false;
+        this.display11= false;
+        this.display12= false;
+        this.display13= false;
+        this.display14= false;
+        this.display15= false;
+        this.allyellow = false;
+        this.subtotal = null;
+        this.symbols =[]
+        this.takeValue = null;
+        this.all_Color = false;
+        this.limit1 =null;
+        this.tempData = [];
+        this.displayModal= false;
+        this.displayModal1= false;
+        if(this.fieldModel5.item == 'yes'){
+          this.fieldModel.sort1 = ""
+          this.fieldModel.sort2 = ""
+          this.fieldModel.sort3 = ""
+          this.fieldModel.sort4 = ""
+          this.radiofieldModel.sort1a = 'true'; 
+          this.radiofieldModel.sort2a = 'true'; 
+          this.radiofieldModel.sort3a = 'true'; 
+          this.radiofieldModel.sort4a = 'true'; 
+        }
+        this.selectedPositionAl = [];
+        this.playerPositionDataAllSort = [];
     }
 }
 
   reset(){
-      if(this.databaseData && this.databaseData.length >0){
+      if(this.databaseGamePlay === 'playerMode') {
         this.databaseData = [];
         this.radiofieldModel={}            
         this.playerName = [];
@@ -1376,7 +1425,7 @@ export class BasketBallDatabaseComponent implements OnInit {
         this.playerPositionDataAllSort = [];
         this.tempTeamData = [];
         this.getStaticsDatabase(); 
-      } else if(this.databaseTeamData && this.databaseTeamData.length > 0){
+      } else if(this.databaseGamePlay === 'teamMode'){
         this.databaseTeamData =[]
         this.teamName = [];
         this.yearName = [];
@@ -1388,6 +1437,51 @@ export class BasketBallDatabaseComponent implements OnInit {
         this.symbols =[]
         this.takeValue = null;
         this.tempTeamData = []
+
+        this.filter1 =null;
+        this.selectedRows = ""
+        this.regply ='';
+        this.selectedPlayerName =[];
+        this.selectedTeamName  =[];
+        this.selectedYearName =[];
+        this.selectedLeagueName =[];
+        this.display0= false;
+        this.display1= false;
+        this.display2= false;
+        this.display3= false;
+        this.display4= false;
+        this.display5= false;
+        this.display6= false;
+        this.display7= false;
+        this.display8= false;
+        this.display9= false;
+        this.display10= false;
+        this.display11= false;
+        this.display12= false;
+        this.display13= false;
+        this.display14= false;
+        this.display15= false;
+        this.allyellow = false;
+        this.subtotal = null;
+        this.symbols =[]
+        this.takeValue = null;
+        this.all_Color = false;
+        this.limit1 =null;
+        this.tempData = [];
+        this.displayModal= false;
+        this.displayModal1= false;
+        if(this.fieldModel5.item == 'yes'){
+          this.fieldModel.sort1 = ""
+          this.fieldModel.sort2 = ""
+          this.fieldModel.sort3 = ""
+          this.fieldModel.sort4 = ""
+          this.radiofieldModel.sort1a = 'true'; 
+          this.radiofieldModel.sort2a = 'true'; 
+          this.radiofieldModel.sort3a = 'true'; 
+          this.radiofieldModel.sort4a = 'true'; 
+        }
+        this.selectedPositionAl = [];
+        this.playerPositionDataAllSort = [];
         this.getStaticsDatabaseTeam(); 
       }
   }
@@ -1405,12 +1499,16 @@ export class BasketBallDatabaseComponent implements OnInit {
     if(this.databaseData && this.databaseData.length >0){
       this.databaseData = [];
     this.leagueName =this.selectedLeagueName;
+    this.startPoint = 1;
+    this.lengthPoint = 50;
     this.getStaticsDatabase();
     this.display3 = false;
     this.model.data=""
     } else if(this.databaseTeamData && this.databaseTeamData.length >0){
     this.databaseTeamData = [];
     this.leagueName =this.selectedLeagueName;
+    this.startPointTeam = 1;
+    this.lengthPointTeam = 50;
     this.getStaticsDatabaseTeam();
     this.display3 = false;
     this.model.data=""    
@@ -1421,6 +1519,8 @@ export class BasketBallDatabaseComponent implements OnInit {
     if(this.databaseData && this.databaseData.length > 0){
     this.databaseData = [];
     this.regply =item;
+    this.startPoint = 1;
+    this.lengthPoint = 50;
     this.getStaticsDatabase();
     }
   }
@@ -1428,7 +1528,8 @@ export class BasketBallDatabaseComponent implements OnInit {
   playerTeamName(item){
     this.databaseData = [];
     this.subtotal = item;
-    console.log(this.subtotal)
+    this.startPoint = 1;
+    this.lengthPoint = 50;
     this.getStaticsDatabase();
   }
 
@@ -1483,12 +1584,16 @@ export class BasketBallDatabaseComponent implements OnInit {
     if (this.databaseData && this.databaseData.length > 0){
     this.databaseData = [];
     this.yearName =this.selectedYearName;
+    this.startPoint = 1;
+    this.lengthPoint = 50;
     this.getStaticsDatabase();
     this.display1 = false;
     this.model.data=""
     } else if(this.databaseTeamData && this.databaseTeamData.length > 0){
       this.databaseTeamData = [];
     this.yearName =this.selectedYearName;
+    this.startPointTeam = 1;
+    this.lengthPointTeam = 50;
     this.getStaticsDatabaseTeam();
     this.display1 = false;
     this.model.data=""
@@ -1545,6 +1650,8 @@ export class BasketBallDatabaseComponent implements OnInit {
   filterPlayer(){
     this.databaseData = [];
     this.playerName =this.selectedPlayerName;
+    this.startPoint = 1;
+    this.lengthPoint = 50;
     this.getStaticsDatabase();
     this.display2 = false;
     this.model.data=""
@@ -2141,6 +2248,8 @@ export class BasketBallDatabaseComponent implements OnInit {
   filterLimit(){
     if(this.databaseData && this.databaseData.length > 0){
       this.databaseData = [];
+      this.startPoint = 1;
+      this.lengthPoint = 50;
       this.getStaticsDatabase();
       this.display8 = false;
       this.model.data=""
@@ -2151,6 +2260,8 @@ export class BasketBallDatabaseComponent implements OnInit {
       }
     } else if(this.databaseTeamData && this.databaseTeamData.length > 0){
         this.databaseTeamData = [];
+        this.startPointTeam = 1;
+        this.lengthPointTeam = 50;
         this.getStaticsDatabaseTeam();
         this.display8 = false;
         this.model.data=""
