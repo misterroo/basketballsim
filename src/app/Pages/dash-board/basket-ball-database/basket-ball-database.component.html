@@ -209,7 +209,7 @@
                             </ng-template>
                             <ng-template pTemplate="footer" let-columns>
                                 <tr class="point">
-                                    <th *ngFor="let col of columns;let i=index" pResizableColumn class="button fnt_media" (dblclick)=" hideColumn(i+2)" [ngStyle]="{'display':col.hideData?'none':''}" [pSortableColumn]="col.field">                                        
+                                    <th *ngFor="let col of columns;let i=index" pResizableColumn class="button fnt_media" (dblclick)=" hideColumn(i+2)" [ngStyle]="{'display':col.hideData?'none':''}" [pSortableColumn]="col.field" style="padding: 0.571em 0.857em">                                        
                                         {{col.value}}
                                     </th>
                                 </tr>
