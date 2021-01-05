@@ -17,6 +17,8 @@ import { element } from 'protractor';
 })
 export class BasketBallDatabaseComponent implements OnInit {
   databaseGamePlay: string = '';
+  footerData: any;
+  footerDataTeam: any;
   totalPlayerTeamCount: number;
   recordLength: number = 0;
   getDatabaseStatistics: any[] = [];
@@ -710,8 +712,15 @@ export class BasketBallDatabaseComponent implements OnInit {
           this.scrollableCols = [];
           this.frozenCols = [];
           this.allData = resultdata.headers;
+          this.footerData = resultdata.totals;
           // this.allData.push(this.addHeader)
-
+          for (let header of this.allData) {
+            for (let footer of this.footerData) {
+              if (header.field_name === footer.field_name) {
+                header.value = footer.value;
+              }
+            }
+          }
           if (resultdata.PlayerData !== null) {
             this.databaseData = this.databaseData.concat(resultdata.PlayerData);
             if (this.all_Color == true) {
@@ -762,15 +771,16 @@ export class BasketBallDatabaseComponent implements OnInit {
                 title4: item.title4,
                 field: item.field_name,
                 width: item.width * 12,
+                value: item.value
               };
               this.scrollableCols.push(obj)
             }
             i++;
           }
           this.frozenCols = [
-            { field: this.allData[0].field_name, header: this.allData[0].field_description, title1: this.allData[0].title1, title2: this.allData[0].title2, title3: this.allData[0].title3, title4: this.allData[0].title4, width: this.allData[0].width },
-            { field: this.allData[1].field_name, header: this.allData[1].field_description, title1: this.allData[1].title1, title2: this.allData[1].title2, title3: this.allData[1].title3, title4: this.allData[1].title4, width: this.allData[1].width },
-            { field: this.allData[2].field_name, header: this.allData[2].field_description, title1: this.allData[2].title1, title2: this.allData[2].title2, title3: this.allData[2].title3, title4: this.allData[2].title4, width: this.allData[2].width },
+            { field: this.allData[0].field_name, header: this.allData[0].field_description, title1: this.allData[0].title1, title2: this.allData[0].title2, title3: this.allData[0].title3, title4: this.allData[0].title4, width: this.allData[0].width, value: this.allData[0].value },
+            { field: this.allData[1].field_name, header: this.allData[1].field_description, title1: this.allData[1].title1, title2: this.allData[1].title2, title3: this.allData[1].title3, title4: this.allData[1].title4, width: this.allData[1].width, value: this.allData[1].value },
+            { field: this.allData[2].field_name, header: this.allData[2].field_description, title1: this.allData[2].title1, title2: this.allData[2].title2, title3: this.allData[2].title3, title4: this.allData[2].title4, width: this.allData[2].width, value: this.allData[2].value },
           ];
           this.recordLength = this.databaseData.length;
         }
@@ -963,32 +973,40 @@ export class BasketBallDatabaseComponent implements OnInit {
         this.frozenCols = [];
         this.allTeamData = result_Data_Team.headers;
         this.totalPlayerTeamCount = result_Data_Team.recordsTotal;
+        this.footerDataTeam = result_Data_Team.totals;
         if(result_Data_Team.TeamData !== null) {
           this.databaseTeamData = this.databaseTeamData.concat(result_Data_Team.TeamData);
           if( this.all_Color == true){
-          this.selectedRows = this.databaseTeamData;
+            this.selectedRows = this.databaseTeamData;
           }
         }    
-        
-          let i = 0;
-          for (let item of this.allTeamData){
-            if(i > 1){
-            let obj = { 
-                        header  : item.field_description,
-                        title1  : item.title1,
-                        title2  : item.title2,
-                        title3  : item.title3,
-                        title4  : item.title4,
-                        field   : item.field_name, 
-                        width   : item.width*12,
-            };
-             this.scrollableCols.push(obj)
+        for (let header of this.allTeamData) {
+          for (let footer of this.footerDataTeam) {
+            if (header.field_name === footer.field_name) {
+              header.value = footer.value;
+            }
           }
-          i++;
+        }
+          let i = 0;
+          for (let item of this.allTeamData) {
+            if (i > 1) {
+              let obj = {
+                header: item.field_description,
+                title1: item.title1,
+                title2: item.title2,
+                title3: item.title3,
+                title4: item.title4,
+                field: item.field_name,
+                width: item.width * 12,
+                value: item.value
+              };
+              this.scrollableCols.push(obj)
+            }
+            i++;
           }
              this.frozenCols = [
-              { field: this.allTeamData[0].field_name , header: this.allTeamData[0].field_description, title1: this.allTeamData[0].title1, title2: this.allTeamData[0].title2, title3: this.allTeamData[0].title3, title4: this.allTeamData[0].title4, width: this.allTeamData[0].width},
-              { field: this.allTeamData[1].field_name , header: this.allTeamData[1].field_description, title1: this.allTeamData[1].title1, title2: this.allTeamData[1].title2, title3: this.allTeamData[1].title3, title4: this.allTeamData[1].title4, width: this.allTeamData[1].width},
+              { field: this.allTeamData[0].field_name , header: this.allTeamData[0].field_description, title1: this.allTeamData[0].title1, title2: this.allTeamData[0].title2, title3: this.allTeamData[0].title3, title4: this.allTeamData[0].title4, width: this.allTeamData[0].width, value: this.allTeamData[0].value},
+              { field: this.allTeamData[1].field_name , header: this.allTeamData[1].field_description, title1: this.allTeamData[1].title1, title2: this.allTeamData[1].title2, title3: this.allTeamData[1].title3, title4: this.allTeamData[1].title4, width: this.allTeamData[1].width, value: this.allTeamData[1].value},
               ];
             }
            });

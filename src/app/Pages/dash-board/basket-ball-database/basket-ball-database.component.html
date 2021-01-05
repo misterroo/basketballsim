@@ -124,7 +124,7 @@
                         [(selection)]="selectedRows"
                         [resizableColumns]="true"
                         
-                        scrollHeight="calc(100vh - 360px)">
+                        scrollHeight="calc(100vh - 400px)">
                         <!-- (onLazyLoad)="loadLazy($event)" -->
                             <ng-template pTemplate="colgroup" let-columns>
                                 <colgroup>
@@ -149,6 +149,13 @@
                                     </td>
                                 </tr>
                             </ng-template>
+                            <ng-template pTemplate="footer" let-columns>
+                                <tr class="point">
+                                    <th *ngFor="let col of columns;let i=index" pResizableColumn class="button fnt_media" (dblclick)=" hideColumn(i+3)" [ngStyle]="{'display':col.hideData?'none':''}" [pSortableColumn]="col.field" style="padding: 0.571em 0.857em">                                        
+                                        {{col.value}}
+                                    </th>
+                                </tr>
+                            </ng-template>
                         </p-table>
                         <div *ngIf="this.databaseData.length==0">
                             <!-- No Data Found -->
@@ -162,11 +169,11 @@
                         [lazy]="true"
                         infiniteScroll
                         [infiniteScrollDistance]="2"
-                        [infiniteScrollThrottle]="this.databaseData.length"
+                        [infiniteScrollThrottle]="this.databaseTeamData.length"
                         [infiniteScrollContainer]="'.ui-table-scrollable-body'"
                         (scrolled)="onScrollTeam()"
                         [scrollable]="true"
-                        [rows]="this.databaseData.length"
+                        [rows]="this.databaseTeamData.length"
                         frozenWidth="400px"
                         sortMode="multiple"
                         *ngIf="this.databaseTeamData.length>0"                      
@@ -175,7 +182,7 @@
                         [(selection)]="selectedRows"
                         [resizableColumns]="true"
                         
-                        scrollHeight="calc(100vh - 360px)">
+                        scrollHeight="calc(100vh - 400px)">
                         <!-- [virtualScroll]="true" [virtualRowHeight]="34"  -->
                             <ng-template pTemplate="colgroup" let-columns>
                                 <colgroup>
@@ -198,6 +205,13 @@
                                         <div *ngIf="rowData[col.field] === '-999' || rowData[col.field] === null">...</div> <!---->
                                         <div *ngIf="rowData[col.field] !== '-999'">{{rowData[col.field]}}</div> 
                                     </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="footer" let-columns>
+                                <tr class="point">
+                                    <th *ngFor="let col of columns;let i=index" pResizableColumn class="button fnt_media" (dblclick)=" hideColumn(i+2)" [ngStyle]="{'display':col.hideData?'none':''}" [pSortableColumn]="col.field">                                        
+                                        {{col.value}}
+                                    </th>
                                 </tr>
                             </ng-template>
                         </p-table>

@@ -1526,3 +1526,6 @@ label.fonty {
         text-indent: -99999px;
         overflow: hidden;
     }
+    body .ui-table .ui-table-tfoot > tr > td {
+        padding: 0.571em 0.857em;
+    }
