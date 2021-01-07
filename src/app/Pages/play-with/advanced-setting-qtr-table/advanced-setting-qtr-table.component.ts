@@ -100,7 +100,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     private notifierService: NotifierService,
     private shared: SharedService,
   ) {
-    
+    this.getTableData = [];
     let checkPlaybyPlay = localStorage.getItem('keyy');
     if (checkPlaybyPlay === null) {
       localStorage.setItem('keyy', 'false')
@@ -282,12 +282,12 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     }
 
     
-    if(localStorage.getItem('tableData') != ''){
+    // if(localStorage.getItem('tableData') != ''){
       
-      this.getTableData = JSON.parse(localStorage.getItem('tableData'))
-      this.showTable = true;
+    //   this.getTableData = JSON.parse(localStorage.getItem('tableData'))
+    //   this.showTable = true;
       
-    }
+    // }
   }
 
   playbtn(e){
@@ -412,7 +412,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
         this.result = result;
       }, 
 
-      (err) =>{ this.spinner.hide();
+      (err) =>{ //this.spinner.hide();
         if(err.status == 401){
           localStorage.clear();
           this.router.navigateByUrl('/');
@@ -439,14 +439,15 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   
   async getGames() {
     let Token: string = localStorage.getItem('userToken');
-  
+    this.spinner.hide();
     (await this.adminService.withoutQtrTable(Token)).subscribe(result => {
       
   
       this.resultData = result
     }, 
 
-    (err) =>{ this.spinner.hide();
+    (err) =>{ 
+      // this.spinner.hide();
       if(err.status == 401){
         localStorage.clear();
         this.router.navigateByUrl('/');
@@ -456,14 +457,14 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
 
       () => {
         
-        if (this.resultData.status == "true") {
+        if (this.resultData.status === "true") {
           this.spinner.hide();
-          
           this.getTableData = this.resultData.data;
-          localStorage.setItem('tableData',JSON.stringify(this.getTableData))
+          // localStorage.setItem('tableData',JSON.stringify(this.getTableData))
+          this.getGames()
 
         } else {
-          this.spinner.hide();
+          // this.spinner.hide();
         }
       })
   }
@@ -621,7 +622,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
    }
     this.spinner.show();
     (await this.adminService.gameListSeasonTeam(request, Token)).subscribe(result => {
-      localStorage.setItem('tableDataAllteam',JSON.stringify(this.pridictData))
+      // localStorage.setItem('tableDataAllteam',JSON.stringify(this.pridictData))
       
       this.result = result;
     }, 
@@ -667,7 +668,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
    }
     this.spinner.show();
     (await this.adminService.gameListFullSeason(request, Token)).subscribe(result => {
-      localStorage.setItem('tableDataAll',JSON.stringify(this.pridictData))
+      // localStorage.setItem('tableDataAll',JSON.stringify(this.pridictData))
       this.result = result;
     }, 
 
@@ -693,7 +694,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   async tableDataAllData() {
     // const formData = new FormData();
     let Token: string = localStorage.getItem('userToken');
-    this.spinner.show();
+    // this.spinner.show();
     (await this.adminService.withoutQtrTable(Token)).subscribe(result => {
       this.result = result;
     }, 
@@ -712,7 +713,12 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
           this.spinner.hide();
           // this.getTableData = this.result.data;
           this.getTableData = this.result.data;
-          localStorage.setItem('tableData',JSON.stringify(this.getTableData))
+          // this.tableDataAllData();
+          
+          setTimeout(() => {
+            this.tableDataAllData();
+          }, 1000)
+          // localStorage.setItem('tableData',JSON.stringify(this.getTableData))
         } else {
           this.spinner.hide();
         }
