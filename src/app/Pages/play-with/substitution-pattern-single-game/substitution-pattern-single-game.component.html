@@ -1,10 +1,10 @@
 <div class="modal-header" style="background: #343a40;color: #fff;">
     <h5 class="modal-title">SUBSTITUTION PATTERN</h5>
-    <button type="button" class="close" data-dismiss="modal" (click)="closeModalSub('dismiss')">
+    <button type="button" class="close" data-dismiss="modal" (click)="closeModal('dismiss')">
         <span aria-hidden="true" style="color: #fff;">&times;</span>
     </button>
 </div>
-<div id="substitutionpattern">
+<div id="substitutionpatternsinglegame">
     <div class="container-fluid">
         <!-- <app-header></app-header> -->
 
@@ -163,14 +163,14 @@
                                                                         <div class="col-4 cs">
                                                                             C
                                                                         </div>                                                                          
-                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,1) && static_Id == 1)? true : false}" > -->
-                                                                            <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos1,i,j,1)? true : false}" > 
+                                                                        <!-- <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,1) && static_Id == 1)? true : false}" > -->
+                                                                            <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos1,i,j,1)? true : false}" > 
                                                                                 <label class="pointer"> 
                                                                                     <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos1,i,j,1)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos1+'1'">
                                                                                     {{op.pos1}}
                                                                                 </label>
                                                                             </div>
-                                                                            <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos1,i,j,1)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos1 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos1  && static_Id == 1) ? true : false} "> 
+                                                                            <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos1,i,j,1)" *ngIf="!this.checkedValue" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos1 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos1  && static_Id == 1) ? true : false} "> 
                                                                                 <div >
                                                                                     {{op.pos1}}
                                                                                 </div>                                                                                
@@ -181,14 +181,14 @@
                                                                         <div class="col-4 cs">
                                                                             PF
                                                                         </div>                                                                    
-                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,2) && static_Id == 2)? true : false}" > -->
-                                                                            <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos2,i,j,2)? true : false}" >  
+                                                                        <!-- <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,2) && static_Id == 2)? true : false}" > -->
+                                                                            <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos2,i,j,2)? true : false}" >  
                                                                                 <label class="pointer">           
                                                                                     <input type="radio" style="visibility: hidden;" (change)="multiCheck($event,op,op.pos2,i,j,2)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos2+'2'">
                                                                                     {{op.pos2}}
                                                                                 </label>
                                                                             </div>
-                                                                            <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos2,i,j,2)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos2 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos2  && static_Id == 2) ? true : false} "> 
+                                                                            <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos2,i,j,2)" *ngIf="!this.checkedValue" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos2 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos2  && static_Id == 2) ? true : false} "> 
                                                                                 <div >
                                                                                     {{op.pos2}}
                                                                                 </div>                                                                                
@@ -199,14 +199,14 @@
                                                                         <div class="col-4 cs">
                                                                             SF
                                                                         </div>                                                                         
-                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,3) && static_Id == 3)? true : false}" > -->
-                                                                                <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos3,i,j,3)? true : false}" > 
+                                                                        <!-- <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,3) && static_Id == 3)? true : false}" > -->
+                                                                                <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos3,i,j,3)? true : false}" > 
                                                                             <label class="pointer"> 
                                                                                 <input type="radio" style="visibility: hidden;" (change)="multiCheck($event,op,op.pos3,i,j,3)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos3+'3'">
                                                                                 {{op.pos3}}
                                                                             </label>
                                                                         </div>
-                                                                        <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos3,i,j,3)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos3 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos3  && static_Id == 3) ? true : false} "> 
+                                                                        <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos3,i,j,3)" *ngIf="!this.checkedValue" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos3 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos3  && static_Id == 3) ? true : false} "> 
                                                                             <div >
                                                                                 {{op.pos3}}
                                                                             </div>                                                                                
@@ -217,14 +217,14 @@
                                                                         <div class="col-4 cs">
                                                                             SG
                                                                         </div>                                                                            
-                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,4) && static_Id == 4)? true : false}" > -->
-                                                                            <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos4,i,j,4)? true : false}" > 
+                                                                        <!-- <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,4) && static_Id == 4)? true : false}" > -->
+                                                                            <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos4,i,j,4)? true : false}" > 
                                                                             <label class="pointer"> 
                                                                                 <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos4,i,j,4)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos4+'4'">
                                                                                 {{op.pos4}}
                                                                             </label>
                                                                         </div>
-                                                                        <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos4,i,j,4)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos4 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos4  && static_Id == 4) ? true : false} "> 
+                                                                        <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos4,i,j,4)" *ngIf="!this.checkedValue" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos4 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos4  && static_Id == 4) ? true : false} "> 
                                                                             <div >
                                                                                 {{op.pos4}}
                                                                             </div>                                                                                
@@ -235,14 +235,14 @@
                                                                         <div class="col-4 cs">
                                                                             PG
                                                                         </div>                                                                   
-                                                                        <!-- <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,5) && static_Id == 5)? true : false}" > -->
-                                                                        <div class="col-8 pointer" *ngIf="checked" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos5,i,j,5)? true : false}" > 
+                                                                        <!-- <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': (getTRetrunSelect(op.pos1,i,j,5) && static_Id == 5)? true : false}" > -->
+                                                                        <div class="col-8 pointer" *ngIf="this.checkedValue" [ngClass]="{'bgYellow': getTRetrunSelect(op.pos5,i,j,5)? true : false}" > 
                                                                             <label class="pointer">  
                                                                                 <input type="radio"  style="visibility: hidden;" (change)="multiCheck($event,op,op.pos5,i,j,5)"  class="form-check-input" id="radio1" [ngModel]="CheckValue" name="pos{{i}}{{j}}" [value]="op.pos5+'5'">
                                                                                 {{op.pos5}}
                                                                             </label>
                                                                         </div>
-                                                                        <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos5,i,j,5)" *ngIf="!checked" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos5 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos5 && static_Id == 5) ? true : false} "> 
+                                                                        <div class="col-8 pointer gh" (click)="selectPlayerl(op,op.pos5,i,j,5)" *ngIf="!this.checkedValue" [ngClass]="{'bgYellow': (selectedPlayer && selectedPlayer.player_name == op.pos5 && isLocate == true) || (one_click==i && button_single==j &&selectedPlayer.player_name === op.pos5 && static_Id == 5) ? true : false} "> 
                                                                             <div >
                                                                                 {{op.pos5}}
                                                                             </div>                                                                                
@@ -302,13 +302,13 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="left">
-                                                        <button type="button" class="btn_black" (click)="locatPlayer()" [disabled]="locate_disable || checked">LOCATE</button>
+                                                        <button type="button" class="btn_black" (click)="locatPlayer()" [disabled]="locate_disable || this.checkedValue">LOCATE</button>
                                                         
                                                          <button type="button" class="btn_yellow"  (click)="mdl()" [disabled]="locate_disable">CHANGE</button>
                                                         <p-dialog header="Warning" [(visible)]="displayBasic" [style]="{width: '30vw'}">
                                                            <h6> Replacing player in more than one slot. Continue? </h6>
                                                             <button type="button" class="btn_yellow0" (click)="ok()"> Ok</button>
-                                                            <button type="button" class="btn_black"(click)="can()" > Cancel</button>
+                                                            <button type="button" class="btn_black"(click)="closeModal('dismiss')" > Cancel</button>
                                                             <!-- <button> ok</button>
                                                             <button> cancel</button> -->
                                                         </p-dialog> 
@@ -329,7 +329,7 @@
                                                     </div>
                                                     <div class="right">
                                                         <button type="button" class="btn_yellow"  (click)="onSetSubtitution()" >OK</button>   <!--[disabled]="locate_disable"-->
-                                                        <button type="button" class="btn_black"  (click)="closeModalSub('dismiss')">CANCEL</button>  <!--(click)="cancel()"-->
+                                                        <button type="button" class="btn_black" (click)="closed()">CANCEL</button>  <!--(click)="cancel()"-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -338,7 +338,7 @@
                                             <div class="row mb-2">
                                                 <div class="col-sm-12">
                                                     <div class="float-left">
-                                                        <button type="button" class="btn_black" (click)="openDraftPlayer()" >DRAFT PLAYER</button>
+                                                        <button type="button" class="btn_black" (click)="openDraftPlayerModal()">DRAFT PLAYER</button>
                                                     </div>
                                                 </div>
                                             </div>

@@ -41,13 +41,16 @@ import { SingleGameComponent } from './single-game/single-game.component';
 import { PlayRoutingModule } from './play-routing.module';
 
 import { SubstitutionPatternComponent } from './substitution-pattern/substitution-pattern.component';
+import { SubstitutionPatternSingleGameComponent } from './substitution-pattern-single-game/substitution-pattern-single-game.component';
 import { ChangePlayerCharacteristicsComponent } from './change-player-characteristics/change-player-characteristics.component';
 import { RawStatsComponent } from './raw-stats/raw-stats.component';
 import { RawBoxScoresComponent } from './raw-box-scores/raw-box-scores.component';
 import { SortableStatsComponent } from './sortable-stats/sortable-stats.component';
 import { SortableBoxScoreComponent } from './sortable-box-score/sortable-box-score.component';
 import { DraftPlayerComponent } from './draft-player/draft-player.component';
+import { DraftPlayerSingleGameComponent } from './draft-player-single-game/draft-player-single-game.component';
 
+import { NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -57,13 +60,19 @@ import { DraftPlayerComponent } from './draft-player/draft-player.component';
     ToggleButtonComponent,
 
     SubstitutionPatternComponent,
+    SubstitutionPatternSingleGameComponent,
     ChangePlayerCharacteristicsComponent,
     RawStatsComponent,
     RawBoxScoresComponent,
     SortableStatsComponent,
     SortableBoxScoreComponent,
     DraftPlayerComponent,
+    DraftPlayerSingleGameComponent
     
+  ],
+  entryComponents:[
+    SubstitutionPatternSingleGameComponent,
+    DraftPlayerSingleGameComponent
   ],
   imports: [
     PlayRoutingModule,

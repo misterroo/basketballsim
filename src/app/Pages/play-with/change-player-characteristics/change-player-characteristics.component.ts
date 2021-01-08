@@ -4,6 +4,7 @@ import { AdminService } from '../../../../services/admin.service';
 import { NotifierService } from 'angular-notifier';
 import * as $ from 'jquery';
 import { Location } from '@angular/common';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Router } from '@angular/router';
 // import { ToastrService } from 'ngx-toastr';
@@ -42,6 +43,7 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService,
     private _location: Location,
+    public activeModal: NgbActiveModal,
   ) {
     this.activeCell = false;
     this.playerDataOld = [];
@@ -164,9 +166,8 @@ export class ChangePlayerCharacteristicsComponent implements OnInit {
 
   }
 
-
-  closed(): void {
-    this.toggleMenu.emit();
+  closeModalChange(sendData) {
+    this.activeModal.close(sendData);
   }
 
   async getPlayerCharacteristics(data) {

@@ -8,7 +8,9 @@ import { ColorPicker } from 'primeng';
 import { Console } from 'console';
 import { $ } from 'protractor';
 import * as jQuery from 'jquery';
-
+import { SharedService } from '../../../services/shared.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SubstitutionPatternSingleGameComponent } from '../substitution-pattern-single-game/substitution-pattern-single-game.component';
 @Component({
   selector: 'app-single-game',
   templateUrl: './single-game.component.html',
@@ -16,6 +18,8 @@ import * as jQuery from 'jquery';
 })
 export class SingleGameComponent implements OnInit {
 
+  position: string
+  showSubstitution: boolean = false;
   displayModal: boolean = false;
   play_by_playComments:any = [];
   rawBoxScore:any = []
@@ -63,7 +67,9 @@ export class SingleGameComponent implements OnInit {
     private router: Router,
     private adminService: AdminService,
     private spinner: NgxSpinnerService,
-    private notifierService: NotifierService
+    private notifierService: NotifierService,
+    private shared: SharedService,
+    private modalService: NgbModal,
   ) { 
     
     // if(localStorage.getItem('SeasonName') != ""){
@@ -95,34 +101,58 @@ export class SingleGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.season();
-    localStorage.setItem('awaySeason', '');
-    localStorage.setItem('homeSeason', '');
-    localStorage.setItem('homeTeam', '');
-    localStorage.setItem('awayTeam', '');
-    localStorage.setItem('gameData','');
+  }
+  toggleMenu(): void{
+    this.showSubstitution = false;
   }
   goSubPattern(status) {
+    
     if (status === 'Away') {
       if (this.teamValue) {
-        localStorage.setItem('showStatus', 'playallteam');
+        this.showSubstitution = true;
+        const modalRef = this.modalService.open(SubstitutionPatternSingleGameComponent,
+          {
+            scrollable: true,
+            windowClass: 'myCustomModalClass',
+            size: 'lg'
+            // keyboard: false,
+            // backdrop: 'static'
+          });
     
-        let gameArray = [];
-        gameArray.push({
-          "predictaway": this.teamValue,"predictgames":5,"predicthome":"undefined"
-        })
-        localStorage.setItem('gameData',JSON.stringify(gameArray));
-        this.router.navigateByUrl('/dashboard3/substitutionpattern');
+        let data = {
+          seasonName: this.seasonValue,
+          teamName: this.teamValue
+        }
+    
+        modalRef.componentInstance.fromParent = data;
+        modalRef.result.then((result) => {
+          console.log(result)
+        }, (reason) => {
+        });
       } 
       
     } else {
       if (this.opponentValue) {
-        localStorage.setItem('showStatus', 'playallteam');
-        let gameArray = [];
-        gameArray.push({
-          "predictaway":"undefined","predictgames":5,"predicthome":this.opponentValue
-        })
-        localStorage.setItem('gameData',JSON.stringify(gameArray));
-        this.router.navigateByUrl('/dashboard3/substitutionpattern');
+        this.showSubstitution = true;
+        const modalRef = this.modalService.open(SubstitutionPatternSingleGameComponent,
+          {
+            scrollable: true,
+            windowClass: 'myCustomModalClass',
+            size: 'lg'
+            // keyboard: false,
+            // backdrop: 'static'
+          });
+    
+        let data = {
+          seasonName: this.seasonValue,
+          teamName: this.opponentValue
+        }
+    
+        modalRef.componentInstance.fromParent = data;
+        modalRef.result.then((result) => {
+          console.log(result)
+        }, (reason) => {
+        });
       } 
       
     }

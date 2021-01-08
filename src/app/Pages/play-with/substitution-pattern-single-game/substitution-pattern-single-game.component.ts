@@ -4,17 +4,23 @@ import { AdminService } from '../../../../services/admin.service';
 import { NotifierService } from 'angular-notifier';
 import { Location } from '@angular/common';  //5, 19
 import { Router } from '@angular/router';
-
+import { SharedService } from '../../../services/shared.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { DraftPlayerComponent } from '../draft-player/draft-player.component';
+import { DraftPlayerSingleGameComponent } from '../draft-player-single-game/draft-player-single-game.component';
+// import { EventEmitter } from 'protractor';
+// import { timeout } from 'rxjs/operators';
+// import {DialogModule} from 'primeng/dialog';
+// import { unsupported } from '@angular/compiler/src/render3/view/util';
+
 
 @Component({
-  selector: 'app-substitution-pattern',
-  templateUrl: './substitution-pattern.component.html',
-  styleUrls: ['./substitution-pattern.component.scss']
+  selector: 'app-substitution-pattern-single-game',
+  templateUrl: './substitution-pattern-single-game.component.html',
+  styleUrls: ['./substitution-pattern-single-game.component.scss']
 })
-export class SubstitutionPatternComponent implements OnInit {
-  checked: boolean = false;
+export class SubstitutionPatternSingleGameComponent implements OnInit {
+  @Input() fromParent;
+  checkedValue: boolean = false;
   playersubsData;
   listData = [];
   leag_name = '';
@@ -28,7 +34,6 @@ export class SubstitutionPatternComponent implements OnInit {
   b: any;
   c: any;
   isLocate = false;
-  opponentValue: any;
   multiCheckedValue: any = [];
   firstSel: any;
   secSel: any;
@@ -61,6 +66,7 @@ export class SubstitutionPatternComponent implements OnInit {
   draftTeam:any;
  draftTeamA:any;
  gameStatus: string = '';
+ seasonTeamData: any;
  @Output('toggleMenu') toggleMenu: EventEmitter<any> = new EventEmitter();
   constructor(
     private router: Router,
@@ -68,86 +74,10 @@ export class SubstitutionPatternComponent implements OnInit {
     private adminService: AdminService,
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService,
+    private shared: SharedService,
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
   ) {
-    this.draftTeam = localStorage.getItem('PredictData1');
-    this.leag_name = localStorage.getItem('SeasonName');
-    this.draftTeamA = localStorage.getItem('SeasonName')
-    this.allTheTeams = localStorage.getItem('showStatus');
-    this.gameStatus = localStorage.getItem('showStatus');
-    if (this.gameStatus === 'playallteam') {
-      this.teamName = localStorage.getItem('PredictData1');
-      this.gameData.push(this.draftTeam);
-      if (localStorage.getItem('homeTeam') !== '') {
-        this.teamName = localStorage.getItem('homeTeam');
-      }
-      this.getPlayersSubs();
-
-
-    } else if (this.gameStatus === 'oneonone') {
-      this.teamName = localStorage.getItem('PredictData1');
-
-      if (localStorage.getItem('gameData') && localStorage.getItem('gameData') != '') {
-        this.gameData = JSON.parse(localStorage.getItem('gameData'));
-      }
-      if (localStorage.getItem('Predictgames') != "") {
-        this.other_Name = JSON.parse(localStorage.getItem('Predictgames'));
-        this.gameData = this.other_Name
-      }
-      let obj = []
-      for (let item of this.gameData) {
-        obj.push(item.predictaway)
-        obj.push(item.predicthome)
-      }
-      this.gameData = [...new Set(obj)]
-      this.getPlayersSubs()
-    } else if (this.gameStatus === 'allteam') {
-      let team = JSON.parse(localStorage.getItem('allTeamData'))
-      for (let item of team) {
-        this.gameData.push(item.teams)
-      }
-      this.teamName = this.gameData[0]
-      this.team_name = this.teamName;
-      this.getPlayersSubs()
-    }
-
-    // this.oneononeData = localStorage.getItem('showStatus');
-    // if (this.oneononeData != 'allteam') {
-    //   if (localStorage.getItem('gameData') != "") {
-    //     this.gameData = JSON.parse(localStorage.getItem('gameData'));
-    //   }
-    //   if (localStorage.getItem('Predictgames') != "") {
-    //     this.other_Name = JSON.parse(localStorage.getItem('Predictgames'));
-    //     this.gameData = this.other_Name
-    //   }
-    //   let obj = [];
-    //   if (this.gameData) {
-    //     for (let item of this.gameData) {
-    //       obj.push(item.predictaway)
-    //       obj.push(item.predicthome)
-    //     }
-    //   }
-    //   this.gameData = [...new Set(obj)]
-    //   if (localStorage.getItem('gameData') != "") {
-    //     const gameArray = JSON.parse(localStorage.getItem('gameData'));
-    //     this.teamName = gameArray[0].predictaway;
-    //   } else if (localStorage.getItem('homeTeam')) {
-    //     this.teamName = localStorage.getItem('homeTeam');
-    //   }
-    //   this.leag_name = localStorage.getItem('SeasonName');
-    //   this.getPlayersSubs()
-    // } else {
-    //   let team = JSON.parse(localStorage.getItem('allTeamData'))
-    //   for (let item of team) {
-    //     this.gameData.push(item.teams)
-    //   }
-    //   this.teamName = this.gameData[0]
-    //   this.team_name = this.teamName;
-    //   this.leag_name = localStorage.getItem('SeasonName');
-    //   this.getPlayersSubs()
-    // }
-
 
     this.subpatter = [
       {
@@ -182,18 +112,27 @@ export class SubstitutionPatternComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.allTheTeams = 'playallteam';
+    this.gameStatus = 'playallteam';
+    console.log(this.checkedValue)
+    if (this.fromParent) {
+      this.draftTeam = this.fromParent.teamName;
+      this.leag_name = this.fromParent.seasonName;
+      this.draftTeamA = this.fromParent.seasonName;
+      this.teamName = this.fromParent.teamName;
+      this.getPlayersSubs();
+    }
     if (!localStorage.getItem('userToken')) {
       this.router.navigateByUrl('/');
     }
     this.team_name = this.gameData[0];
     console.log('dsds')
   }
-  closeModalSub(sendData) {
+  closeModal(sendData) {
     this.activeModal.close(sendData);
   }
-  openDraftPlayer() {
-    this.closeModalSub('dismiss');
-    const modalRef = this.modalService.open(DraftPlayerComponent,
+  openDraftPlayerModal() {
+    const modalRef = this.modalService.open(DraftPlayerSingleGameComponent,
       {
         scrollable: true,
         windowClass: 'myCustomModalClass',
@@ -201,8 +140,18 @@ export class SubstitutionPatternComponent implements OnInit {
         // keyboard: false,
         // backdrop: 'static'
       });
-  }
 
+    let data = {
+      seasonName: this.fromParent.seasonName,
+      teamName: this.fromParent.teamName
+    }
+
+    modalRef.componentInstance.fromParentDraft = data;
+    modalRef.result.then((result) => {
+      console.log(result)
+    }, (reason) => {
+    });
+  }
   async getPlayersSubs() {
 
 
@@ -358,7 +307,7 @@ export class SubstitutionPatternComponent implements OnInit {
   }
 
   selectPlayerl(op, pos, j, k, l) {
-    if (this.checked) {
+    if (this.checkedValue) {
       return false;
     }
     this.multiCheckedValue = [];
@@ -391,7 +340,7 @@ export class SubstitutionPatternComponent implements OnInit {
 
   ok() {
     this.changePosition()
-    this.can()
+    this.closeModal('dismiss');
   }
 
   mdl() {
@@ -573,13 +522,10 @@ export class SubstitutionPatternComponent implements OnInit {
 
 
   multcheck($event) {
-    this.checked = $event
+    this.checkedValue = $event
     this.isLocate = false;
   }
 
-  can() {
-    this.displayBasic = undefined;
-  }
 
   cancel() {
     this.button_single = null;
@@ -699,5 +645,11 @@ export class SubstitutionPatternComponent implements OnInit {
   }
 
   substitute = ['pos1', 'pos2', 'pos3', 'pos4', 'pos5']
+
+
+  closed(): void{
+    this.toggleMenu.emit();
+  }
+
 
 }

@@ -7,8 +7,10 @@ import { Router, ActivatedRoute, Params, Data } from '@angular/router';
 import { NotifierService } from "angular-notifier";
 import { SharedService } from '../../../services/shared.service';
 import {TabViewModule} from 'primeng/tabview';
-
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SubstitutionPatternComponent } from '../substitution-pattern/substitution-pattern.component';
+import { DraftPlayerComponent } from '../draft-player/draft-player.component';
+import { ChangePlayerCharacteristicsComponent } from '../change-player-characteristics/change-player-characteristics.component';
 @Component({
   selector: 'app-advanced-setting-qtr-table',
   templateUrl: './advanced-setting-qtr-table.component.html',
@@ -99,6 +101,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService,
     private shared: SharedService,
+    private modalService: NgbModal,
   ) {
     this.getTableData = [];
     let checkPlaybyPlay = localStorage.getItem('keyy');
@@ -542,20 +545,35 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   }
 
   showbuttonModalDialogS() {
-    this.showSubstitution = true;
-    this.showCharacter = false;
-    this.showDraft = false;
+    const modalRef = this.modalService.open(SubstitutionPatternComponent,
+      {
+        scrollable: true,
+        windowClass: 'myCustomModalClass',
+        size: 'lg'
+        // keyboard: false,
+        // backdrop: 'static'
+      });
   }
 
   showbuttonModalDialogC() {
-    this.showCharacter = true;
-    this.showSubstitution = false;
-    this.showDraft = false;
+    const modalRef = this.modalService.open(ChangePlayerCharacteristicsComponent,
+      {
+        scrollable: true,
+        windowClass: 'myCustomModalClass',
+        size: 'lg'
+        // keyboard: false,
+        // backdrop: 'static'
+      });
   }
   showbuttonModalDialogD() {
-    this.showDraft = true;
-    this.showCharacter = false;
-    this.showSubstitution = false;
+    const modalRef = this.modalService.open(DraftPlayerComponent,
+      {
+        scrollable: true,
+        windowClass: 'myCustomModalClass',
+        size: 'lg'
+        // keyboard: false,
+        // backdrop: 'static'
+      });
   }
 
   cancelMulti() {

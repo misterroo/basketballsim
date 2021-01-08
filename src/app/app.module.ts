@@ -28,13 +28,14 @@ import { TabViewModule } from 'primeng/tabview';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
   ],
-  imports: [   
+  imports: [
+    NgbModule,
     CheckboxModule,
     ButtonModule,
     SliderModule,
@@ -96,7 +97,7 @@ import { HttpClientModule } from '@angular/common/http';
     }),
   ],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AdminService, MessageService, ConfirmationService, DatePipe, CookieService, SharedService, { provide: AuthGuardService, useClass: AuthGuardService }],
+  providers: [AdminService, MessageService, ConfirmationService, DatePipe, CookieService, SharedService,NgbActiveModal, { provide: AuthGuardService, useClass: AuthGuardService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

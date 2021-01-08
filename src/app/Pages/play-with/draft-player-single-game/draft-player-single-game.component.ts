@@ -5,15 +5,17 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { NotifierService } from 'angular-notifier';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+
 import { Router} from '@angular/router';
 
 @Component({
-  selector: 'app-draft-player',
-  templateUrl: './draft-player.component.html',
-  styleUrls: ['./draft-player.component.scss']
+  selector: 'app-draft-player-single-game',
+  templateUrl: './draft-player-single-game.component.html',
+  styleUrls: ['./draft-player-single-game.component.scss']
 })
-export class DraftPlayerComponent implements OnInit {
-  @Input() fromParentDp;
+export class DraftPlayerSingleGameComponent implements OnInit {
+  @Input() fromParentDraft;
   model: any = { data: '',
     'season': '',
     'opponent': '',
@@ -25,7 +27,6 @@ selectValue = { key: '',selectedKey: ''};
   playerData;
   gameData:any = [];
   oppGameData;
-  team_name;
   opp_name;
   teamData: any = [];
   teamData1: any = [];
@@ -36,9 +37,6 @@ selectValue = { key: '',selectedKey: ''};
   seasonValue: any;
   draftTeam:any;
   draftTeamData:any;
-  draftTeamA:any;        
-  draftTeamB:any;
-  selectedPlayer2:any;
   leag_name = '';
   isLocate = false;
   oneononeData;
@@ -64,8 +62,6 @@ selectValue = { key: '',selectedKey: ''};
   league_value:any
   league_valuee:any
   team1:any =[];
-  allTheTeams;
-  selectedOpTeam:any;
 
   @Output('toggleMenu') toggleMenu: EventEmitter<any> = new EventEmitter();
 
@@ -74,43 +70,11 @@ selectValue = { key: '',selectedKey: ''};
     private adminService: AdminService,
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService,
-    public activeModal: NgbActiveModal,
     private _location: Location,
+    public activeModal: NgbActiveModal,
   ) {
-    this.selectedOpTeam = localStorage.getItem('PredictData2');
-    this.allTheTeams = localStorage.getItem('showStatus');
-    this.draftTeam = localStorage.getItem('PredictData1')
-    this.draftTeamA = localStorage.getItem('SeasonName')
     this.draftReplaceAddArr = []
 
-
-    this.oneononeData = localStorage.getItem('showStatus');
-    if (this.oneononeData != 'allteam' && this.oneononeData == 'oneonone') {
-      this.leag_name = localStorage.getItem('SeasonName');
-      if(localStorage.getItem('gameData') && localStorage.getItem('gameData') != ''){
-        this.gameData = JSON.parse(localStorage.getItem('gameData'));
-      }
-
-      if (localStorage.getItem('Predictgames') != "") {
-        this.other_Name = JSON.parse(localStorage.getItem('Predictgames'));
-        this.gameData = this.other_Name
-      }
-      let obj = []
-      for (let item of this.gameData) {
-        obj.push(item.predictaway)
-        obj.push(item.predicthome)
-      }
-      this.gameData = [...new Set(obj)]
-    } else {
-      let team = JSON.parse(localStorage.getItem('allTeamData'))
-      // for (let item of team) {  // Error 
-      //   this.gameData.push(item.teams)
-      // }
-      this.teamName = this.gameData[0]
-      this.team_name = this.teamName;
-      this.leag_name = localStorage.getItem('SeasonName');
-      // this.getPlayersSubs()
-    }
   }
 
   selectDropdown: any = [
@@ -184,25 +148,21 @@ selectValue = { key: '',selectedKey: ''};
     if(!localStorage.getItem('userToken')){
       this.router.navigateByUrl('/');
     }
-    this.season() 
+    this.season();
+    if (this.fromParentDraft) {
+      this.draftTeam = this.fromParentDraft.teamName;
+      this.leag_name = this.fromParentDraft.seasonName;
+      this.teamName = this.fromParentDraft.teamName;
 
-    let league_name =  localStorage.getItem('SeasonName');
-
-    this.team_name = this.gameData[0];
+      this.team(this.leag_name)
+      this.getPlayerDraftonLoad(this.leag_name, this.draftTeam);
+    }
     
-    //  this.opp_name = this.gameData[0].predicthome;
-    
-     this.team(league_name)
-    //  this.leagueName = this.team(league_name)
-    this.getPlayerDraftonLoad(this.draftTeam);
- 
-
   }
   
   closeModalDraft(sendData) {
     this.activeModal.close(sendData);
   }
-
   backClicked() {                  
     this._location.back();
   }
@@ -286,13 +246,13 @@ selectValue = { key: '',selectedKey: ''};
         }
       });
   }
-  async getPlayerDraftonLoad(e) {
+  async getPlayerDraftonLoad(league, team) {
      
     let  data :  any = {
     "apikey":"Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
      "keeppbp":"N",
-     "league_name":localStorage.getItem('SeasonName'),
-     "team_name":e
+     "league_name": league,
+     "team_name":team
     }
 
     const Token: string = localStorage.getItem('userToken');
@@ -502,42 +462,7 @@ selectValue = { key: '',selectedKey: ''};
     
     
   }
-  // add(){
-  //   if (this.selectedDraftPlayerName === '') {
-  //     // alert('You must have a player selected.');
-  //   } else {
-  //     this.draftTeamData.push(this.playerToReplaceData  );
-  //     let newadd = {
-  //       "action":"add",
-  //       "new_player_league":this.seasonValue,
-  //       "new_player_team":this.newTeamName,
-  //       "new_player_name":this.playerToReplaceData.player_name
-  //     }
-  //     this.draftReplaceAddArr.push(newadd)
-  //   }
-    
-  // }
 
-  cancelClicked() {
-    this.draftReplaceAddArr = [];
-    // this.draftTeam = [];
-    this.getPlayerDraftonLoad(this.draftTeam);
-  }
-
-  changeTeam(event) {
-    this.draftTeam = event.target.value
-    let league_name = localStorage.getItem('SeasonName');
-    let data = {
-      "apikey": "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
-      "keeppbp": "N",
-      "league_name": league_name,
-      "team_name": this.team_name,
-      "opp_name": this.opp_name,
-    }
-    this.getPlayerDraftonLoad(this.draftTeam);
-  }
-
-  
   session_list(k) {
     this.seasson_arry.map(item => {
       item.activeRow = false
@@ -547,11 +472,4 @@ selectValue = { key: '',selectedKey: ''};
     // this.team(this.league_value)
     this.teamm(this.league_value)
    }
-
-
-
-
-
-
-
 }

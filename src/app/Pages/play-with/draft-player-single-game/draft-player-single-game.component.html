@@ -4,7 +4,7 @@
         <span aria-hidden="true" style="color: #fff;">&times;</span>
     </button>
 </div>
-<div id=draftplayer>
+<div id=draftplayersinglegame>
     <div class="container-fluid">
         <!-- <app-header></app-header> -->
         <div class="row">
@@ -19,30 +19,8 @@
                                 <span> <button class="btn_clean" (click)="add()" >ADD</button></span>
                                 <span> <button class="btn_clear" (click)="setPlayerDraft()">OK</button></span> 
                                 <span> <button class="btn_clean" (click)="closeModalDraft('dismiss')">CANCEL</button></span>
-                            </div> 
-                            <!-- <ol class="breadcrumb col-md-7 bread_mrgin">                                           
-                                <li class="breadcrumb-item point hover_clr" *ngIf="this.oneononeData == 'oneonone'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >1 on 1 Matchup </a></li>                  
-                                <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'playallteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Play with All teams </a></li>                  
-                                <li class="breadcrumb-item point hover_clr" *ngIf="this.allTheTeams == 'allteam'"><a class="a_color" [routerLink]='"/dashboard/chooseteam"' >Replay entire season</a></li>
-                                <li class="breadcrumb-item  point hover_clr"><a  class="a_color" [routerLink]='"/dashboard3/playwithallteam"' >{{leag_name}} </a> </li>
-                                <li class="breadcrumb-item active point hover_clr" > <a class="a_color" [routerLink]='"/dashboard3/advancedsettingqtrtable"' > Advance setting</a></li>
-                              </ol> -->
-
-                            <h3 class="margin"  *ngIf="this.oneononeData == 'playallteam'">{{draftTeam }} - {{draftTeamA}}</h3> 
-
-                            <div class="form-group col-2 bread" *ngIf="this.oneononeData == 'allteam'">
-                                <label for="exampleFormControlSelect1"></label>
-                                <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="team_name" (change)="changeTeam($event)">
-                                  <option *ngFor="let item of teamData" [value]="item.teams">{{item.teams}}</option>
-                                </select>
                             </div>
-
-                            <div class="form-group col-2  yo"  *ngIf="this.oneononeData == 'oneonone'">
-                                <label for="exampleFormControlSelect1"></label>                            
-                                  <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="team_name" (change)="changeTeam($event)">
-                                    <option *ngFor="let item of gameData">{{item}}</option>                    
-                                </select>
-                              </div>
+                            <h3 class="margin">{{draftTeam}} - {{leag_name}}</h3>
                             
                     </div>
                     <div class="col-md-12 col-12 tm" id="table">                        
@@ -120,7 +98,7 @@
 
 
                                 <div class="col-md-4 top-dark-row-substituttion">
-                                    <h4 class="mb-2 dark-row-replace head_font"> PLAYERS TO REPLACE/ ADD- {{draftTeam}} - {{draftTeamA}} </h4>  
+                                    <h4 class="mb-2 dark-row-replace head_font"> PLAYERS TO REPLACE/ ADD- {{draftTeam}} - {{leag_name}} </h4>  
                                     <div class="leagues-teams-box">
                                         <p-scrollPanel [style]="{width: '100%'}" styleClass="customactualteamleague">
                                             <div class="leagues-teams-box-items">

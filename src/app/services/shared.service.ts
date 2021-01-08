@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class SharedService {
   playByPlayData = [];
+  substitutionPatternData = '';
   private tokenSource = new BehaviorSubject('');
   currentToken = this.tokenSource.asObservable();
 
@@ -31,5 +32,10 @@ export class SharedService {
     return this.playByPlayData;
   }
 
-  
+  setsubstitutionPatternData(data) {
+    this.substitutionPatternData = data;
+  }
+  getsubstitutionPatternData() {
+    return this.substitutionPatternData;
+  }
 }
