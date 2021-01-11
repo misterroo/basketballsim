@@ -74,7 +74,7 @@ export class AdvancedSettingQtrTableComponent implements OnInit {
   showDraft: boolean = false;
   draftTeam:any;
   draftTeamA:any;        
- gameset : any;
+  gameset : any;
   playGamesMulti: any;
   seasonValue: any;
   teamData: any = [];

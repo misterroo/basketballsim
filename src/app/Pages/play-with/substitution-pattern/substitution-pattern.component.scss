@@ -6,6 +6,9 @@
     text-decoration: white;
 }
 #substitutionpattern{
+    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
     tr.playerRow {
         cursor: pointer;
     }

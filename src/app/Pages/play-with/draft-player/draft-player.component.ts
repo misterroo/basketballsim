@@ -103,13 +103,9 @@ selectValue = { key: '',selectedKey: ''};
       this.gameData = [...new Set(obj)]
     } else {
       let team = JSON.parse(localStorage.getItem('allTeamData'))
-      // for (let item of team) {  // Error 
-      //   this.gameData.push(item.teams)
-      // }
       this.teamName = this.gameData[0]
       this.team_name = this.teamName;
       this.leag_name = localStorage.getItem('SeasonName');
-      // this.getPlayersSubs()
     }
   }
 
@@ -190,10 +186,7 @@ selectValue = { key: '',selectedKey: ''};
 
     this.team_name = this.gameData[0];
     
-    //  this.opp_name = this.gameData[0].predicthome;
-    
      this.team(league_name)
-    //  this.leagueName = this.team(league_name)
     this.getPlayerDraftonLoad(this.draftTeam);
  
 
@@ -547,11 +540,5 @@ selectValue = { key: '',selectedKey: ''};
     // this.team(this.league_value)
     this.teamm(this.league_value)
    }
-
-
-
-
-
-
 
 }
