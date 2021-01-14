@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, ViewChild, QueryList, ElementRef } from '@angular/core';
 import {Location} from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminService } from '../../../../services/admin.service';
@@ -17,7 +17,8 @@ import { SubstitutionPatternSingleGameComponent } from '../substitution-pattern-
   styleUrls: ['./single-game.component.scss']
 })
 export class SingleGameComponent implements OnInit {
-
+  @ViewChildren('plpLoop') plpLoop: QueryList<any>;
+  @ViewChild('plpContent') plpContent: ElementRef;
   position: string
   showSubstitution: boolean = false;
   displayModal: boolean = false;
@@ -101,6 +102,15 @@ export class SingleGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.season();
+  }
+  ngAfterViewInit() {
+    this.scrollToBottom();
+    this.plpLoop.changes.subscribe(this.scrollToBottom);
+  }
+  scrollToBottom(){
+    try {
+      this.plpContent.nativeElement.scrollTop = this.plpContent.nativeElement.scrollHeight;
+    } catch (err) {}
   }
   toggleMenu(): void{
     this.showSubstitution = false;
@@ -501,12 +511,8 @@ export class SingleGameComponent implements OnInit {
             // this.spinner.hide();
             this.showableChatData = resultdata.data;
             let name=  this.showableChatData;
-            if(name){
-                      const yOffset = -20; 
-                      jQuery('#fir').animate({
-                        scrollTop: jQuery("#sec").offset().top
-                      }, 2000);
-                  ``}
+            var container = document.getElementById("fir");    
+          container.scrollTop = container.scrollHeight;
             this.chatCount = Number(resultdata.data[0].color.trim());
             });
     }
@@ -530,13 +536,15 @@ export class SingleGameComponent implements OnInit {
         }},() => {
           // this.spinner.hide();
           this.rawBoxScore = resultdata.data;
-          let name =this.rawBoxScore;
-            if(name){
-              jQuery('#scrollP').animate({
-                scrollTop: jQuery("#yu").offset().top 
-              }, 1000);
-          ``}
-          });
+          var container = document.getElementById("scrollP");    
+          container.scrollTop = container.scrollHeight; 
+          // let name =this.rawBoxScore;
+          //   if(name){
+          //     jQuery('#scrollP').animate({
+          //       scrollTop: jQuery("#yu").offset().top 
+          //     }, 1000);
+          // ``}
+         });
           
     }
 
@@ -552,13 +560,17 @@ export class SingleGameComponent implements OnInit {
       console.log(this.play_by_playComments)
       this.count_Single ++
 
-      let name=  this.play_by_playComments;
-            if(name){
-                      const yOffset = -20; 
-                      jQuery('#fir').animate({
-                        scrollTop: jQuery("#sec").offset().top
-                      }, 2000);
-                  ``}
+      let name = this.play_by_playComments;
+      // if (name) {
+      //   const yOffset = -20;
+      //   jQuery('#fir').animate({
+      //     scrollTop: jQuery("#sec").offset().top
+      //   }, 2000);
+      //   ``
+      // }
+      
+      var container = document.getElementById("fir");    
+      container.scrollTop = container.scrollHeight;
       if( this.count_Single == this.showableChatData.length){
         console.log(this.count_Single)
         this.get_Single_Step()
@@ -586,12 +598,16 @@ export class SingleGameComponent implements OnInit {
           // console.log(this.tempData)
           this.pushedDataLength = this.tempData.length
           let name=  this.play_by_playComments;
-            if(name){
-                      const yOffset = -20; 
-                      jQuery('#fir').animate({
-                        scrollTop: jQuery("#sec").offset().top
-                      }, 2000);
-                  ``}
+          // if (name) {
+          //   const yOffset = -20;
+          //   jQuery('#fir').animate({
+          //     scrollTop: jQuery("#sec").offset().top
+          //   }, 2000);
+          //   ``
+          // }
+          
+          var container = document.getElementById("fir");    
+          container.scrollTop = container.scrollHeight;
           if( this.tempData.length == this.showableChatData.length){
             console.log(this.tempData.length ,'==', this.showableChatData.length)
             this.get_Single_Step()
@@ -611,13 +627,17 @@ export class SingleGameComponent implements OnInit {
         this.playSingleGame_Stats()
           this.getComments()
           this.getRawBoxState()
-          let name=  this.play_by_playComments;
-            if(name){
-                      const yOffset = -20; 
-                      jQuery('#fir').animate({
-                        scrollTop: jQuery("#sec").offset().top
-                      }, 2000);
-                  ``}
+      let name = this.play_by_playComments;
+      // if (name) {
+      //   const yOffset = -20;
+      //   jQuery('#fir').animate({
+      //     scrollTop: jQuery("#sec").offset().top
+      //   }, 2000);
+      //   ``
+      // }
+      
+      var container = document.getElementById("fir");    
+      container.scrollTop = container.scrollHeight;
       if(this.getPlay_Single_Stp.continue === 'yes'){
         this.play_by_playComments = this.showableChatData
         this.get_Single_Step()
@@ -628,13 +648,17 @@ export class SingleGameComponent implements OnInit {
         console.log('22')
         this.button_disable = true
         let name=  this.play_by_playComments;
-            if(name){
-                      const yOffset = -20; 
-                      jQuery('#fir').animate({
-                        scrollTop: jQuery("#sec").offset().top
-                      }, 2000);
-                  ``}
-                  console.log("33")
+        // if (name) {
+        //   const yOffset = -20;
+        //   jQuery('#fir').animate({
+        //     scrollTop: jQuery("#sec").offset().top
+        //   }, 2000);
+        //   ``
+        // }
+        // console.log("33")
+        
+        var container = document.getElementById("fir");    
+        container.scrollTop = container.scrollHeight;
       }
       else if(this.getPlay_Single_Stp.continue === 'gameover'){
         console.log("run gameover")

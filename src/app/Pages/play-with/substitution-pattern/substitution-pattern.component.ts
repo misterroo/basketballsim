@@ -42,7 +42,7 @@ export class SubstitutionPatternComponent implements OnInit {
   gameData: any = [];
   gameData1;
   oneononeData;
-  team_name;
+  team_name: string = '';
   opp_name;
   other_Name;
   allTheTeams
@@ -78,10 +78,15 @@ export class SubstitutionPatternComponent implements OnInit {
     this.gameStatus = localStorage.getItem('showStatus');
     if (this.gameStatus === 'playallteam') {
       this.teamName = localStorage.getItem('PredictData1');
-      this.gameData.push(this.draftTeam);
-      if (localStorage.getItem('homeTeam') !== '') {
-        this.teamName = localStorage.getItem('homeTeam');
+      this.team_name = this.teamName;
+      let team = JSON.parse(localStorage.getItem('allTeamData'))
+      for (let item of team) {
+        this.gameData.push(item.teams)
       }
+      // this.gameData.push(this.draftTeam);
+      // if (localStorage.getItem('homeTeam') !== '') {
+      //   this.teamName = localStorage.getItem('homeTeam');
+      // }
       this.getPlayersSubs();
 
 
@@ -101,6 +106,7 @@ export class SubstitutionPatternComponent implements OnInit {
         obj.push(item.predicthome)
       }
       this.gameData = [...new Set(obj)]
+      this.team_name = this.gameData[0];
       this.getPlayersSubs()
     } else if (this.gameStatus === 'allteam') {
       let team = JSON.parse(localStorage.getItem('allTeamData'))
@@ -185,7 +191,7 @@ export class SubstitutionPatternComponent implements OnInit {
     if (!localStorage.getItem('userToken')) {
       this.router.navigateByUrl('/');
     }
-    this.team_name = this.gameData[0];
+    // this.team_name = this.gameData[0];
     console.log('dsds')
   }
   closeModalSub(sendData) {
@@ -637,17 +643,9 @@ export class SubstitutionPatternComponent implements OnInit {
 
 
   changeTeam(event) {
-
-    this.teamName = event.target.value  // teamName
-    let league_name = localStorage.getItem('SeasonName');
-
-
-    let data = {
-      "apikey": "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A",
-      "keeppbp": "N",
-      "league_name": league_name,
-      "team_name": this.teamName,
-    }
+    console.log(this.gameData)
+    console.log(event.target.value)
+    this.teamName = event.target.value;
     this.getPlayersSubs();
   }
 

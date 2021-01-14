@@ -10,9 +10,9 @@
                             <h1>Basketball Statistics Database</h1>
 
                             <ol class="breadcrumb col-md-4 bread_mrgin">        <!--*ngIf="this.databaseData && this.databaseData.length > 0"-->
-                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseData && this.databaseData.length > 0"><a class="a_color hov">Basketball Players - {{totalPlayerTeamCount}}</a></li>                              
-                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"><a class="a_color hov">Basketball Teams - {{totalPlayerTeamCount}}</a></li>                              
-                                <li class="breadcrumb-item point hover_clr" ><a class="a_color hov" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"  >Home </a></li>                              
+                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseData && this.databaseData.length > 0"><a class="a_color">Basketball Players - {{totalPlayerTeamCount}}</a></li>                              
+                                <li class="breadcrumb-item point hover_clr" *ngIf="this.databaseTeamData && this.databaseTeamData.length > 0"><a class="a_color">Basketball Teams - {{totalPlayerTeamCount}}</a></li>                              
+                                <!-- <li class="breadcrumb-item point hover_clr" ><a class="a_color hov" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"  >Home </a></li>                               -->
                             </ol>
                             <div class="sortable_right_content read">
                                 <div class="dropdown fir point">
@@ -143,7 +143,7 @@
                             </ng-template>
                             <ng-template pTemplate="body" let-rowData let-columns="columns" id="containerDiv" let-rowIndex="rowIndex">
                                 <tr class="fnt_media font_data" [pSelectableRow]="rowData" [id]="rowIndex">
-                                    <td *ngFor="let col of columns;let i=index" class="point ui-resizable-column" [id]="i" [ngStyle]="{'color': rowData.color == 1?firSetColorOn:secSetColorOn,'background-color': allyellow?'yellow' :'','display':col.hideData?'none':''}" > <!--[ngClass]="rowData.color == 1?'bl':'re'" -->
+                                    <td *ngFor="let col of columns;let i=index" class="point ui-resizable-column" [id]="i" [ngStyle]="{'color': rowData.setcolor,'background-color': allyellow?'yellow' :'','display':col.hideData?'none':''}" > <!--[ngClass]="rowData.color == 1?'bl':'re'" -->
                                         <div *ngIf="rowData[col.field] === '-999' || rowData[col.field] === null">---</div> <!---->
                                         <div *ngIf="rowData[col.field] !== '-999'">{{rowData[col.field]}}</div> 
                                     </td>
@@ -201,7 +201,7 @@
                             </ng-template>
                             <ng-template pTemplate="body" let-rowData let-columns="columns" id="containerDiv" let-rowIndex="rowIndex">
                                 <tr class="fnt_media font_data" [pSelectableRow]="rowData" [id]="rowIndex">
-                                    <td *ngFor="let col of columns;let i=index" class="point ui-resizable-column" [id]="i" [ngStyle]="{'color': rowData.color == 1?firSetColorOn:secSetColorOn,'background-color': allyellow?'yellow' :'','display':col.hideData?'none':''}" > <!--[ngClass]="rowData.color == 1?'bl':'re'" -->
+                                    <td *ngFor="let col of columns;let i=index" class="point ui-resizable-column" [id]="i" [ngStyle]="{'color': rowData.setcolor,'background-color': allyellow?'yellow' :'','display':col.hideData?'none':''}" > <!--[ngClass]="rowData.color == 1?'bl':'re'" -->
                                         <div *ngIf="rowData[col.field] === '-999' || rowData[col.field] === null">...</div> <!---->
                                         <div *ngIf="rowData[col.field] !== '-999'">{{rowData[col.field]}}</div> 
                                     </td>

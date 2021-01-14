@@ -633,9 +633,157 @@ export class BasketBallDatabaseComponent implements OnInit {
     this.resetData()
     this.getStaticsDatabaseTeam();
   }
+  setColorChange() {
+    if (this.databaseGamePlay === 'playerMode') {
+      let firstColor = this.firSetColorOn;
+      let secondColor = this.secSetColorOn;
+      for (let i = 0; i < this.databaseData.length; i++) {
+        if (i === 0) {
+          this.databaseData[i].setcolor = firstColor;
+        }
+        if (i > 0) {
+          if (this.radioPlayer.radionPlayer === 'true') {
+            if (this.databaseData[i].teamname ===  this.databaseData[i-1].teamname) {
+              this.databaseData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'b') {
+            if (this.databaseData[i].teamname ===  this.databaseData[i-1].teamname) {
+              this.databaseData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'c') {
+            if (this.databaseData[i].year1 === this.databaseData[i-1].year1) {
+              this.databaseData[i].setcolor = firstColor;
+            } else {
+              this.databaseData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'c') {
+            if (this.databaseData[i].year1 ===  this.databaseData[i-1].year1) {
+              this.databaseData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'd') {
+            if (this.databaseData[i].league ===  this.databaseData[i-1].league) {
+              this.databaseData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'e') {
+            if (this.databaseData[i].playoffs ===  this.databaseData[i-1].playoffs) {
+              this.databaseData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'e') {
+            if (this.databaseData[i].div1 ===  this.databaseData[i-1].div1) {
+              this.databaseData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          }
+        }
+        
+        // this.radioPlayer.radionPlayer
+      }
+    } else if (this.databaseGamePlay === 'teamMode') {
+      let firstColor = this.firSetColorOn;
+      let secondColor = this.secSetColorOn;
+      for (let i = 0; i < this.databaseTeamData.length; i++) {
+        if (i === 0) {
+          this.databaseTeamData[i].setcolor = firstColor;
+        }
+        if (i > 0) {
+          if (this.radioPlayer.radionPlayer === 'true') {
+            if (this.databaseTeamData[i].teamname ===  this.databaseTeamData[i-1].teamname) {
+              this.databaseTeamData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseTeamData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'c') {
+            if (this.databaseTeamData[i].year1 === this.databaseTeamData[i-1].year1) {
+              this.databaseTeamData[i].setcolor = firstColor;
+            } else {
+              this.databaseTeamData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'd') {
+            if (this.databaseTeamData[i].league ===  this.databaseTeamData[i-1].league) {
+              this.databaseTeamData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseTeamData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'e') {
+            if (this.databaseTeamData[i].playoffs ===  this.databaseTeamData[i-1].playoffs) {
+              this.databaseTeamData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseTeamData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          } else if (this.radioPlayer.radionPlayer === 'e') {
+            if (this.databaseTeamData[i].div1 ===  this.databaseTeamData[i-1].div1) {
+              this.databaseTeamData[i].setcolor = firstColor;
+            } else {
+              
+              this.databaseTeamData[i].setcolor = secondColor;
+              let secColor = firstColor;
+              firstColor = secondColor;
+              secondColor = secColor;
+            }
+          }
+        }
+        
+        // this.radioPlayer.radionPlayer
+      }
+    }
+    
+  }
   async getStaticsDatabase() {
-    this.firSetColorOn = "blue";
-    this.secSetColorOn = "red";
+    // this.firSetColorOn = "blue";
+    // this.secSetColorOn = "red";
     this.locate_disable = false
     this.locate_disablee = false
     // this.all_Color = false
@@ -728,6 +876,8 @@ export class BasketBallDatabaseComponent implements OnInit {
             }
           }
           this.totalPlayerTeamCount = resultdata.recordsTotal;
+          
+          this.setColorChange();
           this.databaseData.map((item, index) => { // For All Position
             if (index > 0) {
               this.playerPositionDataAllSort.push(item.position)
@@ -979,7 +1129,8 @@ export class BasketBallDatabaseComponent implements OnInit {
           if( this.all_Color == true){
             this.selectedRows = this.databaseTeamData;
           }
-        }    
+        }
+        this.setColorChange();
         for (let header of this.allTeamData) {
           for (let footer of this.footerDataTeam) {
             if (header.field_name === footer.field_name) {
@@ -1329,6 +1480,16 @@ export class BasketBallDatabaseComponent implements OnInit {
       this.selectedPositionAl = [];
       this.playerPositionDataAllSort = [];
       this.tempTeamData = [];
+      this.radioPlayer = {
+        radionPlayer: 'true'
+      }
+      this.selectedCheck = {
+        check: 'ok'
+      }
+      this.firSetColor = "blue"
+      this.secSetColor = "red"
+      this.firSetColorOn = "blue"
+      this.secSetColorOn = "red"
     } else if(this.databaseGamePlay === 'teamMode'){
       this.databaseTeamData =[]
       this.teamName = [];
@@ -1386,6 +1547,16 @@ export class BasketBallDatabaseComponent implements OnInit {
         }
         this.selectedPositionAl = [];
         this.playerPositionDataAllSort = [];
+        this.radioPlayer = {
+          radionPlayer: 'true'
+        }
+        this.selectedCheck = {
+          check: 'ok'
+        }
+        this.firSetColor = "blue"
+        this.secSetColor = "red"
+        this.firSetColorOn = "blue"
+        this.secSetColorOn = "red"
     }
 }
 
@@ -1442,6 +1613,16 @@ export class BasketBallDatabaseComponent implements OnInit {
         this.selectedPositionAl = [];
         this.playerPositionDataAllSort = [];
         this.tempTeamData = [];
+        this.radioPlayer = {
+          radionPlayer: 'true'
+        }
+        this.selectedCheck = {
+          check: 'ok'
+        }
+        this.firSetColor = "blue"
+        this.secSetColor = "red"
+        this.firSetColorOn = "blue"
+        this.secSetColorOn = "red"
         this.getStaticsDatabase(); 
       } else if(this.databaseGamePlay === 'teamMode'){
         this.databaseTeamData =[]
@@ -1500,6 +1681,16 @@ export class BasketBallDatabaseComponent implements OnInit {
         }
         this.selectedPositionAl = [];
         this.playerPositionDataAllSort = [];
+        this.radioPlayer = {
+          radionPlayer: 'true'
+        }
+        this.selectedCheck = {
+          check: 'ok'
+        }
+        this.firSetColor = "blue"
+        this.secSetColor = "red"
+        this.firSetColorOn = "blue"
+        this.secSetColorOn = "red"
         this.getStaticsDatabaseTeam(); 
       }
   }
@@ -2760,6 +2951,7 @@ setColor(){
   this.firSetColorOn = this.firSetColor;
   this.secSetColorOn = this.secSetColor;
   this.display14 = false;
+  this.setColorChange();
 }
 
 subTotal(){

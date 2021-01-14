@@ -26,11 +26,12 @@
                                 <li class="breadcrumb-item  point hover_clr"><a  class="a_color" [routerLink]='"/dashboard3/playwithallteam"'>{{leag_name}} </a> </li>
                                 <li class="breadcrumb-item active point hover_clr" aria-current="page"> <a class="a_color" [routerLink]='"/dashboard3/advancedsettingqtrtable"'> Advance setting</a></li>
                             </ol> -->
-                            <h2 class="z"  *ngIf="this.gameStatus == 'playallteam'">{{draftTeam}} - {{draftTeamA}}</h2>
-                            <div class="form-group col-2 bread" *ngIf="this.gameStatus != 'playallteam'">
+                            <!-- <h2 class="z"  *ngIf="this.gameStatus == 'playallteam'">{{draftTeam}} - {{draftTeamA}}</h2> -->
+                            <!-- *ngIf="this.gameStatus != 'playallteam'" -->
+                            <div class="form-group col-2 bread" >
                                 <label for="exampleFormControlSelect1"></label>
-                                <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="team_name" (change)="changeTeam($event)">
-                                  <option *ngFor="let item of gameData">{{item}}</option>
+                                <select class="form-control" id="exampleFormControlSelect1" name="exampleFormControlSelect" [(ngModel)]="team_name" (change)="changeTeam($event)"  [value]="team_name">
+                                  <option *ngFor="let item of gameData; index as i" [value]="item" >{{item}}</option>
                                 </select>
                             </div>                           
 
