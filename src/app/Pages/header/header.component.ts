@@ -6,7 +6,8 @@ import { AdminService } from '../../../services/admin.service';
 import * as $ from 'jquery';
 import { NotifierService } from "angular-notifier";
 import { SharedService } from 'src/app/services/shared.service';
-
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 
 @Component({
@@ -54,7 +55,8 @@ export class HeaderComponent implements OnInit {
   pageUrl: any;
   uri:any = '';
   lastPath: any;
-  
+  private user: any;
+  private loggedIn: boolean;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -62,6 +64,7 @@ export class HeaderComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private notifierService: NotifierService,
     public sharedService: SharedService,
+    private authService: SocialAuthService
   ) {
     this.sharedService.currentModel.subscribe(message => {
       if (message === true) {
@@ -101,8 +104,54 @@ export class HeaderComponent implements OnInit {
     // }
 
     // this.sharedService.currentToken.subscribe(message => this.userName = message);
-  }
 
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+    
+      this.loggedIn = (user != null);
+      if (this.loggedIn) {
+        this.doSocialLogin(this.user);
+      }
+    });
+  }
+  async doSocialLogin(request) {
+    let payload = {
+      username: request.name,
+      authtoken: request.authToken,
+      apikey: 'Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A',
+      email: request.email
+    }
+    this.spinner.show();
+    (await this.adminService.socialLogin(payload)).subscribe(result => {
+      this.result = result;
+    }, (err) => console.log(err),
+      () => {
+        console.log(this.result.status)
+        if (this.result && this.result.status === "true") {
+          this.display = false;
+          localStorage.setItem('userToken', this.result.data[0].id);
+          localStorage.setItem('customerName', this.result.data[0].username)
+          localStorage.setItem('userData', JSON.stringify(this.result))
+          this.spinner.hide();
+          // this.sharedService.changeToken(this.result.data[0].username);
+          this.userName = localStorage.getItem('customerName');
+          this.sharedService.updateToken(this.result.data[0].id);
+          // this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard3/singlegamecomponent']);
+          this.notifierService.notify("success", "user login successfully");
+          // window.location.reload();
+        } else {
+          this.spinner.hide();
+          this.notifierService.notify("error", this.result.message);
+        }
+      });
+  }
+  loginWithGoogle() {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
   
 
   async login() {

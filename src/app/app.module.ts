@@ -29,6 +29,11 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from 'angularx-social-login';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +59,7 @@ import { NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    SocialLoginModule,
     BrowserAnimationsModule,
      NotifierModule.withConfig({
       position: {
@@ -97,7 +103,24 @@ import { NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
     }),
   ],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AdminService, MessageService, ConfirmationService, DatePipe, CookieService, SharedService,NgbActiveModal, { provide: AuthGuardService, useClass: AuthGuardService }],
+  providers: [AdminService, MessageService, ConfirmationService, DatePipe, CookieService, SharedService,NgbActiveModal, { provide: AuthGuardService, useClass: AuthGuardService }, {
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            '178481027508-422qi1imj9b1uoabbbb4s7p0sa6ikc6f.apps.googleusercontent.com'
+          )
+        },
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider('851463712083214')
+        }
+      ]
+    } as SocialAuthServiceConfig,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

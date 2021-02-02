@@ -48,15 +48,11 @@ export class AdminService implements OnInit {
 		// this.sessoinId = localStorage.getItem('userToken');
 	}
 	login(value) {
-		let headers = new HttpHeaders({
-			'Content-Type': 'application/json'
-		});
 		var formData: any = new FormData();
 		formData.append("username", value.username);
 		formData.append("password", value.password);
 		formData.append("apikey", "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A");
 		
-		let options = { headers: headers, method: 'post' };
 		return this.http.post(AppSettings.API_ENDPOINT + 'login.php',formData).pipe(map(res => <any>res));
 	}
 	guestLogin() {
@@ -372,6 +368,13 @@ export class AdminService implements OnInit {
 		request, options).pipe(map(res => <any>res));
 	}
 
-
+	socialLogin(request) {
+		var formData: any = new FormData();
+		formData.append("username", request.username);
+		formData.append("authtoken", request.authtoken);
+		formData.append("apikey", "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A");
+		formData.append("email", request.email);
+		return this.http.post(AppSettings.API_ENDPOINT + 'auth_register.php',formData).pipe(map(res => <any>res));
+	}
 
 }
