@@ -373,6 +373,13 @@ export class AdminService implements OnInit {
 		formData.append("username", request.username);
 		formData.append("authtoken", request.authtoken);
 		formData.append("apikey", "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A");
+		return this.http.post(AppSettings.API_ENDPOINT + 'auth_login.php',formData).pipe(map(res => <any>res));
+	}
+	socialRegister(request) {
+		var formData: any = new FormData();
+		formData.append("username", request.username);
+		formData.append("authtoken", request.authtoken);
+		formData.append("apikey", "Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A");
 		formData.append("email", request.email);
 		return this.http.post(AppSettings.API_ENDPOINT + 'auth_register.php',formData).pipe(map(res => <any>res));
 	}

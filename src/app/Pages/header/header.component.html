@@ -80,7 +80,7 @@
     <p-tabView class="dashboardtabview" id="registerTab" (onChange)="onTabChange($event)">
       <p-tabPanel header="Login" leftIcon="pi pi-user" [selected]="showLogin">
         <div class="col-md-12">
-          <div class="row mb-3">
+          <div class="row mb-3 mb-4">
             <div class="col-md-6">
               <button class="btn btn-lg btn-block omb_btn-facebook" (click)="signInWithFB()">
                 <!-- <i class="fa fa-facebook visible-xs"></i> -->
@@ -90,7 +90,7 @@
             <div class="col-md-6">
               <button class="btn btn-lg btn-block omb_btn-google" (click)="loginWithGoogle()">
                 <!-- <i class="fa fa-google-plus visible-xs"></i> -->
-                <span class="hidden-xs">Login with Google+</span>
+                <span class="hidden-xs">Login with Google</span>
               </button>
             </div>
           </div>
@@ -125,17 +125,17 @@
       <p-tabPanel header="Register" leftIcon="pi pi-user" [selected]="showRegister">
         <div class="">
           <div class="col-md-12">
-            <div class="row mb-3">
+            <div class="row mb-3 mb-4">
               <div class="col-md-6">
-                <button class="btn btn-lg btn-block omb_btn-facebook" (click)="signInWithFB()">
+                <button class="btn btn-lg btn-block omb_btn-facebook" (click)="registerWithFB()">
                   <!-- <i class="fa fa-facebook visible-xs"></i> -->
                   <span class="hidden-xs">Login with Facebook</span>
                 </button>
               </div>
               <div class="col-md-6">
-                <button class="btn btn-lg btn-block omb_btn-google" (click)="loginWithGoogle()">
+                <button class="btn btn-lg btn-block omb_btn-google" (click)="registerWithGoogle()">
                   <!-- <i class="fa fa-google-plus visible-xs"></i> -->
-                  <span class="hidden-xs">Login with Google+</span>
+                  <span class="hidden-xs">Login with Google</span>
                 </button>
               </div>
             </div>

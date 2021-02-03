@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   Data: any = []
   userName: any = '';
   token: any;
-
+  userMode: string = 'login';
   display: boolean = false;
   position: string
   model: any = {
@@ -110,16 +110,45 @@ export class HeaderComponent implements OnInit {
     
       this.loggedIn = (user != null);
       if (this.loggedIn) {
-        this.doSocialLogin(this.user);
+        if (this.userMode === 'login') {
+          this.doSocialLogin(this.user);
+        } else {
+          this.doSocialRegister(this.user);
+        }
       }
     });
   }
-  async doSocialLogin(request) {
+  async doSocialRegister(request) {
     let payload = {
       username: request.name,
       authtoken: request.authToken,
       apikey: 'Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A',
       email: request.email
+    }
+    this.spinner.show();
+    (await this.adminService.socialRegister(payload)).subscribe(result => {
+      this.result = result;
+    }, (err) => console.log(err),
+      () => {
+        this.spinner.hide();
+        if (this.result.status == "true") {
+          this.registerData = this.result.status;
+          this.showRegister = false;
+          this.showLogin = true;
+          this.registerForm.resetForm();
+          this.spinner.hide();
+          this.notifierService.notify("success", "User registered successfully");
+        } else {
+          this.spinner.hide();
+          this.notifierService.notify("error", this.result.message);
+        }
+      });
+  }
+  async doSocialLogin(request) {
+    let payload = {
+      username: request.name,
+      authtoken: request.authToken,
+      apikey: 'Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A'
     }
     this.spinner.show();
     (await this.adminService.socialLogin(payload)).subscribe(result => {
@@ -138,7 +167,7 @@ export class HeaderComponent implements OnInit {
           this.sharedService.updateToken(this.result.data[0].id);
           // this.router.navigate(['/dashboard']);
           this.router.navigate(['/dashboard3/singlegamecomponent']);
-          this.notifierService.notify("success", "user login successfully");
+          this.notifierService.notify("success", "User login successfully");
           // window.location.reload();
         } else {
           this.spinner.hide();
@@ -147,12 +176,21 @@ export class HeaderComponent implements OnInit {
       });
   }
   loginWithGoogle() {
+    this.userMode = 'login';
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
   signInWithFB(): void {
+    this.userMode = 'login';
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
-  
+  registerWithGoogle() {
+    this.userMode = 'register';
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+  registerWithFB(): void {
+    this.userMode = 'register';
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
 
   async login() {
 
@@ -173,7 +211,7 @@ export class HeaderComponent implements OnInit {
           this.sharedService.updateToken(this.result.data[0].id);
           // this.router.navigate(['/dashboard']);
           this.router.navigate(['/dashboard3/singlegamecomponent']);
-          this.notifierService.notify("success", "user login successfully");
+          this.notifierService.notify("success", "User login successfully");
           // window.location.reload();
         } else {
           this.spinner.hide();
@@ -203,7 +241,7 @@ export class HeaderComponent implements OnInit {
           this.showLogin = true;
           this.registerForm.resetForm();
           this.spinner.hide();
-          this.notifierService.notify("success", "user register successfully");
+          this.notifierService.notify("success", "User registered successfully");
         } else {
           this.spinner.hide();
           this.notifierService.notify("error", this.result.message);
