@@ -110,7 +110,6 @@ export class HeaderComponent implements OnInit {
     
       this.loggedIn = (user != null);
       if (this.loggedIn) {
-        console.log(this.user)
         if (this.userMode === 'login') {
           this.doSocialLogin(this.user);
         } else {
@@ -126,7 +125,6 @@ export class HeaderComponent implements OnInit {
       apikey: 'Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A',
       email: request.email
     }
-    console.log(payload);
     this.spinner.show();
     (await this.adminService.socialRegister(payload)).subscribe(result => {
       this.result = result;
@@ -152,13 +150,11 @@ export class HeaderComponent implements OnInit {
       authtoken: request.id,
       apikey: 'Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A'
     }
-    console.log(payload);
     this.spinner.show();
     (await this.adminService.socialLogin(payload)).subscribe(result => {
       this.result = result;
     }, (err) => console.log(err),
       () => {
-        console.log(this.result.status)
         if (this.result && this.result.status === "true") {
           this.display = false;
           localStorage.setItem('userToken', this.result.data[0].id);
@@ -271,7 +267,6 @@ export class HeaderComponent implements OnInit {
     // }
   }
   onTabChange(e) {
-    console.log(e)
     if (e.index == 0) {
       this.showLogin = true;
       this.showRegister = false;
@@ -295,9 +290,11 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     localStorage.clear();
+    this.userName = ''
     this.sharedService.changeToken('');
     this.sharedService.updateToken('');
     this.router.navigateByUrl('/');
+    // window.location.reload();
   }
   showModalDialog(position: string) {
     // this.sharedService.changeModel(true);
@@ -340,7 +337,6 @@ export class HeaderComponent implements OnInit {
       () => {
         this.spinner.hide();
         if (this.guestResult.status === 'true' || this.guestResult.status === true) {
-          console.log(this.guestResult);
           this.sharedService.updateToken(this.guestResult.data[0].id);
           localStorage.setItem('userToken', this.guestResult.data[0].id);
           this.router.navigate(['/dashboard/chooseteam']);
