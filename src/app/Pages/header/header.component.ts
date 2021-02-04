@@ -110,6 +110,7 @@ export class HeaderComponent implements OnInit {
     
       this.loggedIn = (user != null);
       if (this.loggedIn) {
+        console.log(this.user)
         if (this.userMode === 'login') {
           this.doSocialLogin(this.user);
         } else {
@@ -121,10 +122,11 @@ export class HeaderComponent implements OnInit {
   async doSocialRegister(request) {
     let payload = {
       username: request.name,
-      authtoken: request.authToken,
+      authtoken: request.id,
       apikey: 'Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A',
       email: request.email
     }
+    console.log(payload);
     this.spinner.show();
     (await this.adminService.socialRegister(payload)).subscribe(result => {
       this.result = result;
@@ -147,9 +149,10 @@ export class HeaderComponent implements OnInit {
   async doSocialLogin(request) {
     let payload = {
       username: request.name,
-      authtoken: request.authToken,
+      authtoken: request.id,
       apikey: 'Xz9hhJ0fEbhtRVfLfadkjHBHnrlUaC3A'
     }
+    console.log(payload);
     this.spinner.show();
     (await this.adminService.socialLogin(payload)).subscribe(result => {
       this.result = result;
